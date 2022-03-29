@@ -6,8 +6,8 @@
       </div>
       <div class="strings-wrapper">
         <div class="string grid grid-flow-col auto-cols-max" :class="'string-' + (index + 1)" v-for="(string, index) in strings" :key="index">
-          <div class="fret px-3 py-2" :key="note" v-for="note in string">
-            <div class="note px-2 py-1 text-2xl">
+          <div class="fret px-2 py-2" :key="note" v-for="note in string">
+            <div class="note px-3 py-1 text-2xl">
               {{ note }}
             </div>
           </div>
@@ -22,12 +22,12 @@ export default {
   data() {
     return {
       strings: [
-        ['E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E'],
-        ['E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E'],
-        ['E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E'],
-        ['E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E'],
-        ['E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E'],
-        ['E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E'],
+        ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E'],
+        ['B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
+        ['G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G'],
+        ['D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D'],
+        ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A'],
+        ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E'],
       ]
     }
   }
@@ -35,53 +35,55 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@media (min-width: 1024px) {
-  .fretboard-visualizer {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+.fretboard-visualizer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 
-    .strings-wrapper {
-      .string {
-        &:before {
-          position: absolute;
-          content: " ";
-          height: 50%;
-          width: 100%;
-          top: 0;
-          z-index: 4;
+  .strings-wrapper {
+    .string {
+      &:before {
+        position: absolute;
+        content: " ";
+        height: 50%;
+        width: 100%;
+        top: 0;
+        z-index: 4;
+      }
+
+      .fret {
+        border-right: 2px white solid;
+
+        .note {
+          background: #272727;
+          z-index: 5;
         }
-
-        .fret {
-          border-right: 2px white solid;
-
-          .note {
-            background: #272727;
-            z-index: 5;
-          }
-        }
-      }
-
-      .string-1:before {
-        border-bottom: 1px solid white;
-      }
-      .string-2:before {
-        border-bottom: 2px solid white;
-      }
-      .string-3:before {
-        border-bottom: 3px solid white;
-      }
-      .string-4:before {
-        border-bottom: 4px solid white;
-      }
-      .string-5:before {
-        border-bottom: 5px solid white;
-      }
-      .string-6:before {
-        border-bottom: 6px solid white;
       }
     }
-  }
 
+    .string-1:before {
+      border-bottom: 1px solid white;
+    }
+
+    .string-2:before {
+      border-bottom: 2px solid white;
+    }
+
+    .string-3:before {
+      border-bottom: 3px solid white;
+    }
+
+    .string-4:before {
+      border-bottom: 4px solid white;
+    }
+
+    .string-5:before {
+      border-bottom: 5px solid white;
+    }
+
+    .string-6:before {
+      border-bottom: 6px solid white;
+    }
+  }
 }
 </style>
