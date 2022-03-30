@@ -5,9 +5,9 @@
 
       </div>
       <div class="strings-wrapper">
-        <div class="string grid grid-flow-col auto-cols-max" :class="'string-' + (index + 1)" v-for="(string, index) in strings" :key="index">
-          <div class="fret px-2 py-2" :key="note" v-for="note in string">
-            <div class="note px-3 py-1 text-2xl">
+        <div class="string" :class="'string-' + (index + 1)" v-for="(string, index) in strings" :key="index">
+          <div class="fret py-2 px-3" :key="note" v-for="note in string">
+            <div class="note rounded-lg text-center text-2xl">
               {{ note }}
             </div>
           </div>
@@ -42,6 +42,9 @@ export default {
 
   .strings-wrapper {
     .string {
+      display: grid;
+      grid-template-columns: repeat(13, 5em);
+
       &:before {
         position: absolute;
         content: " ";
