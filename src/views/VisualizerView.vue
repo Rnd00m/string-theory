@@ -37,8 +37,11 @@ export default {
 <style scoped lang="scss">
 .fretboard-visualizer {
   min-height: 100vh;
+  padding: 0;
+  margin: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   .strings-wrapper {
     .string {
