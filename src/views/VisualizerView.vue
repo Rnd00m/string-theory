@@ -6,8 +6,8 @@
       </div>
       <div class="strings-wrapper">
         <div class="string" :class="'string-' + (index + 1)" v-for="(string, index) in strings" :key="index">
-          <div class="fret py-2 px-3" :key="note" v-for="note in string">
-            <div class="note rounded-lg text-center text-2xl">
+          <div class="fret py-2 px-5" :key="note" v-for="note in string">
+            <div class="note rounded-lg text-center text-lg">
               {{ note }}
             </div>
           </div>
