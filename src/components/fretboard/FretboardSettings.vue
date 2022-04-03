@@ -20,6 +20,7 @@
         <label for="none">{{ note }}</label>
       </div>
     </div>
+    <pre><code>{{ selectedCompleteNote }}</code></pre>
   </div>
 </template>
 
