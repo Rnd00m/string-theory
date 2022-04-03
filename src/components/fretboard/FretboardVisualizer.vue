@@ -2,9 +2,12 @@
   <div class="fretboard-wrapper">
     <div class="strings-wrapper">
       <div class="string" :class="'string-' + (index + 1)" v-for="(string, index) in strings" :key="index">
-        <div class="fret py-2 px-5" :key="note" v-for="note in string">
-          <div class="note rounded-lg text-center text-lg">
-            {{ note }}
+        <div class="fret py-2 px-4" :key="note" v-for="note in string">
+          <div class="note-wrapper text-center p-1">
+            <div class="note rounded-lg text-center text-lg px-1 py-0"
+                 :class="[selectedNote == note ? 'note-selected text-white' : '']">
+              {{ note }}
+            </div>
           </div>
         </div>
       </div>
@@ -24,8 +27,14 @@ export default {
         ['D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D'],
         ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A'],
         ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E'],
-      ]
+      ],
+      selectedNote: null
     }
+  },
+  created() {
+    this.emitter.on('selected-note-changed', note => {
+      this.selectedNote = note
+    });
   }
 }
 </script>
@@ -46,37 +55,43 @@ export default {
     }
 
     .fret {
-      border-right: 2px white solid;
+      border-right: 2px theme('colors.white-light') solid;
 
-      .note {
-        background: #272727;
+      .note-wrapper {
         z-index: 5;
+        background: theme('colors.black');
+
+        .note {
+          &-selected {
+            background: theme('colors.blue');
+          }
+        }
       }
     }
   }
 
   .string-1:before {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid theme('colors.white');
   }
 
   .string-2:before {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid theme('colors.white');
   }
 
   .string-3:before {
-    border-bottom: 3px solid white;
+    border-bottom: 3px solid theme('colors.white');
   }
 
   .string-4:before {
-    border-bottom: 4px solid white;
+    border-bottom: 4px solid theme('colors.white');
   }
 
   .string-5:before {
-    border-bottom: 5px solid white;
+    border-bottom: 5px solid theme('colors.white');
   }
 
   .string-6:before {
-    border-bottom: 6px solid white;
+    border-bottom: 6px solid theme('colors.white');
   }
 }
 </style>
