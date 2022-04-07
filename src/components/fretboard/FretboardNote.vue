@@ -3,7 +3,7 @@
     <div class="note-wrapper text-center p-1">
       <div class="note rounded-lg text-center text-lg px-1 py-0"
        :class="[selectedNote === noteFullName ? 'note-selected text-white' : '']">
-        {{ noteFullName }}
+        <span>{{ noteFullName }}</span><span class="note-octave" v-if="showOctave">{{ note.octave() }}</span>
       </div>
     </div>
   </div>
@@ -19,6 +19,9 @@ export default {
     },
     selectedNote: {
       type: String
+    },
+    showOctave: {
+      type: Boolean
     }
   },
   computed: {
@@ -48,6 +51,10 @@ export default {
     .note {
       &-selected {
         background: theme('colors.blue');
+      }
+
+      &-octave {
+        font-size: 0.75rem;
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="fretboard-settings-wrapper flex justify-center">
+  <div class="fretboard-settings-wrapper flex flex-col mx-auto space-y-5">
     <div class="flex gap-4">
       <div>
         <input type="radio" id="none" name="variation" value="" v-model="selectedVariation">
@@ -20,6 +20,12 @@
         <label for="none">{{ note }}</label>
       </div>
     </div>
+    <div class="flex gap-4">
+      <div>
+        <input type="checkbox" id="show-octave-checkbox" v-model="showOctave" />
+        <label for="show-octave-checkbox">&nbsp;Afficher les octaves</label>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,7 +36,8 @@ export default {
     return {
       notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
       selectedVariation: '',
-      selectedNote: 'A'
+      selectedNote: 'A',
+      showOctave: false
     }
   },
   watch: {
@@ -39,6 +46,9 @@ export default {
     },
     selectedVariation() {
       this.emitter.emit('selected-note-changed', this.selectedCompleteNote);
+    },
+    showOctave() {
+      this.emitter.emit('show-octave-changed', this.showOctave);
     }
   },
   computed: {

@@ -7,6 +7,7 @@
           :key="note"
           :note="note"
           :selected-note="selectedNote"
+          :show-octave="showOctave"
         ></FretboardNote>
       </div>
     </div>
@@ -22,9 +23,10 @@ export default {
   components: {FretboardNote},
   data() {
     return {
-      baseNotesForString: ['e', 'a', 'd', 'g', 'b', 'e'],
+      baseNotesForString: ['e2', 'a2', 'd3', 'g3', 'b3', 'e4'],
       strings: [],
-      selectedNote: null
+      selectedNote: null,
+      showOctave: false
     }
   },
   methods: {
@@ -44,6 +46,10 @@ export default {
 
     this.emitter.on('selected-note-changed', note => {
       this.selectedNote = note;
+    });
+
+    this.emitter.on('show-octave-changed', showOctave => {
+      this.showOctave = showOctave;
     });
   }
 }
