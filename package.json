@@ -1,6 +1,6 @@
 {
   "name": "fretboard-visualizer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "mitt": "^3.0.0",
+    "teoria": "^2.5.0",
     "vue": "^3.2.31",
     "vue-router": "^4.0.12"
   },

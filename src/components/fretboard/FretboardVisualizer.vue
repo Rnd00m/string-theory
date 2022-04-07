@@ -16,24 +16,34 @@
 </template>
 
 <script>
+import teoria from 'teoria'
+
 export default {
   name: "FretboardVisualizer",
   data() {
     return {
-      strings: [
-        ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E'],
-        ['B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
-        ['G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G'],
-        ['D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D'],
-        ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A'],
-        ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E'],
-      ],
+      baseNotesForString: ['e', 'a', 'd', 'g', 'b', 'e'],
+      strings: [],
       selectedNote: null
     }
   },
+  methods: {
+    generateStringNotes(startNote) {
+      let e4 = teoria.note(startNote)
+
+      return e4.scale('chromatic').simple()
+    },
+    generateFretboard() {
+      this.baseNotesForString.forEach(note => {
+        this.strings.push(this.generateStringNotes(note));
+      })
+    }
+  },
   created() {
+    this.generateFretboard();
+
     this.emitter.on('selected-note-changed', note => {
-      this.selectedNote = note
+      this.selectedNote = note;
     });
   }
 }

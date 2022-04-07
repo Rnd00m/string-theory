@@ -33,15 +33,22 @@ export default {
       selectedNote: 'A'
     }
   },
-  computed: {
-    selectedCompleteNote() {
-      let selectedCompleteNote = this.selectedNote + this.selectedVariation;
-
-      this.emitter.emit('selected-note-changed', selectedCompleteNote);
-
-      return selectedCompleteNote;
+  watch: {
+    selectedNote() {
+      this.emitter.emit('selected-note-changed', this.selectedCompleteNote);
+    },
+    selectedVariation() {
+      this.emitter.emit('selected-note-changed', this.selectedCompleteNote);
     }
   },
+  computed: {
+    selectedCompleteNote() {
+      return this.selectedNote + this.selectedVariation;
+    }
+  },
+  created() {
+    this.emitter.emit('selected-note-changed', this.selectedCompleteNote);
+  }
 }
 </script>
 
