@@ -2,14 +2,12 @@
   <div class="fretboard-wrapper">
     <div class="strings-wrapper">
       <div class="string" :class="'string-' + (index + 1)" v-for="(string, index) in strings" :key="index">
-        <div class="fret py-2 px-4" :key="note" v-for="note in string">
-          <div class="note-wrapper text-center p-1">
-            <div class="note rounded-lg text-center text-lg px-1 py-0"
-                 :class="[selectedNote == note ? 'note-selected text-white' : '']">
-              {{ note }}
-            </div>
-          </div>
-        </div>
+        <FretboardNote
+          v-for="note in string"
+          :key="note"
+          :note="note"
+          :selected-note="selectedNote"
+        ></FretboardNote>
       </div>
     </div>
   </div>
@@ -17,9 +15,11 @@
 
 <script>
 import teoria from 'teoria'
+import FretboardNote from "@/components/fretboard/FretboardNote.vue";
 
 export default {
   name: "FretboardVisualizer",
+  components: {FretboardNote},
   data() {
     return {
       baseNotesForString: ['e', 'a', 'd', 'g', 'b', 'e'],
@@ -29,9 +29,9 @@ export default {
   },
   methods: {
     generateStringNotes(startNote) {
-      let e4 = teoria.note(startNote)
+      let e4 = teoria.note(startNote);
 
-      return e4.scale('chromatic').simple()
+      return e4.scale('chromatic').notes();
     },
     generateFretboard() {
       this.baseNotesForString.forEach(note => {
@@ -62,21 +62,6 @@ export default {
       width: 100%;
       top: 0;
       z-index: 4;
-    }
-
-    .fret {
-      border-right: 2px theme('colors.white-light') solid;
-
-      .note-wrapper {
-        z-index: 5;
-        background: theme('colors.black');
-
-        .note {
-          &-selected {
-            background: theme('colors.blue');
-          }
-        }
-      }
     }
   }
 
