@@ -1,8 +1,8 @@
 <template>
-  <div class="fret-wrapper py-2 px-4">
-    <div class="note-wrapper text-center p-1">
+  <div class="fret-wrapper">
+    <div class="note-wrapper text-center py-2 px-4">
       <div
-        class="note rounded-lg text-center text-lg px-1 py-0"
+        class="note rounded-lg text-center text-lg"
         :class="[selectedNote === noteFullName ? 'note-selected text-white' : '']">
         <span>{{ noteFullName }}</span><span class="note-octave" v-if="showOctave">{{ noteObject.oct }}</span>
       </div>
@@ -50,11 +50,21 @@ export default {
 .fret-wrapper {
   border-right: 2px theme('colors.white-light') solid;
 
-  .note-wrapper {
-    z-index: 5;
-    background: theme('colors.black');
+  &:not(:first-child):before {
+    position: absolute;
+    content: " ";
+    height: 50%;
+    width: 100%;
+    top: 0;
+    z-index: 4;
+    border-bottom: 1px solid theme('colors.white');
+  }
 
+  .note-wrapper {
     .note {
+      background: theme('colors.black');
+      z-index: 5;
+
       &-selected {
         background: theme('colors.blue');
       }

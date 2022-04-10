@@ -1,6 +1,6 @@
 <template>
   <div class="fretboard-wrapper">
-    <FretboardString v-for="note in baseNotesForString" :key="'string-' + note.name" :start-note="note"></FretboardString>
+    <FretboardString v-for="note in baseNotesForString" :key="'string-' + note" :start-note="note"></FretboardString>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import FretboardString from "@/components/fretboard/FretboardString.vue";
 
 export default {
   name: "FretboardVisualizer",
-  components: {FretboardString},
+  components: { FretboardString },
   data() {
     return {
       baseNotesForString: [
