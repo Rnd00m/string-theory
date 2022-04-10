@@ -1,8 +1,9 @@
 <template>
   <div class="fret-wrapper py-2 px-4">
     <div class="note-wrapper text-center p-1">
-      <div class="note rounded-lg text-center text-lg px-1 py-0"
-       :class="[selectedNote === noteFullName ? 'note-selected text-white' : '']">
+      <div
+        class="note rounded-lg text-center text-lg px-1 py-0"
+        :class="[selectedNote === noteFullName ? 'note-selected text-white' : '']">
         <span>{{ noteFullName }}</span><span class="note-octave" v-if="showOctave">{{ noteObject.oct }}</span>
       </div>
     </div>

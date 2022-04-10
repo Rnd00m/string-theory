@@ -14,7 +14,7 @@
 
 <script>
 import FretboardNote from "./FretboardNote.vue";
-import { Scale, Note } from '@tonaljs/tonal';
+import { Note } from '@tonaljs/tonal';
 
 export default {
   name: "FretboardString",
@@ -30,7 +30,7 @@ export default {
   },
   props: {
     startNote: {
-      type: Object,
+      type: String,
       required: true
     }
   },
@@ -42,7 +42,7 @@ export default {
 
       for (let i = 0; i < this.stringLength; i++) {
         let newNote = Note.simplify(Note.transpose(currentNote, '2m'));
-        stringNotes.push(newNote)
+        stringNotes.push(newNote);
         currentNote = newNote;
       }
 
