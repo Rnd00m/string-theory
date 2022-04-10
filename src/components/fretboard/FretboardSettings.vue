@@ -37,6 +37,12 @@
         <label for="show-octave-checkbox">&nbsp;Afficher les octaves</label>
       </div>
     </div>
+    <div class="flex gap-4">
+      <div>
+        <input type="checkbox" id="show-triads" v-model="showTriads" />
+        <label for="show-triads">&nbsp;Triads</label>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,10 +54,12 @@ export default {
       notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
       selectedVariation: '',
       selectedNote: 'A',
-      showOctave: false
+      showOctave: false,
+      showTriads: false,
     }
   },
   watch: {
+    // TODO : add Pinia to avoid use of a bus
     selectedNote() {
       this.emitter.emit('selected-note-changed', this.selectedCompleteNote);
     },
@@ -60,6 +68,9 @@ export default {
     },
     showOctave() {
       this.emitter.emit('show-octave-changed', this.showOctave);
+    },
+    showTriads() {
+      this.emitter.emit('show-triads-changed', this.showTriads);
     }
   },
   computed: {

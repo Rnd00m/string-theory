@@ -5,8 +5,6 @@
         v-for="note in string"
         :key="note"
         :note="note"
-        :selected-note="selectedNote"
-        :show-octave="showOctave"
       ></FretboardNote>
     </div>
   </div>
@@ -50,15 +48,6 @@ export default {
 
       return stringNotes;
     }
-  },
-  created() {
-    this.emitter.on('selected-note-changed', note => {
-      this.selectedNote = note;
-    });
-
-    this.emitter.on('show-octave-changed', showOctave => {
-      this.showOctave = showOctave;
-    });
   }
 }
 </script>
