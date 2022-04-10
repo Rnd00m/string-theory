@@ -22,6 +22,17 @@
     </div>
     <div class="flex gap-4">
       <div>
+        Accordage
+        <button
+          class="text-blue-500 border border-solid border-blue-500 hover:bg-blue-500 hover:text-white active:bg-blue-600 font-bold uppercase text-md px-4 py-2 rounded"
+          @click="tuneUp"
+        >+</button>
+        <button
+          class="text-blue-500 border border-solid border-blue-500 hover:bg-blue-500 hover:text-white active:bg-blue-600 font-bold uppercase text-md px-4 py-2 rounded"
+          @click="tuneDown"
+        >-</button>
+      </div>
+      <div>
         <input type="checkbox" id="show-octave-checkbox" v-model="showOctave" />
         <label for="show-octave-checkbox">&nbsp;Afficher les octaves</label>
       </div>
@@ -55,6 +66,14 @@ export default {
     selectedCompleteNote() {
       return this.selectedNote + this.selectedVariation;
     }
+  },
+  methods: {
+    tuneUp() {
+      this.emitter.emit('guitar-tuning-changed', 1);
+    },
+    tuneDown() {
+      this.emitter.emit('guitar-tuning-changed', -1);
+    },
   },
   created() {
     this.emitter.emit('selected-note-changed', this.selectedCompleteNote);

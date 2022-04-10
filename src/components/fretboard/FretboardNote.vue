@@ -3,18 +3,20 @@
     <div class="note-wrapper text-center p-1">
       <div class="note rounded-lg text-center text-lg px-1 py-0"
        :class="[selectedNote === noteFullName ? 'note-selected text-white' : '']">
-        <span>{{ noteFullName }}</span><span class="note-octave" v-if="showOctave">{{ note.octave() }}</span>
+        <span>{{ noteFullName }}</span><span class="note-octave" v-if="showOctave">{{ noteObject.oct }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { Note } from '@tonaljs/tonal'
+
 export default {
   name: "FretboardNote",
   props: {
     note: {
-      type: Object,
+      type: String,
       required: true
     },
     selectedNote: {
@@ -25,15 +27,18 @@ export default {
     }
   },
   computed: {
+    noteObject() {
+      return Note.get(this.note)
+    },
     noteFullName() {
-      return this.note.name().toString().toUpperCase()
-        + this.beautifyAccidentalValue(this.note.accidental());
+      return this.noteObject.letter + this.beautifyAccidentalValue(this.noteObject.acc)
     }
   },
   methods: {
     beautifyAccidentalValue(accidental) {
       if (accidental === 'b') return '♭';
       if (accidental === 'bb') return '♭♭';
+      if (accidental === undefined) return '';
       return accidental;
     }
   }

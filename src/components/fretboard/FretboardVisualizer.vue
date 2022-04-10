@@ -1,55 +1,40 @@
 <template>
   <div class="fretboard-wrapper">
-    <div class="strings-wrapper">
-      <div class="string" :class="'string-' + (index + 1)" v-for="(string, index) in strings" :key="index">
-        <FretboardNote
-          v-for="note in string"
-          :key="note"
-          :note="note"
-          :selected-note="selectedNote"
-          :show-octave="showOctave"
-        ></FretboardNote>
-      </div>
-    </div>
+    <FretboardString v-for="note in baseNotesForString" :key="'string-' + note.name" :start-note="note"></FretboardString>
   </div>
 </template>
 
 <script>
-import teoria from 'teoria'
-import FretboardNote from "@/components/fretboard/FretboardNote.vue";
+import { Note, Interval } from '@tonaljs/tonal';
+import FretboardString from "@/components/fretboard/FretboardString.vue";
 
 export default {
   name: "FretboardVisualizer",
-  components: {FretboardNote},
+  components: {FretboardString},
   data() {
     return {
-      baseNotesForString: ['e2', 'a2', 'd3', 'g3', 'b3', 'e4'],
-      strings: [],
-      selectedNote: null,
-      showOctave: false
+      baseNotesForString: [
+        Note.get('E4').name,
+        Note.get('B3').name,
+        Note.get('G3').name,
+        Note.get('D3').name,
+        Note.get('A2').name,
+        Note.get('E2').name
+      ],
     }
   },
   methods: {
-    generateStringNotes(startNote) {
-      let e4 = teoria.note(startNote);
+    changeTuning(direction) {
+      for (let i = 0; i < this.baseNotesForString.length; i++) {
+        let newNote = Note.simplify(Note.transpose(this.baseNotesForString[i], '-2m'));
 
-      return e4.scale('chromatic').notes();
-    },
-    generateFretboard() {
-      this.baseNotesForString.forEach(note => {
-        this.strings.push(this.generateStringNotes(note));
-      })
+        this.baseNotesForString.splice(i, 1, newNote)
+      }
     }
   },
   created() {
-    this.generateFretboard();
-
-    this.emitter.on('selected-note-changed', note => {
-      this.selectedNote = note;
-    });
-
-    this.emitter.on('show-octave-changed', showOctave => {
-      this.showOctave = showOctave;
+    this.emitter.on('guitar-tuning-changed', direction => {
+      this.changeTuning(direction);
     });
   }
 }

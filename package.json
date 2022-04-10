@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@tonaljs/tonal": "^4.6.5",
     "mitt": "^3.0.0",
     "teoria": "^2.5.0",
     "vue": "^3.2.31",
