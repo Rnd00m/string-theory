@@ -1,6 +1,6 @@
 <template>
   <div class="strings-wrapper">
-    <div class="string" :class="'string-1'">
+    <div class="string">
       <FretboardNote
         v-for="note in string"
         :key="note"

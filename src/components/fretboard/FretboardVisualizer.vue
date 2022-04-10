@@ -1,16 +1,18 @@
 <template>
   <div class="fretboard-wrapper">
     <FretboardString v-for="note in baseNotesForString" :key="'string-' + note" :start-note="note"></FretboardString>
+    <FretboardMarker></FretboardMarker>
   </div>
 </template>
 
 <script>
 import { Note } from '@tonaljs/tonal';
 import FretboardString from "@/components/fretboard/FretboardString.vue";
+import FretboardMarker from "@/components/fretboard/FretboardMarker.vue";
 
 export default {
   name: "FretboardVisualizer",
-  components: { FretboardString },
+  components: { FretboardMarker, FretboardString },
   data() {
     return {
       baseNotesForString: [
