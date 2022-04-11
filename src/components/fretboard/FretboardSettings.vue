@@ -47,6 +47,9 @@
 </template>
 
 <script>
+import { mapActions } from 'pinia'
+import { useParametersStore } from "@/stores/parameters";
+
 export default {
   name: "FretboardSettings",
   data() {
@@ -62,6 +65,7 @@ export default {
     // TODO : add Pinia to avoid use of a bus
     selectedNote() {
       this.emitter.emit('selected-note-changed', this.selectedCompleteNote);
+      this.store.setNote(this.selectedCompleteNote);
     },
     selectedVariation() {
       this.emitter.emit('selected-note-changed', this.selectedCompleteNote);
@@ -88,7 +92,12 @@ export default {
   },
   created() {
     this.emitter.emit('selected-note-changed', this.selectedCompleteNote);
-  }
+  },
+  setup() {
+    const store = useParametersStore();
+
+    return { store }
+  },
 }
 </script>
 

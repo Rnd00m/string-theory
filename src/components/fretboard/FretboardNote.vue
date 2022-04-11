@@ -12,6 +12,8 @@
 
 <script>
 import { Note, Chord } from '@tonaljs/tonal'
+import { mapState } from 'pinia'
+import { useParametersStore } from "@/stores/parameters";
 
 export default {
   name: "FretboardNote",
@@ -39,11 +41,11 @@ export default {
     noteClass() {
       if (this.selectedNote === this.noteFullName) return 'note-root';
       if (this.showTriads) {
-        if (this.getThird() === this.noteFullName) return 'note-third';
-        if (this.getFifth() === this.noteFullName) return 'note-fifth';
+        if (this.store.chordNotes.third === this.noteFullName) return 'note-third';
+        if (this.store.chordNotes.fifth === this.noteFullName) return 'note-fifth';
       }
       return '';
-    }
+    },
   },
   methods: {
     beautifyAccidentalValue(accidental) {
@@ -52,12 +54,11 @@ export default {
       if (accidental === undefined) return '';
       return accidental;
     },
-    getThird() {
-      return this.selectedChord.notes[1];
-    },
-    getFifth() {
-      return this.selectedChord.notes[2];
-    }
+  },
+  setup() {
+    const store = useParametersStore();
+
+    return { store }
   },
   created() {
     this.emitter.on('selected-note-changed', note => {
