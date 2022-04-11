@@ -4,24 +4,21 @@
       <div
         class="note rounded-lg text-center text-lg"
         :class="noteClass">
-        <span>{{ noteFullName }}</span><span class="note-octave" v-if="showOctave">{{ noteObject.oct }}</span>
+        <span>{{ noteFullName }}</span><span class="note-octave" v-if="store.showOctave">{{ noteObject.oct }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Note, Chord } from '@tonaljs/tonal'
-import { mapState } from 'pinia'
+import { Note } from '@tonaljs/tonal'
 import { useParametersStore } from "@/stores/parameters";
 
 export default {
   name: "FretboardNote",
   data() {
     return {
-      selectedNote: null,
       selectedChord: null,
-      showOctave: false,
       showTriads: false,
     }
   },
@@ -39,8 +36,8 @@ export default {
       return this.noteObject.letter + this.beautifyAccidentalValue(this.noteObject.acc)
     },
     noteClass() {
-      if (this.selectedNote === this.noteFullName) return 'note-root';
-      if (this.showTriads) {
+      if (this.store.note === this.noteFullName) return 'note-root';
+      if (this.store.showTriads) {
         if (this.store.chordNotes.third === this.noteFullName) return 'note-third';
         if (this.store.chordNotes.fifth === this.noteFullName) return 'note-fifth';
       }
@@ -59,21 +56,6 @@ export default {
     const store = useParametersStore();
 
     return { store }
-  },
-  created() {
-    this.emitter.on('selected-note-changed', note => {
-      this.selectedNote = note;
-      // TODO : add chord as a FretboardSetting
-      this.selectedChord = Chord.get(`${this.selectedNote}maj7`);
-    });
-
-    this.emitter.on('show-octave-changed', showOctave => {
-      this.showOctave = showOctave;
-    });
-
-    this.emitter.on('show-triads-changed', showTriads => {
-      this.showTriads = showTriads;
-    });
   }
 }
 </script>

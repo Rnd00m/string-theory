@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import { mapActions } from 'pinia'
 import { useParametersStore } from "@/stores/parameters";
 
 export default {
@@ -64,17 +63,16 @@ export default {
   watch: {
     // TODO : add Pinia to avoid use of a bus
     selectedNote() {
-      this.emitter.emit('selected-note-changed', this.selectedCompleteNote);
       this.store.setNote(this.selectedCompleteNote);
     },
     selectedVariation() {
-      this.emitter.emit('selected-note-changed', this.selectedCompleteNote);
+      this.store.setNote(this.selectedCompleteNote);
     },
     showOctave() {
-      this.emitter.emit('show-octave-changed', this.showOctave);
+      this.store.showOctave = this.showOctave;
     },
     showTriads() {
-      this.emitter.emit('show-triads-changed', this.showTriads);
+      this.store.showTriads = this.showTriads;
     }
   },
   computed: {
@@ -89,9 +87,6 @@ export default {
     tuneDown() {
       this.emitter.emit('guitar-tuning-changed', -1);
     },
-  },
-  created() {
-    this.emitter.emit('selected-note-changed', this.selectedCompleteNote);
   },
   setup() {
     const store = useParametersStore();
