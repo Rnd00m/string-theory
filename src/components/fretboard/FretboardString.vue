@@ -42,6 +42,10 @@ export default {
 
       for (let i = 0; i < this.stringLength; i++) {
         let newNote = Note.simplify(Note.transpose(currentNote, '2m'));
+
+        // if note contains a ♭ get the enharmonic with # instead
+        if (newNote.includes('b')) newNote = Note.enharmonic(newNote);
+
         stringNotes.push(newNote);
         currentNote = newNote;
       }
