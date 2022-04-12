@@ -39,6 +39,17 @@
     </div>
     <div class="flex gap-4">
       <div>
+        <select v-model="selectedChordType">
+          <option
+            v-for="chord in parametersStore.chordTypeList"
+            :key="chord.notation"
+            :value="chord.notation"
+          >
+            {{ chord.name }}
+          </option>
+        </select>
+      </div>
+      <div>
         <input type="checkbox" id="show-triads" v-model="showTriads" />
         <label for="show-triads">&nbsp;Triads</label>
       </div>
@@ -47,6 +58,7 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import { useParametersStore } from "@/stores/parameters";
 import { useTuningStore } from "@/stores/tuning";
 
@@ -56,7 +68,6 @@ export default {
     return {
       notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
       selectedVariation: '',
-      selectedNote: 'A',
       showOctave: false,
       showTriads: false,
     }
@@ -67,6 +78,9 @@ export default {
     },
     selectedVariation() {
       this.parametersStore.setNote(this.selectedCompleteNote);
+    },
+    selectedChordType() {
+      this.parametersStore.setChord(this.selectedChordType);
     },
     showOctave() {
       this.parametersStore.showOctave = this.showOctave;
@@ -92,11 +106,21 @@ export default {
     const parametersStore = useParametersStore();
     const tuningStore = useTuningStore();
 
-    return { parametersStore, tuningStore }
+    const selectedNote = ref(parametersStore.note);
+    const selectedChordType = ref(parametersStore.chordType);
+
+    return {
+      parametersStore,
+      tuningStore,
+      selectedChordType,
+      selectedNote
+    }
   },
 }
 </script>
 
 <style scoped lang="scss">
-
+  select {
+    color: black;
+  }
 </style>

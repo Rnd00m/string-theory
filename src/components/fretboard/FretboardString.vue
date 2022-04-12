@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { useTuningStore } from "@/stores/tuning";
 import FretboardNote from "./FretboardNote.vue";
 import { Note } from '@tonaljs/tonal';
 
@@ -52,7 +53,12 @@ export default {
 
       return stringNotes;
     }
-  }
+  },
+  setup() {
+    const tuningStore = useTuningStore();
+
+    return { tuningStore }
+  },
 }
 </script>
 

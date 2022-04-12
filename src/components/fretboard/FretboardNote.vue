@@ -40,6 +40,7 @@ export default {
       if (this.parametersStore.showTriads) {
         if (this.parametersStore.chordNotes.third === this.noteFullName) return 'note-third';
         if (this.parametersStore.chordNotes.fifth === this.noteFullName) return 'note-fifth';
+        if (this.parametersStore.chordNotes.seventh === this.noteFullName) return 'note-seventh';
       }
       return '';
     },
@@ -90,6 +91,10 @@ export default {
 
       &-fifth {
         background: theme('colors.orange');
+      }
+
+      &-seventh {
+        background: theme('colors.green');
       }
 
       &-octave {
