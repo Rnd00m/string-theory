@@ -48,6 +48,7 @@
 
 <script>
 import { useParametersStore } from "@/stores/parameters";
+import { useTuningStore } from "@/stores/tuning";
 
 export default {
   name: "FretboardSettings",
@@ -61,18 +62,17 @@ export default {
     }
   },
   watch: {
-    // TODO : add Pinia to avoid use of a bus
     selectedNote() {
-      this.store.setNote(this.selectedCompleteNote);
+      this.parametersStore.setNote(this.selectedCompleteNote);
     },
     selectedVariation() {
-      this.store.setNote(this.selectedCompleteNote);
+      this.parametersStore.setNote(this.selectedCompleteNote);
     },
     showOctave() {
-      this.store.showOctave = this.showOctave;
+      this.parametersStore.showOctave = this.showOctave;
     },
     showTriads() {
-      this.store.showTriads = this.showTriads;
+      this.parametersStore.showTriads = this.showTriads;
     }
   },
   computed: {
@@ -82,16 +82,17 @@ export default {
   },
   methods: {
     tuneUp() {
-      this.emitter.emit('guitar-tuning-changed', 1);
+      this.tuningStore.changeGuitarTuning(1);
     },
     tuneDown() {
-      this.emitter.emit('guitar-tuning-changed', -1);
+      this.tuningStore.changeGuitarTuning(-1);
     },
   },
   setup() {
-    const store = useParametersStore();
+    const parametersStore = useParametersStore();
+    const tuningStore = useTuningStore();
 
-    return { store }
+    return { parametersStore, tuningStore }
   },
 }
 </script>

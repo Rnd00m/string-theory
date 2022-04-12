@@ -15,7 +15,7 @@ export default {
   components: {
     FretboardVisualizer,
     FretboardSettings
-  }
+  },
 }
 </script>
 

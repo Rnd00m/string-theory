@@ -4,7 +4,7 @@
       <div
         class="note rounded-lg text-center text-lg"
         :class="noteClass">
-        <span>{{ noteFullName }}</span><span class="note-octave" v-if="store.showOctave">{{ noteObject.oct }}</span>
+        <span>{{ noteFullName }}</span><span class="note-octave" v-if="parametersStore.showOctave">{{ noteObject.oct }}</span>
       </div>
     </div>
   </div>
@@ -36,10 +36,10 @@ export default {
       return this.noteObject.letter + this.beautifyAccidentalValue(this.noteObject.acc)
     },
     noteClass() {
-      if (this.store.note === this.noteFullName) return 'note-root';
-      if (this.store.showTriads) {
-        if (this.store.chordNotes.third === this.noteFullName) return 'note-third';
-        if (this.store.chordNotes.fifth === this.noteFullName) return 'note-fifth';
+      if (this.parametersStore.note === this.noteFullName) return 'note-root';
+      if (this.parametersStore.showTriads) {
+        if (this.parametersStore.chordNotes.third === this.noteFullName) return 'note-third';
+        if (this.parametersStore.chordNotes.fifth === this.noteFullName) return 'note-fifth';
       }
       return '';
     },
@@ -53,9 +53,9 @@ export default {
     },
   },
   setup() {
-    const store = useParametersStore();
+    const parametersStore = useParametersStore();
 
-    return { store }
+    return { parametersStore }
   }
 }
 </script>
