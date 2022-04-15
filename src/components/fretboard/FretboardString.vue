@@ -27,7 +27,7 @@ export default {
   },
   props: {
     startNote: {
-      type: String,
+      type: Object,
       required: true
     },
     stringLength: {
