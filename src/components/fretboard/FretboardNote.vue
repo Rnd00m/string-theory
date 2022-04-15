@@ -4,7 +4,7 @@
       <div
         class="note rounded-lg text-center text-lg"
         :class="noteClass">
-        <span>{{ noteFullName }}</span><span class="note-octave" v-if="parametersStore.showOctave">{{ noteObject.oct }}</span>
+        <span>{{ noteFullName }}</span><span class="note-octave" v-if="parametersStore.showOctave">{{ note.oct }}</span>
       </div>
     </div>
   </div>
@@ -24,23 +24,20 @@ export default {
   },
   props: {
     note: {
-      type: String,
+      type: Object,
       required: true
     }
   },
   computed: {
-    noteObject() {
-      return Note.get(this.note)
-    },
     noteFullName() {
-      return this.noteObject.letter + this.beautifyAccidentalValue(this.noteObject.acc)
+      return this.note.letter + this.beautifyAccidentalValue(this.note.acc)
     },
     noteClass() {
-      if (this.parametersStore.note === this.noteFullName) return 'note-root';
+      if (this.parametersStore.note === this.note.pc) return 'note-root';
       if (this.parametersStore.showTriads) {
-        if (this.parametersStore.chordNotes.third === this.noteFullName) return 'note-third';
-        if (this.parametersStore.chordNotes.fifth === this.noteFullName) return 'note-fifth';
-        if (this.parametersStore.chordNotes.seventh === this.noteFullName) return 'note-seventh';
+        if (this.parametersStore.chordNotes.third === this.note.pc) return 'note-third';
+        if (this.parametersStore.chordNotes.fifth === this.note.pc) return 'note-fifth';
+        if (this.parametersStore.chordNotes.seventh === this.note.pc) return 'note-seventh';
       }
       return '';
     },

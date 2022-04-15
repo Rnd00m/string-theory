@@ -45,10 +45,10 @@ export const useParametersStore = defineStore('parameters', {
   getters: {
     chordNotes(state) {
       return {
-        root: state.chord.notes[0],
-        third: state.chord.notes[1],
-        fifth: state.chord.notes[2],
-        seventh: state.chord.notes[3],
+        root: state.chord.notes[0] || null,
+        third: state.chord.notes[1] || null,
+        fifth: state.chord.notes[2] || null,
+        seventh: state.chord.notes[3] || null,
       }
     },
   }

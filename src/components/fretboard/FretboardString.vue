@@ -14,6 +14,7 @@
 import { useTuningStore } from "@/stores/tuning";
 import FretboardNote from "./FretboardNote.vue";
 import { Note } from '@tonaljs/tonal';
+import {useParametersStore} from "@/stores/parameters";
 
 export default {
   name: "FretboardString",
@@ -42,10 +43,10 @@ export default {
       stringNotes.push(currentNote);
 
       for (let i = 0; i < this.stringLength; i++) {
-        let newNote = Note.simplify(Note.transpose(currentNote, '2m'));
+        let newNote = Note.get(Note.simplify(Note.transpose(currentNote, '2m')));
 
         // if note contains a ♭ get the enharmonic with # instead
-        if (newNote.includes('b')) newNote = Note.enharmonic(newNote);
+        if (newNote.pc.includes('b') && !this.parametersStore.chord.notes.includes(newNote.pc)) newNote = Note.get(Note.enharmonic(newNote.name));
 
         stringNotes.push(newNote);
         currentNote = newNote;
@@ -56,8 +57,9 @@ export default {
   },
   setup() {
     const tuningStore = useTuningStore();
+    const parametersStore = useParametersStore()
 
-    return { tuningStore }
+    return { tuningStore, parametersStore }
   },
 }
 </script>

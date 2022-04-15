@@ -5,12 +5,12 @@ export const useTuningStore = defineStore('tuning', {
   state: () => {
     return {
       notes: [
-        Note.get('E4').name,
-        Note.get('B3').name,
-        Note.get('G3').name,
-        Note.get('D3').name,
-        Note.get('A2').name,
-        Note.get('E2').name
+        Note.get('E4'),
+        Note.get('B3'),
+        Note.get('G3'),
+        Note.get('D3'),
+        Note.get('A2'),
+        Note.get('E2')
       ],
     }
   },
@@ -19,7 +19,7 @@ export const useTuningStore = defineStore('tuning', {
       let interval = direction > 0 ? '' : '-';
       interval = `${interval}2m`;
 
-      let newNote = Note.simplify(Note.transpose(this.notes[noteIndex], interval));
+      let newNote = Note.get(Note.simplify(Note.transpose(this.notes[noteIndex], interval)));
       this.notes.splice(noteIndex, 1, newNote);
     },
     changeGuitarTuning(direction) {
