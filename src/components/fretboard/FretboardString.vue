@@ -11,56 +11,26 @@
 </template>
 
 <script>
-import { useTuningStore } from "@/stores/tuning";
 import FretboardNote from "./FretboardNote.vue";
-import { Note } from '@tonaljs/tonal';
-import {useParametersStore} from "@/stores/parameters";
+import { ref } from 'vue'
+import { useFretboardParametersStore } from "@/stores/fretboardParameters";
 
 export default {
   name: "FretboardString",
   components: { FretboardNote },
-  data() {
-    return {
-      selectedNote: null,
-      showOctave: false
-    }
+  setup() {
+    const fretboardParametersStore = useFretboardParametersStore();
+
+    const selectedNote = ref(null);
+
+    return { fretboardParametersStore, selectedNote }
   },
   props: {
-    startNote: {
-      type: Object,
+    string: {
+      type: Array,
       required: true
     },
-    stringLength: {
-      type: Number,
-      required: false,
-      default: 12
-    }
-  },
-  computed: {
-    string() {
-      let stringNotes = [];
-      let currentNote = this.startNote;
-      stringNotes.push(currentNote);
-
-      for (let i = 0; i < this.stringLength; i++) {
-        let newNote = Note.get(Note.simplify(Note.transpose(currentNote, '2m')));
-
-        // if note contains a ♭ get the enharmonic with # instead
-        if (newNote.pc.includes('b') && !this.parametersStore.chord.notes.includes(newNote.pc)) newNote = Note.get(Note.enharmonic(newNote.name));
-
-        stringNotes.push(newNote);
-        currentNote = newNote;
-      }
-
-      return stringNotes;
-    }
-  },
-  setup() {
-    const tuningStore = useTuningStore();
-    const parametersStore = useParametersStore()
-
-    return { tuningStore, parametersStore }
-  },
+  }
 }
 </script>
 

@@ -4,15 +4,14 @@
       <div
         class="note rounded-lg text-center text-lg"
         :class="noteClass">
-        <span>{{ noteFullName }}</span><span class="note-octave" v-if="parametersStore.showOctave">{{ note.oct }}</span>
+        <span>{{ noteFullName }}</span><span class="note-octave" v-if="fretboardParametersStore.showOctave">{{ note.oct }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Note } from '@tonaljs/tonal'
-import { useParametersStore } from "@/stores/parameters";
+import { useFretboardParametersStore } from "@/stores/fretboardParameters";
 
 export default {
   name: "FretboardNote",
@@ -33,11 +32,11 @@ export default {
       return this.note.letter + this.beautifyAccidentalValue(this.note.acc)
     },
     noteClass() {
-      if (this.parametersStore.note === this.note.pc) return 'note-root';
-      if (this.parametersStore.showTriads) {
-        if (this.parametersStore.chordNotes.third === this.note.pc) return 'note-third';
-        if (this.parametersStore.chordNotes.fifth === this.note.pc) return 'note-fifth';
-        if (this.parametersStore.chordNotes.seventh === this.note.pc) return 'note-seventh';
+      if (this.fretboardParametersStore.note === this.note.pc) return 'note-root';
+      if (this.fretboardParametersStore.showTriads) {
+        if (this.fretboardParametersStore.chordNotes.third === this.note.pc) return 'note-third';
+        if (this.fretboardParametersStore.chordNotes.fifth === this.note.pc) return 'note-fifth';
+        if (this.fretboardParametersStore.chordNotes.seventh === this.note.pc) return 'note-seventh';
       }
       return '';
     },
@@ -51,9 +50,9 @@ export default {
     },
   },
   setup() {
-    const parametersStore = useParametersStore();
+    const fretboardParametersStore = useFretboardParametersStore();
 
-    return { parametersStore }
+    return { fretboardParametersStore }
   }
 }
 </script>

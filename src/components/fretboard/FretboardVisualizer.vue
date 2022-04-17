@@ -1,12 +1,12 @@
 <template>
   <div class="fretboard-wrapper">
-    <FretboardString v-for="note in tuningStore.notes" :key="'string-' + note" :start-note="note"></FretboardString>
+    <FretboardString v-for="(string, index) in fretboardParametersStore.strings" :key="'string-' + index" :string="string"></FretboardString>
     <FretboardMarker></FretboardMarker>
   </div>
 </template>
 
 <script>
-import { useTuningStore } from "@/stores/tuning";
+import { useFretboardParametersStore } from "@/stores/fretboardParameters";
 
 import FretboardString from "@/components/fretboard/FretboardString.vue";
 import FretboardMarker from "@/components/fretboard/FretboardMarker.vue";
@@ -15,9 +15,9 @@ export default {
   name: "FretboardVisualizer",
   components: { FretboardMarker, FretboardString },
   setup() {
-    const tuningStore = useTuningStore();
+    const fretboardParametersStore = useFretboardParametersStore();
 
-    return { tuningStore }
+    return { fretboardParametersStore }
   }
 }
 </script>

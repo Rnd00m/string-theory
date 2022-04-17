@@ -1,0 +1,110 @@
+import { defineStore } from 'pinia'
+import { Chord, Note } from "@tonaljs/tonal";
+
+export const useFretboardParametersStore = defineStore('fretboard-parameters', {
+  state: () => {
+    return {
+      note: 'C',
+      chord: Chord.get('CM'),
+      chordType: 'M',
+      showOctave: false,
+      showTriads: false,
+      chordTypeList: [
+        {
+          name: 'Major',
+          notation: 'M'
+        },
+        {
+          name: 'Minor',
+          notation: 'm'
+        },
+        {
+          name: 'Major7',
+          notation: 'M7'
+        },
+        {
+          name: 'Minor7',
+          notation: 'm7'
+        },
+        {
+          name: '7',
+          notation: '7'
+        },
+      ],
+      fretboard: {
+        baseNotes: [
+          Note.get('E4'),
+          Note.get('B3'),
+          Note.get('G3'),
+          Note.get('D3'),
+          Note.get('A2'),
+          Note.get('E2')
+        ],
+        stringLength: 12
+      }
+    }
+  },
+  actions: {
+    setNote(note) {
+      this.note = note;
+      this.chord = Chord.get(this.note + this.chordType);
+    },
+    setChord(chordType) {
+      this.chord = Chord.get(this.note + chordType);
+    },
+    // Tuning
+    changeStringTuning(noteIndex, direction) {
+      let interval = direction > 0 ? '' : '-';
+      interval = `${interval}2m`;
+
+      let newNote = Note.get(Note.simplify(Note.transpose(this.fretboard.baseNotes[noteIndex], interval)));
+      this.fretboard.baseNotes.splice(noteIndex, 1, newNote);
+    },
+    changeGuitarTuning(direction) {
+      for (let i = 0; i < this.fretboard.baseNotes.length; i++) {
+        this.changeStringTuning(i, direction);
+      }
+    },
+    // String
+    getStringNotesFromStartNote(startNote) {
+      let stringNotes = [];
+      let currentNote = startNote;
+      stringNotes.push(currentNote);
+
+      for (let i = 0; i < this.fretboard.stringLength; i++) {
+        let newNote = Note.get(
+          Note.simplify(
+            Note.transpose(currentNote, '2m')
+          )
+        );
+
+        // console.log('------------')
+        // console.log(newNote.pc)
+        // console.log(Note.enharmonic(newNote.name))
+
+        // if note contains a ♭ get the enharmonic with # instead
+        if (newNote.pc.includes('b') && !this.chord.notes.includes(newNote.pc)) newNote = Note.get(Note.enharmonic(newNote.name));
+
+        stringNotes.push(newNote);
+        currentNote = newNote;
+      }
+
+      return stringNotes;
+    },
+  },
+  getters: {
+    chordNotes(state) {
+      return {
+        root: state.chord.notes[0] || null,
+        third: state.chord.notes[1] || null,
+        fifth: state.chord.notes[2] || null,
+        seventh: state.chord.notes[3] || null,
+      }
+    },
+    strings(state) {
+      return state.fretboard.baseNotes.map((note) => {
+        return this.getStringNotesFromStartNote(note);
+      });
+    },
+  }
+})

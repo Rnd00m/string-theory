@@ -53,7 +53,7 @@
       <div>
         <select v-model="selectedChordType" class="select select-primary select-bordered w-full max-w-xs">
           <option
-            v-for="chord in parametersStore.chordTypeList"
+            v-for="chord in fretboardParametersStore.chordTypeList"
             :key="chord.notation"
             :value="chord.notation"
           >
@@ -76,34 +76,46 @@
 
 <script>
 import { ref } from 'vue'
-import { useParametersStore } from "@/stores/parameters";
-import { useTuningStore } from "@/stores/tuning";
+import { useFretboardParametersStore } from "@/stores/fretboardParameters";
 
 export default {
   name: "FretboardSettings",
-  data() {
+  setup() {
+    const fretboardParametersStore = useFretboardParametersStore();
+
+    const selectedNote = ref(fretboardParametersStore.note);
+    const selectedChordType = ref(fretboardParametersStore.chordType);
+
+    const notes = ref(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
+    const selectedVariation = ref('');
+    const showOctave = ref(false);
+    const showTriads = ref(false);
+
     return {
-      notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
-      selectedVariation: '',
-      showOctave: false,
-      showTriads: false,
-    }
+      fretboardParametersStore,
+      selectedChordType,
+      selectedNote,
+      notes,
+      selectedVariation,
+      showOctave,
+      showTriads,
+    };
   },
   watch: {
     selectedNote() {
-      this.parametersStore.setNote(this.selectedCompleteNote);
+      this.fretboardParametersStore.setNote(this.selectedCompleteNote);
     },
     selectedVariation() {
-      this.parametersStore.setNote(this.selectedCompleteNote);
+      this.fretboardParametersStore.setNote(this.selectedCompleteNote);
     },
     selectedChordType() {
-      this.parametersStore.setChord(this.selectedChordType);
+      this.fretboardParametersStore.setChord(this.selectedChordType);
     },
     showOctave() {
-      this.parametersStore.showOctave = this.showOctave;
+      this.fretboardParametersStore.showOctave = this.showOctave;
     },
     showTriads() {
-      this.parametersStore.showTriads = this.showTriads;
+      this.fretboardParametersStore.showTriads = this.showTriads;
     }
   },
   computed: {
@@ -113,26 +125,12 @@ export default {
   },
   methods: {
     tuneUp() {
-      this.tuningStore.changeGuitarTuning(1);
+      this.fretboardParametersStore.changeGuitarTuning(1);
     },
     tuneDown() {
-      this.tuningStore.changeGuitarTuning(-1);
+      this.fretboardParametersStore.changeGuitarTuning(-1);
     },
-  },
-  setup() {
-    const parametersStore = useParametersStore();
-    const tuningStore = useTuningStore();
-
-    const selectedNote = ref(parametersStore.note);
-    const selectedChordType = ref(parametersStore.chordType);
-
-    return {
-      parametersStore,
-      tuningStore,
-      selectedChordType,
-      selectedNote
-    }
-  },
+  }
 }
 </script>
 
