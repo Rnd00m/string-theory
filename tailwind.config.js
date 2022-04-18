@@ -15,18 +15,18 @@ module.exports = {
       'fuschia': '#CB48B7',
       'white': '#ffffff',
       'white-light': '#d8dbe2',
-      'black': '#272727',
+      'black': '#2A303C',
     },
   },
   daisyui: {
     themes: [
       {
         mytheme: {
-          "primary": "#0075a2",
-          "secondary": "#f87060",
+          "primary": "#f87060",
+          "secondary": "#0075a2",
           "accent": "#fdca40",
-          "neutral": "#1b1b1b",
-          "base-100": "#272727",
+          "neutral": "#191D24",
+          "base-100": "#2A303C",
           "info": "#3ABFF8",
           "success": "#36D399",
           "warning": "#FBBD23",

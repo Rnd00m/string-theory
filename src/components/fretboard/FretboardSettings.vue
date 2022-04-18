@@ -1,6 +1,6 @@
 <template>
   <div class="fretboard-settings-wrapper flex flex-col mx-auto space-y-5">
-    <div class="flex flex-wrap gap-4 bg-neutral p-4 rounded-box">
+    <div class="flex flex-wrap gap-4 p-4 bg-base-300 rounded-box">
       <div class="form-control">
         <label class="label cursor-pointer">
           <span class="label-text">-&nbsp;&nbsp;</span>
@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap gap-4 items-center justify-center bg-neutral py-2 px-4 rounded-box">
+    <div class="flex flex-wrap gap-4 items-center justify-center p-4 bg-base-300 rounded-box">
       <span class="inline-block align-middle">Tuning</span>
       <div class="btn-group">
         <button class="btn btn-primary" @click="tuneUp">+</button>
@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <div class="flex gap-4 items-center justify-center bg-neutral py-2 px-4 rounded-box">
+    <div class="flex gap-4 items-center justify-center p-4 bg-base-300 rounded-box">
       <div>
         <select v-model="selectedChordType" class="select select-primary select-bordered w-full max-w-xs">
           <option
