@@ -44,7 +44,8 @@ export default {
   methods: {
     beautifyAccidentalValue(accidental) {
       if (accidental === 'b') return '♭';
-      if (accidental === 'bb') return '♭♭';
+      if (accidental === 'bb') return '𝄫';
+      if (accidental === '##') return '𝄪';
       if (accidental === undefined) return '';
       return accidental;
     },

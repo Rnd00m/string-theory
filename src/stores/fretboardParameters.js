@@ -93,10 +93,10 @@ export const useFretboardParametersStore = defineStore('fretboard-parameters', {
       // If chord notes contains double sharp notes, we need to change fretboard to display them
       if (this.chord.tonic.includes('#')) {
         for (let i = 0; i < this.chord.notes.length; i++) {
-          let chordSimplifiedNote = Note.simplify(this.chord.notes[i])
+          let chordSimplifiedNote = Note.simplify(this.chord.notes[i]);
 
           // Return double sharped note to the same octave
-          if (chordSimplifiedNote === note.pc) return Note.get(`${this.chord.notes[i]}${note.oct}`)
+          if (chordSimplifiedNote === note.pc) return Note.get(`${this.chord.notes[i]}${note.oct}`);
         }
       }
 
@@ -106,11 +106,9 @@ export const useFretboardParametersStore = defineStore('fretboard-parameters', {
     getTriadNote(noteString) {
       if (noteString === undefined) return null;
 
-      let note = Note.get(noteString)
+      let note = Note.get(noteString);
 
-      if (note.acc === '##') return Note.enharmonic(note.name);
-
-      return note.name
+      return note.name;
     }
   },
   getters: {
