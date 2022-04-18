@@ -43,8 +43,8 @@
 
       <div class="form-control">
         <label class="label cursor-pointer">
+          <span class="label-text">Show octave&nbsp;&nbsp; </span>
           <input type="checkbox" class="checkbox checkbox-primary" v-model="showOctave">
-          <span class="label-text">&nbsp;&nbsp; Show octave</span>
         </label>
       </div>
     </div>
@@ -66,8 +66,24 @@
 
       <div class="form-control">
         <label class="label cursor-pointer">
+          <span class="label-text">Chord&nbsp;&nbsp;</span>
+          <input type="radio" name="type" value="chord" class="radio radio-primary checked:bg-red-500" v-model="type">
+        </label>
+      </div>
+
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text">Scale&nbsp;&nbsp;</span>
+          <input type="radio" name="type" value="scale" class="radio radio-primary checked:bg-red-500" v-model="type">
+        </label>
+      </div>
+
+      <div class="divider lg:divider-horizontal"></div>
+
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text">Show notes&nbsp;&nbsp; </span>
           <input type="checkbox" class="checkbox checkbox-primary" v-model="showTriads">
-          <span class="label-text">&nbsp;&nbsp; Show triads</span>
         </label>
       </div>
     </div>
@@ -90,6 +106,7 @@ export default {
     const selectedVariation = ref('');
     const showOctave = ref(false);
     const showTriads = ref(false);
+    const type = ref('chord');
 
     return {
       fretboardParametersStore,
@@ -99,6 +116,7 @@ export default {
       selectedVariation,
       showOctave,
       showTriads,
+      type
     };
   },
   watch: {
