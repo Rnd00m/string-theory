@@ -4,7 +4,7 @@ import "./assets/css/index.css";
 </script>
 
 <template>
-<!--  <header>
+  <!--  <header>
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>

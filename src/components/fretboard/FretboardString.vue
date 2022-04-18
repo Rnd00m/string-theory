@@ -12,7 +12,7 @@
 
 <script>
 import FretboardNote from "./FretboardNote.vue";
-import { ref } from 'vue'
+import { ref } from "vue";
 import { useFretboardParametersStore } from "@/stores/fretboardParameters";
 
 export default {
@@ -23,15 +23,15 @@ export default {
 
     const selectedNote = ref(null);
 
-    return { fretboardParametersStore, selectedNote }
+    return { fretboardParametersStore, selectedNote };
   },
   props: {
     string: {
       type: Array,
-      required: true
+      required: true,
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">

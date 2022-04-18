@@ -23,16 +23,16 @@ export default {
     return {
       dotsPosition: [1, 3, 5, 7, 9, 15, 17, 19, 21],
       doubleDotsPosition: [12, 24],
-    }
+    };
   },
   props: {
     stringLength: {
       type: Number,
       required: false,
-      default: 12
-    }
+      default: 12,
+    },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -47,7 +47,7 @@ export default {
       margin-left: 0.2em;
       margin-right: 0.2em;
       border-radius: 50%;
-      background: theme('colors.white-light');
+      background: theme("colors.white-light");
       display: inline-block;
     }
   }

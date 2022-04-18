@@ -4,21 +4,39 @@
       <div class="form-control">
         <label class="label cursor-pointer">
           <span class="label-text">-&nbsp;&nbsp;</span>
-          <input type="radio" name="variation" value="" class="radio radio-primary checked:bg-red-500" v-model="selectedVariation">
+          <input
+            type="radio"
+            name="variation"
+            value=""
+            class="radio radio-primary checked:bg-red-500"
+            v-model="selectedVariation"
+          />
         </label>
       </div>
 
       <div class="form-control">
         <label class="label cursor-pointer">
           <span class="label-text">#&nbsp;&nbsp;</span>
-          <input type="radio" name="variation" value="#" class="radio radio-primary checked:bg-red-500" v-model="selectedVariation">
+          <input
+            type="radio"
+            name="variation"
+            value="#"
+            class="radio radio-primary checked:bg-red-500"
+            v-model="selectedVariation"
+          />
         </label>
       </div>
 
       <div class="form-control">
         <label class="label cursor-pointer">
           <span class="label-text">b&nbsp;&nbsp;</span>
-          <input type="radio" name="variation" value="♭" class="radio radio-primary checked:bg-red-500" v-model="selectedVariation">
+          <input
+            type="radio"
+            name="variation"
+            value="♭"
+            class="radio radio-primary checked:bg-red-500"
+            v-model="selectedVariation"
+          />
         </label>
       </div>
 
@@ -27,12 +45,21 @@
       <div class="form-control" v-for="note in notes" :key="note">
         <label class="label cursor-pointer">
           <span class="label-text">{{ note }}&nbsp;&nbsp;</span>
-          <input :id="note" name="note" :value="note" v-model="selectedNote" type="radio" class="radio radio-primary checked:bg-red-500">
+          <input
+            :id="note"
+            name="note"
+            :value="note"
+            v-model="selectedNote"
+            type="radio"
+            class="radio radio-primary checked:bg-red-500"
+          />
         </label>
       </div>
     </div>
 
-    <div class="flex flex-wrap gap-4 items-center justify-center p-4 bg-base-300 rounded-box">
+    <div
+      class="flex flex-wrap gap-4 items-center justify-center p-4 bg-base-300 rounded-box"
+    >
       <span class="inline-block align-middle">Tuning</span>
       <div class="btn-group">
         <button class="btn btn-primary" @click="tuneUp">+</button>
@@ -44,14 +71,23 @@
       <div class="form-control">
         <label class="label cursor-pointer">
           <span class="label-text">Show octave&nbsp;&nbsp; </span>
-          <input type="checkbox" class="checkbox checkbox-primary" v-model="showOctave">
+          <input
+            type="checkbox"
+            class="checkbox checkbox-primary"
+            v-model="showOctave"
+          />
         </label>
       </div>
     </div>
 
-    <div class="flex gap-4 items-center justify-center p-4 bg-base-300 rounded-box">
+    <div
+      class="flex gap-4 items-center justify-center p-4 bg-base-300 rounded-box"
+    >
       <div>
-        <select v-model="selectedChordType" class="select select-primary select-bordered w-full max-w-xs">
+        <select
+          v-model="selectedChordType"
+          class="select select-primary select-bordered w-full max-w-xs"
+        >
           <option
             v-for="chord in fretboardParametersStore.chordTypeList"
             :key="chord.notation"
@@ -67,14 +103,26 @@
       <div class="form-control">
         <label class="label cursor-pointer">
           <span class="label-text">Chord&nbsp;&nbsp;</span>
-          <input type="radio" name="type" value="chord" class="radio radio-primary checked:bg-red-500" v-model="type">
+          <input
+            type="radio"
+            name="type"
+            value="chord"
+            class="radio radio-primary checked:bg-red-500"
+            v-model="type"
+          />
         </label>
       </div>
 
       <div class="form-control">
         <label class="label cursor-pointer">
           <span class="label-text">Scale&nbsp;&nbsp;</span>
-          <input type="radio" name="type" value="scale" class="radio radio-primary checked:bg-red-500" v-model="type">
+          <input
+            type="radio"
+            name="type"
+            value="scale"
+            class="radio radio-primary checked:bg-red-500"
+            v-model="type"
+          />
         </label>
       </div>
 
@@ -83,7 +131,11 @@
       <div class="form-control">
         <label class="label cursor-pointer">
           <span class="label-text">Show notes&nbsp;&nbsp; </span>
-          <input type="checkbox" class="checkbox checkbox-primary" v-model="showTriads">
+          <input
+            type="checkbox"
+            class="checkbox checkbox-primary"
+            v-model="showTriads"
+          />
         </label>
       </div>
     </div>
@@ -91,7 +143,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref } from "vue";
 import { useFretboardParametersStore } from "@/stores/fretboardParameters";
 
 export default {
@@ -102,11 +154,11 @@ export default {
     const selectedNote = ref(fretboardParametersStore.note);
     const selectedChordType = ref(fretboardParametersStore.chordType);
 
-    const notes = ref(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
-    const selectedVariation = ref('');
+    const notes = ref(["A", "B", "C", "D", "E", "F", "G"]);
+    const selectedVariation = ref("");
     const showOctave = ref(false);
     const showTriads = ref(false);
-    const type = ref('chord');
+    const type = ref("chord");
 
     return {
       fretboardParametersStore,
@@ -116,7 +168,7 @@ export default {
       selectedVariation,
       showOctave,
       showTriads,
-      type
+      type,
     };
   },
   watch: {
@@ -134,12 +186,12 @@ export default {
     },
     showTriads() {
       this.fretboardParametersStore.showTriads = this.showTriads;
-    }
+    },
   },
   computed: {
     selectedCompleteNote() {
       return this.selectedNote + this.selectedVariation;
-    }
+    },
   },
   methods: {
     tuneUp() {
@@ -148,10 +200,8 @@ export default {
     tuneDown() {
       this.fretboardParametersStore.changeGuitarTuning(-1);
     },
-  }
-}
+  },
+};
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

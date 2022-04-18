@@ -1,5 +1,7 @@
 <template>
-  <div class="fretboard-visualizer flex items-center justify-center min-h-screen p-0">
+  <div
+    class="fretboard-visualizer flex items-center justify-center min-h-screen p-0"
+  >
     <div class="grid gap-8">
       <FretboardVisualizer></FretboardVisualizer>
       <FretboardSettings></FretboardSettings>
@@ -14,10 +16,9 @@ import FretboardSettings from "@/components/fretboard/FretboardSettings.vue";
 export default {
   components: {
     FretboardVisualizer,
-    FretboardSettings
+    FretboardSettings,
   },
-}
+};
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

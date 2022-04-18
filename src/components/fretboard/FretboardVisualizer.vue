@@ -1,6 +1,10 @@
 <template>
   <div class="fretboard-wrapper">
-    <FretboardString v-for="(string, index) in fretboardParametersStore.strings" :key="'string-' + index" :string="string"></FretboardString>
+    <FretboardString
+      v-for="(string, index) in fretboardParametersStore.strings"
+      :key="'string-' + index"
+      :string="string"
+    ></FretboardString>
     <FretboardMarker></FretboardMarker>
   </div>
 </template>
@@ -17,10 +21,9 @@ export default {
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
 
-    return { fretboardParametersStore }
-  }
-}
+    return { fretboardParametersStore };
+  },
+};
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>
