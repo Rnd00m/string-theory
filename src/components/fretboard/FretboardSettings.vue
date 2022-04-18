@@ -3,7 +3,6 @@
     <div class="flex flex-wrap gap-4 p-4 bg-base-300 rounded-box">
       <div class="form-control">
         <label class="label cursor-pointer">
-          <span class="label-text">-&nbsp;&nbsp;</span>
           <input
             type="radio"
             name="variation"
@@ -11,12 +10,12 @@
             class="radio radio-primary checked:bg-red-500"
             v-model="selectedVariation"
           />
+          <span class="label-text">&nbsp;&nbsp;-</span>
         </label>
       </div>
 
       <div class="form-control">
         <label class="label cursor-pointer">
-          <span class="label-text">#&nbsp;&nbsp;</span>
           <input
             type="radio"
             name="variation"
@@ -24,12 +23,12 @@
             class="radio radio-primary checked:bg-red-500"
             v-model="selectedVariation"
           />
+          <span class="label-text">&nbsp;&nbsp;#</span>
         </label>
       </div>
 
       <div class="form-control">
         <label class="label cursor-pointer">
-          <span class="label-text">b&nbsp;&nbsp;</span>
           <input
             type="radio"
             name="variation"
@@ -37,6 +36,7 @@
             class="radio radio-primary checked:bg-red-500"
             v-model="selectedVariation"
           />
+          <span class="label-text">&nbsp;&nbsp;b</span>
         </label>
       </div>
 
@@ -44,7 +44,6 @@
 
       <div class="form-control" v-for="note in notes" :key="note">
         <label class="label cursor-pointer">
-          <span class="label-text">{{ note }}&nbsp;&nbsp;</span>
           <input
             :id="note"
             name="note"
@@ -53,6 +52,7 @@
             type="radio"
             class="radio radio-primary checked:bg-red-500"
           />
+          <span class="label-text">&nbsp;&nbsp;{{ note }}</span>
         </label>
       </div>
     </div>
@@ -70,12 +70,12 @@
 
       <div class="form-control">
         <label class="label cursor-pointer">
-          <span class="label-text">Show octave&nbsp;&nbsp; </span>
           <input
             type="checkbox"
             class="checkbox checkbox-primary"
             v-model="showOctave"
           />
+          <span class="label-text">&nbsp;&nbsp;Show octave</span>
         </label>
       </div>
     </div>
@@ -83,6 +83,8 @@
     <div
       class="flex gap-4 items-center justify-center p-4 bg-base-300 rounded-box"
     >
+      <SelectScaleModal></SelectScaleModal>
+
       <div>
         <select
           v-model="selectedChordType"
@@ -102,7 +104,6 @@
 
       <div class="form-control">
         <label class="label cursor-pointer">
-          <span class="label-text">Chord&nbsp;&nbsp;</span>
           <input
             type="radio"
             name="type"
@@ -110,12 +111,12 @@
             class="radio radio-primary checked:bg-red-500"
             v-model="type"
           />
+          <span class="label-text">&nbsp;&nbsp;Chord</span>
         </label>
       </div>
 
       <div class="form-control">
         <label class="label cursor-pointer">
-          <span class="label-text">Scale&nbsp;&nbsp;</span>
           <input
             type="radio"
             name="type"
@@ -123,6 +124,7 @@
             class="radio radio-primary checked:bg-red-500"
             v-model="type"
           />
+          <span class="label-text">&nbsp;&nbsp;Scale</span>
         </label>
       </div>
 
@@ -130,12 +132,12 @@
 
       <div class="form-control">
         <label class="label cursor-pointer">
-          <span class="label-text">Show notes&nbsp;&nbsp; </span>
           <input
             type="checkbox"
             class="checkbox checkbox-primary"
             v-model="showTriads"
           />
+          <span class="label-text">&nbsp;&nbsp;Show notes</span>
         </label>
       </div>
     </div>
