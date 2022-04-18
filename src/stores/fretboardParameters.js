@@ -50,6 +50,7 @@ export const useFretboardParametersStore = defineStore('fretboard-parameters', {
       this.chord = Chord.get(this.note + this.chordType);
     },
     setChord(chordType) {
+      this.chordType = chordType;
       this.chord = Chord.get(this.note + chordType);
     },
     // Tuning
@@ -73,17 +74,11 @@ export const useFretboardParametersStore = defineStore('fretboard-parameters', {
 
       for (let i = 0; i < this.fretboard.stringLength; i++) {
         let newNote = Note.get(
-          Note.simplify(
-            Note.transpose(currentNote, '2m')
-          )
+          Note.simplify(Note.transpose(currentNote, '2m'))
         );
 
-        // console.log('------------')
-        // console.log(newNote.pc)
-        // console.log(Note.enharmonic(newNote.name))
-
-        // if note contains a ♭ get the enharmonic with # instead
-        if (newNote.pc.includes('b') && !this.chord.notes.includes(newNote.pc)) newNote = Note.get(Note.enharmonic(newNote.name));
+        // Change fretboard display according to the chord or scale parameters selected
+        newNote = this.getNoteToDisplayFromSelectedParameters(newNote);
 
         stringNotes.push(newNote);
         currentNote = newNote;
@@ -91,14 +86,40 @@ export const useFretboardParametersStore = defineStore('fretboard-parameters', {
 
       return stringNotes;
     },
+    getNoteToDisplayFromSelectedParameters(note) {
+      // Show flat note only if it presents in selected chord
+      if (note.pc.includes('b') && !this.chord.notes.includes(note.pc)) return Note.get(Note.enharmonic(note.name));
+
+      // If chord notes contains double sharp notes, we need to change fretboard to display them
+      if (this.chord.tonic.includes('#')) {
+        for (let i = 0; i < this.chord.notes.length; i++) {
+          let chordSimplifiedNote = Note.simplify(this.chord.notes[i])
+
+          // Return double sharped note to the same octave
+          if (chordSimplifiedNote === note.pc) return Note.get(`${this.chord.notes[i]}${note.oct}`)
+        }
+      }
+
+      return note;
+    },
+    // Notes
+    getTriadNote(noteString) {
+      if (noteString === undefined) return null;
+
+      let note = Note.get(noteString)
+
+      if (note.acc === '##') return Note.enharmonic(note.name);
+
+      return note.name
+    }
   },
   getters: {
     chordNotes(state) {
       return {
-        root: state.chord.notes[0] || null,
-        third: state.chord.notes[1] || null,
-        fifth: state.chord.notes[2] || null,
-        seventh: state.chord.notes[3] || null,
+        root: this.getTriadNote(state.chord.notes[0]),
+        third: this.getTriadNote(state.chord.notes[1]),
+        fifth: this.getTriadNote(state.chord.notes[2]),
+        seventh: this.getTriadNote(state.chord.notes[3]),
       }
     },
     strings(state) {
