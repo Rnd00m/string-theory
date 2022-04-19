@@ -1,12 +1,14 @@
 import { defineStore } from "pinia";
-import { Chord, Note } from "@tonaljs/tonal";
+import { Chord, Note, Mode, Scale } from "@tonaljs/tonal";
 
 export const useFretboardParametersStore = defineStore("fretboard-parameters", {
   state: () => {
     return {
       note: "C",
+      displayType: "chord", // chord | scale
       chord: Chord.get("CM"),
       chordType: "M",
+      scale: Mode.get("ionian"),
       showOctave: false,
       showTriads: false,
       chordTypeList: [

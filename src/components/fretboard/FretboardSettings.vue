@@ -83,9 +83,7 @@
     <div
       class="flex gap-4 items-center justify-center p-4 bg-base-300 rounded-box"
     >
-      <SelectScaleModal></SelectScaleModal>
-
-      <div>
+      <div v-if="fretboardParametersStore.displayType === 'chord'">
         <select
           v-model="selectedChordType"
           class="select select-primary select-bordered w-full max-w-xs"
@@ -100,6 +98,8 @@
         </select>
       </div>
 
+      <SelectScaleModal v-else></SelectScaleModal>
+
       <div class="divider lg:divider-horizontal"></div>
 
       <div class="form-control">
@@ -109,7 +109,7 @@
             name="type"
             value="chord"
             class="radio radio-primary checked:bg-red-500"
-            v-model="type"
+            v-model="fretboardParametersStore.displayType"
           />
           <span class="label-text">&nbsp;&nbsp;Chord</span>
         </label>
@@ -122,7 +122,7 @@
             name="type"
             value="scale"
             class="radio radio-primary checked:bg-red-500"
-            v-model="type"
+            v-model="fretboardParametersStore.displayType"
           />
           <span class="label-text">&nbsp;&nbsp;Scale</span>
         </label>
@@ -148,8 +148,13 @@
 import { ref } from "vue";
 import { useFretboardParametersStore } from "@/stores/fretboardParameters";
 
+import SelectScaleModal from "./SelectScaleModal.vue";
+
 export default {
   name: "FretboardSettings",
+  components: {
+    SelectScaleModal,
+  },
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
 
