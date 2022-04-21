@@ -93,18 +93,34 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
       return stringNotes;
     },
     getNoteToDisplayFromSelectedParameters(note) {
-      // Show flat note only if it presents in selected chord
-      if (note.pc.includes("b") && !this.chord.notes.includes(note.pc))
-        return Note.get(Note.enharmonic(note.name));
-
       // If chord notes contains double sharp notes, we need to change fretboard to display them
-      if (this.chord.tonic.includes("#")) {
-        for (let i = 0; i < this.chord.notes.length; i++) {
-          let chordSimplifiedNote = Note.simplify(this.chord.notes[i]);
+      if (this.displayType === "chord") {
+        if (this.chord.tonic.includes("#")) {
+          for (let i = 0; i < this.chord.notes.length; i++) {
+            let chordSimplifiedNote = Note.simplify(this.chord.notes[i]);
 
-          // Return double sharped note to the same octave
-          if (chordSimplifiedNote === note.pc)
-            return Note.get(`${this.chord.notes[i]}${note.oct}`);
+            // Return double sharped note to the same octave
+            if (chordSimplifiedNote === note.pc) {
+              return Note.get(`${this.chord.notes[i]}${note.oct}`);
+            }
+          }
+        }
+
+        // Show flat note only if it presents in selected chord
+        if (note.pc.includes("b") && !this.chord.notes.includes(note.pc)) {
+          return Note.get(Note.enharmonic(note.name));
+        }
+      } else {
+        // If scale contains flat or sharp we display this note instead
+        let scaleNotes = Scale.get(`${this.note} ${this.scale.name}`).notes;
+        let noteEnharmonic = Note.enharmonic(note.pc);
+
+        if (scaleNotes.includes(note.pc)) {
+          return note;
+        }
+
+        if (scaleNotes.includes(noteEnharmonic)) {
+          return Note.get(`${noteEnharmonic}${note.oct}`);
         }
       }
 
@@ -127,6 +143,14 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
         fifth: this.getTriadNote(state.chord.notes[2]),
         seventh: this.getTriadNote(state.chord.notes[3]),
       };
+    },
+    // Return characteristic notes from selected chord or scale
+    characteristicNotes(state) {
+      if (state.displayType === "chord") {
+        return state.chord.notes;
+      }
+
+      return Scale.get(`${state.note} ${state.scale.name}`).notes;
     },
     strings(state) {
       return state.fretboard.baseNotes.map((note) => {

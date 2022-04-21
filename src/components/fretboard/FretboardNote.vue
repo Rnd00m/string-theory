@@ -36,12 +36,20 @@ export default {
       if (this.fretboardParametersStore.note === this.note.pc)
         return "note-root";
       if (this.fretboardParametersStore.showTriads) {
-        if (this.fretboardParametersStore.chordNotes.third === this.note.pc)
-          return "note-third";
-        if (this.fretboardParametersStore.chordNotes.fifth === this.note.pc)
-          return "note-fifth";
-        if (this.fretboardParametersStore.chordNotes.seventh === this.note.pc)
-          return "note-seventh";
+        if (this.fretboardParametersStore.displayType === "chord") {
+          if (this.fretboardParametersStore.chordNotes.third === this.note.pc)
+            return "note-third";
+          if (this.fretboardParametersStore.chordNotes.fifth === this.note.pc)
+            return "note-fifth";
+          if (this.fretboardParametersStore.chordNotes.seventh === this.note.pc)
+            return "note-seventh";
+        }
+        if (
+          this.fretboardParametersStore.characteristicNotes.includes(
+            this.note.pc
+          )
+        )
+          return "note-scale";
       }
       return "";
     },
@@ -84,7 +92,8 @@ export default {
       z-index: 5;
 
       &-root {
-        background: theme("colors.blue");
+        background: var(--color-blue-400);
+        color: hsl(var(--b1));
       }
 
       &-third {
@@ -97,6 +106,10 @@ export default {
 
       &-seventh {
         background: theme("colors.green");
+      }
+
+      &-scale {
+        background: var(--color-blue-600);
       }
 
       &-octave {

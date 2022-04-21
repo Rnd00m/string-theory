@@ -1,8 +1,11 @@
 <template>
   <div class="select-scale-modal">
-    <label for="select-scale-modal" class="btn btn-primary modal-button"
-      >Scales</label
+    <label
+      for="select-scale-modal"
+      class="btn btn-outline btn-primary modal-button"
     >
+      {{ fretboardParametersStore.scale.name }}
+    </label>
 
     <input type="checkbox" id="select-scale-modal" class="modal-toggle" />
     <label for="select-scale-modal" class="modal cursor-pointer">
