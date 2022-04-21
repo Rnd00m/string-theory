@@ -144,13 +144,18 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
         seventh: this.getTriadNote(state.chord.notes[3]),
       };
     },
-    // Return characteristic notes from selected chord or scale
-    characteristicNotes(state) {
-      if (state.displayType === "chord") {
-        return state.chord.notes;
-      }
+    scalesNotes(state) {
+      let scaleNotes = Scale.get(`${state.note} ${state.scale.name}`).notes;
 
-      return Scale.get(`${state.note} ${state.scale.name}`).notes;
+      return {
+        root: this.getTriadNote(scaleNotes[0]),
+        second: this.getTriadNote(scaleNotes[1]),
+        third: this.getTriadNote(scaleNotes[2]),
+        fourth: this.getTriadNote(scaleNotes[3]),
+        fifth: this.getTriadNote(scaleNotes[4]),
+        sixth: this.getTriadNote(scaleNotes[5]),
+        seventh: this.getTriadNote(scaleNotes[6]),
+      };
     },
     strings(state) {
       return state.fretboard.baseNotes.map((note) => {

@@ -44,12 +44,22 @@ export default {
           if (this.fretboardParametersStore.chordNotes.seventh === this.note.pc)
             return "note-seventh";
         }
-        if (
-          this.fretboardParametersStore.characteristicNotes.includes(
-            this.note.pc
+
+        if (this.fretboardParametersStore.displayType === "scale") {
+          if (
+            this.note.pc === this.fretboardParametersStore.scalesNotes.third ||
+            this.note.pc === this.fretboardParametersStore.scalesNotes.fifth ||
+            this.note.pc === this.fretboardParametersStore.scalesNotes.seventh
           )
-        )
-          return "note-scale";
+            return "note-scale-triad";
+
+          if (
+            Object.values(this.fretboardParametersStore.scalesNotes).includes(
+              this.note.pc
+            )
+          )
+            return "note-scale";
+        }
       }
       return "";
     },
@@ -73,7 +83,7 @@ export default {
 
 <style scoped lang="scss">
 .fret-wrapper {
-  border-right: 2px theme("colors.white-light") solid;
+  border-right: 2px hsl(var(--bc)) solid;
 
   &:not(:first-child):before {
     position: absolute;
@@ -82,34 +92,37 @@ export default {
     width: 100%;
     top: 0;
     z-index: 4;
-    border-bottom: 1px solid theme("colors.white");
+    border-bottom: 1px solid hsl(var(--nc));
   }
 
   .note-wrapper {
     .note {
-      color: theme("colors.white-light");
-      background: theme("colors.black");
+      color: hsl(var(--bc));
+      background: hsl(var(--b1));
       z-index: 5;
 
       &-root {
-        background: var(--color-blue-400);
-        color: hsl(var(--b1));
+        background: var(--color-blue);
       }
 
       &-third {
-        background: theme("colors.persian-orange");
+        background: var(--color-persian-orange);
       }
 
       &-fifth {
-        background: theme("colors.orange");
+        background: var(--color-orange);
       }
 
       &-seventh {
-        background: theme("colors.green");
+        background: var(--color-green);
+      }
+
+      &-scale-triad {
+        background: var(--color-persian-orange);
       }
 
       &-scale {
-        background: var(--color-blue-600);
+        background: var(--color-persian-orange-darker);
       }
 
       &-octave {
