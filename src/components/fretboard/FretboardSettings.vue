@@ -60,6 +60,8 @@
     <div
       class="flex flex-wrap gap-4 items-center justify-center p-4 bg-base-200 rounded-box"
     >
+      <SelectTuningModal></SelectTuningModal>
+
       <span class="inline-block align-middle">Tuning</span>
       <div class="btn-group">
         <button class="btn btn-primary" @click="tuneUp">+</button>
@@ -149,11 +151,13 @@ import { ref } from "vue";
 import { useFretboardParametersStore } from "@/stores/fretboardParameters";
 
 import SelectScaleModal from "./SelectScaleModal.vue";
+import SelectTuningModal from "./SelectTuningModal.vue";
 
 export default {
   name: "FretboardSettings",
   components: {
     SelectScaleModal,
+    SelectTuningModal,
   },
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
