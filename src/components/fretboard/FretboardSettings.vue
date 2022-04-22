@@ -62,12 +62,6 @@
     >
       <SelectTuningModal></SelectTuningModal>
 
-      <span class="inline-block align-middle">Tuning</span>
-      <div class="btn-group">
-        <button class="btn btn-primary" @click="tuneUp">+</button>
-        <button class="btn btn-primary" @click="tuneDown">-</button>
-      </div>
-
       <div class="divider lg:divider-horizontal"></div>
 
       <div class="form-control">
@@ -202,14 +196,6 @@ export default {
   computed: {
     selectedCompleteNote() {
       return this.selectedNote + this.selectedVariation;
-    },
-  },
-  methods: {
-    tuneUp() {
-      this.fretboardParametersStore.changeGuitarTuning(1);
-    },
-    tuneDown() {
-      this.fretboardParametersStore.changeGuitarTuning(-1);
     },
   },
 };

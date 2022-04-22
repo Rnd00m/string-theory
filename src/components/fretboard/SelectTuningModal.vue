@@ -17,31 +17,47 @@
         >
         <h1 class="text-xl font-bold">Tuning</h1>
 
-        <div class="flex flex-row-reverse mt-4 gap-2">
-          <div
-            class="form-control"
-            v-for="(note, index) in fretboardParametersStore.fretboard.baseNotes"
-            :key="'note-' + index"
-          >
-            <div class="input-group input-group-sm">
-              <button
-                class="btn btn-square btn-sm btn-primary"
-                @click="fretboardParametersStore.changeStringTuning(index, -1)"
-              >
-                -
-              </button>
-              <input
-                type="text"
-                class="input input-sm input-bordered text-center tuning-note-input w-full"
-                readonly
-                :value="note.name"
-              />
-              <button
-                class="btn btn-square btn-sm btn-primary"
-                @click="fretboardParametersStore.changeStringTuning(index, 1)"
-              >
-                +
-              </button>
+        <div class="grid h-20 place-items-center">
+          <div class="flex flex-row-reverse mt-4 gap-2">
+            <div
+              class="form-control"
+              v-for="(note, index) in fretboardParametersStore.fretboard.baseNotes"
+              :key="'note-' + index"
+            >
+              <div class="input-group input-group-sm">
+                <button
+                  class="btn btn-square btn-sm btn-primary"
+                  @click="fretboardParametersStore.changeStringTuning(index, -1)"
+                >
+                  -
+                </button>
+                <input
+                  type="text"
+                  class="input input-sm input-bordered text-center tuning-note-input w-full"
+                  readonly
+                  :value="note.name"
+                />
+                <button
+                  class="btn btn-square btn-sm btn-primary"
+                  @click="fretboardParametersStore.changeStringTuning(index, 1)"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider">Settings</div>
+
+        <div class="grid h-20 place-items-center">
+          <div>
+            <div class="form-control">
+              <div class="input-group input-group-md">
+                <span>Tuning</span>
+                <button class="btn btn-square btn-primary btn-md" @click="tuneUp">+</button>
+                <button class="btn btn-square btn-primary btn-md" @click="tuneDown">-</button>
+              </div>
             </div>
           </div>
         </div>
@@ -61,6 +77,14 @@ export default {
     return {
       fretboardParametersStore,
     };
+  },
+  methods: {
+    tuneUp() {
+      this.fretboardParametersStore.changeGuitarTuning(1);
+    },
+    tuneDown() {
+      this.fretboardParametersStore.changeGuitarTuning(-1);
+    },
   },
 };
 </script>
