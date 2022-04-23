@@ -1,18 +1,36 @@
 <template>
-  <div class="navbar bg-base-100">
+  <div class="flex navbar bg-base-100">
     <div class="navbar-start">
       <div class="dropdown">
         <label tabindex="0" class="btn btn-ghost lg:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h8m-8 6h16"
+            />
+          </svg>
         </label>
-        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+        <ul
+          tabindex="0"
+          class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+        >
           <li><RouterLink to="/">Home</RouterLink></li>
           <li><RouterLink to="/visualizer">Visualizer</RouterLink></li>
           <li><RouterLink to="/training">Training</RouterLink></li>
           <li><RouterLink to="/about">About</RouterLink></li>
         </ul>
       </div>
-      <RouterLink class="btn btn-ghost normal-case text-xl" to="/">String Theory</RouterLink>
+      <RouterLink class="btn btn-ghost normal-case text-xl" to="/"
+        >String Theory</RouterLink
+      >
     </div>
     <div class="navbar-end hidden lg:flex">
       <ul class="menu menu-horizontal p-0">
@@ -29,13 +47,11 @@
 import { RouterLink } from "vue-router";
 
 export default {
-  name: "Navbar",
+  name: "HeaderComponent",
   components: {
-    RouterLink
-  }
-}
+    RouterLink,
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

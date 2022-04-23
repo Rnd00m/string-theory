@@ -13,14 +13,16 @@
         <label
           for="select-tuning-modal"
           class="btn btn-sm btn-circle absolute right-2 top-2"
-        >✕</label>
+          >✕</label
+        >
         <h1 class="text-xl font-bold">Tuning</h1>
 
         <div class="grid h-32 place-items-center mt-4">
           <div class="flex flex-row-reverse gap-8">
             <div
               class="flex flex-col gap-2"
-              v-for="(note, index) in fretboardParametersStore.fretboard.baseNotes"
+              v-for="(note, index) in fretboardParametersStore.fretboard
+                .baseNotes"
               :key="'note-' + index"
             >
               <button

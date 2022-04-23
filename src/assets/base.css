@@ -59,7 +59,7 @@
   font-weight: normal;
 }
 
-html, body, #app { height: 100%;}
+html, body { height: 100%;}
 
 body {
   color: var(--color-text);
