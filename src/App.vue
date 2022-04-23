@@ -1,23 +1,19 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import "./assets/css/index.css";
-</script>
-
 <template>
-  <!--  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/visualizer">Visualizer</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>-->
+  <Navbar></Navbar>
 
-  <div class="container mx-auto">
+  <div class="container mx-auto min-h-screen">
     <RouterView />
   </div>
+
+  <Footer></Footer>
 </template>
+
+<script setup lang="ts">
+import { RouterView } from "vue-router";
+import Navbar from "@/components/nav/Navbar.vue";
+import Footer from "@/components/nav/Footer.vue";
+import "./assets/css/index.css";
+</script>
 
 <style>
 @import "@/assets/base.css";
