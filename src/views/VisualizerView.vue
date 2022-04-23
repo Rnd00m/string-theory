@@ -1,5 +1,5 @@
 <template>
-  <div class="fretboard-visualizer max-h-full mx-auto">
+  <div class="fretboard-visualizer">
     <div class="grid gap-8">
       <FretboardVisualizer></FretboardVisualizer>
       <FretboardSettings></FretboardSettings>

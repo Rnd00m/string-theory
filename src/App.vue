@@ -2,7 +2,9 @@
   <Navbar></Navbar>
 
   <div class="flex items-center justify-center flex-1 overflow-auto py-10">
-    <RouterView />
+    <div class="max-h-full mx-auto">
+      <RouterView />
+    </div>
   </div>
 
   <Footer></Footer>
