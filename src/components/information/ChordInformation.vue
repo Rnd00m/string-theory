@@ -8,10 +8,10 @@
           Chord can be written {{ disjunctionFormatter.format(fretboardParametersStore.chord.aliases.map((alias) => `${fretboardParametersStore.chord.tonic} ${alias}`)) }}
         </p>
         <p>It contains the notes :</p>
-        <div class="flex flex-col w-full lg:flex-row">
+        <div class="flex flex-col justify-center gap-8 w-full lg:flex-row">
           <div
-              v-for="(note, index) in fretboardParametersStore.chord.notes" :key="'chord-information-note-' + note"
-              class="grid flex-grow h-20 card rounded-box place-items-center">
+            v-for="(note, index) in fretboardParametersStore.chord.notes" :key="'chord-information-note-' + note"
+            class="grid h-20 card place-items-center">
             <span
               class="px-3 py-1 text-lg rounded-lg"
               :class="getNoteClass(note)"
