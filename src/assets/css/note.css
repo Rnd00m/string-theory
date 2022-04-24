@@ -1,0 +1,35 @@
+/* Todo : install scss and correctly import and compile css files */
+
+.note {
+    color: hsl(var(--bc));
+    background: hsl(var(--b1));
+    z-index: 5;
+}
+
+.note-root {
+     background: var(--color-blue);
+ }
+
+.note-third {
+     background: var(--color-persian-orange);
+ }
+
+.note-fifth {
+     background: var(--color-orange);
+ }
+
+.note-seventh {
+     background: var(--color-green);
+ }
+
+.note-scale-triad {
+     background: var(--color-persian-orange);
+ }
+
+.note-scale {
+     background: var(--color-persian-orange-darker);
+ }
+
+.note-octave {
+     font-size: 0.75rem;
+ }

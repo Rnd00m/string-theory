@@ -1,0 +1,60 @@
+<template>
+  <div class="chord-information flex items-center justify-center">
+    <div class="card w-2/3 bg-base-200 shadow-xl">
+      <div class="card-body">
+        <h2 class="card-title">Chord Information</h2>
+        <p>The {{ fretboardParametersStore.chord.name }} is a {{ fretboardParametersStore.chord.type }} chord composed of {{ conjunctionFormatter.format(fretboardParametersStore.chord.intervals) }} intervals</p>
+        <p v-if="fretboardParametersStore.chord.aliases.length">
+          Chord can be written {{ disjunctionFormatter.format(fretboardParametersStore.chord.aliases.map((alias) => `${fretboardParametersStore.chord.tonic} ${alias}`)) }}
+        </p>
+        <p>It contains the notes :</p>
+        <div class="flex flex-col w-full lg:flex-row">
+          <div
+              v-for="(note, index) in fretboardParametersStore.chord.notes" :key="'chord-information-note-' + note"
+              class="grid flex-grow h-20 card rounded-box place-items-center">
+            <span
+              class="px-3 py-1 text-lg rounded-lg"
+              :class="getNoteClass(note)"
+            >
+            {{ note }}
+            </span>
+            <span>{{ fretboardParametersStore.chord.intervals[index] }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { useFretboardParametersStore } from "@/stores/fretboardParameters";
+
+export default {
+  name: "ChordInformation",
+  setup() {
+    const fretboardParametersStore = useFretboardParametersStore();
+
+    const conjunctionFormatter = new Intl.ListFormat('en-GB', { style: 'long', type: 'conjunction' });
+    const disjunctionFormatter = new Intl.ListFormat('en-GB', { style: 'long', type: 'disjunction' });
+
+    return { fretboardParametersStore, conjunctionFormatter, disjunctionFormatter };
+  },
+  methods: {
+    getNoteClass(note) {
+      if (this.fretboardParametersStore.chordNotes.root === note)
+        return "note-root";
+      if (this.fretboardParametersStore.chordNotes.third === note)
+        return "note-third";
+      if (this.fretboardParametersStore.chordNotes.fifth === note)
+        return "note-fifth";
+      if (this.fretboardParametersStore.chordNotes.seventh === note)
+        return "note-seventh";
+      return "";
+    },
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

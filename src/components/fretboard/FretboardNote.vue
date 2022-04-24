@@ -94,41 +94,5 @@ export default {
     z-index: 4;
     border-bottom: 1px solid hsl(var(--nc));
   }
-
-  .note-wrapper {
-    .note {
-      color: hsl(var(--bc));
-      background: hsl(var(--b1));
-      z-index: 5;
-
-      &-root {
-        background: var(--color-blue);
-      }
-
-      &-third {
-        background: var(--color-persian-orange);
-      }
-
-      &-fifth {
-        background: var(--color-orange);
-      }
-
-      &-seventh {
-        background: var(--color-green);
-      }
-
-      &-scale-triad {
-        background: var(--color-persian-orange);
-      }
-
-      &-scale {
-        background: var(--color-persian-orange-darker);
-      }
-
-      &-octave {
-        font-size: 0.75rem;
-      }
-    }
-  }
 }
 </style>
