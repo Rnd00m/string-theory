@@ -3,20 +3,38 @@
     <div class="card w-2/3 bg-base-200 shadow-xl">
       <div class="card-body">
         <h2 class="card-title">Chord Information</h2>
-        <p>The {{ fretboardParametersStore.chord.name }} is a {{ fretboardParametersStore.chord.type }} chord composed of {{ conjunctionFormatter.format(fretboardParametersStore.chord.intervals) }} intervals</p>
+        <p>
+          The {{ fretboardParametersStore.chord.name }} is a
+          {{ fretboardParametersStore.chord.type }} chord composed of
+          {{
+            conjunctionFormatter.format(
+              fretboardParametersStore.chord.intervals
+            )
+          }}
+          intervals
+        </p>
         <p v-if="fretboardParametersStore.chord.aliases.length">
-          Chord can be written {{ disjunctionFormatter.format(fretboardParametersStore.chord.aliases.map((alias) => `${fretboardParametersStore.chord.tonic} ${alias}`)) }}
+          Chord can be written
+          {{
+            disjunctionFormatter.format(
+              fretboardParametersStore.chord.aliases.map(
+                (alias) => `${fretboardParametersStore.chord.tonic} ${alias}`
+              )
+            )
+          }}
         </p>
         <p>It contains the notes :</p>
         <div class="flex flex-col justify-center gap-8 w-full lg:flex-row">
           <div
-            v-for="(note, index) in fretboardParametersStore.chord.notes" :key="'chord-information-note-' + note"
-            class="grid h-20 card place-items-center">
+            v-for="(note, index) in fretboardParametersStore.chord.notes"
+            :key="'chord-information-note-' + note"
+            class="grid h-20 card place-items-center"
+          >
             <span
               class="px-3 py-1 text-lg rounded-lg"
               :class="getNoteClass(note)"
             >
-            {{ note }}
+              {{ note }}
             </span>
             <span>{{ fretboardParametersStore.chord.intervals[index] }}</span>
           </div>
@@ -34,10 +52,20 @@ export default {
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
 
-    const conjunctionFormatter = new Intl.ListFormat('en-GB', { style: 'long', type: 'conjunction' });
-    const disjunctionFormatter = new Intl.ListFormat('en-GB', { style: 'long', type: 'disjunction' });
+    const conjunctionFormatter = new Intl.ListFormat("en-GB", {
+      style: "long",
+      type: "conjunction",
+    });
+    const disjunctionFormatter = new Intl.ListFormat("en-GB", {
+      style: "long",
+      type: "disjunction",
+    });
 
-    return { fretboardParametersStore, conjunctionFormatter, disjunctionFormatter };
+    return {
+      fretboardParametersStore,
+      conjunctionFormatter,
+      disjunctionFormatter,
+    };
   },
   methods: {
     getNoteClass(note) {
@@ -51,10 +79,8 @@ export default {
         return "note-seventh";
       return "";
     },
-  }
-}
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

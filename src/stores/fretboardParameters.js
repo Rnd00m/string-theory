@@ -157,6 +157,9 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
         seventh: this.getTriadNote(scaleNotes[6]),
       };
     },
+    scaleNotesArray(state) {
+      return Scale.get(`${state.note} ${state.scale.name}`).notes;
+    },
     strings(state) {
       return state.fretboard.baseNotes.map((note) => {
         return this.getStringNotesFromStartNote(note);

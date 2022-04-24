@@ -57,7 +57,7 @@
               <span class="label-text">&nbsp;&nbsp;{{ note }}</span>
             </label>
           </div>
-       </div>
+        </div>
       </div>
     </div>
 
@@ -87,13 +87,13 @@
         <div class="flex gap-4 items-center justify-center">
           <div v-if="fretboardParametersStore.displayType === 'chord'">
             <select
-                v-model="selectedChordType"
-                class="select select-primary select-bordered w-full max-w-xs"
+              v-model="selectedChordType"
+              class="select select-primary select-bordered w-full max-w-xs"
             >
               <option
-                  v-for="chord in fretboardParametersStore.chordTypeList"
-                  :key="chord.notation"
-                  :value="chord.notation"
+                v-for="chord in fretboardParametersStore.chordTypeList"
+                :key="chord.notation"
+                :value="chord.notation"
               >
                 {{ chord.name }}
               </option>
@@ -107,11 +107,11 @@
           <div class="form-control">
             <label class="label cursor-pointer">
               <input
-                  type="radio"
-                  name="type"
-                  value="chord"
-                  class="radio radio-primary checked:bg-red-500"
-                  v-model="fretboardParametersStore.displayType"
+                type="radio"
+                name="type"
+                value="chord"
+                class="radio radio-primary checked:bg-red-500"
+                v-model="fretboardParametersStore.displayType"
               />
               <span class="label-text">&nbsp;&nbsp;Chord</span>
             </label>
@@ -120,11 +120,11 @@
           <div class="form-control">
             <label class="label cursor-pointer">
               <input
-                  type="radio"
-                  name="type"
-                  value="scale"
-                  class="radio radio-primary checked:bg-red-500"
-                  v-model="fretboardParametersStore.displayType"
+                type="radio"
+                name="type"
+                value="scale"
+                class="radio radio-primary checked:bg-red-500"
+                v-model="fretboardParametersStore.displayType"
               />
               <span class="label-text">&nbsp;&nbsp;Scale</span>
             </label>
@@ -135,9 +135,9 @@
           <div class="form-control">
             <label class="label cursor-pointer">
               <input
-                  type="checkbox"
-                  class="checkbox checkbox-primary"
-                  v-model="showTriads"
+                type="checkbox"
+                class="checkbox checkbox-primary"
+                v-model="showTriads"
               />
               <span class="label-text">&nbsp;&nbsp;Show notes</span>
             </label>
