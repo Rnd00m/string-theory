@@ -36,6 +36,7 @@ module.exports = {
           "--color-green-light": "hsl(164, 100%, 40%)",
           "--color-green": "hsl(164, 100%, 30%)",
           "--color-green-dark": "hsl(164, 100%, 20%)",
+          "--color-green-darker": "hsl(164, 100%, 10%)",
 
           "--color-yellow-light": "hsl(43, 95%, 73%)",
           "--color-yellow": "hsl(43, 95%, 63%)",

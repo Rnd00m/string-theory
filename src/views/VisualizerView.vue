@@ -1,7 +1,9 @@
 <template>
   <div class="fretboard-visualizer">
     <div class="grid gap-8">
-      <ChordInformation v-if="fretboardParametersStore.displayType === 'chord'"></ChordInformation>
+      <ChordInformation
+        v-if="fretboardParametersStore.displayType === 'chord'"
+      ></ChordInformation>
       <ScaleInformation v-else></ScaleInformation>
       <FretboardVisualizer></FretboardVisualizer>
       <FretboardSettings></FretboardSettings>

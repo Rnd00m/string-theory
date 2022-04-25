@@ -1,6 +1,6 @@
 <template>
   <div class="chord-information flex items-center justify-center">
-    <div class="card w-2/3 bg-base-200 shadow-xl">
+    <div class="card bg-base-200 shadow-xl">
       <div class="card-body">
         <h2 class="card-title">Chord Information</h2>
         <p>
@@ -11,17 +11,17 @@
               fretboardParametersStore.chord.intervals
             )
           }}
-          intervals
-        </p>
-        <p v-if="fretboardParametersStore.chord.aliases.length">
-          Chord can be written
-          {{
-            disjunctionFormatter.format(
-              fretboardParametersStore.chord.aliases.map(
-                (alias) => `${fretboardParametersStore.chord.tonic} ${alias}`
+          intervals.
+          <span v-if="fretboardParametersStore.chord.aliases.length">
+            It can be written
+            {{
+              disjunctionFormatter.format(
+                fretboardParametersStore.chord.aliases.map(
+                  (alias) => `${fretboardParametersStore.chord.tonic} ${alias}`
+                )
               )
-            )
-          }}
+            }}.
+          </span>
         </p>
         <p>It contains the notes :</p>
         <div class="flex flex-col justify-center gap-8 w-full lg:flex-row">
