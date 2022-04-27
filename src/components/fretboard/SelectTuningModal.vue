@@ -84,7 +84,9 @@
           </button>
         </div>
 
-        <div class="grid h-20 place-items-center">
+        <div
+          class="grid grid-flow-col h-20 justify-center place-items-center gap-4 content-center"
+        >
           <div>
             <div class="form-control">
               <div class="input-group input-group-md">
@@ -104,6 +106,21 @@
               </div>
             </div>
           </div>
+
+          <div class="form-control">
+            <select
+              v-model="selectedSoundSample"
+              class="select select-primary select-bordered w-full max-w-xs"
+            >
+              <option
+                v-for="soundSample in soundSampleList"
+                :key="soundSample.name"
+                :value="soundSample"
+              >
+                {{ soundSample.name }}
+              </option>
+            </select>
+          </div>
         </div>
       </label>
     </label>
@@ -111,6 +128,7 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import { Note } from "@tonaljs/tonal";
 
 import { useFretboardParametersStore } from "@/stores/fretboardParameters";
@@ -119,6 +137,10 @@ export default {
   name: "SelectTuningModal",
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
+
+    const selectedSoundSample = ref(
+      fretboardParametersStore.selectedSoundSample
+    );
 
     const baseGuitarStrings = [
       Note.get("E4"),
@@ -140,7 +162,22 @@ export default {
       fretboardParametersStore,
       baseGuitarStrings,
       baseBassStrings,
+      selectedSoundSample,
     };
+  },
+  computed: {
+    soundSampleList() {
+      return this.fretboardParametersStore.soundSampleList.filter(
+        (soundSample) =>
+          soundSample.type === this.fretboardParametersStore.instrument
+      );
+    },
+  },
+  watch: {
+    selectedSoundSample() {
+      this.fretboardParametersStore.selectedSoundSample =
+        this.selectedSoundSample;
+    },
   },
   methods: {
     tuneUp() {
@@ -153,6 +190,7 @@ export default {
       this.fretboardParametersStore.fretboard.baseNotes = [
         ...this.baseGuitarStrings,
       ];
+      this.setInstrument("guitar");
     },
     set7StringsBaseTuning() {
       let strings = [...this.baseGuitarStrings];
@@ -160,6 +198,7 @@ export default {
       strings.push(Note.get("B1"));
 
       this.fretboardParametersStore.fretboard.baseNotes = strings;
+      this.setInstrument("guitar");
     },
     set8StringsBaseTuning() {
       let strings = [...this.baseGuitarStrings];
@@ -168,11 +207,13 @@ export default {
       strings.push(Note.get("F#1"));
 
       this.fretboardParametersStore.fretboard.baseNotes = strings;
+      this.setInstrument("guitar");
     },
     setBaseBassTuning() {
       this.fretboardParametersStore.fretboard.baseNotes = [
         ...this.baseBassStrings,
       ];
+      this.setInstrument("bass");
     },
     set5StringsBassTuning() {
       let strings = [...this.baseBassStrings];
@@ -180,6 +221,7 @@ export default {
       strings.push(Note.get("B0"));
 
       this.fretboardParametersStore.fretboard.baseNotes = strings;
+      this.setInstrument("bass");
     },
     set6StringsBassTuning() {
       let strings = [...this.baseBassStrings];
@@ -188,6 +230,24 @@ export default {
       strings.push(Note.get("B0"));
 
       this.fretboardParametersStore.fretboard.baseNotes = strings;
+      this.setInstrument("bass");
+    },
+    setInstrument(instrument) {
+      this.fretboardParametersStore.instrument = instrument;
+
+      if (
+        this.soundSampleList.filter(
+          (soundSample) => soundSample.name === this.selectedSoundSample.name
+        ).length === 0
+      ) {
+        this.fretboardParametersStore.selectedSoundSample =
+          this.soundSampleList[0];
+        this.selectedSoundSample =
+          this.fretboardParametersStore.selectedSoundSample;
+      } else {
+        this.fretboardParametersStore.selectedSoundSample =
+          this.selectedSoundSample;
+      }
     },
   },
 };

@@ -44,6 +44,49 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
         ],
         stringLength: 12,
       },
+      instrument: "guitar", // guitar | bass
+      selectedSoundSample: {
+        name: "Acoustic Guitar Steel",
+        type: "guitar",
+        url: "src/assets/sound/acoustic_guitar_steel_mp3/",
+      },
+      soundSampleList: [
+        {
+          name: "Acoustic Guitar Steel",
+          type: "guitar",
+          url: "src/assets/sound/acoustic_guitar_steel_mp3/",
+        },
+        {
+          name: "Acoustic Guitar Nylon",
+          type: "guitar",
+          url: "src/assets/sound/acoustic_guitar_nylon_mp3/",
+        },
+        {
+          name: "Electric Guitar Clean",
+          type: "guitar",
+          url: "src/assets/sound/electric_guitar_clean_mp3/",
+        },
+        {
+          name: "Distorsion Guitar",
+          type: "guitar",
+          url: "src/assets/sound/distortion_guitar_mp3/",
+        },
+        {
+          name: "Acoustic Bass",
+          type: "bass",
+          url: "src/assets/sound/acoustic_bass_mp3/",
+        },
+        {
+          name: "Electric Bass Finger",
+          type: "bass",
+          url: "src/assets/sound/electric_bass_finger_mp3/",
+        },
+        {
+          name: "Electric Bass Pick",
+          type: "bass",
+          url: "src/assets/sound/electric_bass_pick_mp3/",
+        },
+      ],
     };
   },
   actions: {

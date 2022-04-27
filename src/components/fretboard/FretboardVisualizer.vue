@@ -20,30 +20,33 @@ import * as Tone from "tone";
 export default {
   name: "FretboardVisualizer",
   components: { FretboardMarker, FretboardString },
+  computed: {
+    sampler() {
+      return new Tone.Sampler({
+        urls: {
+          A1: "A1.mp3",
+          D1: "D1.mp3",
+          A2: "A2.mp3",
+          D2: "D2.mp3",
+          A3: "A3.mp3",
+          D3: "D3.mp3",
+          A4: "A4.mp3",
+          D4: "D4.mp3",
+          A5: "A5.mp3",
+          D5: "D5.mp3",
+          A6: "A6.mp3",
+          D6: "D6.mp3",
+          A7: "A7.mp3",
+          D7: "D7.mp3",
+        },
+        baseUrl: this.fretboardParametersStore.selectedSoundSample.url,
+      }).toDestination();
+    },
+  },
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
 
-    const sampler = new Tone.Sampler({
-      urls: {
-        A1: "A1.mp3",
-        D1: "D1.mp3",
-        A2: "A2.mp3",
-        D2: "D2.mp3",
-        A3: "A3.mp3",
-        D3: "D3.mp3",
-        A4: "A4.mp3",
-        D4: "D4.mp3",
-        A5: "A5.mp3",
-        D5: "D5.mp3",
-        A6: "A6.mp3",
-        D6: "D6.mp3",
-        A7: "A7.mp3",
-        D7: "D7.mp3",
-      },
-      baseUrl: "src/assets/sound/acoustic_guitar_steel_mp3/",
-    }).toDestination();
-
-    return { fretboardParametersStore, sampler };
+    return { fretboardParametersStore };
   },
 };
 </script>
