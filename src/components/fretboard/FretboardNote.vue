@@ -1,5 +1,5 @@
 <template>
-  <div class="fret-wrapper">
+  <div class="fret-wrapper" @click="playNote(note)">
     <div class="note-wrapper text-center py-2 px-4">
       <div class="note rounded-lg text-center text-lg" :class="noteClass">
         <span>{{ noteFullName }}</span
@@ -13,6 +13,7 @@
 
 <script>
 import { useFretboardParametersStore } from "@/stores/fretboardParameters";
+import * as Tone from "tone";
 
 export default {
   name: "FretboardNote",
@@ -25,6 +26,10 @@ export default {
   props: {
     note: {
       type: Object,
+      required: true,
+    },
+    sampler: {
+      type: Tone.Sampler,
       required: true,
     },
   },
@@ -71,6 +76,9 @@ export default {
       if (accidental === "##") return "𝄪";
       if (accidental === undefined) return "";
       return accidental;
+    },
+    playNote(note) {
+      this.sampler.triggerAttackRelease(note.name, 0.5);
     },
   },
   setup() {

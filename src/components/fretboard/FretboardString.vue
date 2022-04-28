@@ -5,6 +5,7 @@
         v-for="note in string"
         :key="note"
         :note="note"
+        :sampler="sampler"
       ></FretboardNote>
     </div>
   </div>
@@ -14,6 +15,7 @@
 import FretboardNote from "./FretboardNote.vue";
 import { ref } from "vue";
 import { useFretboardParametersStore } from "@/stores/fretboardParameters";
+import * as Tone from "tone";
 
 export default {
   name: "FretboardString",
@@ -28,6 +30,10 @@ export default {
   props: {
     string: {
       type: Array,
+      required: true,
+    },
+    sampler: {
+      type: Tone.Sampler,
       required: true,
     },
   },
