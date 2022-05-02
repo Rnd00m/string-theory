@@ -78,7 +78,7 @@ export default {
       return accidental;
     },
     playNote(note) {
-      this.sampler.triggerAttackRelease(note.name, 0.5);
+      this.sampler.triggerAttackRelease(note.name, 0.7);
     },
   },
   setup() {
