@@ -2,7 +2,7 @@
   <div class="fretboard-settings-wrapper flex flex-col mx-auto space-y-5">
     <div class="card bg-base-200 shadow-xl">
       <div class="card-body p-5">
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap gap-3 items-center justify-center">
           <div class="form-control">
             <label class="label cursor-pointer">
               <input

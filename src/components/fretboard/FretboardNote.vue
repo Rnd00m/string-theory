@@ -90,6 +90,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
 .fret-wrapper {
   border-right: 2px hsl(var(--bc)) solid;
 
