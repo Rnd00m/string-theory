@@ -18,7 +18,9 @@
     </div>
     <div class="drawer-side">
       <label for="settings-drawer" class="drawer-overlay"></label>
-      <ul class="menu p-4 overflow-y-auto w-3/5 bg-base-100 text-base-content">
+      <ul
+        class="menu p-4 gap-2 overflow-y-auto w-3/5 bg-base-100 text-base-content"
+      >
         <FretboardSettingsDrawerLayout></FretboardSettingsDrawerLayout>
       </ul>
     </div>

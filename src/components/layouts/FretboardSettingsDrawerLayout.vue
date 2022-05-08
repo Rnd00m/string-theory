@@ -1,7 +1,8 @@
 <template>
-  <label for="settings-drawer" class="drawer-button btn btn-primary"
-    >Close Settings</label
-  >
+  <label
+    for="settings-drawer"
+    class="drawer-button btn btn-sm btn-circle"
+  >✕</label>
   <MqResponsive landscape target="md-">
     <FretboardSettings></FretboardSettings>
   </MqResponsive>

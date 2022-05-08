@@ -2,7 +2,7 @@
   <div class="select-tuning-modal">
     <label
       for="select-tuning-modal"
-      class="btn btn-outline btn-primary modal-button"
+      class="btn btn-outline btn-sm lg:btn-md btn-primary modal-button"
     >
       Select tuning
     </label>
