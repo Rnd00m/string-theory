@@ -4,13 +4,17 @@
     <div class="drawer-content">
       <Navbar></Navbar>
 
-      <div class="flex items-center justify-center flex-1 overflow-auto py-2">
+      <div
+        class="flex items-center justify-center flex-1 overflow-auto lg:py-2"
+      >
         <div class="max-h-full mx-auto">
           <RouterView />
         </div>
       </div>
 
-      <Footer></Footer>
+      <MqResponsive target="lg+">
+        <Footer></Footer>
+      </MqResponsive>
     </div>
     <div class="drawer-side">
       <label for="settings-drawer" class="drawer-overlay"></label>
@@ -23,6 +27,7 @@
 
 <script setup lang="ts">
 import { RouterView } from "vue-router";
+import { MqResponsive } from "vue3-mq";
 import Navbar from "@/components/nav/HeaderComponent.vue";
 import Footer from "@/components/nav/FooterComponent.vue";
 import FretboardSettingsDrawerLayout from "@/components/layouts/FretboardSettingsDrawerLayout.vue";

@@ -1,5 +1,5 @@
 <template>
-  <div class="chord-information flex items-center justify-center">
+  <div class="chord-information lg:flex items-center justify-center hidden">
     <div class="card bg-base-200 shadow-xl">
       <div class="card-body">
         <h2 class="card-title">Chord Information</h2>

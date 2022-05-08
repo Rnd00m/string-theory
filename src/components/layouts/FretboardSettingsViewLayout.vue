@@ -1,7 +1,7 @@
 <template>
-  <MqResponsive target="md-">
-    <label for="settings-drawer" class="drawer-button btn btn-primary"
-      >Open drawer</label
+  <MqResponsive target="md-" class="flex justify-end">
+    <label for="settings-drawer" class="drawer-button btn btn-sm btn-primary"
+      >Settings</label
     >
   </MqResponsive>
   <MqResponsive target="lg+">

@@ -1,6 +1,6 @@
 <template>
   <div class="fretboard-visualizer">
-    <div class="grid gap-8">
+    <div class="grid lg:gap-8 gap-4">
       <FretboardSettingsLayout></FretboardSettingsLayout>
       <FretboardVisualizer></FretboardVisualizer>
       <ChordInformation
