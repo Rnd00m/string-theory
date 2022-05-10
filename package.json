@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.2",
     "@tonaljs/tonal": "^4.6.5",
     "daisyui": "^2.14.0",
     "pinia": "^2.0.13",

@@ -8,8 +8,8 @@
     </label>
 
     <input type="checkbox" id="select-tuning-modal" class="modal-toggle" />
-    <label for="select-tuning-modal" class="modal cursor-pointer">
-      <label class="modal-box relative w-10/12 max-w-5xl" for="">
+    <div for="select-tuning-modal" class="modal cursor-pointer">
+      <div class="modal-box relative w-10/12 max-w-5xl">
         <label
           for="select-tuning-modal"
           class="btn btn-sm btn-circle absolute right-2 top-2"
@@ -18,24 +18,24 @@
         <h1 class="text-xl font-bold">Tuning</h1>
 
         <div class="grid h-32 place-items-center mt-4">
-          <div class="flex flex-row-reverse gap-8">
+          <div class="flex flex-row-reverse gap-5 lg:gap-8">
             <div
-              class="flex flex-col gap-2"
+              class="flex flex-col gap-1"
               v-for="(note, index) in fretboardParametersStore.fretboard
                 .baseNotes"
               :key="'note-' + index"
             >
               <button
-                class="btn btn-square btn-sm btn-primary"
+                class="btn btn-square btn-xs lg:btn-sm btn-primary"
                 @click="fretboardParametersStore.changeStringTuning(index, -1)"
               >
                 -
               </button>
-              <div class="text-center text-lg">
+              <div class="text-center text-base lg:text-lg">
                 {{ note.name }}
               </div>
               <button
-                class="btn btn-square btn-sm btn-primary"
+                class="btn btn-square btn-xs lg:btn-sm btn-primary"
                 @click="fretboardParametersStore.changeStringTuning(index, 1)"
               >
                 +
@@ -47,41 +47,117 @@
         <div class="divider">Settings</div>
 
         <div
-          class="grid grid-flow-col h-20 place-items-stretch gap-4 content-center"
+          class="grid grid-flow-row lg:grid-flow-col gap-2 lg:gap-4 content-center"
         >
-          <button class="btn btn-outline btn-primary" @click="setBaseTuning">
-            6 strings
-          </button>
-          <button
-            class="btn btn-outline btn-primary"
-            @click="set7StringsBaseTuning"
-          >
-            7 strings
-          </button>
-          <button
-            class="btn btn-outline btn-primary"
-            @click="set8StringsBaseTuning"
-          >
-            8 strings
-          </button>
-          <button
-            class="btn btn-outline btn-primary"
-            @click="setBaseBassTuning"
-          >
-            4 strings Bass
-          </button>
-          <button
-            class="btn btn-outline btn-primary"
-            @click="set5StringsBassTuning"
-          >
-            5 strings Bass
-          </button>
-          <button
-            class="btn btn-outline btn-primary"
-            @click="set6StringsBassTuning"
-          >
-            6 strings Bass
-          </button>
+          <div class="grid grid-flow-row">
+            <div class="flex justify-center items-center">
+              <h1 class="text-center text-xl font-bold">Guitar</h1>
+            </div>
+            <div class="grid grid-flow-col gap-2 lg:gap-3">
+              <div class="flex justify-center">
+                <div class="form-control">
+                  <label class="label cursor-pointer">
+                    <input
+                      name="note"
+                      value="6strings-guitar"
+                      v-model="selectedInstrumentType"
+                      type="radio"
+                      class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+                      @click="setBaseTuning"
+                    />
+                    <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;6 strings</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="flex justify-center">
+                <div class="form-control">
+                  <label class="label cursor-pointer">
+                    <input
+                      name="note"
+                      value="7strings-guitar"
+                      v-model="selectedInstrumentType"
+                      type="radio"
+                      class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+                      @click="set7StringsBaseTuning"
+                    />
+                    <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;7 strings</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="flex justify-center">
+                <div class="form-control">
+                  <label class="label cursor-pointer">
+                    <input
+                      name="note"
+                      value="8strings-guitar"
+                      v-model="selectedInstrumentType"
+                      type="radio"
+                      class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+                      @click="set8StringsBaseTuning"
+                    />
+                    <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;8 strings</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-flow-row">
+            <div class="flex justify-center items-center">
+              <h1 class="text-center text-xl font-bold">Bass</h1>
+            </div>
+            <div class="grid grid-flow-col gap-2 lg:gap-3">
+              <div class="flex justify-center">
+                <div class="form-control">
+                  <label class="label cursor-pointer">
+                    <input
+                      name="note"
+                      value="4strings-bass"
+                      v-model="selectedInstrumentType"
+                      type="radio"
+                      class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+                      @click="setBassBaseTuning"
+                    />
+                    <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;4 strings</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="flex justify-center">
+                <div class="form-control">
+                  <label class="label cursor-pointer">
+                    <input
+                      name="note"
+                      value="5strings-bass"
+                      v-model="selectedInstrumentType"
+                      type="radio"
+                      class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+                      @click="set5StringsBassTuning"
+                    />
+                    <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;5 strings</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="flex justify-center">
+                <div class="form-control">
+                  <label class="label cursor-pointer">
+                    <input
+                      name="note"
+                      value="6strings-bass"
+                      v-model="selectedInstrumentType"
+                      type="radio"
+                      class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+                      @click="set6StringsBassTuning"
+                    />
+                    <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;6 strings</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div
@@ -122,8 +198,8 @@
             </select>
           </div>
         </div>
-      </label>
-    </label>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -137,6 +213,8 @@ export default {
   name: "SelectTuningModal",
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
+
+    const selectedInstrumentType = ref("6strings-guitar");
 
     const selectedSoundSample = ref(
       fretboardParametersStore.selectedSoundSample
@@ -163,6 +241,7 @@ export default {
       baseGuitarStrings,
       baseBassStrings,
       selectedSoundSample,
+      selectedInstrumentType,
     };
   },
   computed: {
@@ -209,7 +288,7 @@ export default {
       this.fretboardParametersStore.fretboard.baseNotes = strings;
       this.setInstrument("guitar");
     },
-    setBaseBassTuning() {
+    setBassBaseTuning() {
       this.fretboardParametersStore.fretboard.baseNotes = [
         ...this.baseBassStrings,
       ];
