@@ -2,14 +2,14 @@
   <div class="select-scale-modal">
     <label
       for="select-scale-modal"
-      class="btn btn-outline btn-primary modal-button"
+      class="btn btn-outline btn-primary btn-sm lg:btn-md modal-button"
     >
       {{ fretboardParametersStore.scale.name }}
     </label>
 
     <input type="checkbox" id="select-scale-modal" class="modal-toggle" />
     <label for="select-scale-modal" class="modal cursor-pointer">
-      <label class="modal-box relative w-9/12 max-w-5xl" for="">
+      <label class="modal-box relative w-10/12 lg:w-3/5 max-w-5xl" for="">
         <label
           for="select-scale-modal"
           class="btn btn-sm btn-circle absolute right-2 top-2"
@@ -17,10 +17,12 @@
         >
         <h1 class="text-xl font-bold">Scales</h1>
 
-        <div class="grid grid-cols-3 mt-4 gap-6">
+        <div class="grid grid-cols-3 mt-4 gap-2 lg:gap-6">
           <div>
-            <h2 class="text-md font-bold">Modes</h2>
-            <ul class="menu mode">
+            <ul class="menu menu-compact mode">
+              <li class="menu-title">
+                <span>Modes</span>
+              </li>
               <li
                 v-for="mode in modes"
                 :key="mode.name"
@@ -39,8 +41,10 @@
           </div>
 
           <div>
-            <h2 class="text-md font-bold">Major scales</h2>
-            <ul class="menu mode">
+            <ul class="menu menu-compact mode">
+              <li class="menu-title">
+                <span>Major scales</span>
+              </li>
               <li
                 v-for="scale in majorScales"
                 :key="scale.name"
@@ -59,8 +63,10 @@
           </div>
 
           <div>
-            <h2 class="text-md font-bold">Minor scales</h2>
-            <ul class="menu mode">
+            <ul class="menu menu-compact mode">
+              <li class="menu-title">
+                <span>Minor scales</span>
+              </li>
               <li
                 v-for="scale in minorScales"
                 :key="scale.name"
