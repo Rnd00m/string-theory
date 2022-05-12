@@ -1,6 +1,6 @@
 <template>
   <MqResponsive target="md-" class="flex justify-end">
-    <label for="settings-drawer" class="drawer-button btn btn-sm btn-primary"
+    <label for="settings-drawer" class="drawer-button btn btn-xs btn-primary"
       >Settings</label
     >
   </MqResponsive>
