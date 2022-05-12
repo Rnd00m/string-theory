@@ -1,6 +1,6 @@
 <template>
-  <div class="chord-information lg:flex items-center justify-center hidden">
-    <div class="card bg-base-200 shadow-xl">
+  <div class="chord-information flex items-center justify-center">
+    <div class="card w-10/12 bg-base-200 shadow-xl">
       <div class="card-body">
         <h2 class="card-title">Chord Information</h2>
         <p>
@@ -24,7 +24,7 @@
           </span>
         </p>
         <p>It contains the notes :</p>
-        <div class="flex flex-col justify-center gap-8 w-full lg:flex-row">
+        <div class="flex justify-center gap-8 w-full flex-row">
           <div
             v-for="(note, index) in fretboardParametersStore.chord.notes"
             :key="'chord-information-note-' + note"
