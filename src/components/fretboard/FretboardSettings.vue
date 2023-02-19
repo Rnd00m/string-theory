@@ -1,18 +1,42 @@
 <template>
-  <div class="fretboard-settings-wrapper flex flex-col mx-auto space-y-5">
+  <div
+    class="fretboard-settings-wrapper flex flex-col mx-auto lg:space-y-5 space-y-2"
+  >
     <div class="card bg-base-200 shadow-xl">
-      <div class="card-body p-5">
-        <div class="flex flex-wrap gap-3">
+      <div
+        class="card-body lg:p-5 p-2 flex flex-col w-full lg:flex-row justify-center"
+      >
+        <div class="flex gap-3 justify-center">
+          <div class="form-control" v-for="note in notes" :key="note">
+            <label class="label cursor-pointer">
+              <input
+                :id="note"
+                name="note"
+                :value="note"
+                v-model="selectedNote"
+                type="radio"
+                class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+              />
+              <span class="label-text text-sm lg:text-base"
+                >&nbsp;&nbsp;{{ note }}</span
+              >
+            </label>
+          </div>
+        </div>
+
+        <div class="divider lg:divider-horizontal -my-2 lg:my-0"></div>
+
+        <div class="flex gap-3 justify-center">
           <div class="form-control">
             <label class="label cursor-pointer">
               <input
                 type="radio"
                 name="variation"
                 value=""
-                class="radio radio-primary checked:bg-red-500"
+                class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
                 v-model="selectedVariation"
               />
-              <span class="label-text">&nbsp;&nbsp;-</span>
+              <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;-</span>
             </label>
           </div>
 
@@ -22,10 +46,10 @@
                 type="radio"
                 name="variation"
                 value="#"
-                class="radio radio-primary checked:bg-red-500"
+                class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
                 v-model="selectedVariation"
               />
-              <span class="label-text">&nbsp;&nbsp;#</span>
+              <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;#</span>
             </label>
           </div>
 
@@ -35,26 +59,10 @@
                 type="radio"
                 name="variation"
                 value="♭"
-                class="radio radio-primary checked:bg-red-500"
+                class="radio radio-sm lg:text-base radio-primary checked:bg-red-500"
                 v-model="selectedVariation"
               />
-              <span class="label-text">&nbsp;&nbsp;b</span>
-            </label>
-          </div>
-
-          <div class="divider lg:divider-horizontal"></div>
-
-          <div class="form-control" v-for="note in notes" :key="note">
-            <label class="label cursor-pointer">
-              <input
-                :id="note"
-                name="note"
-                :value="note"
-                v-model="selectedNote"
-                type="radio"
-                class="radio radio-primary checked:bg-red-500"
-              />
-              <span class="label-text">&nbsp;&nbsp;{{ note }}</span>
+              <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;b</span>
             </label>
           </div>
         </div>
@@ -62,8 +70,8 @@
     </div>
 
     <div class="card bg-base-200 shadow-xl">
-      <div class="card-body p-4">
-        <div class="flex flex-wrap items-center justify-center">
+      <div class="card-body lg:p-4 p-2">
+        <div class="flex flex-wrap items-center justify-evenly">
           <SelectTuningModal></SelectTuningModal>
 
           <div class="divider lg:divider-horizontal"></div>
@@ -72,10 +80,12 @@
             <label class="label cursor-pointer">
               <input
                 type="checkbox"
-                class="checkbox checkbox-primary"
+                class="checkbox checkbox-sm lg:checkbox-md checkbox-primary"
                 v-model="showOctave"
               />
-              <span class="label-text">&nbsp;&nbsp;Show octave</span>
+              <span class="label-text text-sm lg:text-base"
+                >&nbsp;&nbsp;Show octave</span
+              >
             </label>
           </div>
         </div>
@@ -83,12 +93,12 @@
     </div>
 
     <div class="card bg-base-200 shadow-xl">
-      <div class="card-body p-4">
-        <div class="flex gap-4 items-center justify-center">
+      <div class="card-body lg:p-4 p-2">
+        <div class="flex gap-2 lg:gap-4 items-center justify-center">
           <div v-if="fretboardParametersStore.displayType === 'chord'">
             <select
               v-model="selectedChordType"
-              class="select select-primary select-bordered w-full max-w-xs"
+              class="select select-sm lg:select-md select-primary select-bordered w-full max-w-xs"
             >
               <option
                 v-for="chord in fretboardParametersStore.chordTypeList"
@@ -110,10 +120,12 @@
                 type="radio"
                 name="type"
                 value="chord"
-                class="radio radio-primary checked:bg-red-500"
+                class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
                 v-model="fretboardParametersStore.displayType"
               />
-              <span class="label-text">&nbsp;&nbsp;Chord</span>
+              <span class="label-text text-sm lg:text-base"
+                >&nbsp;&nbsp;Chord</span
+              >
             </label>
           </div>
 
@@ -123,10 +135,12 @@
                 type="radio"
                 name="type"
                 value="scale"
-                class="radio radio-primary checked:bg-red-500"
+                class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
                 v-model="fretboardParametersStore.displayType"
               />
-              <span class="label-text">&nbsp;&nbsp;Scale</span>
+              <span class="label-text text-sm lg:text-base"
+                >&nbsp;&nbsp;Scale</span
+              >
             </label>
           </div>
 
@@ -136,10 +150,12 @@
             <label class="label cursor-pointer">
               <input
                 type="checkbox"
-                class="checkbox checkbox-primary"
+                class="checkbox checkbox-sm lg:checkbox-md checkbox-primary"
                 v-model="showTriads"
               />
-              <span class="label-text">&nbsp;&nbsp;Show notes</span>
+              <span class="label-text text-sm lg:text-base"
+                >&nbsp;&nbsp;Show notes</span
+              >
             </label>
           </div>
         </div>

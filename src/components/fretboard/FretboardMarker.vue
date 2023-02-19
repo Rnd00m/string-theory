@@ -1,5 +1,7 @@
 <template>
-  <div class="fretboard-marker-wrapper">
+  <div
+    class="fretboard-marker-wrapper grid lg:grid-cols-[repeat(13,_4.5rem)] grid-cols-[repeat(13,_3.5rem)]"
+  >
     <div
       class="fretboard-marker text-center"
       v-for="(n, index) in this.stringLength + 1"
@@ -37,9 +39,6 @@ export default {
 
 <style scoped lang="scss">
 .fretboard-marker-wrapper {
-  display: grid;
-  grid-template-columns: repeat(13, 5em);
-
   .fretboard-marker {
     .marker-dot {
       height: 0.3em;

@@ -1,7 +1,10 @@
 <template>
   <div class="fret-wrapper" @click="playNote(note)">
-    <div class="note-wrapper text-center py-2 px-4">
-      <div class="note rounded-lg text-center text-lg" :class="noteClass">
+    <div class="note-wrapper text-center py-2 px-3 lg:px-4">
+      <div
+        class="note rounded-lg text-center text-base lg:text-lg font-bold"
+        :class="noteClass"
+      >
         <span>{{ noteFullName }}</span
         ><span class="note-octave" v-if="fretboardParametersStore.showOctave">{{
           note.oct
@@ -90,6 +93,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
 .fret-wrapper {
   border-right: 2px hsl(var(--bc)) solid;
 

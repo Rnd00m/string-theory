@@ -1,6 +1,8 @@
 <template>
   <div class="strings-wrapper">
-    <div class="string">
+    <div
+      class="grid lg:grid-cols-[repeat(13,_4.5rem)] grid-cols-[repeat(13,_3.5rem)]"
+    >
       <FretboardNote
         v-for="note in string"
         :key="note"
@@ -40,11 +42,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.strings-wrapper {
-  .string {
-    display: grid;
-    grid-template-columns: repeat(13, 5em);
-  }
-}
-</style>
+<style scoped lang="scss"></style>
