@@ -3,32 +3,21 @@
     <div class="grid lg:gap-8 gap-4">
       <FretboardSettingsLayout></FretboardSettingsLayout>
       <FretboardVisualizer></FretboardVisualizer>
-      <ChordInformation
-        v-if="fretboardParametersStore.displayType === 'chord'"
-      ></ChordInformation>
-      <ScaleInformation v-else></ScaleInformation>
+      <InformationComponent></InformationComponent>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { useFretboardParametersStore } from "@/stores/fretboardParameters";
 import FretboardVisualizer from "@/components/fretboard/FretboardVisualizer.vue";
-import ChordInformation from "@/components/information/ChordInformation.vue";
-import ScaleInformation from "@/components/information/ScaleInformation.vue";
 import FretboardSettingsLayout from "@/components/layouts/FretboardSettingsViewLayout.vue";
+import InformationComponent from "@/components/information/InformationComponent.vue";
 
 export default {
   components: {
     FretboardVisualizer,
     FretboardSettingsLayout,
-    ChordInformation,
-    ScaleInformation,
-  },
-  setup() {
-    const fretboardParametersStore = useFretboardParametersStore();
-
-    return { fretboardParametersStore };
+    InformationComponent
   },
 };
 </script>

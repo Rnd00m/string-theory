@@ -1,5 +1,7 @@
 <template>
-  <MqResponsive target="md-" class="flex justify-end">
+  <MqResponsive target="md-" class="flex justify-end gap-4">
+    <label for="information-modal" class="btn btn-xs btn-primary">Information</label>
+
     <label for="settings-drawer" class="drawer-button btn btn-xs btn-primary"
       >Settings</label
     >

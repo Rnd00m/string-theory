@@ -36,6 +36,8 @@ import FretboardSettingsDrawerLayout from "@/components/layouts/FretboardSetting
 import "./assets/css/base.css";
 import "./assets/css/index.css";
 import "./assets/css/note.css";
+
+window.screen.orientation.lock("landscape");
 </script>
 
 <style></style>
