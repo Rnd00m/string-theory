@@ -16,11 +16,12 @@
     </div>
     <div class="drawer-side">
       <label for="settings-drawer" class="drawer-overlay"></label>
-      <ul
-        class="menu p-4 gap-2 overflow-y-auto w-3/5 bg-base-100 text-base-content"
+      <div
+        class="menu grid place-items-center p-4 gap-2 relative overflow-y-auto w-3/5 bg-base-100 text-base-content"
       >
+        <label for="settings-drawer" class="drawer-button btn btn-sm btn-circle absolute top-4 left-4">✕</label>
         <FretboardSettingsDrawerLayout></FretboardSettingsDrawerLayout>
-      </ul>
+      </div>
     </div>
   </div>
 </template>
