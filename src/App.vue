@@ -2,15 +2,13 @@
   <div class="drawer drawer-end">
     <input id="settings-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
-      <Navbar></Navbar>
-
-      <div
-        class="flex items-center justify-center flex-1 overflow-auto lg:py-2"
-      >
-        <div class="max-h-full mx-auto">
-          <RouterView />
+      <Navbar>
+        <div class="flex items-center justify-center flex-1 overflow-hidden lg:py-2">
+          <div class="max-h-full mx-auto">
+            <RouterView />
+          </div>
         </div>
-      </div>
+      </Navbar>
 
       <MqResponsive target="lg+">
         <Footer></Footer>
