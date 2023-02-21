@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts">
-import FretboardVisualizer from "@/components/fretboard/FretboardVisualizer.vue";
+import FretboardVisualizer from "@/components/modules/fretboard/components/FretboardVisualizer.vue";
 import FretboardSettingsLayout from "@/components/layouts/FretboardSettingsViewLayout.vue";
-import InformationComponent from "@/components/information/InformationComponent.vue";
+import InformationComponent from "@/components/modules/information/components/InformationComponent.vue";
 
 export default {
   components: {

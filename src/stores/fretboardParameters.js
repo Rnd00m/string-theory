@@ -1,10 +1,13 @@
 import { defineStore } from "pinia";
 import { Chord, Note, Mode, Scale } from "@tonaljs/tonal";
+import { SoundSampleInstrumentTypeEnum } from "@/scripts/classes/SoundSampleInstrumentTypeEnum";
+import { soundSampleList } from "@/scripts/soundSampleList";
 
 export const useFretboardParametersStore = defineStore("fretboard-parameters", {
   state: () => {
     return {
       note: "C",
+      variation: "",
       displayType: "chord", // chord | scale
       chord: Chord.get("CM"),
       chordType: "M",
@@ -44,55 +47,30 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
         ],
         stringLength: 12,
       },
-      instrument: "guitar", // guitar | bass
-      selectedSoundSample: {
-        name: "Acoustic Guitar Steel",
-        type: "guitar",
-        url: "src/assets/sound/acoustic_guitar_steel_mp3/",
-      },
-      soundSampleList: [
-        {
-          name: "Acoustic Guitar Steel",
-          type: "guitar",
-          url: "src/assets/sound/acoustic_guitar_steel_mp3/",
-        },
-        {
-          name: "Acoustic Guitar Nylon",
-          type: "guitar",
-          url: "src/assets/sound/acoustic_guitar_nylon_mp3/",
-        },
-        {
-          name: "Electric Guitar Clean",
-          type: "guitar",
-          url: "src/assets/sound/electric_guitar_clean_mp3/",
-        },
-        {
-          name: "Distorsion Guitar",
-          type: "guitar",
-          url: "src/assets/sound/distortion_guitar_mp3/",
-        },
-        {
-          name: "Acoustic Bass",
-          type: "bass",
-          url: "src/assets/sound/acoustic_bass_mp3/",
-        },
-        {
-          name: "Electric Bass Finger",
-          type: "bass",
-          url: "src/assets/sound/electric_bass_finger_mp3/",
-        },
-        {
-          name: "Electric Bass Pick",
-          type: "bass",
-          url: "src/assets/sound/electric_bass_pick_mp3/",
-        },
-      ],
+      instrumentType: SoundSampleInstrumentTypeEnum.Guitar, // guitar | bass
+      selectedSoundSample: soundSampleList[0],
+      selectedDrawer: null
     };
   },
   actions: {
+    changeInstrumentType(instrumentType) {
+      let filteredSoundSampleList = soundSampleList.filter(
+        (soundSample) => soundSample.instrumentType === instrumentType
+      );
+
+      if (!filteredSoundSampleList.find(filteredSoundSample => filteredSoundSample.name  === this.selectedSoundSample.name)) {
+        this.selectedSoundSample = filteredSoundSampleList[0];
+      }
+
+      this.instrumentType = instrumentType;
+    },
     setNote(note) {
       this.note = note;
-      this.chord = Chord.get(this.note + this.chordType);
+      this.chord = Chord.get(this.note + this.variation + this.chordType);
+    },
+    setVariation(variation) {
+      this.variation = variation;
+      this.chord = Chord.get(this.note + this.variation + this.chordType);
     },
     setChord(chordType) {
       this.chordType = chordType;

@@ -35,8 +35,8 @@
 
 <script>
 import { useFretboardParametersStore } from "@/stores/fretboardParameters";
-import ChordInformation from "@/components/information/ChordInformation.vue";
-import ScaleInformation from "@/components/information/ScaleInformation.vue";
+import ChordInformation from "@/components/modules/information/components/ChordInformation.vue";
+import ScaleInformation from "@/components/modules/information/components/ScaleInformation.vue";
 import { MqResponsive } from "vue3-mq";
 
 export default {

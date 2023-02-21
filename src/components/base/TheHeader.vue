@@ -17,6 +17,17 @@
             <li><RouterLink to="/about">About</RouterLink></li>
           </ul>
         </div>
+        <div class="flex-1 px-2 mx-2 gap-2 justify-end lg:hidden sm:inline-flex">
+          <label class="p-2" for="information-modal">
+            <IconInformation />
+          </label>
+          <label for="app-drawer" class="drawer-button p-2" @click="globalStore.selectedDrawer = 'settings-tuning'">
+            <IconTune />
+          </label>
+          <label for="app-drawer" class="drawer-button p-2" @click="globalStore.selectedDrawer = 'settings'">
+            <IconGear />
+          </label>
+        </div>
       </div>
       <slot></slot>
     </div>
@@ -34,12 +45,24 @@
 
 <script>
 import { RouterLink } from "vue-router";
+import { useGlobalStore } from "@/stores/globalStore";
+import IconInformation from "@/components/icons/IconInformation.vue";
+import IconGear from "@/components/icons/IconGear.vue";
+import IconTune from "@/components/icons/IconTune.vue";
 
 export default {
   name: "HeaderComponent",
   components: {
     RouterLink,
+    IconInformation,
+    IconGear,
+    IconTune
   },
+  setup() {
+    const globalStore = useGlobalStore();
+
+    return { globalStore };
+  }
 };
 </script>
 
