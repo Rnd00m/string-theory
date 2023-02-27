@@ -13,8 +13,8 @@
 <script>
 import { useFretboardParametersStore } from "@/stores/fretboardParameters";
 
-import FretboardString from "@/components/fretboard/FretboardString.vue";
-import FretboardMarker from "@/components/fretboard/FretboardMarker.vue";
+import FretboardString from "@/components/modules/fretboard/components/FretboardString.vue";
+import FretboardMarker from "@/components/modules/fretboard/components/FretboardMarker.vue";
 import * as Tone from "tone";
 
 export default {

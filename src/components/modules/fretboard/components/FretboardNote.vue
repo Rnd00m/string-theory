@@ -45,28 +45,11 @@ export default {
         return "note-root";
       if (this.fretboardParametersStore.showTriads) {
         if (this.fretboardParametersStore.displayType === "chord") {
-          if (this.fretboardParametersStore.chordNotes.third === this.note.pc)
-            return "note-third";
-          if (this.fretboardParametersStore.chordNotes.fifth === this.note.pc)
-            return "note-fifth";
-          if (this.fretboardParametersStore.chordNotes.seventh === this.note.pc)
-            return "note-seventh";
+          return this.getNoteClassFromChord();
         }
 
         if (this.fretboardParametersStore.displayType === "scale") {
-          if (
-            this.note.pc === this.fretboardParametersStore.scalesNotes.third ||
-            this.note.pc === this.fretboardParametersStore.scalesNotes.fifth ||
-            this.note.pc === this.fretboardParametersStore.scalesNotes.seventh
-          )
-            return "note-scale-triad";
-
-          if (
-            Object.values(this.fretboardParametersStore.scalesNotes).includes(
-              this.note.pc
-            )
-          )
-            return "note-scale";
+          return this.getNoteClassFromScale();
         }
       }
       return "";
@@ -81,8 +64,32 @@ export default {
       return accidental;
     },
     playNote(note) {
-      this.sampler.triggerAttackRelease(note.name, 0.7);
+      this.sampler.triggerAttackRelease(note.name, 3);
     },
+    getNoteClassFromChord() {
+      if (this.fretboardParametersStore.chordNotes.third === this.note.pc)
+        return "note-third";
+      if (this.fretboardParametersStore.chordNotes.fifth === this.note.pc)
+        return "note-fifth";
+      if (this.fretboardParametersStore.chordNotes.seventh === this.note.pc)
+        return "note-seventh";
+      return "";
+    },
+    getNoteClassFromScale() {
+      if (
+        this.note.pc === this.fretboardParametersStore.scalesNotes.third ||
+        this.note.pc === this.fretboardParametersStore.scalesNotes.fifth ||
+        this.note.pc === this.fretboardParametersStore.scalesNotes.seventh
+      )
+        return "note-scale-triad";
+
+      if (
+        Object.values(this.fretboardParametersStore.scalesNotes).includes(
+          this.note.pc
+        )
+      )
+        return "note-scale";
+    }
   },
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
