@@ -27,21 +27,6 @@ export default {
       showTriads: false,
     };
   },
-  props: {
-    note: {
-      type: Object,
-      required: true,
-    },
-    sampler: {
-      type: Tone.Sampler,
-      required: true,
-    },
-    isDisplayable: {
-      type: Boolean,
-      required: false,
-      default: true,
-    },
-  },
   computed: {
     noteFullName() {
       return this.note.letter + this.beautifyAccidentalValue(this.note.acc);
@@ -101,6 +86,26 @@ export default {
     const fretboardParametersStore = useFretboardParametersStore();
 
     return { fretboardParametersStore };
+  },
+  props: {
+    note: {
+      type: Object,
+      required: true,
+    },
+    sampler: {
+      type: Tone.Sampler,
+      required: true,
+    },
+    backgroundClass: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    isBackgroundClassActive: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
   },
 };
 </script>

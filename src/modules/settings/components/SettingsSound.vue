@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { soundSampleList } from "@/modules/settings/services/soundSampleList";
+import { soundSampleList } from "@/modules/settings/services/SoundSampleList";
 
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 

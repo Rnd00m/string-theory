@@ -1,10 +1,11 @@
 <template>
   <div class="fretboard-wrapper">
     <FretboardString
-      v-for="(string, index) in fretboardParametersStore.strings"
+      v-for="(note, index) in fretboardParametersStore.fretboard.baseNotes"
       :key="'string-' + index"
-      :string="string"
       :sampler="sampler"
+      :base-note="note"
+      :string-length="fretboardParametersStore.fretboard.stringLength"
     ></FretboardString>
     <FretboardMarker></FretboardMarker>
   </div>
@@ -45,6 +46,8 @@ export default {
   },
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
+
+
 
     return { fretboardParametersStore };
   },

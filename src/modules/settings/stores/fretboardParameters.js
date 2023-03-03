@@ -2,40 +2,19 @@ import { defineStore } from "pinia";
 import { Chord, Note, Mode, Scale } from "@tonaljs/tonal";
 import { SoundSampleInstrumentTypeEnum } from "@/modules/settings/services/enums/SoundSampleInstrumentTypeEnum";
 import { soundSampleList } from "@/modules/settings/services/soundSampleList";
+import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
 
 export const useFretboardParametersStore = defineStore("fretboard-parameters", {
   state: () => {
     return {
       note: "C",
       variation: "",
-      displayType: "chord", // chord | scale
+      displayType: DisplayTypeEnum.Chord,
       chord: Chord.get("CM"),
       chordType: "M",
       scale: Mode.get("ionian"),
       showOctave: false,
       showTriads: false,
-      chordTypeList: [
-        {
-          name: "Major",
-          notation: "M",
-        },
-        {
-          name: "Minor",
-          notation: "m",
-        },
-        {
-          name: "Major7",
-          notation: "M7",
-        },
-        {
-          name: "Minor7",
-          notation: "m7",
-        },
-        {
-          name: "7",
-          notation: "7",
-        },
-      ],
       fretboard: {
         baseNotes: [
           Note.get("E4"),
@@ -47,9 +26,9 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
         ],
         stringLength: 12,
       },
-      instrumentType: SoundSampleInstrumentTypeEnum.Guitar, // guitar | bass
+      instrumentType: SoundSampleInstrumentTypeEnum.Guitar,
       selectedSoundSample: soundSampleList[0],
-      selectedDrawer: null
+      selectedDrawer: null,
     };
   },
   actions: {
@@ -75,77 +54,6 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
     setChord(chordType) {
       this.chordType = chordType;
       this.chord = Chord.get(this.note + chordType);
-    },
-    // Tuning
-    changeStringTuning(noteIndex, direction) {
-      let interval = direction > 0 ? "" : "-";
-      interval = `${interval}2m`;
-
-      let newNote = Note.get(
-        Note.simplify(
-          Note.transpose(this.fretboard.baseNotes[noteIndex], interval)
-        )
-      );
-      this.fretboard.baseNotes.splice(noteIndex, 1, newNote);
-    },
-    changeGuitarTuning(direction) {
-      for (let i = 0; i < this.fretboard.baseNotes.length; i++) {
-        this.changeStringTuning(i, direction);
-      }
-    },
-    // String
-    getStringNotesFromStartNote(startNote) {
-      let stringNotes = [];
-      let currentNote = startNote;
-      stringNotes.push(currentNote);
-
-      for (let i = 0; i < this.fretboard.stringLength; i++) {
-        let newNote = Note.get(
-          Note.simplify(Note.transpose(currentNote, "2m"))
-        );
-
-        // Change fretboard display according to the chord or scale parameters selected
-        newNote = this.getNoteToDisplayFromSelectedParameters(newNote);
-
-        stringNotes.push(newNote);
-        currentNote = newNote;
-      }
-
-      return stringNotes;
-    },
-    getNoteToDisplayFromSelectedParameters(note) {
-      // If chord notes contains double sharp notes, we need to change fretboard to display them
-      if (this.displayType === "chord") {
-        if (this.chord.tonic.includes("#")) {
-          for (let i = 0; i < this.chord.notes.length; i++) {
-            let chordSimplifiedNote = Note.simplify(this.chord.notes[i]);
-
-            // Return double sharped note to the same octave
-            if (chordSimplifiedNote === note.pc) {
-              return Note.get(`${this.chord.notes[i]}${note.oct}`);
-            }
-          }
-        }
-
-        // Show flat note only if it presents in selected chord
-        if (note.pc.includes("b") && !this.chord.notes.includes(note.pc)) {
-          return Note.get(Note.enharmonic(note.name));
-        }
-      } else {
-        // If scale contains flat or sharp we display this note instead
-        let scaleNotes = Scale.get(`${this.note} ${this.scale.name}`).notes;
-        let noteEnharmonic = Note.enharmonic(note.pc);
-
-        if (scaleNotes.includes(note.pc)) {
-          return note;
-        }
-
-        if (scaleNotes.includes(noteEnharmonic)) {
-          return Note.get(`${noteEnharmonic}${note.oct}`);
-        }
-      }
-
-      return note;
     },
     // Notes
     getTriadNote(noteString) {

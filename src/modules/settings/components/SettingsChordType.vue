@@ -5,7 +5,7 @@
       class="select select-sm lg:select-md select-primary select-bordered w-full max-w-xs"
     >
       <option
-        v-for="chord in fretboardParametersStore.chordTypeList"
+        v-for="chord in chordTypeList"
         :key="chord.notation"
         :value="chord.notation"
       >
@@ -18,6 +18,7 @@
 <script>
 import { ref } from "vue";
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import { chordTypeList } from "@/modules/settings/services/ChordTypeList";
 
 export default {
   name: "SettingsChordType",
@@ -28,7 +29,8 @@ export default {
 
     return {
       fretboardParametersStore,
-      selectedChordType
+      selectedChordType,
+      chordTypeList,
     };
   },
   watch: {

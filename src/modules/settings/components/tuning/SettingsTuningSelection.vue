@@ -8,7 +8,7 @@
     >
       <button
         class="btn btn-square btn-xs lg:btn-sm btn-primary"
-        @click="fretboardParametersStore.changeStringTuning(index, 1)"
+        @click="changeStringTuning(index, 1)"
       >
         +
       </button>
@@ -17,7 +17,7 @@
       </div>
       <button
         class="btn btn-square btn-xs lg:btn-sm btn-primary"
-        @click="fretboardParametersStore.changeStringTuning(index, -1)"
+        @click="changeStringTuning(index, -1)"
       >
         -
       </button>
@@ -36,6 +36,7 @@
 
 <script>
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import { Note } from "@tonaljs/tonal";
 
 export default {
   name: "SettingsTuningSelection",
@@ -46,10 +47,29 @@ export default {
   },
   methods: {
     tuneUp() {
-      this.fretboardParametersStore.changeGuitarTuning(1);
+      this.changeGuitarTuning(1);
     },
     tuneDown() {
-      this.fretboardParametersStore.changeGuitarTuning(-1);
+      this.changeGuitarTuning(-1);
+    },
+    changeStringTuning(noteIndex, direction) {
+      let interval = direction > 0 ? "" : "-";
+      interval = `${interval}2m`;
+
+      let newNote = Note.get(
+        Note.simplify(
+          Note.transpose(
+            this.fretboardParametersStore.fretboard.baseNotes[noteIndex],
+            interval
+          )
+        )
+      );
+      this.fretboardParametersStore.fretboard.baseNotes.splice(noteIndex, 1, newNote);
+    },
+    changeGuitarTuning(direction) {
+      for (let i = 0; i < this.fretboard.baseNotes.length; i++) {
+        this.changeStringTuning(i, direction);
+      }
     },
   },
 };
