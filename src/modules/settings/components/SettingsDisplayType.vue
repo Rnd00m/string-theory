@@ -5,7 +5,7 @@
         <input
           type="radio"
           name="type"
-          value="chord"
+          :value="DisplayTypeEnum.Chord"
           class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
           v-model="fretboardParametersStore.displayType"
         />
@@ -18,7 +18,7 @@
         <input
           type="radio"
           name="type"
-          value="scale"
+          :value="DisplayTypeEnum.Scale"
           class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
           v-model="fretboardParametersStore.displayType"
         />
@@ -30,9 +30,15 @@
 
 <script>
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import {DisplayTypeEnum} from "@/scripts/enums/DisplayTypeEnum";
 
 export default {
   name: "SettingsDisplayType",
+  computed: {
+    DisplayTypeEnum() {
+      return DisplayTypeEnum
+    }
+  },
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
 
