@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import SettingsFretboardDrawer from "@/components/modules/settings/SettingsFretboardDrawer.vue";
-import SettingsFretboardTuningDrawer from "@/components/modules/settings/SettingsFretboardTuningDrawer.vue";
+import SettingsFretboardDrawer from "@/modules/settings/components/layouts/SettingsFretboardDrawer.vue";
+import SettingsFretboardTuningDrawer from "@/modules/settings/components/layouts/SettingsFretboardTuningDrawer.vue";
 import { useGlobalStore } from "@/stores/globalStore";
 
 export default {
