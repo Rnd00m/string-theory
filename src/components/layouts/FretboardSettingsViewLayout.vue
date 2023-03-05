@@ -6,7 +6,7 @@
 
 <script>
 import { MqResponsive } from "vue3-mq";
-import SettingsFretboard from "@/components/modules/settings/SettingsFretboard.vue";
+import SettingsFretboard from "@/modules/settings/components/layouts/SettingsFretboard.vue";
 
 export default {
   name: "FretboardSettingsViewLayout",
