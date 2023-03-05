@@ -11,7 +11,7 @@
     >
       <span
         class="px-3 py-1 text-lg rounded-lg"
-        :class="getNoteClass(note)"
+        :class="'note-scale-' + (index === 0 ? 'root' : (index % 2 === 0 ? 'tertiary' : 'secondary'))"
       >
         {{ note }}
       </span>
@@ -29,20 +29,7 @@ export default {
     const fretboardParametersStore = useFretboardParametersStore();
 
     return { fretboardParametersStore };
-  },
-  methods: {
-    getNoteClass(note) {
-      if (this.fretboardParametersStore.chordNotes.root === note)
-        return "note-root";
-      if (
-        note === this.fretboardParametersStore.scalesNotes.third ||
-        note === this.fretboardParametersStore.scalesNotes.fifth ||
-        note === this.fretboardParametersStore.scalesNotes.seventh
-      )
-        return "note-scale-triad";
-      return "note-scale";
-    },
-  },
+  }
 };
 </script>
 

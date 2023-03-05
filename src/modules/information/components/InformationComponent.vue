@@ -3,7 +3,7 @@
     <div class="chord-information flex items-center justify-center">
       <div class="card w-10/12 bg-base-200 shadow-xl">
         <div class="card-body">
-          <template v-if="fretboardParametersStore.displayType === 'chord'">
+          <template v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord">
             <h2 class="card-title">Chord Information</h2>
             <ChordInformation></ChordInformation>
           </template>
@@ -20,7 +20,7 @@
     <label for="information-modal" class="modal cursor-pointer">
       <label class="modal-box relative modal-box w-3/4 max-w-5xl" for="">
         <label for="information-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <template v-if="fretboardParametersStore.displayType === 'chord'">
+        <template v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord">
           <h2 class="card-title mb-2">Chord Information</h2>
           <ChordInformation></ChordInformation>
         </template>
@@ -38,6 +38,7 @@ import { useFretboardParametersStore } from "@/modules/settings/stores/fretboard
 import ChordInformation from "@/modules/information/components/ChordInformation.vue";
 import ScaleInformation from "@/modules/information/components/ScaleInformation.vue";
 import { MqResponsive } from "vue3-mq";
+import {DisplayTypeEnum} from "@/scripts/enums/DisplayTypeEnum";
 
 export default {
   name: "InformationComponent",
@@ -49,7 +50,7 @@ export default {
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
 
-    return { fretboardParametersStore };
+    return { fretboardParametersStore, DisplayTypeEnum };
   },
 };
 </script>

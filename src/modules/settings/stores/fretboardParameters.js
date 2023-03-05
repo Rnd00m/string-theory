@@ -89,10 +89,5 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
     scaleNotesArray(state) {
       return Scale.get(`${state.note} ${state.scale.name}`).notes;
     },
-    strings(state) {
-      return state.fretboard.baseNotes.map((note) => {
-        return this.getStringNotesFromStartNote(note);
-      });
-    },
   },
 });

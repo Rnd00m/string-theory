@@ -14,100 +14,67 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
 import * as Tone from "tone";
+import { Note } from "@tonaljs/tonal";
+import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
+import { computed } from "vue";
+import { ScaleIntervalsEnum } from "@/scripts/enums/ScaleIntervalsEnum";
+import { ChordIntervalsEnum } from "@/scripts/enums/ChordIntervalsEnum";
 
-export default {
-  name: "FretboardNote",
-  data() {
-    return {
-      selectedChord: null,
-      showTriads: false,
-    };
-  },
-  computed: {
-    noteFullName() {
-      return this.note.letter + this.beautifyAccidentalValue(this.note.acc);
-    },
-    noteClass() {
-      if (this.fretboardParametersStore.note === this.note.pc)
-        return "note-root";
-      if (this.fretboardParametersStore.showTriads) {
-        if (this.fretboardParametersStore.displayType === DisplayTypeEnum.Chord) {
-          return this.getNoteClassFromChord();
-        }
+interface Props {
+  note: typeof Note;
+  sampler: Tone.Sampler;
+  noteClassMap?: NoteClassMap[];
+  showRootNoteBackground?: boolean;
+  showNoteBackground?: boolean;
+}
+const props = withDefaults(defineProps<Props>(), {
+  showRootNoteBackground: true,
+  showNoteBackground: true,
+});
 
-        if (this.fretboardParametersStore.displayType === DisplayTypeEnum.Scale) {
-          return this.getNoteClassFromScale();
-        }
+const fretboardParametersStore = useFretboardParametersStore();
+
+const noteFullName = computed(() => {
+  return props.note.letter + beautifyAccidentalValue(props.note.acc);
+})
+
+const noteClass = computed<string>(() => {
+  if (props.noteClassMap === undefined) {
+    return "";
+  }
+
+  const noteClass = props.noteClassMap.find(noteClassMap => noteClassMap.note === props.note.pc);
+
+  if (noteClass !== undefined) {
+    if (noteClass.intervals === ChordIntervalsEnum.Root || noteClass.intervals === ScaleIntervalsEnum.Root) {
+      if (!props.showRootNoteBackground) {
+        return "";
       }
-      return "";
-    },
-  },
-  methods: {
-    beautifyAccidentalValue(accidental) {
-      if (accidental === "b") return "♭";
-      if (accidental === "bb") return "𝄫";
-      if (accidental === "##") return "𝄪";
-      if (accidental === undefined) return "";
-      return accidental;
-    },
-    playNote(note) {
-      this.sampler.triggerAttackRelease(note.name, 3);
-    },
-    getNoteClassFromChord() {
-      if (this.fretboardParametersStore.chordNotes.third === this.note.pc)
-        return "note-third";
-      if (this.fretboardParametersStore.chordNotes.fifth === this.note.pc)
-        return "note-fifth";
-      if (this.fretboardParametersStore.chordNotes.seventh === this.note.pc)
-        return "note-seventh";
-      return "";
-    },
-    getNoteClassFromScale() {
-      if (
-        this.note.pc === this.fretboardParametersStore.scalesNotes.third ||
-        this.note.pc === this.fretboardParametersStore.scalesNotes.fifth ||
-        this.note.pc === this.fretboardParametersStore.scalesNotes.seventh
-      )
-        return "note-scale-triad";
-
-      if (
-        Object.values(this.fretboardParametersStore.scalesNotes).includes(
-          this.note.pc
-        )
-      )
-        return "note-scale";
+    } else {
+      if (!props.showNoteBackground) {
+        return "";
+      }
     }
-  },
-  setup() {
-    const fretboardParametersStore = useFretboardParametersStore();
+    return noteClass.class;
+  }
 
-    return { fretboardParametersStore };
-  },
-  props: {
-    note: {
-      type: Object,
-      required: true,
-    },
-    sampler: {
-      type: Tone.Sampler,
-      required: true,
-    },
-    backgroundClass: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    isBackgroundClassActive: {
-      type: Boolean,
-      required: false,
-      default: true,
-    },
-  },
-};
+  return "";
+});
+
+function beautifyAccidentalValue(accidental: string): string {
+  if (accidental === "b") return "♭";
+  if (accidental === "bb") return "𝄫";
+  if (accidental === "##") return "𝄪";
+  if (accidental === undefined) return "";
+  return accidental;
+}
+
+function playNote(note: typeof Note) {
+  props.sampler.triggerAttackRelease(note.name, 3);
+}
 </script>
 
 <style scoped lang="scss">

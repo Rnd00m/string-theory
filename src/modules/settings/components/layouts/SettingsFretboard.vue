@@ -34,7 +34,7 @@
       <div class="card-body lg:p-4 p-2">
         <div class="flex gap-2 lg:gap-4 items-center justify-center">
           <SettingsChordType
-            v-if="fretboardParametersStore.displayType === 'chord'"
+            v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
           />
 
           <SettingsScaleModal v-else />
@@ -63,6 +63,7 @@ import SettingsDisplayType from "@/modules/settings/components/SettingsDisplayTy
 import SettingsTriad from "@/modules/settings/components/SettingsTriad.vue";
 import SettingsScaleModal from "@/modules/settings/components/SettingsScaleModal.vue";
 import SettingsSelectTuningModal from "@/modules/settings/components/tuning/SettingsSelectTuningModal.vue";
+import {DisplayTypeEnum} from "@/scripts/enums/DisplayTypeEnum";
 
 export default {
   name: "FretboardSettings",
@@ -79,7 +80,7 @@ export default {
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
 
-    return { fretboardParametersStore };
+    return { fretboardParametersStore, DisplayTypeEnum };
   },
 };
 </script>

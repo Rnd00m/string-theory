@@ -63,13 +63,13 @@ export default {
   methods: {
     getNoteClass(note) {
       if (this.fretboardParametersStore.chordNotes.root === note)
-        return "note-root";
+        return "note-chord-root";
       if (this.fretboardParametersStore.chordNotes.third === note)
-        return "note-third";
+        return "note-chord-third";
       if (this.fretboardParametersStore.chordNotes.fifth === note)
-        return "note-fifth";
+        return "note-chord-fifth";
       if (this.fretboardParametersStore.chordNotes.seventh === note)
-        return "note-seventh";
+        return "note-chord-seventh";
       return "";
     },
   },

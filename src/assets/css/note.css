@@ -6,27 +6,29 @@
     z-index: 5;
 }
 
-.note-root {
+.note-root,
+.note-chord-root,
+.note-scale-root {
      background: var(--color-blue);
  }
 
-.note-third {
+.note-chord-third {
      background: var(--color-persian-orange);
  }
 
-.note-fifth {
+.note-chord-fifth {
      background: var(--color-orange);
  }
 
-.note-seventh {
+.note-chord-seventh {
      background: var(--color-green);
  }
 
-.note-scale-triad {
+.note-scale-secondary {
      background: var(--color-persian-orange);
  }
 
-.note-scale {
+.note-scale-tertiary {
      background: var(--color-persian-orange-darker);
  }
 

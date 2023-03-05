@@ -34,15 +34,10 @@ import {DisplayTypeEnum} from "@/scripts/enums/DisplayTypeEnum";
 
 export default {
   name: "SettingsDisplayType",
-  computed: {
-    DisplayTypeEnum() {
-      return DisplayTypeEnum
-    }
-  },
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
 
-    return { fretboardParametersStore };
+    return { fretboardParametersStore, DisplayTypeEnum };
   },
 };
 </script>
