@@ -2,24 +2,43 @@
   <div class="fretboard-visualizer">
     <div class="grid lg:gap-8 gap-4">
       <FretboardSettingsLayout></FretboardSettingsLayout>
-      <FretboardVisualizer></FretboardVisualizer>
+      <FretboardVisualizer
+        :base-notes="fretboardParametersStore.fretboard.baseNotes"
+        :string-length="fretboardParametersStore.fretboard.stringLength"
+        :note-class-map="noteClassMaps"
+        :show-note-background="fretboardParametersStore.showTriads"
+      ></FretboardVisualizer>
       <InformationComponent></InformationComponent>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
 import FretboardSettingsLayout from "@/components/layouts/FretboardSettingsViewLayout.vue";
 import InformationComponent from "@/modules/information/components/InformationComponent.vue";
+import { computed } from "vue";
+import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
+import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
+import {
+  getChordClassMap,
+  getScaleClassMap,
+} from "@/modules/fretboard/services/noteClassMaps";
 
-export default {
-  components: {
-    FretboardVisualizer,
-    FretboardSettingsLayout,
-    InformationComponent
-  },
-};
+const fretboardParametersStore = useFretboardParametersStore();
+
+const noteClassMaps = computed<NoteClassMap[]>(() => {
+  switch (fretboardParametersStore.displayType) {
+    case DisplayTypeEnum.Chord: {
+      return getChordClassMap(fretboardParametersStore.chord);
+    }
+    case DisplayTypeEnum.Scale: {
+      return getScaleClassMap(fretboardParametersStore.note, fretboardParametersStore.scale);
+    }
+  }
+});
 </script>
 
 <style scoped lang="scss"></style>

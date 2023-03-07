@@ -1,12 +1,12 @@
 <template>
-  <div class="fret-wrapper" @click="playNote(note)">
+  <div class="fret-wrapper" @click="selectNote(note)">
     <div class="note-wrapper text-center py-2 px-3 lg:px-4">
       <div
         class="note rounded-lg text-center text-base lg:text-lg font-bold"
-        :class="noteClass"
+        :class="[noteClass, selectionClass]"
       >
-        <span>{{ noteFullName }}</span
-        ><span class="note-octave" v-if="fretboardParametersStore.showOctave">{{
+        <span>{{ noteFullName }}</span>
+        <span class="note-octave" v-if="fretboardParametersStore.showOctave">{{
           note.oct
         }}</span>
       </div>
@@ -19,7 +19,7 @@ import { useFretboardParametersStore } from "@/modules/settings/stores/fretboard
 import * as Tone from "tone";
 import { Note } from "@tonaljs/tonal";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
-import { computed } from "vue";
+import {computed, ref} from "vue";
 import { ScaleIntervalsEnum } from "@/scripts/enums/ScaleIntervalsEnum";
 import { ChordIntervalsEnum } from "@/scripts/enums/ChordIntervalsEnum";
 
@@ -40,6 +40,8 @@ const fretboardParametersStore = useFretboardParametersStore();
 const noteFullName = computed(() => {
   return props.note.letter + beautifyAccidentalValue(props.note.acc);
 })
+
+const selectionClass = ref<string | null>(null);
 
 const noteClass = computed<string>(() => {
   if (props.noteClassMap === undefined) {
@@ -72,6 +74,10 @@ function beautifyAccidentalValue(accidental: string): string {
   return accidental;
 }
 
+function selectNote(note: typeof Note) {
+  selectionClass.value = "note-selected";
+}
+
 function playNote(note: typeof Note) {
   props.sampler.triggerAttackRelease(note.name, 3);
 }
@@ -99,5 +105,9 @@ function playNote(note: typeof Note) {
     z-index: 4;
     border-bottom: 1px solid hsl(var(--nc));
   }
+}
+
+.note-selected {
+  background: hsl(var(--pf));
 }
 </style>
