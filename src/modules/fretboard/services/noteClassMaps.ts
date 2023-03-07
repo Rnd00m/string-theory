@@ -3,7 +3,7 @@ import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { ChordIntervalsEnum } from "@/scripts/enums/ChordIntervalsEnum";
 import { ScaleIntervalsEnum } from "@/scripts/enums/ScaleIntervalsEnum";
 
-function getChordClassMaps(chord: typeof Chord): NoteClassMap[] {
+function getChordClassMap(chord: typeof Chord): NoteClassMap[] {
   const classMap: NoteClassMap[] = [];
   const chordIntervals = Object.values(ChordIntervalsEnum);
 
@@ -43,4 +43,4 @@ function getScaleClassMap(rootNote: string, scale: typeof Scale): NoteClassMap[]
   return classMap;
 }
 
-export { getChordClassMaps, getScaleClassMap }
+export { getChordClassMap, getScaleClassMap }

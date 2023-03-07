@@ -1,13 +1,13 @@
 <template>
   <div class="fretboard-wrapper">
     <FretboardString
-      v-for="(note, index) in fretboardParametersStore.fretboard.baseNotes"
+      v-for="(note, index) in props.baseNotes"
       :key="'string-' + index"
       :sampler="sampler"
       :base-note="note"
-      :string-length="fretboardParametersStore.fretboard.stringLength"
-      :note-class-map="noteClassMaps"
-      :show-note-background="fretboardParametersStore.showTriads"
+      :string-length="props.stringLength"
+      :note-class-map="props.noteClassMap"
+      :show-note-background="props.showNoteBackground"
     ></FretboardString>
     <FretboardMarker></FretboardMarker>
   </div>
@@ -21,8 +21,15 @@ import FretboardMarker from "@/modules/fretboard/components/FretboardMarker.vue"
 import * as Tone from "tone";
 import { computed } from "vue";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
-import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
-import { getChordClassMaps, getScaleClassMap } from "@/modules/fretboard/services/noteClassMaps";
+import { Note } from "@tonaljs/tonal";
+
+interface Props {
+  baseNotes: typeof Note[];
+  stringLength: number;
+  noteClassMap?: NoteClassMap[];
+  showNoteBackground?: boolean;
+}
+const props = defineProps<Props>();
 
 const fretboardParametersStore = useFretboardParametersStore();
 
@@ -46,17 +53,6 @@ const sampler = computed(() => {
     },
     baseUrl: fretboardParametersStore.selectedSoundSample.url,
   }).toDestination();
-});
-
-const noteClassMaps = computed<NoteClassMap[]>(() => {
-  switch (fretboardParametersStore.displayType) {
-    case DisplayTypeEnum.Chord: {
-      return getChordClassMaps(fretboardParametersStore.chord);
-    }
-    case DisplayTypeEnum.Scale: {
-      return getScaleClassMap(fretboardParametersStore.note, fretboardParametersStore.scale);
-    }
-  }
 });
 </script>
 
