@@ -10,6 +10,7 @@
         :sampler="sampler"
         :note-class-map="props.noteClassMap"
         :show-note-background="props.showNoteBackground"
+        :is-note-selected="true"
       ></FretboardNote>
     </div>
   </div>

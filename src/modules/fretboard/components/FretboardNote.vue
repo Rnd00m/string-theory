@@ -3,7 +3,7 @@
     <div class="note-wrapper text-center py-2 px-3 lg:px-4">
       <div
         class="note rounded-lg text-center text-base lg:text-lg font-bold"
-        :class="[noteClass, selectionClass]"
+        :class="[noteClass, isNoteSelected && isNoteSelectable ? 'fretboard-note-selected' : '']"
       >
         <span>{{ noteFullName }}</span>
         <span class="note-octave" v-if="fretboardParametersStore.showOctave">{{
@@ -29,19 +29,21 @@ interface Props {
   noteClassMap?: NoteClassMap[];
   showRootNoteBackground?: boolean;
   showNoteBackground?: boolean;
+  isNoteSelectable?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
   showRootNoteBackground: true,
   showNoteBackground: true,
+  isNoteSelectable: false,
 });
+
+const isNoteSelected = ref(false);
 
 const fretboardParametersStore = useFretboardParametersStore();
 
 const noteFullName = computed(() => {
   return props.note.letter + beautifyAccidentalValue(props.note.acc);
 })
-
-const selectionClass = ref<string | null>(null);
 
 const noteClass = computed<string>(() => {
   if (props.noteClassMap === undefined) {
@@ -75,7 +77,7 @@ function beautifyAccidentalValue(accidental: string): string {
 }
 
 function selectNote(note: typeof Note) {
-  selectionClass.value = "note-selected";
+  isNoteSelected.value = true;
 }
 
 function playNote(note: typeof Note) {
@@ -107,7 +109,11 @@ function playNote(note: typeof Note) {
   }
 }
 
-.note-selected {
+.fret-wrapper span::selection {
+  background: transparent;
+}
+
+.fretboard-note-selected {
   background: hsl(var(--pf));
 }
 </style>
