@@ -8,8 +8,9 @@
       :string-length="props.stringLength"
       :note-class-map="props.noteClassMap"
       :show-note-background="props.showNoteBackground"
+      :is-note-selectable="props.isNoteSelectable"
     ></FretboardString>
-    <FretboardMarker></FretboardMarker>
+    <FretboardMarker :string-length="props.stringLength"></FretboardMarker>
   </div>
 </template>
 
@@ -28,6 +29,7 @@ interface Props {
   stringLength: number;
   noteClassMap?: NoteClassMap[];
   showNoteBackground?: boolean;
+  isNoteSelectable?: boolean;
 }
 const props = defineProps<Props>();
 
