@@ -11,6 +11,7 @@
         :note-class-map="props.noteClassMap"
         :show-note-background="props.showNoteBackground"
         :is-note-selected="true"
+        :is-note-selectable="props.isNoteSelectable"
       ></FretboardNote>
     </div>
   </div>
@@ -31,6 +32,7 @@ interface Props {
   stringLength: number;
   noteClassMap?: NoteClassMap[];
   showNoteBackground?: boolean;
+  isNoteSelectable?: boolean;
 }
 const props = defineProps<Props>();
 
