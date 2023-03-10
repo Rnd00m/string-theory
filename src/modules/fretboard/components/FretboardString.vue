@@ -4,14 +4,22 @@
       class="grid lg:grid-cols-[repeat(13,_4.5rem)] grid-cols-[repeat(13,_3.5rem)]"
     >
       <FretboardNote
-        v-for="note in stringNotes"
-        :key="note"
+        v-for="(note, index) in stringNotes"
+        :key="`string-${props.string}-fret-${index}`"
+        :fret="index"
+        :string="props.string"
         :note="note"
         :sampler="sampler"
         :note-class-map="props.noteClassMap"
         :show-note-background="props.showNoteBackground"
-        :is-note-selected="true"
-        :is-note-selectable="props.isNoteSelectable"
+        :selected-note-class="
+          shouldNoteBeSelected(
+            props.selectedNotes,
+            `string-${props.string}-fret-${index}`
+          ) ? 'fretboard-note-selected' : ''
+        "
+        :is-sound-active="props.isSoundActive"
+        v-bind="$attrs"
       ></FretboardNote>
     </div>
   </div>
@@ -19,22 +27,28 @@
 
 <script setup lang="ts">
 import FretboardNote from "./FretboardNote.vue";
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 import * as Tone from "tone";
 import { Note, Scale } from "@tonaljs/tonal";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
+import type { SelectedNote } from "@/modules/fretboard/types/SelectedNote";
 
 interface Props {
-  sampler: Tone.Sampler;
   baseNote: typeof Note;
+  string: number;
   stringLength: number;
+  sampler: Tone.Sampler;
   noteClassMap?: NoteClassMap[];
   showNoteBackground?: boolean;
   isNoteSelectable?: boolean;
+  selectedNotes?: SelectedNote[];
+  isSoundActive?: boolean;
 }
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  selectedNotes: [] as SelectedNote[],
+});
 
 const fretboardParametersStore = useFretboardParametersStore();
 
@@ -93,6 +107,11 @@ function getNoteToDisplayFromSelectedParameters(note) {
   }
 
   return note;
+}
+
+function shouldNoteBeSelected(selectedNotes: SelectedNote[], key: string): boolean {
+  if (!props.isNoteSelectable) return false;
+  return selectedNotes.some((selectedNote) => selectedNote.key === key);
 }
 </script>
 

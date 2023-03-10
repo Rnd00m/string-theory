@@ -2,13 +2,17 @@
   <div class="fretboard-wrapper">
     <FretboardString
       v-for="(note, index) in props.baseNotes"
-      :key="'string-' + index"
-      :sampler="sampler"
+      :key="`string-${index}`"
       :base-note="note"
+      :string="index"
       :string-length="props.stringLength"
+      :sampler="sampler"
       :note-class-map="props.noteClassMap"
       :show-note-background="props.showNoteBackground"
       :is-note-selectable="props.isNoteSelectable"
+      :is-sound-active="props.isSoundActive"
+      :selected-notes="props.selectedNotes"
+      v-bind="$attrs"
     ></FretboardString>
     <FretboardMarker :string-length="props.stringLength"></FretboardMarker>
   </div>
@@ -23,6 +27,7 @@ import * as Tone from "tone";
 import { computed } from "vue";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { Note } from "@tonaljs/tonal";
+import type {SelectedNote} from "@/modules/fretboard/types/SelectedNote";
 
 interface Props {
   baseNotes: typeof Note[];
@@ -30,6 +35,8 @@ interface Props {
   noteClassMap?: NoteClassMap[];
   showNoteBackground?: boolean;
   isNoteSelectable?: boolean;
+  isSoundActive?: boolean;
+  selectedNotes?: SelectedNote[];
 }
 const props = defineProps<Props>();
 
