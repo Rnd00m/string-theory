@@ -7,6 +7,7 @@
         :string-length="fretboardParametersStore.fretboard.stringLength"
         :note-class-map="noteClassMaps"
         :show-note-background="fretboardParametersStore.showTriads"
+        :is-sound-active="true"
       ></FretboardVisualizer>
       <InformationComponent></InformationComponent>
     </div>
