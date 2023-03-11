@@ -1,11 +1,10 @@
 <template>
   <div class="fretboard-wrapper">
     <FretboardString
-      v-for="(note, index) in props.baseNotes"
+      v-for="(stringNote, index) in props.fretboardNotes"
       :key="`string-${index}`"
-      :base-note="note"
+      :string-notes="stringNote"
       :string="index"
-      :string-length="props.stringLength"
       :sampler="sampler"
       :note-class-map="props.noteClassMap"
       :show-note-background="props.showNoteBackground"
@@ -14,7 +13,7 @@
       :selected-notes="props.selectedNotes"
       v-bind="$attrs"
     ></FretboardString>
-    <FretboardMarker :string-length="props.stringLength"></FretboardMarker>
+    <FretboardMarker :string-length="props.fretboardNotes[0].length"></FretboardMarker>
   </div>
 </template>
 
@@ -30,8 +29,7 @@ import { Note } from "@tonaljs/tonal";
 import type {SelectedNote} from "@/modules/fretboard/types/SelectedNote";
 
 interface Props {
-  baseNotes: typeof Note[];
-  stringLength: number;
+  fretboardNotes: typeof Note[][];
   noteClassMap?: NoteClassMap[];
   showNoteBackground?: boolean;
   isNoteSelectable?: boolean;
