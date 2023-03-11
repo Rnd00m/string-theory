@@ -5,9 +5,14 @@ import { ScaleIntervalsEnum } from "@/scripts/enums/ScaleIntervalsEnum";
 
 function getChordClassMap(
   fretboardNotes: typeof Note[][],
-  chord: typeof Chord
+  chord: typeof Chord,
+  showRootNoteBackground: boolean,
+  showOtherNotesBackground: boolean
 ): NoteClassMap[] {
   const classMap: NoteClassMap[] = [];
+
+  if (!showRootNoteBackground && !showOtherNotesBackground) return classMap;
+
   const chordIntervals: string[] = Object.values(ChordIntervalsEnum);
   const chordNotes: string[] = chord.notes;
 
@@ -15,15 +20,18 @@ function getChordClassMap(
     fretboardNote.forEach((stringNote, fretNumber) => {
       const foundIndex = chordNotes.findIndex(chordNote => chordNote === stringNote.pc)
       if (foundIndex > -1) {
-        const foundChordInterval: string = chordIntervals[foundIndex]
-        classMap.push({
-          key: `string-${stringNumber}-fret-${fretNumber}`,
-          string: stringNumber,
-          fret: fretNumber,
-          note: stringNote,
-          intervals: foundChordInterval,
-          class: `note-chord-${foundChordInterval}`,
-        });
+        const foundChordInterval: string = chordIntervals[foundIndex];
+
+        if ((showRootNoteBackground && chordIntervals[foundIndex] === ChordIntervalsEnum.Root) || (showOtherNotesBackground && foundIndex > 0)) {
+          classMap.push({
+            key: `string-${stringNumber}-fret-${fretNumber}`,
+            string: stringNumber,
+            fret: fretNumber,
+            note: stringNote,
+            intervals: foundChordInterval,
+            class: `note-chord-${foundChordInterval}`,
+          });
+        }
       }
     });
   });

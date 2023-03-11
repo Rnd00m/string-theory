@@ -4,9 +4,10 @@
       <FretboardSettingsLayout></FretboardSettingsLayout>
       <FretboardVisualizer
         :fretboard-notes="fretboardNotes"
+        :show-octave="fretboardParametersStore.showOctave"
         :note-class-map="noteClassMaps"
-        :show-note-background="fretboardParametersStore.showTriads"
         :is-sound-active="true"
+        :selected-sound-sample="fretboardParametersStore.selectedSoundSample"
       ></FretboardVisualizer>
       <InformationComponent></InformationComponent>
     </div>
@@ -19,14 +20,14 @@ import { useFretboardParametersStore } from "@/modules/settings/stores/fretboard
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
 import FretboardSettingsLayout from "@/components/layouts/FretboardSettingsViewLayout.vue";
 import InformationComponent from "@/modules/information/components/InformationComponent.vue";
-import {computed, ref} from "vue";
+import { computed } from "vue";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
 import {
   getChordClassMap,
   getScaleClassMap,
 } from "@/modules/fretboard/services/noteClassMaps";
-import {getFretboardNotes} from "@/modules/fretboard/services/fretboard";
+import { getFretboardNotes } from "@/modules/fretboard/services/fretboard";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
@@ -42,7 +43,9 @@ const noteClassMaps = computed<NoteClassMap[]>(() => {
     case DisplayTypeEnum.Chord: {
       return getChordClassMap(
         fretboardNotes.value,
-        fretboardParametersStore.chord
+        fretboardParametersStore.chord,
+        true,
+        fretboardParametersStore.showNotes
       );
     }
     case DisplayTypeEnum.Scale: {

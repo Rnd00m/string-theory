@@ -9,14 +9,13 @@
         :fret="index"
         :string="props.string"
         :note="note"
+        :show-octave="props.showOctave"
         :sampler="sampler"
-        :note-class-map="props.noteClassMap"
-        :show-note-background="props.showNoteBackground"
-        :selected-note-class="
-          shouldNoteBeSelected(
-            props.selectedNotes,
+        :note-class="
+          getNoteClass(
+            props.noteClassMap,
             `string-${props.string}-fret-${index}`
-          ) ? 'fretboard-note-selected' : ''
+          )
         "
         :is-sound-active="props.isSoundActive"
         v-bind="$attrs"
@@ -35,20 +34,21 @@ import type { SelectedNote } from "@/modules/fretboard/types/SelectedNote";
 interface Props {
   stringNotes: typeof Note[];
   string: number;
+  showOctave?: boolean;
   sampler: Tone.Sampler;
   noteClassMap?: NoteClassMap[];
-  showNoteBackground?: boolean;
   isNoteSelectable?: boolean;
   selectedNotes?: SelectedNote[];
   isSoundActive?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
-  selectedNotes: [] as SelectedNote[],
+  noteClassMap: [],
+  isNoteSelectable: false,
+  isSoundActive: false,
 });
 
-function shouldNoteBeSelected(selectedNotes: SelectedNote[], key: string): boolean {
-  if (!props.isNoteSelectable) return false;
-  return selectedNotes.some((selectedNote) => selectedNote.key === key);
+function getNoteClass(noteClassMap: NoteClassMap[], key: string): string {
+  return noteClassMap.find((map) => map.key === key)?.class || "";
 }
 </script>
 
