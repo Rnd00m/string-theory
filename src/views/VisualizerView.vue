@@ -30,22 +30,25 @@ import {getFretboardNotes} from "@/modules/fretboard/services/fretboard";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
-const noteClassMaps = computed<NoteClassMap[]>(() => {
-  switch (fretboardParametersStore.displayType) {
-    case DisplayTypeEnum.Chord: {
-      return getChordClassMap(fretboardParametersStore.chord);
-    }
-    case DisplayTypeEnum.Scale: {
-      return getScaleClassMap(fretboardParametersStore.note, fretboardParametersStore.scale);
-    }
-  }
-});
-
 const fretboardNotes = computed(() => {
   return getFretboardNotes(
     fretboardParametersStore.fretboard.baseNotes,
     fretboardParametersStore.fretboard.stringLength
   );
+});
+
+const noteClassMaps = computed<NoteClassMap[]>(() => {
+  switch (fretboardParametersStore.displayType) {
+    case DisplayTypeEnum.Chord: {
+      return getChordClassMap(
+        fretboardNotes.value,
+        fretboardParametersStore.chord
+      );
+    }
+    case DisplayTypeEnum.Scale: {
+      return getScaleClassMap(fretboardParametersStore.note, fretboardParametersStore.scale);
+    }
+  }
 });
 </script>
 

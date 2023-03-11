@@ -8,34 +8,41 @@ function getFretboardNotes(
   baseNotes: typeof Note[],
   stringLength: number
 ): typeof Note[][] {
-  const fretboardNote = [];
+  const fretboardNote: typeof Note[][] = [];
 
   baseNotes.forEach((baseNote) => {
-    const stringNotes = [];
-    let currentNote: typeof Note = baseNote;
-    stringNotes.push(currentNote);
-
-    for (let i = 0; i < stringLength; i++) {
-      let newNote: typeof Note = Note.get(
-        Note.simplify(
-          Note.transpose(currentNote, "2m")
-        )
-      );
-
-      // Change fretboard display according to the chord or scale parameters selected
-      newNote = getNoteToDisplayFromSelectedParameters(newNote);
-
-      stringNotes.push(newNote);
-      currentNote = newNote;
-    }
-
-    fretboardNote.push(stringNotes);
+    fretboardNote.push(getStringNotes(baseNote, stringLength));
   });
 
   return fretboardNote;
 }
 
-function getNoteToDisplayFromSelectedParameters(note: typeof Note): string {
+function getStringNotes(
+  baseNote: typeof Note,
+  stringLength: number
+): typeof Note[] {
+  const stringNotes: typeof Note[] = [];
+  let currentNote: typeof Note = baseNote;
+  stringNotes.push(currentNote);
+
+  for (let i = 0; i < stringLength; i++) {
+    let newNote: typeof Note = Note.get(
+      Note.simplify(
+        Note.transpose(currentNote, "2m")
+      )
+    );
+
+    // Change fretboard display according to the chord or scale parameters selected
+    newNote = getNoteToDisplayFromSelectedParameters(newNote);
+
+    stringNotes.push(newNote);
+    currentNote = newNote;
+  }
+
+  return stringNotes;
+}
+
+function getNoteToDisplayFromSelectedParameters(note: typeof Note): typeof Note {
   // If chord notes contains double sharp notes, we need to change fretboard to display them
   if (fretboardParametersStore.displayType === DisplayTypeEnum.Chord) {
     if (fretboardParametersStore.chord.tonic.includes("#")) {

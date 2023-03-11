@@ -1,22 +1,31 @@
-import { Chord, Scale } from "@tonaljs/tonal";
+import { Chord, Note, Scale } from "@tonaljs/tonal";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { ChordIntervalsEnum } from "@/scripts/enums/ChordIntervalsEnum";
 import { ScaleIntervalsEnum } from "@/scripts/enums/ScaleIntervalsEnum";
 
-function getChordClassMap(chord: typeof Chord): NoteClassMap[] {
+function getChordClassMap(
+  fretboardNotes: typeof Note[][],
+  chord: typeof Chord
+): NoteClassMap[] {
   const classMap: NoteClassMap[] = [];
-  const chordIntervals = Object.values(ChordIntervalsEnum);
+  const chordIntervals: string[] = Object.values(ChordIntervalsEnum);
+  const chordNotes: string[] = chord.notes;
 
-  chordIntervals.forEach((chordInterval: string, index: number) => {
-    const chordNote = chord.notes[index];
-
-    if (chordNote !== undefined) {
-      classMap.push({
-        note: chordNote,
-        intervals: chordInterval,
-        class: `note-chord-${chordInterval}`,
-      });
-    }
+  fretboardNotes.forEach((fretboardNote, stringNumber) => {
+    fretboardNote.forEach((stringNote, fretNumber) => {
+      const foundIndex = chordNotes.findIndex(chordNote => chordNote === stringNote.pc)
+      if (foundIndex > -1) {
+        const foundChordInterval: string = chordIntervals[foundIndex]
+        classMap.push({
+          key: `string-${stringNumber}-fret-${fretNumber}`,
+          string: stringNumber,
+          fret: fretNumber,
+          note: stringNote,
+          intervals: foundChordInterval,
+          class: `note-chord-${foundChordInterval}`,
+        });
+      }
+    });
   });
 
   return classMap;
