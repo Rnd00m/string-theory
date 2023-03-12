@@ -14,7 +14,7 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
       chordType: "M",
       scale: Mode.get("ionian"),
       showOctave: false,
-      showTriads: false,
+      showNotes: false,
       fretboard: {
         baseNotes: [
           Note.get("E4"),

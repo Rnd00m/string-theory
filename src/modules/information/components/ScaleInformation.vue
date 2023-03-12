@@ -11,7 +11,7 @@
     >
       <span
         class="px-3 py-1 text-lg rounded-lg"
-        :class="'note-scale-' + (index === 0 ? 'root' : (index % 2 === 0 ? 'tertiary' : 'secondary'))"
+        :class="'note-scale-' + (index === 0 ? 'root' : (index % 2 === 0 ? 'secondary' : 'tertiary'))"
       >
         {{ note }}
       </span>

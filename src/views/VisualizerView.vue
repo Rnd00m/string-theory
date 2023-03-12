@@ -14,11 +14,11 @@
     <div class="grid lg:gap-8">
       <FretboardSettingsLayout></FretboardSettingsLayout>
       <FretboardVisualizer
-        :base-notes="fretboardParametersStore.fretboard.baseNotes"
-        :string-length="fretboardParametersStore.fretboard.stringLength"
+        :fretboard-notes="fretboardNotes"
+        :show-octave="fretboardParametersStore.showOctave"
         :note-class-map="noteClassMaps"
-        :show-note-background="fretboardParametersStore.showTriads"
         :is-sound-active="true"
+        :selected-sound-sample="fretboardParametersStore.selectedSoundSample"
       ></FretboardVisualizer>
       <InformationComponent></InformationComponent>
     </div>
@@ -43,17 +43,36 @@ import {
   getChordClassMap,
   getScaleClassMap,
 } from "@/modules/fretboard/services/noteClassMaps";
+import { getFretboardNotes } from "@/modules/fretboard/services/fretboard";
 
 const globalStore = useGlobalStore();
 const fretboardParametersStore = useFretboardParametersStore();
 
+const fretboardNotes = computed(() => {
+  return getFretboardNotes(
+    fretboardParametersStore.fretboard.baseNotes,
+    fretboardParametersStore.fretboard.stringLength
+  );
+});
+
 const noteClassMaps = computed<NoteClassMap[]>(() => {
   switch (fretboardParametersStore.displayType) {
     case DisplayTypeEnum.Chord: {
-      return getChordClassMap(fretboardParametersStore.chord);
+      return getChordClassMap(
+        fretboardNotes.value,
+        fretboardParametersStore.chord,
+        true,
+        fretboardParametersStore.showNotes
+      );
     }
     case DisplayTypeEnum.Scale: {
-      return getScaleClassMap(fretboardParametersStore.note, fretboardParametersStore.scale);
+      return getScaleClassMap(
+        fretboardNotes.value,
+        fretboardParametersStore.scale,
+        fretboardParametersStore.note,
+        true,
+        fretboardParametersStore.showNotes
+      );
     }
   }
 });

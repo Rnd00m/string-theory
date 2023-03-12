@@ -1,46 +1,42 @@
 <template>
   <div class="fretboard-wrapper">
     <FretboardString
-      v-for="(note, index) in props.baseNotes"
+      v-for="(stringNote, index) in props.fretboardNotes"
       :key="`string-${index}`"
-      :base-note="note"
+      :string-notes="stringNote"
       :string="index"
-      :string-length="props.stringLength"
+      :show-octave="props.showOctave"
       :sampler="sampler"
       :note-class-map="props.noteClassMap"
-      :show-note-background="props.showNoteBackground"
       :is-note-selectable="props.isNoteSelectable"
       :is-sound-active="props.isSoundActive"
-      :selected-notes="props.selectedNotes"
       v-bind="$attrs"
-    ></FretboardString>
-    <FretboardMarker :string-length="props.stringLength"></FretboardMarker>
+    />
+    <FretboardMarker :string-length="props.fretboardNotes[0].length" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-
 import FretboardString from "@/modules/fretboard/components/FretboardString.vue";
 import FretboardMarker from "@/modules/fretboard/components/FretboardMarker.vue";
 import * as Tone from "tone";
 import { computed } from "vue";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { Note } from "@tonaljs/tonal";
-import type {SelectedNote} from "@/modules/fretboard/types/SelectedNote";
+import { SoundSample } from "@/modules/settings/services/classes/SoundSample";
+import { soundSampleList } from "@/modules/settings/services/soundSampleList";
 
 interface Props {
-  baseNotes: typeof Note[];
-  stringLength: number;
+  fretboardNotes: typeof Note[][];
+  showOctave?: boolean;
   noteClassMap?: NoteClassMap[];
-  showNoteBackground?: boolean;
   isNoteSelectable?: boolean;
   isSoundActive?: boolean;
-  selectedNotes?: SelectedNote[];
+  selectedSoundSample?: SoundSample;
 }
-const props = defineProps<Props>();
-
-const fretboardParametersStore = useFretboardParametersStore();
+const props = withDefaults(defineProps<Props>(), {
+  selectedSoundSample: soundSampleList[0],
+});
 
 const sampler = computed(() => {
   return new Tone.Sampler({
@@ -60,7 +56,7 @@ const sampler = computed(() => {
       A7: "A7.mp3",
       D7: "D7.mp3",
     },
-    baseUrl: fretboardParametersStore.selectedSoundSample.url,
+    baseUrl: props.selectedSoundSample.url,
   }).toDestination();
 });
 </script>
