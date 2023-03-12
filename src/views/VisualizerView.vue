@@ -49,7 +49,13 @@ const noteClassMaps = computed<NoteClassMap[]>(() => {
       );
     }
     case DisplayTypeEnum.Scale: {
-      return getScaleClassMap(fretboardParametersStore.note, fretboardParametersStore.scale);
+      return getScaleClassMap(
+        fretboardNotes.value,
+        fretboardParametersStore.scale,
+        fretboardParametersStore.note,
+        true,
+        fretboardParametersStore.showNotes
+      );
     }
   }
 });

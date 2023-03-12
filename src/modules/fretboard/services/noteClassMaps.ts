@@ -3,6 +3,10 @@ import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { ChordIntervalsEnum } from "@/scripts/enums/ChordIntervalsEnum";
 import { ScaleIntervalsEnum } from "@/scripts/enums/ScaleIntervalsEnum";
 
+function getKey(string: number, fret: number): string {
+  return `string-${string}-fret-${fret}`;
+}
+
 function getChordClassMap(
   fretboardNotes: typeof Note[][],
   chord: typeof Chord,
@@ -24,7 +28,7 @@ function getChordClassMap(
 
         if ((showRootNoteBackground && chordIntervals[foundIndex] === ChordIntervalsEnum.Root) || (showOtherNotesBackground && foundIndex > 0)) {
           classMap.push({
-            key: `string-${stringNumber}-fret-${fretNumber}`,
+            key: getKey(stringNumber, fretNumber),
             string: stringNumber,
             fret: fretNumber,
             note: stringNote,
@@ -39,23 +43,41 @@ function getChordClassMap(
   return classMap;
 }
 
-function getScaleClassMap(rootNote: string, scale: typeof Scale): NoteClassMap[] {
+function getScaleClassMap(
+  fretboardNotes: typeof Note[][],
+  scale: typeof Scale,
+  rootNote: typeof Note,
+  showRootNoteBackground: boolean,
+  showOtherNotesBackground: boolean
+): NoteClassMap[] {
   const classMap: NoteClassMap[] = [];
+
+  if (!showRootNoteBackground && !showOtherNotesBackground) return classMap;
+
+  const scaleIntervals: string[] = Object.values(ScaleIntervalsEnum);
   const scaleNotes = Scale.get(`${rootNote} ${scale.name}`).notes;
 
-  classMap.push({
-    note: scaleNotes[0],
-    intervals: ScaleIntervalsEnum.Root,
-    class: "note-scale-root"
-  });
-  scaleNotes.shift();
-  for (let i = 0; i < scaleNotes.length; i++) {
-    classMap.push({
-      note: scaleNotes[i],
-      intervals: null,
-      class: 'note-scale-' + (i % 2 === 0 ? 'tertiary' : 'secondary')
+  fretboardNotes.forEach((fretboardNote, stringNumber) => {
+    fretboardNote.forEach((stringNote, fretNumber) => {
+      const foundIndex = scaleNotes.findIndex(scaleNote => scaleNote === stringNote.pc)
+      // console.log(foundIndex)
+      if (foundIndex > -1) {
+        if ((showRootNoteBackground && scaleIntervals[foundIndex] === ScaleIntervalsEnum.Root) || (showOtherNotesBackground && foundIndex > 0)) {
+          const foundScaleInterval: string = scaleIntervals[foundIndex];
+          const scaleClass: string = foundIndex === 0 ? `note-scale-${foundScaleInterval}` : ('note-scale-' + (foundIndex % 2 === 0 ? 'secondary' : 'tertiary'))
+
+          classMap.push({
+            key: getKey(stringNumber, fretNumber),
+            string: stringNumber,
+            fret: fretNumber,
+            note: stringNote,
+            intervals: foundScaleInterval,
+            class: scaleClass,
+          });
+        }
+      }
     });
-  }
+  });
 
   return classMap;
 }
