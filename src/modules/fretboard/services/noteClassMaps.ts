@@ -3,7 +3,7 @@ import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { ChordIntervalsEnum } from "@/scripts/enums/ChordIntervalsEnum";
 import { ScaleIntervalsEnum } from "@/scripts/enums/ScaleIntervalsEnum";
 
-function getKey(string: number, fret: number): string {
+function getNoteClassKey(string: number, fret: number): string {
   return `string-${string}-fret-${fret}`;
 }
 
@@ -28,7 +28,7 @@ function getChordClassMap(
 
         if ((showRootNoteBackground && chordIntervals[foundIndex] === ChordIntervalsEnum.Root) || (showOtherNotesBackground && foundIndex > 0)) {
           classMap.push({
-            key: getKey(stringNumber, fretNumber),
+            key: getNoteClassKey(stringNumber, fretNumber),
             string: stringNumber,
             fret: fretNumber,
             note: stringNote,
@@ -67,7 +67,7 @@ function getScaleClassMap(
           const scaleClass: string = foundIndex === 0 ? `note-scale-${foundScaleInterval}` : ('note-scale-' + (foundIndex % 2 === 0 ? 'secondary' : 'tertiary'))
 
           classMap.push({
-            key: getKey(stringNumber, fretNumber),
+            key: getNoteClassKey(stringNumber, fretNumber),
             string: stringNumber,
             fret: fretNumber,
             note: stringNote,
@@ -82,4 +82,4 @@ function getScaleClassMap(
   return classMap;
 }
 
-export { getChordClassMap, getScaleClassMap }
+export { getChordClassMap, getScaleClassMap, getNoteClassKey };

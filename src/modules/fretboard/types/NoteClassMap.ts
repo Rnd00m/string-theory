@@ -6,5 +6,5 @@ export type NoteClassMap = {
   fret: number; // Position of the fret on the string
   note: typeof Note; // The note concerned by the class mapping
   class: string; // Class associated to the note to display on the fretboard
-  intervals: string | null; // In case of Scale or Chord usage we may want to specify interval with root note
+  intervals?: string | null; // In case of Scale or Chord usage we may want to specify interval with root note
 }

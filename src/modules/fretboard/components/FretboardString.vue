@@ -29,7 +29,6 @@ import FretboardNote from "./FretboardNote.vue";
 import * as Tone from "tone";
 import { Note } from "@tonaljs/tonal";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
-import type { SelectedNote } from "@/modules/fretboard/types/SelectedNote";
 
 interface Props {
   stringNotes: typeof Note[];
@@ -38,7 +37,6 @@ interface Props {
   sampler: Tone.Sampler;
   noteClassMap?: NoteClassMap[];
   isNoteSelectable?: boolean;
-  selectedNotes?: SelectedNote[];
   isSoundActive?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {

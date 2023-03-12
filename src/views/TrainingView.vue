@@ -4,7 +4,7 @@
       :fretboard-notes="fretboardNotes"
       :is-note-selectable="true"
       :is-sound-active="false"
-      :selected-notes="selectedNotes"
+      :note-class-map="noteClassMaps"
       @note-selected="selectNote"
     ></FretboardVisualizer>
   </div>
@@ -13,12 +13,12 @@
 <style></style>
 <script setup lang="ts">
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
-import type { SelectedNote } from "@/modules/fretboard/types/SelectedNote";
 import { ref } from "vue";
 import { getFretboardNotes } from "@/modules/fretboard/services/fretboard";
 import { Note } from "@tonaljs/tonal";
+import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 
-const baseNotes = [
+const baseNotes: typeof Note[] = [
   Note.get("E4"),
   Note.get("B3"),
   Note.get("G3"),
@@ -27,13 +27,12 @@ const baseNotes = [
   Note.get("E2"),
 ];
 
-const fretboardNotes = ref(getFretboardNotes(baseNotes, 12));
+const fretboardNotes = ref<typeof Note[][]>(getFretboardNotes(baseNotes, 12));
+const noteClassMaps = ref<NoteClassMap[]>([]);
 
-const selectedNotes = ref([] as SelectedNote[]);
-
-function selectNote(eventData: SelectedNote) {
-  if (!selectedNotes.value.some((selectedNote) => selectedNote.key === eventData.key)) {
-    selectedNotes.value.push(eventData)
+function selectNote(eventData: NoteClassMap) {
+  if (!noteClassMaps.value.some((noteClassMap) => noteClassMap.key === eventData.key)) {
+    noteClassMaps.value.push(eventData);
   }
 }
 </script>

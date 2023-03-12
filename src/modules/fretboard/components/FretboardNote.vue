@@ -6,9 +6,7 @@
         :class="[props.noteClass]"
       >
         <span>{{ noteFullName }}</span>
-        <span class="note-octave" v-if="props.showOctave">{{
-          note.oct
-        }}</span>
+        <span class="note-octave" v-if="props.showOctave">{{ note.oct }}</span>
       </div>
     </div>
   </div>
@@ -19,7 +17,7 @@ import * as Tone from "tone";
 import { Note } from "@tonaljs/tonal";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { computed } from "vue";
-import type { SelectedNote } from "@/modules/fretboard/types/SelectedNote";
+import { getNoteClassKey } from "@/modules/fretboard/services/noteClassMaps";
 
 interface Props {
   string: number; // String of the current note
@@ -41,7 +39,7 @@ const emit = defineEmits(["note-selected"]);
 
 const noteFullName = computed(() => {
   return props.note.letter + beautifyAccidentalValue(props.note.acc);
-})
+});
 
 function beautifyAccidentalValue(accidental: string): string {
   if (accidental === "b") return "♭";
@@ -52,14 +50,15 @@ function beautifyAccidentalValue(accidental: string): string {
 }
 
 function selectNote() {
-  const selectedNoteEvent: SelectedNote = {
-    key: `string-${props.string}-fret-${props.fret}`,
+  const noteClassMap: NoteClassMap = {
+    key: getNoteClassKey(props.string, props.fret),
     string: props.string,
     fret: props.fret,
     note: props.note,
+    class: "fretboard-note-selected",
   };
 
-  emit("note-selected", selectedNoteEvent);
+  emit("note-selected", noteClassMap);
 
   if (props.isSoundActive) playNote();
 }
