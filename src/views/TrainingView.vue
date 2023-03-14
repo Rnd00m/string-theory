@@ -1,18 +1,20 @@
 <template>
   <div class="training">
+    <ExerciseDetail class="mb-4" />
     <FretboardVisualizer
       :fretboard-notes="fretboardNotes"
       :is-note-selectable="true"
       :is-sound-active="false"
       :note-class-map="noteClassMaps"
       @note-selected="selectNote"
-    ></FretboardVisualizer>
+    />
   </div>
 </template>
 
 <style></style>
 <script setup lang="ts">
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
+import ExerciseDetail from "@/modules/exercise/components/ExerciseDetail.vue";
 import { ref } from "vue";
 import { getFretboardNotes } from "@/modules/fretboard/services/fretboard";
 import { Note } from "@tonaljs/tonal";
