@@ -1,6 +1,7 @@
 import { Note, Scale } from "@tonaljs/tonal";
 import type { NotePosition } from "@/modules/exercise/types/NotePosition";
 import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
+import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
 
 function getRandomNote(): typeof Note {
   const chromaticScale: string[] = Scale.get("C chromatic").notes;
@@ -10,21 +11,21 @@ function getRandomNote(): typeof Note {
 }
 
 function getPositionOfNoteOnFretboard(
-  fretboardNotes: typeof Note[][],
+  fretboardNotes: FretboardNote[][],
   noteToFind: typeof Note
 ): NotePosition[] {
   const notePositions: NotePosition[] = [];
 
-  fretboardNotes.forEach((string: typeof Note[], stringNumber: number) => {
-    string.forEach((fret: typeof Note, fretNumber: number) => {
-      if (noteToFind.pc === fret.pc) {
+  fretboardNotes.forEach((string: FretboardNote[], stringNumber: number) => {
+    string.forEach((fret: FretboardNote, fretNumber: number) => {
+      if (noteToFind.pc === fret.note.pc) {
         notePositions.push({
           key: getFretboardNoteKey(stringNumber, fretNumber),
           string: stringNumber,
-          fret: fretNumber
+          fret: fretNumber,
         });
       }
-    })
+    });
   });
 
   return notePositions;

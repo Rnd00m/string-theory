@@ -17,7 +17,6 @@
         :fretboard-notes="fretboardNotes"
         :is-note-selectable="true"
         :is-sound-active="false"
-        :note-class-map="noteClassMaps"
         @note-selected="selectNote"
       />
     </div>
@@ -26,12 +25,16 @@
 
 <script setup lang="ts">
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
-import { Note, Scale } from "@tonaljs/tonal";
+import { Note } from "@tonaljs/tonal";
 import { onBeforeMount, ref } from "vue";
 import { getFretboardNotes } from "@/modules/fretboard/services/fretboard";
-import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import type { NotePosition } from "@/modules/exercise/types/NotePosition";
-import { getPositionOfNoteOnFretboard, getRandomNote } from "@/modules/exercise/services/exercise";
+import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
+import type { FretboardNoteSelectedEvent } from "@/modules/fretboard/types/FretboardNoteSelectedEvent";
+import {
+  getPositionOfNoteOnFretboard,
+  getRandomNote,
+} from "@/modules/exercise/services/exercise";
 
 const noteToFind = ref<typeof Note>();
 const baseNotes: typeof Note[] = [
@@ -43,8 +46,7 @@ const baseNotes: typeof Note[] = [
   Note.get("E2"),
 ];
 
-const fretboardNotes = ref<typeof Note[][]>(getFretboardNotes(baseNotes, 12));
-const noteClassMaps = ref<NoteClassMap[]>([]);
+const fretboardNotes = ref<FretboardNote[][]>(getFretboardNotes(baseNotes, 12));
 
 const positionsOfNoteToFind = ref<NotePosition[]>([]);
 const errorsNumber = ref<number>(0);
@@ -54,10 +56,18 @@ onBeforeMount(() => {
   positionsOfNoteToFind.value = getPositionOfNoteOnFretboard(fretboardNotes.value, noteToFind.value);
 });
 
-function selectNote(eventData: NoteClassMap) {
-  if (!noteClassMaps.value.some((noteClassMap) => noteClassMap.key === eventData.key)) {
-    noteClassMaps.value.push(eventData);
-  }
+function selectNote(eventData: FretboardNoteSelectedEvent) {
+  let foundNote: FretboardNote | undefined = undefined;
+
+  fretboardNotes.value.some((strings: FretboardNote[]) => {
+    foundNote = strings.find((fretboardNote: FretboardNote) => fretboardNote.key === eventData.key);
+
+    if (foundNote !== undefined) {
+      foundNote.classes.push("fretboard-note-selected");
+      return true;
+    }
+    return false;
+  });
 }
 </script>
 

@@ -41,9 +41,11 @@
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 import {
   getClassMap,
-  getNoteClass
+  getNoteClass,
 } from "@/modules/fretboard/services/noteClassMaps";
 import { Note } from "@tonaljs/tonal";
+import { computed } from "vue";
+import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
@@ -56,11 +58,13 @@ const disjunctionFormatter = new Intl.ListFormat("en-GB", {
   type: "disjunction",
 });
 
-const classMap = getClassMap(
-  fretboardParametersStore.chord,
-  true,
-  true
-);
+const classMap = computed<NoteClassMap[]>(() => {
+  return getClassMap(
+    fretboardParametersStore.chord,
+    true,
+    true
+  );
+});
 </script>
 
 <style scoped></style>

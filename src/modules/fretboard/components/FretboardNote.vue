@@ -19,10 +19,10 @@
 
 <script setup lang="ts">
 import * as Tone from "tone";
-import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { computed } from "vue";
 import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
 import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
+import type { FretboardNoteSelectedEvent } from "@/modules/fretboard/types/FretboardNoteSelectedEvent";
 
 interface Props {
   string: number; // String of the current note
@@ -53,12 +53,11 @@ function beautifyAccidentalValue(accidental: string): string {
 }
 
 function selectNote() {
-  const noteClassMap: NoteClassMap = {
+  const noteClassMap: FretboardNoteSelectedEvent = {
     key: getFretboardNoteKey(props.string, props.fret),
     string: props.string,
     fret: props.fret,
-    note: props.fretboardNote,
-    class: "fretboard-note-selected",
+    note: props.fretboardNote.note,
   };
 
   emit("note-selected", noteClassMap);
@@ -97,9 +96,5 @@ function playNote() {
 
 .fret-wrapper span::selection {
   background: transparent;
-}
-
-.fretboard-note-selected {
-  background: hsl(var(--pf));
 }
 </style>

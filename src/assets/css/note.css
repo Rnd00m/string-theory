@@ -39,3 +39,7 @@
 .note-octave {
      font-size: 0.75rem;
  }
+
+.fretboard-note-selected {
+    background: hsl(var(--pf));
+}

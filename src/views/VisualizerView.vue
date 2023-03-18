@@ -37,15 +37,16 @@ import IconTune from "@/components/icons/IconTune.vue";
 
 import { computed } from "vue";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
+import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
 import { getClassMap } from "@/modules/fretboard/services/noteClassMaps";
 import { getFretboardNotes } from "@/modules/fretboard/services/fretboard";
-import {Scale} from "@tonaljs/tonal";
+import { Scale } from "@tonaljs/tonal";
 
 const globalStore = useGlobalStore();
 const fretboardParametersStore = useFretboardParametersStore();
 
-const fretboardNotes = computed(() => {
+const fretboardNotes = computed<FretboardNote[][]>(() => {
   return getFretboardNotes(
     fretboardParametersStore.fretboard.baseNotes,
     fretboardParametersStore.fretboard.stringLength,
