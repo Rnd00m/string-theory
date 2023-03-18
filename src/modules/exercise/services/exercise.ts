@@ -1,6 +1,6 @@
 import { Note, Scale } from "@tonaljs/tonal";
 import type { NotePosition } from "@/modules/exercise/types/NotePosition";
-import { getNoteClassKey } from "@/modules/fretboard/services/noteClassMaps";
+import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
 
 function getRandomNote(): typeof Note {
   const chromaticScale: string[] = Scale.get("C chromatic").notes;
@@ -19,7 +19,7 @@ function getPositionOfNoteOnFretboard(
     string.forEach((fret: typeof Note, fretNumber: number) => {
       if (noteToFind.pc === fret.pc) {
         notePositions.push({
-          key: getNoteClassKey(stringNumber, fretNumber),
+          key: getFretboardNoteKey(stringNumber, fretNumber),
           string: stringNumber,
           fret: fretNumber
         });

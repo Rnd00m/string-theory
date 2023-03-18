@@ -24,11 +24,15 @@
      background: var(--color-green);
  }
 
-.note-scale-secondary {
+.note-scale-third,
+.note-scale-fifth,
+.note-scale-seventh {
      background: var(--color-persian-orange);
  }
 
-.note-scale-tertiary {
+.note-scale-second,
+.note-scale-fourth,
+.note-scale-sixth {
      background: var(--color-persian-orange-darker);
  }
 

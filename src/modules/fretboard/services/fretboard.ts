@@ -1,17 +1,24 @@
 import { Note, Scale } from "@tonaljs/tonal";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
+import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
+import { getNoteClass } from "@/modules/fretboard/services/noteClassMaps";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
+function getFretboardNoteKey(string: number, fret: number): string {
+  return `string-${string}-fret-${fret}`;
+}
 function getFretboardNotes(
   baseNotes: typeof Note[],
-  stringLength: number
-): typeof Note[][] {
-  const fretboardNote: typeof Note[][] = [];
+  stringLength: number,
+  noteClassMap?: NoteClassMap[]
+): FretboardNote[][] {
+  const fretboardNote: FretboardNote[][] = [];
 
-  baseNotes.forEach((baseNote) => {
-    fretboardNote.push(getStringNotes(baseNote, stringLength));
+  baseNotes.forEach((baseNote: typeof Note, stringNumber: number) => {
+    fretboardNote.push(getStringNotes(baseNote, stringLength, stringNumber, noteClassMap));
   });
 
   return fretboardNote;
@@ -19,13 +26,21 @@ function getFretboardNotes(
 
 function getStringNotes(
   baseNote: typeof Note,
-  stringLength: number
-): typeof Note[] {
-  const stringNotes: typeof Note[] = [];
+  stringLength: number,
+  stringNumber: number,
+  noteClassMap?: NoteClassMap[]
+): FretboardNote[] {
+  const stringNotes: FretboardNote[] = [];
   let currentNote: typeof Note = baseNote;
-  stringNotes.push(currentNote);
+  stringNotes.push({
+    key: getFretboardNoteKey(stringNumber, 0),
+    string: stringNumber,
+    fret: 0,
+    note: currentNote,
+    isDisplayed: true,
+  });
 
-  for (let i = 0; i < stringLength; i++) {
+  for (let fretNumber = 1; fretNumber <= stringLength; fretNumber++) {
     let newNote: typeof Note = Note.get(
       Note.simplify(
         Note.transpose(currentNote, "2m")
@@ -35,7 +50,22 @@ function getStringNotes(
     // Change fretboard display according to the chord or scale parameters selected
     newNote = getNoteToDisplayFromSelectedParameters(newNote);
 
-    stringNotes.push(newNote);
+    const noteClasses: string[] = [];
+
+    if (noteClassMap !== undefined) {
+      const noteClass: string | null = getNoteClass(newNote, noteClassMap);
+
+      if (noteClass !== null) noteClasses.push(noteClass);
+    }
+
+    stringNotes.push({
+      key: getFretboardNoteKey(stringNumber, fretNumber),
+      string: stringNumber,
+      fret: fretNumber,
+      note: newNote,
+      isDisplayed: true,
+      classes: noteClasses
+    });
     currentNote = newNote;
   }
 
@@ -77,4 +107,8 @@ function getNoteToDisplayFromSelectedParameters(note: typeof Note): typeof Note 
   return note;
 }
 
-export { getFretboardNotes, getNoteToDisplayFromSelectedParameters };
+export {
+  getFretboardNotes,
+  getNoteToDisplayFromSelectedParameters,
+  getFretboardNoteKey,
+};

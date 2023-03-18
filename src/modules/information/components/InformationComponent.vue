@@ -33,26 +33,14 @@
   </MqResponsive>
 </template>
 
-<script>
+<script setup lang="ts">
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 import ChordInformation from "@/modules/information/components/ChordInformation.vue";
 import ScaleInformation from "@/modules/information/components/ScaleInformation.vue";
 import { MqResponsive } from "vue3-mq";
-import {DisplayTypeEnum} from "@/scripts/enums/DisplayTypeEnum";
+import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
 
-export default {
-  name: "InformationComponent",
-  components: {
-    MqResponsive,
-    ChordInformation,
-    ScaleInformation
-  },
-  setup() {
-    const fretboardParametersStore = useFretboardParametersStore();
-
-    return { fretboardParametersStore, DisplayTypeEnum };
-  },
-};
+const fretboardParametersStore = useFretboardParametersStore();
 </script>
 
 <style scoped></style>

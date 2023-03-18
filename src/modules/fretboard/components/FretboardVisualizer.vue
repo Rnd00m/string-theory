@@ -1,13 +1,12 @@
 <template>
   <div class="fretboard-wrapper">
     <FretboardString
-      v-for="(stringNote, index) in props.fretboardNotes"
+      v-for="(fretboardNote, index) in props.fretboardNotes"
       :key="`string-${index}`"
-      :string-notes="stringNote"
+      :string-notes="fretboardNote"
       :string="index"
       :show-octave="props.showOctave"
       :sampler="sampler"
-      :note-class-map="props.noteClassMap"
       :is-note-selectable="props.isNoteSelectable"
       :is-sound-active="props.isSoundActive"
       v-bind="$attrs"
@@ -21,15 +20,13 @@ import FretboardString from "@/modules/fretboard/components/FretboardString.vue"
 import FretboardMarker from "@/modules/fretboard/components/FretboardMarker.vue";
 import * as Tone from "tone";
 import { computed } from "vue";
-import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
-import { Note } from "@tonaljs/tonal";
 import { SoundSample } from "@/modules/settings/services/classes/SoundSample";
 import { soundSampleList } from "@/modules/settings/services/soundSampleList";
+import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
 
 interface Props {
-  fretboardNotes: typeof Note[][];
+  fretboardNotes: FretboardNote[][];
   showOctave?: boolean;
-  noteClassMap?: NoteClassMap[];
   isNoteSelectable?: boolean;
   isSoundActive?: boolean;
   selectedSoundSample?: SoundSample;

@@ -3,10 +3,15 @@
     <div class="note-wrapper text-center py-2 px-3 lg:px-4">
       <div
         class="note rounded-lg text-center text-base lg:text-lg font-bold"
-        :class="[props.noteClass]"
+        :class="props.fretboardNote.classes"
       >
-        <span>{{ noteFullName }}</span>
-        <span class="note-octave" v-if="props.showOctave">{{ note.oct }}</span>
+        <template v-if="props.fretboardNote.isDisplayed">
+          <span>{{ noteFullName }}</span>
+          <span class="note-octave" v-if="props.showOctave">{{ props.fretboardNote.note.oct }}</span>
+        </template>
+        <template v-else>
+         &nbsp;
+        </template>
       </div>
     </div>
   </div>
@@ -14,19 +19,17 @@
 
 <script setup lang="ts">
 import * as Tone from "tone";
-import { Note } from "@tonaljs/tonal";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { computed } from "vue";
-import { getNoteClassKey } from "@/modules/fretboard/services/noteClassMaps";
+import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
+import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
 
 interface Props {
   string: number; // String of the current note
   fret: number; // Fret position of the current note
-  note: typeof Note; // Current note to display on the fret
+  fretboardNote: FretboardNote; // Current note to display on the fret
   showOctave?: boolean;
   sampler: Tone.Sampler;
-  noteClassMap?: NoteClassMap[];
-  noteClass?: string;
   isSoundActive?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -38,7 +41,7 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(["note-selected"]);
 
 const noteFullName = computed(() => {
-  return props.note.letter + beautifyAccidentalValue(props.note.acc);
+  return props.fretboardNote.note.letter + beautifyAccidentalValue(props.fretboardNote.note.acc);
 });
 
 function beautifyAccidentalValue(accidental: string): string {
@@ -51,10 +54,10 @@ function beautifyAccidentalValue(accidental: string): string {
 
 function selectNote() {
   const noteClassMap: NoteClassMap = {
-    key: getNoteClassKey(props.string, props.fret),
+    key: getFretboardNoteKey(props.string, props.fret),
     string: props.string,
     fret: props.fret,
-    note: props.note,
+    note: props.fretboardNote,
     class: "fretboard-note-selected",
   };
 
@@ -64,7 +67,7 @@ function selectNote() {
 }
 
 function playNote() {
-  props.sampler.triggerAttackRelease(props.note.name, 3);
+  props.sampler.triggerAttackRelease(props.fretboardNote.note.name, 3);
 }
 </script>
 

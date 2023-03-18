@@ -28,7 +28,7 @@
     >
       <span
         class="px-3 py-1 text-lg rounded-lg"
-        :class="getNoteClass(note)"
+        :class="getNoteClass(Note.get(note), classMap)"
       >
         {{ note }}
       </span>
@@ -37,43 +37,30 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import {
+  getClassMap,
+  getNoteClass
+} from "@/modules/fretboard/services/noteClassMaps";
+import { Note } from "@tonaljs/tonal";
 
-export default {
-  name: "ChordInformation",
-  setup() {
-    const fretboardParametersStore = useFretboardParametersStore();
+const fretboardParametersStore = useFretboardParametersStore();
 
-    const conjunctionFormatter = new Intl.ListFormat("en-GB", {
-      style: "long",
-      type: "conjunction",
-    });
-    const disjunctionFormatter = new Intl.ListFormat("en-GB", {
-      style: "long",
-      type: "disjunction",
-    });
+const conjunctionFormatter = new Intl.ListFormat("en-GB", {
+  style: "long",
+  type: "conjunction",
+});
+const disjunctionFormatter = new Intl.ListFormat("en-GB", {
+  style: "long",
+  type: "disjunction",
+});
 
-    return {
-      fretboardParametersStore,
-      conjunctionFormatter,
-      disjunctionFormatter,
-    };
-  },
-  methods: {
-    getNoteClass(note) {
-      if (this.fretboardParametersStore.chordNotes.root === note)
-        return "note-chord-root";
-      if (this.fretboardParametersStore.chordNotes.third === note)
-        return "note-chord-third";
-      if (this.fretboardParametersStore.chordNotes.fifth === note)
-        return "note-chord-fifth";
-      if (this.fretboardParametersStore.chordNotes.seventh === note)
-        return "note-chord-seventh";
-      return "";
-    },
-  },
-};
+const classMap = getClassMap(
+  fretboardParametersStore.chord,
+  true,
+  true
+);
 </script>
 
 <style scoped></style>
