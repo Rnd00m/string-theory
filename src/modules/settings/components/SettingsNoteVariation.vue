@@ -51,7 +51,7 @@ export default {
 
     return {
       fretboardParametersStore,
-      selectedVariation
+      selectedVariation,
     };
   },
   watch: {

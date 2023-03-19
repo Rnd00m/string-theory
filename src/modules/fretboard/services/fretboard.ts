@@ -1,34 +1,48 @@
-import { Note, Scale } from "@tonaljs/tonal";
-import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import {Note, Scale} from "@tonaljs/tonal";
 import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { getNoteClass } from "@/modules/fretboard/services/noteClassMaps";
-
-const fretboardParametersStore = useFretboardParametersStore();
+import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariationType";
 
 function getFretboardNoteKey(string: number, fret: number): string {
   return `string-${string}-fret-${fret}`;
 }
+
 function getFretboardNotes(
   baseNotes: typeof Note[],
   stringLength: number,
-  noteClassMap?: NoteClassMap[]
+  noteClassMap?: NoteClassMap[],
+  displayVariationType?: DisplayVariationType | DisplayVariationType.Sharp
 ): FretboardNote[][] {
   const fretboardNote: FretboardNote[][] = [];
 
+  if (noteClassMap === undefined) noteClassMap = [] as NoteClassMap[];
+
   baseNotes.forEach((baseNote: typeof Note, stringNumber: number) => {
-    fretboardNote.push(getStringNotes(baseNote, stringLength, stringNumber, noteClassMap));
+    fretboardNote.push(getStringNotes(baseNote, stringLength, stringNumber, noteClassMap, displayVariationType));
   });
 
   return fretboardNote;
+}
+
+function getNoteClassesFromClassMap(note: typeof Note, classMap: NoteClassMap[]): string[] {
+  const noteClasses: string[] = [];
+
+  if (classMap !== undefined) {
+    const noteClass: string | null = getNoteClass(note, classMap);
+
+    if (noteClass !== null) noteClasses.push(noteClass);
+  }
+
+  return noteClasses;
 }
 
 function getStringNotes(
   baseNote: typeof Note,
   stringLength: number,
   stringNumber: number,
-  noteClassMap?: NoteClassMap[]
+  noteClassMap: NoteClassMap[],
+  displayVariationType?: DisplayVariationType | DisplayVariationType.Sharp
 ): FretboardNote[] {
   const stringNotes: FretboardNote[] = [];
   let currentNote: typeof Note = baseNote;
@@ -36,8 +50,9 @@ function getStringNotes(
     key: getFretboardNoteKey(stringNumber, 0),
     string: stringNumber,
     fret: 0,
-    note: currentNote,
+    note: getNoteToDisplay(currentNote, displayVariationType),
     isDisplayed: true,
+    classes: getNoteClassesFromClassMap(currentNote, noteClassMap),
   });
 
   for (let fretNumber = 1; fretNumber <= stringLength; fretNumber++) {
@@ -48,15 +63,7 @@ function getStringNotes(
     );
 
     // Change fretboard display according to the chord or scale parameters selected
-    newNote = getNoteToDisplayFromSelectedParameters(newNote);
-
-    const noteClasses: string[] = [];
-
-    if (noteClassMap !== undefined) {
-      const noteClass: string | null = getNoteClass(newNote, noteClassMap);
-
-      if (noteClass !== null) noteClasses.push(noteClass);
-    }
+    newNote = getNoteToDisplay(newNote, displayVariationType);
 
     stringNotes.push({
       key: getFretboardNoteKey(stringNumber, fretNumber),
@@ -64,7 +71,7 @@ function getStringNotes(
       fret: fretNumber,
       note: newNote,
       isDisplayed: true,
-      classes: noteClasses
+      classes: getNoteClassesFromClassMap(newNote, noteClassMap),
     });
     currentNote = newNote;
   }
@@ -72,43 +79,38 @@ function getStringNotes(
   return stringNotes;
 }
 
-function getNoteToDisplayFromSelectedParameters(note: typeof Note): typeof Note {
-  // If chord notes contains double sharp notes, we need to change fretboard to display them
-  if (fretboardParametersStore.displayType === DisplayTypeEnum.Chord) {
-    if (fretboardParametersStore.chord.tonic.includes("#")) {
-      for (let i = 0; i < fretboardParametersStore.chord.notes.length; i++) {
-        let chordSimplifiedNote = Note.simplify(fretboardParametersStore.chord.notes[i]);
-
-        // Return double sharped note to the same octave
-        if (chordSimplifiedNote === note.pc) {
-          return Note.get(`${fretboardParametersStore.chord.notes[i]}${note.oct}`);
-        }
-      }
-    }
-
-    // Show flat note only if it presents in selected chord
-    if (note.pc.includes("b") && !fretboardParametersStore.chord.notes.includes(note.pc)) {
-      return Note.get(Note.enharmonic(note.name));
-    }
-  } else {
-    // If scale contains flat or sharp we display this note instead
-    let scaleNotes = Scale.get(`${fretboardParametersStore.note} ${fretboardParametersStore.scale.name}`).notes;
-    let noteEnharmonic = Note.enharmonic(note.pc);
-
-    if (scaleNotes.includes(note.pc)) {
+function getNoteToDisplay(
+  note: typeof Note,
+  displayVariationType?: DisplayVariationType
+): typeof Note {
+  switch (displayVariationType) {
+    case DisplayVariationType.Flat:
       return note;
-    }
-
-    if (scaleNotes.includes(noteEnharmonic)) {
-      return Note.get(`${noteEnharmonic}${note.oct}`);
-    }
+    case DisplayVariationType.Sharp:
+    default:
+      return Note.get(Note.enharmonic(note));
   }
+}
 
-  return note;
+function getDisplayVariationTypeToUse(notes: typeof Note[]): DisplayVariationType | null {
+  let displayVariationType: DisplayVariationType | null = null;
+
+  notes.some((note) => {
+    if (note.acc === "#") {
+      displayVariationType = DisplayVariationType.Sharp;
+      return true;
+    } else if (note.acc === "b") {
+      displayVariationType = DisplayVariationType.Flat;
+      return true;
+    }
+    return false;
+  });
+
+  return displayVariationType;
 }
 
 export {
   getFretboardNotes,
-  getNoteToDisplayFromSelectedParameters,
   getFretboardNoteKey,
+  getDisplayVariationTypeToUse,
 };

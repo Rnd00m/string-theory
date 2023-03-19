@@ -32,7 +32,9 @@ import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
-const scale = ref<typeof Scale>(Scale.get(`${fretboardParametersStore.note} ${fretboardParametersStore.scale.name}`));
+const scale = computed<typeof Scale>(() => {
+  return Scale.get(`${fretboardParametersStore.note} ${fretboardParametersStore.scale.name}`)
+});
 
 const classMap = computed<NoteClassMap[]>(() => {
   return getClassMap(

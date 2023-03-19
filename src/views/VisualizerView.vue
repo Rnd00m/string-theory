@@ -40,8 +40,9 @@ import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
 import { getClassMap } from "@/modules/fretboard/services/noteClassMaps";
-import { getFretboardNotes } from "@/modules/fretboard/services/fretboard";
-import { Scale } from "@tonaljs/tonal";
+import { getDisplayVariationTypeToUse, getFretboardNotes } from "@/modules/fretboard/services/fretboard";
+import { Note, Scale } from "@tonaljs/tonal";
+import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariationType";
 
 const globalStore = useGlobalStore();
 const fretboardParametersStore = useFretboardParametersStore();
@@ -50,7 +51,8 @@ const fretboardNotes = computed<FretboardNote[][]>(() => {
   return getFretboardNotes(
     fretboardParametersStore.fretboard.baseNotes,
     fretboardParametersStore.fretboard.stringLength,
-    noteClassMaps.value
+    noteClassMaps.value,
+    displayVariationType.value
   );
 });
 
@@ -69,6 +71,18 @@ const noteClassMaps = computed<NoteClassMap[]>(() => {
         true,
         fretboardParametersStore.showNotes
       );
+    }
+  }
+});
+
+
+const displayVariationType = computed<DisplayVariationType>(() => {
+  switch (fretboardParametersStore.displayType) {
+    case DisplayTypeEnum.Chord: {
+      return getDisplayVariationTypeToUse(fretboardParametersStore.chord.notes.map((note: string) => Note.get(note)));
+    }
+    case DisplayTypeEnum.Scale: {
+      return getDisplayVariationTypeToUse(Scale.get(`${fretboardParametersStore.note} ${fretboardParametersStore.scale.name}`).notes.map((note: string) => Note.get(note)));
     }
   }
 });
