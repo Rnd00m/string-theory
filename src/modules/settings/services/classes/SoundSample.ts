@@ -1,4 +1,4 @@
-import type { SoundSampleInstrumentTypeEnum } from "@/modules/settings/services/enums/SoundSampleInstrumentTypeEnum";
+import type { SoundSampleInstrumentTypeEnum } from "@/modules/settings/enums/SoundSampleInstrumentTypeEnum";
 
 export class SoundSample {
   constructor(

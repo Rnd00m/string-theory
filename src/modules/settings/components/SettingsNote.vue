@@ -25,19 +25,19 @@ export default {
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
 
-    const selectedNote = ref(fretboardParametersStore.note);
+    const selectedNote = ref(fretboardParametersStore.noteLetter);
 
     const notes = ref(["A", "B", "C", "D", "E", "F", "G"]);
 
     return {
       fretboardParametersStore,
       selectedNote,
-      notes
+      notes,
     };
   },
   watch: {
     selectedNote() {
-      this.fretboardParametersStore.setNote(this.selectedNote);
+      this.fretboardParametersStore.noteLetter = this.selectedNote;
     },
   },
 };

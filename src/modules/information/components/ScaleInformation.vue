@@ -1,11 +1,11 @@
 <template>
   <p>
-    The {{ fretboardParametersStore.note }}
-    {{ fretboardParametersStore.scale.name }} scale contains the notes :
+    The {{ fretboardParametersStore.noteLetter }}
+    {{ fretboardParametersStore.scaleName }} scale contains the notes :
   </p>
   <div class="flex justify-center gap-8 w-full flex-row">
     <div
-      v-for="(note, index) in scale.notes"
+      v-for="(note, index) in getScaleNotes(scale)"
       :key="'scale-information-note-' + note"
       class="grid h-20 card place-items-center"
     >
@@ -13,9 +13,9 @@
         class="px-3 py-1 text-lg rounded-lg"
         :class="getNoteClass(Note.get(note), classMap)"
       >
-        {{ note }}
+        {{ note.pc }}
       </span>
-      <span>{{ fretboardParametersStore.scale.intervals[index] }}</span>
+      <span>{{ scale.intervals[index] }}</span>
     </div>
   </div>
 </template>
@@ -26,14 +26,21 @@ import {
   getClassMap,
   getNoteClass,
 } from "@/modules/fretboard/services/noteClassMaps";
-import { Scale, Note } from "@tonaljs/tonal";
-import { computed, ref } from "vue";
+import { Note, Scale } from "@tonaljs/tonal";
+import { computed } from "vue";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
+import {
+  getScale,
+  getScaleNotes
+} from "@/scripts/helpers/scales";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
 const scale = computed<typeof Scale>(() => {
-  return Scale.get(`${fretboardParametersStore.note} ${fretboardParametersStore.scale.name}`)
+  return getScale(
+    Note.get(fretboardParametersStore.note),
+    fretboardParametersStore.scaleName
+  );
 });
 
 const classMap = computed<NoteClassMap[]>(() => {

@@ -1,6 +1,8 @@
 import { Chord, Interval, Note, Scale } from "@tonaljs/tonal";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
-import { getIntervalStringName } from "@/modules/fretboard/helpers/intervals";
+import { getIntervalStringName } from "@/scripts/helpers/intervals";
+import { getChordNotes } from "@/scripts/helpers/chords";
+import { getScaleNotes } from "@/scripts/helpers/scales";
 
 const chordNoteClassPrefix: string = "note-chord-";
 const scaleNoteClassPrefix: string = "note-scale-";
@@ -28,7 +30,12 @@ function getClassMap(
 
   if (!showRootNoteBackground && !showOtherNotesBackground) return classMap;
 
-  const subjectNotes: string[] = subject.notes;
+  let subjectNotes: string[] = [];
+  if (isChordType(subject)) {
+    subjectNotes = getChordNotes(subject);
+  } else {
+    subjectNotes = getScaleNotes(subject);
+  }
   const subjectIntervals: string[] = subject.intervals;
 
   subjectIntervals.forEach((interval: string, index: number) => {

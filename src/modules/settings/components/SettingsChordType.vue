@@ -2,6 +2,7 @@
   <div class="settings-chord-type">
     <select
       v-model="selectedChordType"
+      @change="fretboardParametersStore.chordType = selectedChordType"
       class="select select-sm lg:select-md select-primary select-bordered w-full max-w-xs"
     >
       <option
@@ -15,30 +16,14 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { ref } from "vue";
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 import { chordTypeList } from "@/modules/settings/services/ChordTypeList";
 
-export default {
-  name: "SettingsChordType",
-  setup() {
-    const fretboardParametersStore = useFretboardParametersStore();
+const fretboardParametersStore = useFretboardParametersStore();
 
-    const selectedChordType = ref(fretboardParametersStore.chordType);
-
-    return {
-      fretboardParametersStore,
-      selectedChordType,
-      chordTypeList,
-    };
-  },
-  watch: {
-    selectedChordType() {
-      this.fretboardParametersStore.setChord(this.selectedChordType);
-    },
-  },
-};
+const selectedChordType = ref(fretboardParametersStore.chordType);
 </script>
 
 <style scoped lang="scss"></style>

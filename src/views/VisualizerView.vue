@@ -40,9 +40,20 @@ import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
 import { getClassMap } from "@/modules/fretboard/services/noteClassMaps";
-import { getDisplayVariationTypeToUse, getFretboardNotes } from "@/modules/fretboard/services/fretboard";
-import { Note, Scale } from "@tonaljs/tonal";
+import {
+  getDisplayVariationTypeToUse,
+  getFretboardNotes,
+} from "@/modules/fretboard/services/fretboard";
+import { Chord, Note, Scale } from "@tonaljs/tonal";
 import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariationType";
+import {
+  getChord,
+  getChordNotes
+} from "@/scripts/helpers/chords";
+import {
+  getScale,
+  getScaleNotes,
+} from "@/scripts/helpers/scales";
 
 const globalStore = useGlobalStore();
 const fretboardParametersStore = useFretboardParametersStore();
@@ -56,18 +67,35 @@ const fretboardNotes = computed<FretboardNote[][]>(() => {
   );
 });
 
+// Selected chord in the store
+const chord = computed<typeof Chord>(() => {
+  return getChord(
+    Note.get(fretboardParametersStore.note),
+    fretboardParametersStore.chordType
+  );
+});
+
+// Selected scale in the store
+const scale = computed<typeof Scale>(() => {
+  return getScale(
+    Note.get(fretboardParametersStore.note),
+    fretboardParametersStore.scaleName
+  );
+});
+
+// The css class of each notes to highlight depending on whether the display type is chord or scale
 const noteClassMaps = computed<NoteClassMap[]>(() => {
   switch (fretboardParametersStore.displayType) {
     case DisplayTypeEnum.Chord: {
       return getClassMap(
-        fretboardParametersStore.chord,
+        chord.value,
         true,
         fretboardParametersStore.showNotes
       );
     }
     case DisplayTypeEnum.Scale: {
       return getClassMap(
-        Scale.get(`${fretboardParametersStore.note} ${fretboardParametersStore.scale.name}`),
+        scale.value,
         true,
         fretboardParametersStore.showNotes
       );
@@ -75,14 +103,14 @@ const noteClassMaps = computed<NoteClassMap[]>(() => {
   }
 });
 
-
+// Whether the note on fretboard should be sharp or flat
 const displayVariationType = computed<DisplayVariationType>(() => {
   switch (fretboardParametersStore.displayType) {
     case DisplayTypeEnum.Chord: {
-      return getDisplayVariationTypeToUse(fretboardParametersStore.chord.notes.map((note: string) => Note.get(note)));
+      return getDisplayVariationTypeToUse(getChordNotes(chord.value));
     }
     case DisplayTypeEnum.Scale: {
-      return getDisplayVariationTypeToUse(Scale.get(`${fretboardParametersStore.note} ${fretboardParametersStore.scale.name}`).notes.map((note: string) => Note.get(note)));
+      return getDisplayVariationTypeToUse(getScaleNotes(scale.value));
     }
   }
 });
