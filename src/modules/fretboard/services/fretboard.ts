@@ -1,13 +1,27 @@
-import {Note, Scale} from "@tonaljs/tonal";
+import { Note } from "@tonaljs/tonal";
 import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
 import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
 import { getNoteClass } from "@/modules/fretboard/services/noteClassMaps";
 import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariationType";
 
+/**
+ * Generate the unique key for a note on the fretboard
+ *
+ * @param string
+ * @param fret
+ */
 function getFretboardNoteKey(string: number, fret: number): string {
   return `string-${string}-fret-${fret}`;
 }
 
+/**
+ * Generate a two-dimensional array containing all the FretboardNote to build the fretboard
+ *
+ * @param baseNotes
+ * @param stringLength
+ * @param noteClassMap
+ * @param displayVariationType
+ */
 function getFretboardNotes(
   baseNotes: typeof Note[],
   stringLength: number,
@@ -25,18 +39,15 @@ function getFretboardNotes(
   return fretboardNote;
 }
 
-function getNoteClassesFromClassMap(note: typeof Note, classMap: NoteClassMap[]): string[] {
-  const noteClasses: string[] = [];
-
-  if (classMap !== undefined) {
-    const noteClass: string | null = getNoteClass(note, classMap);
-
-    if (noteClass !== null) noteClasses.push(noteClass);
-  }
-
-  return noteClasses;
-}
-
+/**
+ * Generate an array containing all the FretboardNote to build a string on the fretboard
+ *
+ * @param baseNote
+ * @param stringLength
+ * @param stringNumber
+ * @param noteClassMap
+ * @param displayVariationType
+ */
 function getStringNotes(
   baseNote: typeof Note,
   stringLength: number,
@@ -79,6 +90,32 @@ function getStringNotes(
   return stringNotes;
 }
 
+/**
+ * Bind all classes associated to a note from class map
+ *
+ * @param note
+ * @param classMap
+ */
+function getNoteClassesFromClassMap(note: typeof Note, classMap: NoteClassMap[]): string[] {
+  const noteClasses: string[] = [];
+
+  if (classMap !== undefined) {
+    const noteClass: string | null = getNoteClass(note, classMap);
+
+    if (noteClass !== null) noteClasses.push(noteClass);
+  }
+
+  return noteClasses;
+}
+
+/**
+ * Get note to display on the fretboard depending on whether the display type is sharp or flat
+ * The returned note is cleaned-up from "##"
+ * It allows fretboard to contain only # or only b notes
+ *
+ * @param note
+ * @param displayVariationType
+ */
 function getNoteToDisplay(
   note: typeof Note,
   displayVariationType?: DisplayVariationType
@@ -92,7 +129,14 @@ function getNoteToDisplay(
   }
 }
 
-function getDisplayVariationTypeToUse(notes: typeof Note[]): DisplayVariationType | null {
+/**
+ * Determine whether the fretboard should contain only # notes or only b notes
+ *
+ * @param notes
+ */
+function getDisplayVariationTypeToUse(
+  notes: typeof Note[]
+): DisplayVariationType | null {
   let displayVariationType: DisplayVariationType | null = null;
 
   notes.some((note) => {
