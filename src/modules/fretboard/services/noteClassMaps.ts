@@ -7,6 +7,12 @@ import { getScaleNotes } from "@/scripts/helpers/scales";
 const chordNoteClassPrefix: string = "note-chord-";
 const scaleNoteClassPrefix: string = "note-scale-";
 
+/**
+ * Retrieve the class for a note in the class map
+ *
+ * @param note
+ * @param noteClassMap
+ */
 function getNoteClass(note: typeof Note, noteClassMap: NoteClassMap[]): string | null{
   const mappedClass = noteClassMap.find((map) => map.note.pc === note.pc);
 
@@ -17,10 +23,22 @@ function getNoteClass(note: typeof Note, noteClassMap: NoteClassMap[]): string |
   return mappedClass.class;
 }
 
+/**
+ * Determine whether the object passed in parameter is type Chord or other (Scale)
+ *
+ * @param object
+ */
 function isChordType(object: any): boolean {
   return object.quality !== undefined;
 }
 
+/**
+ * Build the class map for a chord or a scale
+ *
+ * @param subject
+ * @param showRootNoteBackground
+ * @param showOtherNotesBackground
+ */
 function getClassMap(
   subject: typeof Chord | typeof Scale,
   showRootNoteBackground: boolean,
