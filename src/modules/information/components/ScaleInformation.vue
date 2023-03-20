@@ -28,7 +28,7 @@ import {
 } from "@/modules/fretboard/services/noteClassMaps";
 import { Note, Scale } from "@tonaljs/tonal";
 import { computed } from "vue";
-import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
+import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
 import {
   getScale,
   getScaleNotes

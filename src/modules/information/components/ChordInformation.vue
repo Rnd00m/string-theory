@@ -44,7 +44,7 @@ import {
   getNoteClass,
 } from "@/modules/fretboard/services/noteClassMaps";
 import { computed } from "vue";
-import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
+import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
 import { Chord, Note } from "@tonaljs/tonal";
 import {
   getChord, getChordNotes,

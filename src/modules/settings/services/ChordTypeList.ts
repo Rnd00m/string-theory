@@ -1,4 +1,4 @@
-import type { ChordType } from "@/scripts/types/ChordType";
+import type { ChordType } from "@/scripts/types/global";
 
 export const chordTypeList: ChordType[] = [
   {

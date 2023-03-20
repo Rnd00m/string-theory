@@ -29,8 +29,10 @@ import { Note } from "@tonaljs/tonal";
 import { onBeforeMount, ref } from "vue";
 import { getFretboardNotes } from "@/modules/fretboard/services/fretboard";
 import type { NotePosition } from "@/modules/exercise/types/NotePosition";
-import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
-import type { FretboardNoteSelectedEvent } from "@/modules/fretboard/types/FretboardNoteSelectedEvent";
+import type {
+  FretboardNote,
+  FretboardNoteSelectedEvent,
+} from "@/modules/fretboard/types/fretboard";
 import {
   getPositionOfNoteOnFretboard,
   getRandomNote,

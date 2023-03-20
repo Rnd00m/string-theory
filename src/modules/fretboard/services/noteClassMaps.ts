@@ -1,5 +1,5 @@
 import { Chord, Interval, Note, Scale } from "@tonaljs/tonal";
-import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
+import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
 import { getIntervalStringName } from "@/scripts/helpers/intervals";
 import { getChordNotes } from "@/scripts/helpers/chords";
 import { getScaleNotes } from "@/scripts/helpers/scales";

@@ -36,8 +36,10 @@ import IconGear from "@/components/icons/IconGear.vue";
 import IconTune from "@/components/icons/IconTune.vue";
 
 import { computed } from "vue";
-import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
-import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
+import type {
+  FretboardNote,
+  NoteClassMap,
+} from "@/modules/fretboard/types/fretboard";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
 import { getClassMap } from "@/modules/fretboard/services/noteClassMaps";
 import {

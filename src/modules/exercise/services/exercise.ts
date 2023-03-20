@@ -1,7 +1,7 @@
 import { Note, Scale } from "@tonaljs/tonal";
 import type { NotePosition } from "@/modules/exercise/types/NotePosition";
 import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
-import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
+import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
 
 function getRandomNote(): typeof Note {
   const chromaticScale: string[] = Scale.get("C chromatic").notes;

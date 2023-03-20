@@ -20,9 +20,11 @@
 <script setup lang="ts">
 import * as Tone from "tone";
 import { computed } from "vue";
-import type { FretboardNote } from "@/modules/fretboard/types/FretboardNote";
+import type {
+  FretboardNote,
+  FretboardNoteSelectedEvent
+} from "@/modules/fretboard/types/fretboard";
 import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
-import type { FretboardNoteSelectedEvent } from "@/modules/fretboard/types/FretboardNoteSelectedEvent";
 
 interface Props {
   string: number; // String of the current note

@@ -1,5 +1,5 @@
 import { Chord, Note } from "@tonaljs/tonal";
-import type { ChordType } from "@/scripts/types/ChordType";
+import type { ChordType } from "@/scripts/types/global";
 
 /**
  * Return a Chord from a rootNote and a ChordType
