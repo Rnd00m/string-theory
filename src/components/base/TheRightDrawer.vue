@@ -14,7 +14,7 @@
 <script>
 import SettingsFretboardDrawer from "@/modules/settings/components/layouts/SettingsFretboardDrawer.vue";
 import SettingsFretboardTuningDrawer from "@/modules/settings/components/layouts/SettingsFretboardTuningDrawer.vue";
-import { useGlobalStore } from "@/stores/globalStore";
+import { useGlobalStore } from "@/scripts/stores/globalStore";
 
 export default {
   name: "TheRightDrawer",

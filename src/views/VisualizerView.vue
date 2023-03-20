@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-import { useGlobalStore } from "@/stores/globalStore";
+import { useGlobalStore } from "@/scripts/stores/globalStore";
 
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
 import FretboardSettingsLayout from "@/components/layouts/FretboardSettingsViewLayout.vue";
