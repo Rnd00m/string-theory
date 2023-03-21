@@ -43,3 +43,11 @@
 .fretboard-note-selected {
     background: hsl(var(--pf));
 }
+
+.note-error {
+    background: hsl(var(--er));
+}
+
+.note-success {
+    background: hsl(var(--su));
+}

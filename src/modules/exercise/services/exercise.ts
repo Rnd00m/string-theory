@@ -10,7 +10,7 @@ function getRandomNote(): typeof Note {
   return Note.get(chromaticScale[randomNote]);
 }
 
-function getPositionOfNoteOnFretboard(
+function getPositionOfNoteToFindOnFretboard(
   fretboardNotes: FretboardNote[][],
   noteToFind: typeof Note
 ): NotePosition[] {
@@ -31,4 +31,4 @@ function getPositionOfNoteOnFretboard(
   return notePositions;
 }
 
-export { getRandomNote, getPositionOfNoteOnFretboard };
+export { getRandomNote, getPositionOfNoteToFindOnFretboard };

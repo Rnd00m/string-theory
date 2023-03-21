@@ -2,13 +2,13 @@
   <div class="exercise-wrapper grid grid-cols-6 gap-4">
     <div class="col-start-2 col-span-4 stats bg-base-200">
       <div class="stat">
-        <div>Find all <span class="text-white p-1 font-bold text-lg rounded-lg note-to-find">{{ noteToFind.pc }}</span> on the fretboard</div>
-        <div class="stat-value text-2xl">0 / {{ positionsOfNoteToFind.length }}</div>
+        <div>Find all <span class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find">{{ noteToFind.pc }}</span> on the fretboard</div>
+        <div class="stat-value text-xl lg:text-2xl">{{ totalNoteFound }} / {{ totalNoteToFind }}</div>
       </div>
 
       <div class="stat">
         <div>Errors</div>
-        <div class="stat-value text-2xl">{{ errorsNumber }}</div>
+        <div class="stat-value text-xl lg:text-2xl">{{ errorsNumber }}</div>
       </div>
     </div>
 
@@ -20,21 +20,35 @@
         @note-selected="selectNote"
       />
     </div>
+
+    <input type="checkbox" id="modal-restart-exercise" class="modal-toggle" :checked="isStartModalDisplayed"/>
+    <div class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">Congratulations you've found all the notes</h3>
+        <p class="py-4">You could now restart the exercise with a new note or go back to another exercise.</p>
+        <div class="modal-action">
+          <label for="modal-restart-exercise" class="btn" @click="startExercise">Restart</label>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
 import { Note } from "@tonaljs/tonal";
-import { onBeforeMount, ref } from "vue";
-import { getFretboardNotes } from "@/modules/fretboard/services/fretboard";
+import {computed, onBeforeMount, ref} from "vue";
+import {
+  getDisplayVariationTypeToUse,
+  getFretboardNotes,
+} from "@/modules/fretboard/services/fretboard";
 import type { NotePosition } from "@/modules/exercise/types/NotePosition";
 import type {
   FretboardNote,
   FretboardNoteSelectedEvent,
 } from "@/modules/fretboard/types/fretboard";
 import {
-  getPositionOfNoteOnFretboard,
+  getPositionOfNoteToFindOnFretboard,
   getRandomNote,
 } from "@/modules/exercise/services/exercise";
 
@@ -48,29 +62,51 @@ const baseNotes: typeof Note[] = [
   Note.get("E2"),
 ];
 
-const fretboardNotes = ref<FretboardNote[][]>(getFretboardNotes(baseNotes, 12));
-
+const fretboardNotes = ref<FretboardNote[][]>([]);
 const positionsOfNoteToFind = ref<NotePosition[]>([]);
+const totalNoteToFind = ref<number>(0);
+const totalNoteFound = ref<number>(0);
 const errorsNumber = ref<number>(0);
 
-onBeforeMount(() => {
-  noteToFind.value = getRandomNote();
-  positionsOfNoteToFind.value = getPositionOfNoteOnFretboard(fretboardNotes.value, noteToFind.value);
+const isStartModalDisplayed = computed<boolean>(() => {
+  return totalNoteFound.value === totalNoteToFind.value;
 });
 
 function selectNote(eventData: FretboardNoteSelectedEvent) {
-  let foundNote: FretboardNote | undefined = undefined;
-
   fretboardNotes.value.some((strings: FretboardNote[]) => {
-    foundNote = strings.find((fretboardNote: FretboardNote) => fretboardNote.key === eventData.key);
+    const foundNoteOnFretboard = strings.find((fretboardNote: FretboardNote) => fretboardNote.key === eventData.key);
 
-    if (foundNote !== undefined) {
-      foundNote.classes.push("fretboard-note-selected");
+    if (foundNoteOnFretboard !== undefined) {
+      const foundIndex: number = positionsOfNoteToFind.value.findIndex((notePosition: NotePosition) => {
+        return notePosition.string === foundNoteOnFretboard.string && notePosition.fret === foundNoteOnFretboard.fret;
+      });
+
+      let noteClasses: string[] = foundNoteOnFretboard.classes;
+
+      if (foundIndex < 0 && !noteClasses.includes("note-error")) {
+        foundNoteOnFretboard.classes.push("note-error");
+        errorsNumber.value += 1;
+      } else if (foundIndex >= 0 && !noteClasses.includes("note-success")) {
+        foundNoteOnFretboard.classes.push("note-success");
+        totalNoteFound.value += 1;
+      }
       return true;
     }
     return false;
   });
 }
+
+function startExercise(): void {
+  noteToFind.value = getRandomNote();
+  fretboardNotes.value = getFretboardNotes(baseNotes, 12, [], getDisplayVariationTypeToUse(noteToFind.value))
+  positionsOfNoteToFind.value = getPositionOfNoteToFindOnFretboard(fretboardNotes.value, noteToFind.value);
+  totalNoteFound.value = 0;
+  totalNoteToFind.value = positionsOfNoteToFind.value.length;
+}
+
+onBeforeMount(() => {
+  startExercise();
+});
 </script>
 
 <style scoped lang="scss">

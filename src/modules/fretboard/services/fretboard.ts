@@ -25,11 +25,13 @@ function getFretboardNotes(
   baseNotes: typeof Note[],
   stringLength: number,
   noteClassMap?: NoteClassMap[],
-  displayVariationType?: DisplayVariationType | DisplayVariationType.Sharp
+  displayVariationType?: DisplayVariationType
 ): FretboardNote[][] {
   const fretboardNote: FretboardNote[][] = [];
 
   if (noteClassMap === undefined) noteClassMap = [] as NoteClassMap[];
+
+  if (displayVariationType === undefined) displayVariationType = DisplayVariationType.Sharp
 
   baseNotes.forEach((baseNote: typeof Note, stringNumber: number) => {
     fretboardNote.push(getStringNotes(baseNote, stringLength, stringNumber, noteClassMap, displayVariationType));
@@ -130,26 +132,34 @@ function getNoteToDisplay(
 
 /**
  * Determine whether the fretboard should contain only # notes or only b notes
+ * By default return sharp display
  *
  * @param notes
  */
 function getDisplayVariationTypeToUse(
-  notes: typeof Note[]
-): DisplayVariationType | null {
-  let displayVariationType: DisplayVariationType | null = null;
+  notes: typeof Note[] | typeof Note
+): DisplayVariationType {
+  if (!Array.isArray(notes)) {
+    return getNoteVariation(notes) === DisplayVariationType.Flat ? DisplayVariationType.Flat : DisplayVariationType.Sharp;
+  }
 
   notes.some((note) => {
-    if (note.acc === "#") {
-      displayVariationType = DisplayVariationType.Sharp;
-      return true;
-    } else if (note.acc === "b") {
-      displayVariationType = DisplayVariationType.Flat;
-      return true;
-    }
-    return false;
+    const currentNoteVariation: DisplayVariationType = getNoteVariation(note);
+
+    if (currentNoteVariation === DisplayVariationType.Sharp
+      || currentNoteVariation === DisplayVariationType.Flat) return currentNoteVariation
   });
 
-  return displayVariationType;
+  return DisplayVariationType.Sharp;
+}
+
+function getNoteVariation(note: typeof Note): DisplayVariationType {
+  if (note.acc === "#") {
+    return DisplayVariationType.Sharp;
+  } else if (note.acc === "b") {
+    return DisplayVariationType.Flat;
+  }
+  return DisplayVariationType.None;
 }
 
 export {
