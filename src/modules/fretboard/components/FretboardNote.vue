@@ -1,9 +1,9 @@
 <template>
   <div class="fret-wrapper" @click="selectNote">
-    <div class="note-wrapper text-center py-2 px-3 lg:px-4">
+    <div class="note-wrapper text-center py-1.5 px-2.5 lg:py-2 lg:px-4">
       <div
         class="note rounded-lg text-center text-base lg:text-lg font-bold"
-        :class="props.fretboardNote.classes"
+        :class="noteClasses"
       >
         <template v-if="props.fretboardNote.isDisplayed">
           <span>{{ noteFullName }}</span>
@@ -19,10 +19,10 @@
 
 <script setup lang="ts">
 import * as Tone from "tone";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import type {
   FretboardNote,
-  FretboardNoteSelectedEvent
+  FretboardNoteSelectedEvent,
 } from "@/modules/fretboard/types/fretboard";
 import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
 
@@ -38,6 +38,19 @@ const props = withDefaults(defineProps<Props>(), {
   showOctave: false,
   noteClass: "",
   isSoundActive: false,
+});
+
+const cssStringProperties = ref<string>((0.1 + 0.025 * props.string) + 'em solid hsl(var(--nc))');
+
+const noteClasses = computed<string[]>(() => {
+  if (props.fretboardNote.isDisplayed) {
+    if (props.fretboardNote.classes.length > 0) {
+      return props.fretboardNote.classes
+    }
+    return ["bg-base-100"];
+  }
+
+  return ["bg-transparent"];
 });
 
 const emit = defineEmits(["note-selected"]);
@@ -83,16 +96,26 @@ function playNote() {
 }
 
 .fret-wrapper {
-  border-right: 2px hsl(var(--bc)) solid;
+  .note {
+    color: hsl(var(--bc));
+    z-index: 5;
+  }
+
+  border-right: 0.125rem hsl(var(--bc)) solid;
+
+  &:first-child {
+    border-left: 0.125rem hsl(var(--bc)) solid;
+    border-right: 0.25rem hsl(var(--bc)) solid;
+  }
 
   &:not(:first-child):before {
+    content: "";
     position: absolute;
-    content: " ";
-    height: 50%;
+    top: 50%;
+    left: 0;
+    border-top: v-bind(cssStringProperties);
     width: 100%;
-    top: 0;
-    z-index: 4;
-    border-bottom: 1px solid hsl(var(--nc));
+    transform: translateY(-50%);
   }
 }
 

@@ -84,9 +84,11 @@ function selectNote(eventData: FretboardNoteSelectedEvent) {
       let noteClasses: string[] = foundNoteOnFretboard.classes;
 
       if (foundIndex < 0 && !noteClasses.includes("note-error")) {
+        foundNoteOnFretboard.isDisplayed = true;
         foundNoteOnFretboard.classes.push("note-error");
         errorsNumber.value += 1;
       } else if (foundIndex >= 0 && !noteClasses.includes("note-success")) {
+        foundNoteOnFretboard.isDisplayed = true;
         foundNoteOnFretboard.classes.push("note-success");
         totalNoteFound.value += 1;
       }

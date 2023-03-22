@@ -1,11 +1,5 @@
 /* Todo : install scss and correctly import and compile css files */
 
-.note {
-    color: hsl(var(--bc));
-    background: hsl(var(--b1));
-    z-index: 5;
-}
-
 .note-root,
 .note-chord-root,
 .note-scale-root {
