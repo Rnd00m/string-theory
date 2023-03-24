@@ -25,16 +25,26 @@ function getFretboardNotes(
   baseNotes: typeof Note[],
   stringLength: number,
   noteClassMap?: NoteClassMap[],
-  displayVariationType?: DisplayVariationType
+  displayVariationType?: DisplayVariationType,
+  displayNote?: boolean
 ): FretboardNote[][] {
   const fretboardNote: FretboardNote[][] = [];
 
   if (noteClassMap === undefined) noteClassMap = [] as NoteClassMap[];
-
-  if (displayVariationType === undefined) displayVariationType = DisplayVariationType.Sharp
+  if (displayVariationType === undefined) displayVariationType = DisplayVariationType.Sharp;
+  if (displayNote === undefined) displayNote = true;
 
   baseNotes.forEach((baseNote: typeof Note, stringNumber: number) => {
-    fretboardNote.push(getStringNotes(baseNote, stringLength, stringNumber, noteClassMap, displayVariationType));
+    fretboardNote.push(
+      getStringNotes(
+        baseNote,
+        stringLength,
+        stringNumber,
+        noteClassMap,
+        displayVariationType,
+        displayNote
+      )
+    );
   });
 
   return fretboardNote;
@@ -48,13 +58,15 @@ function getFretboardNotes(
  * @param stringNumber
  * @param noteClassMap
  * @param displayVariationType
+ * @param displayNote
  */
 function getStringNotes(
   baseNote: typeof Note,
   stringLength: number,
   stringNumber: number,
   noteClassMap: NoteClassMap[],
-  displayVariationType?: DisplayVariationType | DisplayVariationType.Sharp
+  displayVariationType: DisplayVariationType,
+  displayNote: boolean
 ): FretboardNote[] {
   const stringNotes: FretboardNote[] = [];
   let currentNote: typeof Note = baseNote;
@@ -63,7 +75,7 @@ function getStringNotes(
     string: stringNumber,
     fret: 0,
     note: getNoteToDisplay(currentNote, displayVariationType),
-    isDisplayed: true,
+    isDisplayed: displayNote,
     classes: getNoteClassesFromClassMap(currentNote, noteClassMap),
   });
 
@@ -82,7 +94,7 @@ function getStringNotes(
       string: stringNumber,
       fret: fretNumber,
       note: newNote,
-      isDisplayed: true,
+      isDisplayed: displayNote,
       classes: getNoteClassesFromClassMap(newNote, noteClassMap),
     });
     currentNote = newNote;
