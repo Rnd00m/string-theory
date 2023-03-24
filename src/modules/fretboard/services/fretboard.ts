@@ -1,7 +1,7 @@
-import { Note } from "@tonaljs/tonal";
-import { getNoteClass } from "@/modules/fretboard/services/noteClassMaps";
-import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariationType";
-import type { FretboardNote, NoteClassMap } from "../types/fretboard";
+import {Note} from "@tonaljs/tonal";
+import {getNoteClass} from "@/modules/fretboard/services/noteClassMaps";
+import {DisplayVariationType} from "@/modules/fretboard/enums/DisplayVariationType";
+import type {FretboardNote, NoteClassMap} from "../types/fretboard";
 
 /**
  * Generate the unique key for a note on the fretboard
@@ -143,20 +143,22 @@ function getDisplayVariationTypeToUse(
     return getNoteVariation(notes) === DisplayVariationType.Flat ? DisplayVariationType.Flat : DisplayVariationType.Sharp;
   }
 
+  let currentNoteVariation: DisplayVariationType = DisplayVariationType.Sharp;
+
   notes.some((note) => {
-    const currentNoteVariation: DisplayVariationType = getNoteVariation(note);
+    currentNoteVariation = getNoteVariation(note);
 
     if (currentNoteVariation === DisplayVariationType.Sharp
-      || currentNoteVariation === DisplayVariationType.Flat) return currentNoteVariation
+      || currentNoteVariation === DisplayVariationType.Flat) return false;
   });
 
-  return DisplayVariationType.Sharp;
+  return currentNoteVariation;
 }
 
 function getNoteVariation(note: typeof Note): DisplayVariationType {
-  if (note.acc === "#") {
+  if (note.alt === 1) {
     return DisplayVariationType.Sharp;
-  } else if (note.acc === "b") {
+  } else if (note.alt === -1) {
     return DisplayVariationType.Flat;
   }
   return DisplayVariationType.None;
