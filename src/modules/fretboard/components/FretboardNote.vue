@@ -40,7 +40,7 @@ const props = withDefaults(defineProps<Props>(), {
   isSoundActive: false,
 });
 
-const cssStringProperties = ref<string>((0.1 + 0.025 * props.string) + 'em solid hsl(var(--nc))');
+const cssStringProperties = ref<string>((0.075 + 0.03 * props.string) + 'em solid hsl(var(--nc))');
 
 const noteClasses = computed<string[]>(() => {
   if (props.fretboardNote.isDisplayed) {
@@ -112,7 +112,7 @@ function playNote() {
   }
 
   &:first-child {
-    border-right: 0.25rem hsl(var(--bc)) solid;
+    border-right: 0.3rem hsl(var(--bc)) solid;
 
     &:before {
       right: 0;

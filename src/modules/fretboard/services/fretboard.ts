@@ -148,8 +148,11 @@ function getDisplayVariationTypeToUse(
   notes.some((note) => {
     currentNoteVariation = getNoteVariation(note);
 
-    if (currentNoteVariation === DisplayVariationType.Sharp
-      || currentNoteVariation === DisplayVariationType.Flat) return false;
+    if (
+      currentNoteVariation === DisplayVariationType.Sharp ||
+      currentNoteVariation === DisplayVariationType.Flat
+    )
+      return false;
   });
 
   return currentNoteVariation;

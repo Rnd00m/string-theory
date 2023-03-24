@@ -27,7 +27,7 @@
         <h3 class="font-bold text-lg">Congratulations you've found all the notes</h3>
         <p class="py-4">You could now restart the exercise with a new note or go back to another exercise.</p>
         <div class="modal-action">
-          <label for="modal-restart-exercise" class="btn" @click="startExercise">Restart</label>
+          <button class="btn" @click="startExercise">Restart</button>
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
 <script setup lang="ts">
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
 import { Note } from "@tonaljs/tonal";
-import {computed, onBeforeMount, ref} from "vue";
+import { computed, onBeforeMount, ref } from "vue";
 import {
   getDisplayVariationTypeToUse,
   getFretboardNotes,
@@ -72,6 +72,22 @@ const isStartModalDisplayed = computed<boolean>(() => {
   return totalNoteFound.value === totalNoteToFind.value;
 });
 
+function startExercise(): void {
+  noteToFind.value = getRandomNote();
+  fretboardNotes.value = getFretboardNotes(
+    baseNotes,
+    12,
+    [],
+    getDisplayVariationTypeToUse(noteToFind.value)
+  );
+  positionsOfNoteToFind.value = getPositionOfNoteToFindOnFretboard(
+    fretboardNotes.value,
+    noteToFind.value
+  );
+  totalNoteToFind.value = positionsOfNoteToFind.value.length;
+  totalNoteFound.value = 0;
+}
+
 function selectNote(eventData: FretboardNoteSelectedEvent) {
   fretboardNotes.value.some((strings: FretboardNote[]) => {
     const foundNoteOnFretboard = strings.find((fretboardNote: FretboardNote) => fretboardNote.key === eventData.key);
@@ -96,14 +112,6 @@ function selectNote(eventData: FretboardNoteSelectedEvent) {
     }
     return false;
   });
-}
-
-function startExercise(): void {
-  noteToFind.value = getRandomNote();
-  fretboardNotes.value = getFretboardNotes(baseNotes, 12, [], getDisplayVariationTypeToUse(noteToFind.value))
-  positionsOfNoteToFind.value = getPositionOfNoteToFindOnFretboard(fretboardNotes.value, noteToFind.value);
-  totalNoteFound.value = 0;
-  totalNoteToFind.value = positionsOfNoteToFind.value.length;
 }
 
 onBeforeMount(() => {
