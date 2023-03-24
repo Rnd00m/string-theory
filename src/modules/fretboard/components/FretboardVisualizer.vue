@@ -1,5 +1,5 @@
 <template>
-  <div class="fretboard-wrapper">
+  <div class="fretboard-wrapper overflow-x-auto">
     <FretboardString
       v-for="(fretboardNote, index) in props.fretboardNotes"
       :key="`string-${index}`"

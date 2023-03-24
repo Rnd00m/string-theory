@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fretboard-marker-wrapper grid lg:grid-cols-[repeat(13,_4.5rem)] grid-cols-[repeat(13,_3.5rem)]"
+    class="fretboard-marker-wrapper h-8 grid lg:grid-cols-[repeat(13,_4.5rem)] grid-cols-[repeat(13,_3.5rem)]"
   >
     <div
       class="fretboard-marker text-center"

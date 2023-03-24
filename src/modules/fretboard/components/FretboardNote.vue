@@ -45,7 +45,7 @@ const cssStringProperties = ref<string>((0.1 + 0.025 * props.string) + 'em solid
 const noteClasses = computed<string[]>(() => {
   if (props.fretboardNote.isDisplayed) {
     if (props.fretboardNote.classes.length > 0) {
-      return props.fretboardNote.classes
+      return props.fretboardNote.classes;
     }
     return ["bg-base-100"];
   }
@@ -103,19 +103,26 @@ function playNote() {
 
   border-right: 0.125rem hsl(var(--bc)) solid;
 
-  &:first-child {
-    border-left: 0.125rem hsl(var(--bc)) solid;
-    border-right: 0.25rem hsl(var(--bc)) solid;
-  }
-
-  &:not(:first-child):before {
+  &:before {
     content: "";
     position: absolute;
     top: 50%;
-    left: 0;
     border-top: v-bind(cssStringProperties);
-    width: 100%;
     transform: translateY(-50%);
+  }
+
+  &:first-child {
+    border-right: 0.25rem hsl(var(--bc)) solid;
+
+    &:before {
+      right: 0;
+      width: 50%;
+    }
+  }
+
+  &:not(:first-child):before {
+    left: 0;
+    width: 100%;
   }
 }
 
