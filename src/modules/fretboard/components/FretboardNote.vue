@@ -40,7 +40,7 @@ const props = withDefaults(defineProps<Props>(), {
   isSoundActive: false,
 });
 
-const cssStringProperties = ref<string>((0.075 + 0.03 * props.string) + 'em solid hsl(var(--nc))');
+const cssStringProperties = ref<string>((0.075 + 0.03 * props.string) + 'em solid hsl(var(--bc))');
 
 const noteClasses = computed<string[]>(() => {
   if (props.fretboardNote.isDisplayed) {
