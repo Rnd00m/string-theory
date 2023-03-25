@@ -1,7 +1,7 @@
-import {Note} from "@tonaljs/tonal";
-import {getNoteClass} from "@/modules/fretboard/services/noteClassMaps";
-import {DisplayVariationType} from "@/modules/fretboard/enums/DisplayVariationType";
-import type {FretboardNote, NoteClassMap} from "../types/fretboard";
+import { Note } from "@tonaljs/tonal";
+import { getNoteClass } from "@/modules/fretboard/services/noteClassMaps";
+import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariationType";
+import type { FretboardNote, NoteClassMap } from "../types/fretboard";
 
 /**
  * Generate the unique key for a note on the fretboard
@@ -20,6 +20,7 @@ function getFretboardNoteKey(string: number, fret: number): string {
  * @param stringLength
  * @param noteClassMap
  * @param displayVariationType
+ * @param displayNote
  */
 function getFretboardNotes(
   baseNotes: typeof Note[],
@@ -160,11 +161,13 @@ function getDisplayVariationTypeToUse(
   notes.some((note) => {
     currentNoteVariation = getNoteVariation(note);
 
+    // If a note is sharp or flat just break the iteration to return variation
     if (
       currentNoteVariation === DisplayVariationType.Sharp ||
       currentNoteVariation === DisplayVariationType.Flat
-    )
-      return false;
+    ) {
+      return true;
+    }
   });
 
   return currentNoteVariation;
