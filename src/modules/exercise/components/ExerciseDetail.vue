@@ -78,7 +78,8 @@ function startExercise(): void {
     baseNotes,
     12,
     [],
-    getDisplayVariationTypeToUse(noteToFind.value)
+    getDisplayVariationTypeToUse(noteToFind.value),
+    false
   );
   positionsOfNoteToFind.value = getPositionOfNoteToFindOnFretboard(
     fretboardNotes.value,
@@ -86,6 +87,7 @@ function startExercise(): void {
   );
   totalNoteToFind.value = positionsOfNoteToFind.value.length;
   totalNoteFound.value = 0;
+  errorsNumber.value = 0;
 }
 
 function selectNote(eventData: FretboardNoteSelectedEvent) {

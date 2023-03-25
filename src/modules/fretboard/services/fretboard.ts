@@ -1,7 +1,7 @@
-import {Note} from "@tonaljs/tonal";
-import {getNoteClass} from "@/modules/fretboard/services/noteClassMaps";
-import {DisplayVariationType} from "@/modules/fretboard/enums/DisplayVariationType";
-import type {FretboardNote, NoteClassMap} from "../types/fretboard";
+import { Note } from "@tonaljs/tonal";
+import { getNoteClass } from "@/modules/fretboard/services/noteClassMaps";
+import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariationType";
+import type { FretboardNote, NoteClassMap } from "../types/fretboard";
 
 /**
  * Generate the unique key for a note on the fretboard
@@ -20,21 +20,32 @@ function getFretboardNoteKey(string: number, fret: number): string {
  * @param stringLength
  * @param noteClassMap
  * @param displayVariationType
+ * @param displayNote
  */
 function getFretboardNotes(
   baseNotes: typeof Note[],
   stringLength: number,
   noteClassMap?: NoteClassMap[],
-  displayVariationType?: DisplayVariationType
+  displayVariationType?: DisplayVariationType,
+  displayNote?: boolean
 ): FretboardNote[][] {
   const fretboardNote: FretboardNote[][] = [];
 
   if (noteClassMap === undefined) noteClassMap = [] as NoteClassMap[];
-
-  if (displayVariationType === undefined) displayVariationType = DisplayVariationType.Sharp
+  if (displayVariationType === undefined) displayVariationType = DisplayVariationType.Sharp;
+  if (displayNote === undefined) displayNote = true;
 
   baseNotes.forEach((baseNote: typeof Note, stringNumber: number) => {
-    fretboardNote.push(getStringNotes(baseNote, stringLength, stringNumber, noteClassMap, displayVariationType));
+    fretboardNote.push(
+      getStringNotes(
+        baseNote,
+        stringLength,
+        stringNumber,
+        noteClassMap,
+        displayVariationType,
+        displayNote
+      )
+    );
   });
 
   return fretboardNote;
@@ -48,13 +59,15 @@ function getFretboardNotes(
  * @param stringNumber
  * @param noteClassMap
  * @param displayVariationType
+ * @param displayNote
  */
 function getStringNotes(
   baseNote: typeof Note,
   stringLength: number,
   stringNumber: number,
   noteClassMap: NoteClassMap[],
-  displayVariationType?: DisplayVariationType | DisplayVariationType.Sharp
+  displayVariationType: DisplayVariationType,
+  displayNote: boolean
 ): FretboardNote[] {
   const stringNotes: FretboardNote[] = [];
   let currentNote: typeof Note = baseNote;
@@ -63,7 +76,7 @@ function getStringNotes(
     string: stringNumber,
     fret: 0,
     note: getNoteToDisplay(currentNote, displayVariationType),
-    isDisplayed: true,
+    isDisplayed: displayNote,
     classes: getNoteClassesFromClassMap(currentNote, noteClassMap),
   });
 
@@ -82,7 +95,7 @@ function getStringNotes(
       string: stringNumber,
       fret: fretNumber,
       note: newNote,
-      isDisplayed: true,
+      isDisplayed: displayNote,
       classes: getNoteClassesFromClassMap(newNote, noteClassMap),
     });
     currentNote = newNote;
@@ -148,11 +161,13 @@ function getDisplayVariationTypeToUse(
   notes.some((note) => {
     currentNoteVariation = getNoteVariation(note);
 
+    // If a note is sharp or flat just break the iteration to return variation
     if (
       currentNoteVariation === DisplayVariationType.Sharp ||
       currentNoteVariation === DisplayVariationType.Flat
-    )
-      return false;
+    ) {
+      return true;
+    }
   });
 
   return currentNoteVariation;
