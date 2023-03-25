@@ -3,7 +3,7 @@
     <label class="label cursor-pointer">
       <input
         type="checkbox"
-        class="checkbox checkbox-sm lg:checkbox-md checkbox-primary"
+        class="checkbox checkbox-xs lg:checkbox-md checkbox-primary"
         v-model="showNotes"
       />
       <span class="label-text text-sm lg:text-base"
