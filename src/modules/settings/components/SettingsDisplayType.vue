@@ -6,7 +6,7 @@
           type="radio"
           name="type"
           :value="DisplayTypeEnum.Chord"
-          class="radio radio-xs lg:radio-md radio-primary checked:bg-red-500"
+          class="radio radio-xs lg:radio-md radio-primary checked:bg-primary"
           v-model="fretboardParametersStore.displayType"
         />
         <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;Chord</span>
@@ -19,7 +19,7 @@
           type="radio"
           name="type"
           :value="DisplayTypeEnum.Scale"
-          class="radio radio-xs lg:radio-md radio-primary checked:bg-red-500"
+          class="radio radio-xs lg:radio-md radio-primary checked:bg-primary"
           v-model="fretboardParametersStore.displayType"
         />
         <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;Scale</span>

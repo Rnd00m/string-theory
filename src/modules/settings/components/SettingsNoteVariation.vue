@@ -5,7 +5,7 @@
         type="radio"
         name="variation"
         value=""
-        class="radio radio-xs lg:radio-md radio-primary checked:bg-red-500"
+        class="radio radio-xs lg:radio-md radio-primary checked:bg-primary"
         v-model="selectedVariation"
       />
       <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;-</span>
@@ -17,7 +17,7 @@
         type="radio"
         name="variation"
         value="#"
-        class="radio radio-xs lg:radio-md radio-primary checked:bg-red-500"
+        class="radio radio-xs lg:radio-md radio-primary checked:bg-primary"
         v-model="selectedVariation"
       />
       <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;#</span>
@@ -30,7 +30,7 @@
         type="radio"
         name="variation"
         value="b"
-        class="radio radio-xs lg:text-base radio-primary checked:bg-red-500"
+        class="radio radio-xs lg:text-base radio-primary checked:bg-primary"
         v-model="selectedVariation"
       />
       <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;♭</span>

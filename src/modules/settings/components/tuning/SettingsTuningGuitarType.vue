@@ -8,7 +8,7 @@
             value="6strings-guitar"
             v-model="selectedInstrumentType"
             type="radio"
-            class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+            class="radio radio-sm lg:radio-md radio-primary checked:bg-primary"
             @click="setBaseTuning"
           />
           <span class="label-text text-sm lg:text-base"
@@ -26,7 +26,7 @@
             value="7strings-guitar"
             v-model="selectedInstrumentType"
             type="radio"
-            class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+            class="radio radio-sm lg:radio-md radio-primary checked:bg-primary"
             @click="set7StringsBaseTuning"
           />
           <span class="label-text text-sm lg:text-base"
@@ -44,7 +44,7 @@
             value="8strings-guitar"
             v-model="selectedInstrumentType"
             type="radio"
-            class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+            class="radio radio-sm lg:radio-md radio-primary checked:bg-primary"
             @click="set8StringsBaseTuning"
           />
           <span class="label-text text-sm lg:text-base"

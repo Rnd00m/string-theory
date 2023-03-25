@@ -7,7 +7,7 @@
         :value="note"
         v-model="selectedNote"
         type="radio"
-        class="radio radio-xs lg:radio-md radio-primary checked:bg-red-500"
+        class="radio radio-xs lg:radio-md radio-primary checked:bg-primary"
       />
       <span class="label-text text-sm lg:text-base"
         >&nbsp;&nbsp;{{ note }}</span

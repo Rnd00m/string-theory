@@ -8,7 +8,7 @@
             value="4strings-bass"
             v-model="selectedInstrumentType"
             type="radio"
-            class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+            class="radio radio-sm lg:radio-md radio-primary checked:bg-primary"
             @click="setBassBaseTuning"
           />
           <span class="label-text text-sm lg:text-base"
@@ -26,7 +26,7 @@
             value="5strings-bass"
             v-model="selectedInstrumentType"
             type="radio"
-            class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+            class="radio radio-sm lg:radio-md radio-primary checked:bg-primary"
             @click="set5StringsBassTuning"
           />
           <span class="label-text text-sm lg:text-base"
@@ -44,7 +44,7 @@
             value="6strings-bass"
             v-model="selectedInstrumentType"
             type="radio"
-            class="radio radio-sm lg:radio-md radio-primary checked:bg-red-500"
+            class="radio radio-sm lg:radio-md radio-primary checked:bg-primary"
             @click="set6StringsBassTuning"
           />
           <span class="label-text text-sm lg:text-base"

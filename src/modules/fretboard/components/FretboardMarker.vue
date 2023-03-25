@@ -40,7 +40,7 @@ const doubleDotsPosition = ref([12, 24]);
       margin-left: 0.2em;
       margin-right: 0.2em;
       border-radius: 50%;
-      background: theme("colors.white-light");
+      background: hsl(var(--bc));
       display: inline-block;
     }
   }
