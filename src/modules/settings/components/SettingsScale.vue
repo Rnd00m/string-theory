@@ -13,7 +13,7 @@
           <a
             class="chord-name"
             :class="{
-              active: fretboardParametersStore.scale.name === mode.name,
+              active: fretboardParametersStore.scaleName === mode.name,
             }"
           >
             {{ mode.name }}
@@ -35,7 +35,7 @@
           <a
             class="chord-name"
             :class="{
-              active: fretboardParametersStore.scale.name === scale.name,
+              active: fretboardParametersStore.scaleName === scale.name,
             }"
           >
             {{ scale.name }}
@@ -57,7 +57,7 @@
           <a
             class="chord-name"
             :class="{
-              active: fretboardParametersStore.scale.name === scale.name,
+              active: fretboardParametersStore.scaleName === scale.name,
             }"
           >
             {{ scale.name }}
@@ -96,7 +96,7 @@ export default {
   },
   methods: {
     setScale(scale) {
-      this.fretboardParametersStore.scale = scale;
+      this.fretboardParametersStore.scaleName = scale.name;
     },
   },
 };

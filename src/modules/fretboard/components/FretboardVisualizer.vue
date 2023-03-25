@@ -1,30 +1,39 @@
 <template>
-  <div class="fretboard-wrapper">
+  <div class="fretboard-wrapper overflow-x-auto">
     <FretboardString
-      v-for="(note, index) in fretboardParametersStore.fretboard.baseNotes"
-      :key="'string-' + index"
+      v-for="(fretboardNote, index) in props.fretboardNotes"
+      :key="`string-${index}`"
+      :string-notes="fretboardNote"
+      :string="index"
+      :show-octave="props.showOctave"
       :sampler="sampler"
-      :base-note="note"
-      :string-length="fretboardParametersStore.fretboard.stringLength"
-      :note-class-map="noteClassMaps"
-      :show-note-background="fretboardParametersStore.showTriads"
-    ></FretboardString>
-    <FretboardMarker></FretboardMarker>
+      :is-note-selectable="props.isNoteSelectable"
+      :is-sound-active="props.isSoundActive"
+      v-bind="$attrs"
+    />
+    <FretboardMarker :string-length="props.fretboardNotes[0].length" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-
 import FretboardString from "@/modules/fretboard/components/FretboardString.vue";
 import FretboardMarker from "@/modules/fretboard/components/FretboardMarker.vue";
 import * as Tone from "tone";
 import { computed } from "vue";
-import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
-import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
-import { getChordClassMaps, getScaleClassMap } from "@/modules/fretboard/services/noteClassMaps";
+import { SoundSample } from "@/modules/settings/services/classes/SoundSample";
+import { soundSampleList } from "@/modules/settings/services/soundSampleList";
+import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
 
-const fretboardParametersStore = useFretboardParametersStore();
+interface Props {
+  fretboardNotes: FretboardNote[][];
+  showOctave?: boolean;
+  isNoteSelectable?: boolean;
+  isSoundActive?: boolean;
+  selectedSoundSample?: SoundSample;
+}
+const props = withDefaults(defineProps<Props>(), {
+  selectedSoundSample: soundSampleList[0],
+});
 
 const sampler = computed(() => {
   return new Tone.Sampler({
@@ -44,19 +53,8 @@ const sampler = computed(() => {
       A7: "A7.mp3",
       D7: "D7.mp3",
     },
-    baseUrl: fretboardParametersStore.selectedSoundSample.url,
+    baseUrl: props.selectedSoundSample.url,
   }).toDestination();
-});
-
-const noteClassMaps = computed<NoteClassMap[]>(() => {
-  switch (fretboardParametersStore.displayType) {
-    case DisplayTypeEnum.Chord: {
-      return getChordClassMaps(fretboardParametersStore.chord);
-    }
-    case DisplayTypeEnum.Scale: {
-      return getScaleClassMap(fretboardParametersStore.note, fretboardParametersStore.scale);
-    }
-  }
 });
 </script>
 

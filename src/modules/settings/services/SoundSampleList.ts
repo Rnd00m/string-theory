@@ -1,5 +1,5 @@
 import { SoundSample } from "@/modules/settings/services/classes/SoundSample";
-import { SoundSampleInstrumentTypeEnum } from "@/modules/settings/services/enums/SoundSampleInstrumentTypeEnum";
+import { SoundSampleInstrumentTypeEnum } from "@/modules/settings/enums/SoundSampleInstrumentTypeEnum";
 
 export const soundSampleList: SoundSample[] = [
   new SoundSample(

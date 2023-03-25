@@ -29,11 +29,11 @@
       <input
         type="radio"
         name="variation"
-        value="♭"
+        value="b"
         class="radio radio-sm lg:text-base radio-primary checked:bg-red-500"
         v-model="selectedVariation"
       />
-      <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;b</span>
+      <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;♭</span>
     </label>
   </div>
 </template>
@@ -51,12 +51,12 @@ export default {
 
     return {
       fretboardParametersStore,
-      selectedVariation
+      selectedVariation,
     };
   },
   watch: {
     selectedVariation() {
-      this.fretboardParametersStore.setVariation(this.selectedVariation);
+      this.fretboardParametersStore.noteVariation = this.selectedVariation;
     },
   },
 };

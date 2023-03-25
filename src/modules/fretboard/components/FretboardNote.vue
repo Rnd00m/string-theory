@@ -1,67 +1,62 @@
 <template>
-  <div class="fret-wrapper" @click="playNote(note)">
-    <div class="note-wrapper text-center py-2 px-3 lg:px-4">
+  <div class="fret-wrapper" @click="selectNote">
+    <div class="note-wrapper text-center py-1.5 px-2.5 lg:py-2 lg:px-4">
       <div
         class="note rounded-lg text-center text-base lg:text-lg font-bold"
-        :class="noteClass"
+        :class="noteClasses"
       >
-        <span>{{ noteFullName }}</span
-        ><span class="note-octave" v-if="fretboardParametersStore.showOctave">{{
-          note.oct
-        }}</span>
+        <template v-if="props.fretboardNote.isDisplayed">
+          <span>{{ noteFullName }}</span>
+          <span class="note-octave" v-if="props.showOctave">{{ props.fretboardNote.note.oct }}</span>
+        </template>
+        <template v-else>
+         &nbsp;
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 import * as Tone from "tone";
-import { Note } from "@tonaljs/tonal";
-import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
-import { computed } from "vue";
-import { ScaleIntervalsEnum } from "@/scripts/enums/ScaleIntervalsEnum";
-import { ChordIntervalsEnum } from "@/scripts/enums/ChordIntervalsEnum";
+import { computed, ref } from "vue";
+import type {
+  FretboardNote,
+  FretboardNoteSelectedEvent,
+} from "@/modules/fretboard/types/fretboard";
+import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
 
 interface Props {
-  note: typeof Note;
+  string: number; // String of the current note
+  fret: number; // Fret position of the current note
+  fretboardNote: FretboardNote; // Current note to display on the fret
+  showOctave?: boolean;
   sampler: Tone.Sampler;
-  noteClassMap?: NoteClassMap[];
-  showRootNoteBackground?: boolean;
-  showNoteBackground?: boolean;
+  isSoundActive?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
-  showRootNoteBackground: true,
-  showNoteBackground: true,
+  showOctave: false,
+  noteClass: "",
+  isSoundActive: false,
 });
 
-const fretboardParametersStore = useFretboardParametersStore();
+const cssStringProperties = ref<string>((0.075 + 0.03 * props.string) + 'em solid hsl(var(--nc))');
+
+const noteClasses = computed<string[]>(() => {
+  if (props.fretboardNote.isDisplayed) {
+    if (props.fretboardNote.classes.length > 0) {
+      return props.fretboardNote.classes;
+    }
+    return ["bg-base-100"];
+  }
+
+  return ["bg-transparent"];
+});
+
+const emit = defineEmits(["note-selected"]);
 
 const noteFullName = computed(() => {
-  return props.note.letter + beautifyAccidentalValue(props.note.acc);
-})
-
-const noteClass = computed<string>(() => {
-  if (props.noteClassMap === undefined) {
-    return "";
-  }
-
-  const noteClass = props.noteClassMap.find(noteClassMap => noteClassMap.note === props.note.pc);
-
-  if (noteClass !== undefined) {
-    if (noteClass.intervals === ChordIntervalsEnum.Root || noteClass.intervals === ScaleIntervalsEnum.Root) {
-      if (!props.showRootNoteBackground) {
-        return "";
-      }
-    } else {
-      if (!props.showNoteBackground) {
-        return "";
-      }
-    }
-    return noteClass.class;
-  }
-
-  return "";
+  return props.fretboardNote.note.letter + beautifyAccidentalValue(props.fretboardNote.note.acc);
 });
 
 function beautifyAccidentalValue(accidental: string): string {
@@ -72,8 +67,21 @@ function beautifyAccidentalValue(accidental: string): string {
   return accidental;
 }
 
-function playNote(note: typeof Note) {
-  props.sampler.triggerAttackRelease(note.name, 3);
+function selectNote() {
+  const noteClassMap: FretboardNoteSelectedEvent = {
+    key: getFretboardNoteKey(props.string, props.fret),
+    string: props.string,
+    fret: props.fret,
+    note: props.fretboardNote.note,
+  };
+
+  emit("note-selected", noteClassMap);
+
+  if (props.isSoundActive) playNote();
+}
+
+function playNote() {
+  props.sampler.triggerAttackRelease(props.fretboardNote.note.name, 3);
 }
 </script>
 
@@ -88,16 +96,37 @@ function playNote(note: typeof Note) {
 }
 
 .fret-wrapper {
-  border-right: 2px hsl(var(--bc)) solid;
+  .note {
+    color: hsl(var(--bc));
+    z-index: 5;
+  }
+
+  border-right: 0.125rem hsl(var(--bc)) solid;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    border-top: v-bind(cssStringProperties);
+    transform: translateY(-50%);
+  }
+
+  &:first-child {
+    border-right: 0.3rem hsl(var(--bc)) solid;
+
+    &:before {
+      right: 0;
+      width: 50%;
+    }
+  }
 
   &:not(:first-child):before {
-    position: absolute;
-    content: " ";
-    height: 50%;
+    left: 0;
     width: 100%;
-    top: 0;
-    z-index: 4;
-    border-bottom: 1px solid hsl(var(--nc));
   }
+}
+
+.fret-wrapper span::selection {
+  background: transparent;
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div
-    class="fretboard-marker-wrapper grid lg:grid-cols-[repeat(13,_4.5rem)] grid-cols-[repeat(13,_3.5rem)]"
+    class="fretboard-marker-wrapper h-8 grid lg:grid-cols-[repeat(13,_4.5rem)] grid-cols-[repeat(13,_3.5rem)]"
   >
     <div
       class="fretboard-marker text-center"
-      v-for="(n, index) in this.stringLength + 1"
+      v-for="(n, index) in props.stringLength + 1"
       :key="n"
     >
       <template v-if="dotsPosition.includes(index)">
@@ -18,23 +18,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "FretboardMarker",
-  data() {
-    return {
-      dotsPosition: [1, 3, 5, 7, 9, 15, 17, 19, 21],
-      doubleDotsPosition: [12, 24],
-    };
-  },
-  props: {
-    stringLength: {
-      type: Number,
-      required: false,
-      default: 12,
-    },
-  },
-};
+<script setup lang="ts">
+import { ref } from "vue";
+
+interface Props {
+  stringLength: number;
+}
+const props = defineProps<Props>();
+
+// TODO : add function to calculate dot position automatically
+const dotsPosition = ref([1, 3, 5, 7, 9, 15, 17, 19, 21]);
+const doubleDotsPosition = ref([12, 24]);
 </script>
 
 <style scoped lang="scss">

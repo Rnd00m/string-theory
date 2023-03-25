@@ -4,7 +4,7 @@
       for="select-scale-modal"
       class="btn btn-outline btn-primary btn-sm lg:btn-md modal-button"
     >
-      {{ fretboardParametersStore.scale.name }}
+      {{ fretboardParametersStore.scaleName }}
     </label>
 
     <input type="checkbox" id="select-scale-modal" class="modal-toggle" />

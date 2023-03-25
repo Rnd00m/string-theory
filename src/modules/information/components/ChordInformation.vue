@@ -1,19 +1,19 @@
 <template>
   <p>
-    The {{ fretboardParametersStore.chord.name }} is a
-    {{ fretboardParametersStore.chord.type }} chord composed of
+    The {{ chord.name }} is a
+    {{ chord.type }} chord composed of
     {{
       conjunctionFormatter.format(
-        fretboardParametersStore.chord.intervals
+        chord.intervals
       )
     }}
     intervals.
-    <span v-if="fretboardParametersStore.chord.aliases.length">
+    <span v-if="chord.aliases.length">
       It can be written
       {{
         disjunctionFormatter.format(
-          fretboardParametersStore.chord.aliases.map(
-            (alias) => `${fretboardParametersStore.chord.tonic} ${alias}`
+          chord.aliases.map(
+            (alias) => `${chord.tonic} ${alias}`
           )
         )
       }}.
@@ -22,58 +22,59 @@
   <p>It contains the notes :</p>
   <div class="flex justify-center gap-8 w-full flex-row">
     <div
-      v-for="(note, index) in fretboardParametersStore.chord.notes"
+      v-for="(note, index) in getChordNotes(chord)"
       :key="'chord-information-note-' + note"
       class="grid h-20 card place-items-center"
     >
       <span
         class="px-3 py-1 text-lg rounded-lg"
-        :class="getNoteClass(note)"
+        :class="getNoteClass(Note.get(note), classMap)"
       >
-        {{ note }}
+        {{ note.pc }}
       </span>
-      <span>{{ fretboardParametersStore.chord.intervals[index] }}</span>
+      <span>{{ chord.intervals[index] }}</span>
     </div>
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import {
+  getClassMap,
+  getNoteClass,
+} from "@/modules/fretboard/services/noteClassMaps";
+import { computed } from "vue";
+import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
+import { Chord, Note } from "@tonaljs/tonal";
+import {
+  getChord, getChordNotes,
+} from "@/scripts/helpers/chords";
 
-export default {
-  name: "ChordInformation",
-  setup() {
-    const fretboardParametersStore = useFretboardParametersStore();
+const fretboardParametersStore = useFretboardParametersStore();
 
-    const conjunctionFormatter = new Intl.ListFormat("en-GB", {
-      style: "long",
-      type: "conjunction",
-    });
-    const disjunctionFormatter = new Intl.ListFormat("en-GB", {
-      style: "long",
-      type: "disjunction",
-    });
+const conjunctionFormatter = new Intl.ListFormat("en-GB", {
+  style: "long",
+  type: "conjunction",
+});
+const disjunctionFormatter = new Intl.ListFormat("en-GB", {
+  style: "long",
+  type: "disjunction",
+});
 
-    return {
-      fretboardParametersStore,
-      conjunctionFormatter,
-      disjunctionFormatter,
-    };
-  },
-  methods: {
-    getNoteClass(note) {
-      if (this.fretboardParametersStore.chordNotes.root === note)
-        return "note-chord-root";
-      if (this.fretboardParametersStore.chordNotes.third === note)
-        return "note-chord-third";
-      if (this.fretboardParametersStore.chordNotes.fifth === note)
-        return "note-chord-fifth";
-      if (this.fretboardParametersStore.chordNotes.seventh === note)
-        return "note-chord-seventh";
-      return "";
-    },
-  },
-};
+const chord = computed<typeof Chord>(() => {
+  return getChord(
+    Note.get(fretboardParametersStore.note),
+    fretboardParametersStore.chordType
+  );
+});
+
+const classMap = computed<NoteClassMap[]>(() => {
+  return getClassMap(
+    chord.value,
+    true,
+    true
+  );
+});
 </script>
 
 <style scoped></style>

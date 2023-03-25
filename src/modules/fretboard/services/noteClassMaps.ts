@@ -1,46 +1,77 @@
-import { Chord, Scale } from "@tonaljs/tonal";
-import type { NoteClassMap } from "@/modules/fretboard/types/NoteClassMap";
-import { ChordIntervalsEnum } from "@/scripts/enums/ChordIntervalsEnum";
-import { ScaleIntervalsEnum } from "@/scripts/enums/ScaleIntervalsEnum";
+import { Chord, Interval, Note, Scale } from "@tonaljs/tonal";
+import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
+import { getIntervalStringName } from "@/scripts/helpers/intervals";
+import { getChordNotes } from "@/scripts/helpers/chords";
+import { getScaleNotes } from "@/scripts/helpers/scales";
 
-function getChordClassMaps(chord: typeof Chord): NoteClassMap[] {
+const chordNoteClassPrefix: string = "note-chord-";
+const scaleNoteClassPrefix: string = "note-scale-";
+
+/**
+ * Retrieve the class for a note in the class map
+ *
+ * @param note
+ * @param noteClassMap
+ */
+function getNoteClass(note: typeof Note, noteClassMap: NoteClassMap[]): string | null{
+  const mappedClass = noteClassMap.find((map) => map.note.pc === note.pc);
+
+  if (mappedClass === undefined) {
+    return null;
+  }
+
+  return mappedClass.class;
+}
+
+/**
+ * Determine whether the object passed in parameter is type Chord or other (Scale)
+ *
+ * @param object
+ */
+function isChordType(object: any): boolean {
+  return object.quality !== undefined;
+}
+
+/**
+ * Build the class map for a chord or a scale
+ *
+ * @param subject
+ * @param showRootNoteBackground
+ * @param showOtherNotesBackground
+ */
+function getClassMap(
+  subject: typeof Chord | typeof Scale,
+  showRootNoteBackground: boolean,
+  showOtherNotesBackground: boolean
+): NoteClassMap[] {
   const classMap: NoteClassMap[] = [];
-  const chordIntervals = Object.values(ChordIntervalsEnum);
 
-  chordIntervals.forEach((chordInterval: string, index: number) => {
-    const chordNote = chord.notes[index];
+  if (!showRootNoteBackground && !showOtherNotesBackground) return classMap;
 
-    if (chordNote !== undefined) {
+  let subjectNotes: string[] = [];
+  if (isChordType(subject)) {
+    subjectNotes = getChordNotes(subject);
+  } else {
+    subjectNotes = getScaleNotes(subject);
+  }
+  const subjectIntervals: string[] = subject.intervals;
+
+  subjectIntervals.forEach((interval: string, index: number) => {
+    const intervalNumber: number = Interval.num(interval);
+
+    if ((showRootNoteBackground && intervalNumber === 1)
+      || (showOtherNotesBackground && intervalNumber !== 1)
+    ) {
+      const classPrefix: string = isChordType(subject) ? chordNoteClassPrefix : scaleNoteClassPrefix;
+
       classMap.push({
-        note: chordNote,
-        intervals: chordInterval,
-        class: `note-chord-${chordInterval}`,
+        note: Note.get(subjectNotes[index]),
+        class: classPrefix + getIntervalStringName(interval),
+        interval: Interval.get(interval),
       });
     }
   });
-
   return classMap;
 }
 
-function getScaleClassMap(rootNote: string, scale: typeof Scale): NoteClassMap[] {
-  const classMap: NoteClassMap[] = [];
-  const scaleNotes = Scale.get(`${rootNote} ${scale.name}`).notes;
-
-  classMap.push({
-    note: scaleNotes[0],
-    intervals: ScaleIntervalsEnum.Root,
-    class: "note-scale-root"
-  });
-  scaleNotes.shift();
-  for (let i = 0; i < scaleNotes.length; i++) {
-    classMap.push({
-      note: scaleNotes[i],
-      intervals: null,
-      class: 'note-scale-' + (i % 2 === 0 ? 'tertiary' : 'secondary')
-    });
-  }
-
-  return classMap;
-}
-
-export { getChordClassMaps, getScaleClassMap }
+export { getClassMap, getNoteClass };

@@ -61,7 +61,7 @@ import { ref } from "vue";
 import { Note } from "@tonaljs/tonal";
 
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-import {SoundSampleInstrumentTypeEnum} from "@/modules/settings/services/enums/SoundSampleInstrumentTypeEnum";
+import {SoundSampleInstrumentTypeEnum} from "@/modules/settings/enums/SoundSampleInstrumentTypeEnum";
 
 export default {
   name: "SettingsTuningBassType",

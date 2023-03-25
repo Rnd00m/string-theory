@@ -1,11 +1,5 @@
 /* Todo : install scss and correctly import and compile css files */
 
-.note {
-    color: hsl(var(--bc));
-    background: hsl(var(--b1));
-    z-index: 5;
-}
-
 .note-root,
 .note-chord-root,
 .note-scale-root {
@@ -24,14 +18,30 @@
      background: var(--color-green);
  }
 
-.note-scale-secondary {
+.note-scale-third,
+.note-scale-fifth,
+.note-scale-seventh {
      background: var(--color-persian-orange);
  }
 
-.note-scale-tertiary {
+.note-scale-second,
+.note-scale-fourth,
+.note-scale-sixth {
      background: var(--color-persian-orange-darker);
  }
 
 .note-octave {
      font-size: 0.75rem;
  }
+
+.fretboard-note-selected {
+    background: hsl(var(--pf));
+}
+
+.note-error {
+    background: hsl(var(--er));
+}
+
+.note-success {
+    background: hsl(var(--su));
+}

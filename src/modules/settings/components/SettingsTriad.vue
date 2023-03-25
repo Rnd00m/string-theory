@@ -4,7 +4,7 @@
       <input
         type="checkbox"
         class="checkbox checkbox-sm lg:checkbox-md checkbox-primary"
-        v-model="showTriads"
+        v-model="showNotes"
       />
       <span class="label-text text-sm lg:text-base"
         >&nbsp;&nbsp;Show notes</span
@@ -21,16 +21,16 @@ export default {
   name: "SettingsTriad",
   setup() {
     const fretboardParametersStore = useFretboardParametersStore();
-    const showTriads = ref(false);
+    const showNotes = ref(false);
 
     return {
       fretboardParametersStore,
-      showTriads,
+      showNotes,
     };
   },
   watch: {
-    showTriads() {
-      this.fretboardParametersStore.showTriads = this.showTriads;
+    showNotes() {
+      this.fretboardParametersStore.showNotes = this.showNotes;
     },
   },
 };
