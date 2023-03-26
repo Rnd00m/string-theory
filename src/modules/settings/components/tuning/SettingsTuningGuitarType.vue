@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center gap-4 lg:gap-8">
+  <div class="flex justify-center gap-2 lg:gap-8">
     <BaseInputRadio
       name="tuning-note"
       value="6strings-guitar"
