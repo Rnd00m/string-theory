@@ -1,5 +1,7 @@
 /* semantic color variables for this project */
 :root {
+  --color-white: #e5e7eb;
+
   --color-blue-light: hsl(197, 100%, 42%);
   --color-blue: hsl(197, 100%, 32%);
   --color-blue-dark: hsl(197, 100%, 22%);
