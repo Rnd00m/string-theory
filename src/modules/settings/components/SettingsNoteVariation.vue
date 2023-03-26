@@ -1,65 +1,32 @@
 <template>
-  <div class="form-control">
-    <label class="label cursor-pointer">
-      <input
-        type="radio"
-        name="variation"
-        value=""
-        class="radio radio-xs lg:radio-md radio-primary checked:bg-primary"
-        v-model="selectedVariation"
-      />
-      <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;-</span>
-    </label>
-  </div>
-  <div class="form-control">
-    <label class="label cursor-pointer">
-      <input
-        type="radio"
-        name="variation"
-        value="#"
-        class="radio radio-xs lg:radio-md radio-primary checked:bg-primary"
-        v-model="selectedVariation"
-      />
-      <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;#</span>
-    </label>
-  </div>
+  <BaseInputRadio
+    label="-"
+    name="variation"
+    :value="NoteVariationEnum.None"
+    v-model="fretboardParametersStore.noteVariation"
+  ></BaseInputRadio>
 
-  <div class="form-control">
-    <label class="label cursor-pointer">
-      <input
-        type="radio"
-        name="variation"
-        value="b"
-        class="radio radio-xs lg:text-base radio-primary checked:bg-primary"
-        v-model="selectedVariation"
-      />
-      <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;♭</span>
-    </label>
-  </div>
+  <BaseInputRadio
+    label="#"
+    name="variation"
+    :value="NoteVariationEnum.Sharp"
+    v-model="fretboardParametersStore.noteVariation"
+  ></BaseInputRadio>
+
+  <BaseInputRadio
+    label="b"
+    name="variation"
+    :value="NoteVariationEnum.Flat"
+    v-model="fretboardParametersStore.noteVariation"
+  ></BaseInputRadio>
 </template>
 
-<script>
-import { ref } from "vue";
+<script setup lang="ts">
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import BaseInputRadio from "@/components/base/Input/BaseInputRadio.vue";
+import { NoteVariationEnum } from "@/scripts/enums/NoteVariationEnum";
 
-export default {
-  name: "SettingsNoteVariation",
-  setup() {
-    const fretboardParametersStore = useFretboardParametersStore();
-
-    const selectedVariation = ref("");
-
-    return {
-      fretboardParametersStore,
-      selectedVariation,
-    };
-  },
-  watch: {
-    selectedVariation() {
-      this.fretboardParametersStore.noteVariation = this.selectedVariation;
-    },
-  },
-};
+const fretboardParametersStore = useFretboardParametersStore();
 </script>
 
 <style scoped lang="scss"></style>

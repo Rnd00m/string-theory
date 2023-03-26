@@ -1,5 +1,5 @@
 export enum NoteVariationEnum {
-  Sharp = "Sharp",
-  Flat = "Flat",
+  Sharp = "#",
+  Flat = "b",
   None = "",
 }
