@@ -2,13 +2,13 @@
   <div class="form-control">
     <label class="label cursor-pointer">
       <input
-        type="radio"
+        type="checkbox"
         :name="props.name"
         v-model="value"
-        class="radio radio-xs lg:radio-sm radio-primary checked:bg-primary"
+        class="checkbox checkbox-xs lg:checkbox-sm checkbox-primary"
         v-bind="$attrs"
       />
-      <span class="label-text text-sm lg:text-base" v-if="props.label">&nbsp;&nbsp;{{ props.label }}</span>
+      <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;{{ props.label }}</span>
     </label>
   </div>
 </template>
@@ -19,7 +19,7 @@ import { computed } from "vue";
 interface Props {
   label: string | boolean;
   name: string;
-  modelValue: string;
+  modelValue: boolean;
 }
 const props = defineProps<Props>();
 const emit = defineEmits(["update:modelValue"]);

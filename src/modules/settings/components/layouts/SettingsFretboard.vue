@@ -29,6 +29,7 @@
         <div class="divider lg:divider-horizontal"></div>
 
         <SettingsOctave />
+
       </div>
     </BaseCard>
 

@@ -10,9 +10,8 @@
 </template>
 
 <script setup lang="ts">
-
 interface Props {
-  bodyPadding: string;
+  bodyPadding?: string;
 }
 const props = withDefaults(defineProps<Props>(), {
   bodyPadding: "",
