@@ -1,15 +1,13 @@
 <template>
   <MqResponsive target="lg+">
     <div class="chord-information flex justify-center">
-      <BaseCard>
-        <template v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord">
-          <h2 class="card-title">Chord Information</h2>
-          <ChordInformation></ChordInformation>
-        </template>
-        <template v-else>
-          <h2 class="card-title">Scale Information</h2>
-          <ScaleInformation></ScaleInformation>
-        </template>
+      <BaseCard v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord">
+        <template #title>Chord Information</template>
+        <ChordInformation></ChordInformation>
+      </BaseCard>
+      <BaseCard v-else>
+        <template #title>Scale Information</template>
+        <ScaleInformation></ScaleInformation>
       </BaseCard>
     </div>
   </MqResponsive>

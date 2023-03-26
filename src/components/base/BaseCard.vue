@@ -1,22 +1,22 @@
 <template>
   <div class="card shadow-xl">
-    <div class="card-body" :class="props.bodyPadding">
+    <div class="card-body" :class="props.bodyClasses">
       <h2 class="card-title" v-if="!!$slots.title">
         <slot name="title"></slot>
       </h2>
       <slot></slot>
+      <div class="card-actions grid" v-if="!!$slots['card-actions']">
+        <slot name="card-actions"></slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 interface Props {
-  bodyPadding?: string;
+  bodyClasses?: string[];
 }
-const props = withDefaults(defineProps<Props>(), {
-  bodyPadding: "",
-});
-
+const props = defineProps<Props>();
 </script>
 
 <style scoped lang="scss">

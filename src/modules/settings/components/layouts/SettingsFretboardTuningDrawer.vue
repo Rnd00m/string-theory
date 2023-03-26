@@ -2,12 +2,10 @@
   <div
     class="fretboard-settings-wrapper flex flex-col mx-auto space-y-2"
   >
-    <div class="card bg-base-200 shadow-xl">
-      <div class="card-body p-4">
-        <SettingsTuningSelection />
-      </div>
-    </div>
 
+    <SettingsTuningSelection />
+
+    <!-- TODO : Replace by tabs component -->
     <div class="card bg-base-200 shadow-xl">
       <div class="card-body p-4">
         <div class="grid grid-flow-row gap-3 content-center">
@@ -39,28 +37,11 @@
   </div>
 </template>
 
-<script>
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-
+<script setup lang="ts">
 import SettingsTuningSelection from "@/modules/settings/components/tuning/SettingsTuningSelection.vue";
 import SettingsTuningGuitarType from "@/modules/settings/components/tuning/SettingsTuningGuitarType.vue";
 import SettingsTuningBassType from "@/modules/settings/components/tuning/SettingsTuningBassType.vue";
 import SettingsSound from "@/modules/settings/components/SettingsSound.vue";
-
-export default {
-  name: "FretboardSettings",
-  components: {
-    SettingsTuningSelection,
-    SettingsTuningGuitarType,
-    SettingsTuningBassType,
-    SettingsSound
-  },
-  setup() {
-    const fretboardParametersStore = useFretboardParametersStore();
-
-    return { fretboardParametersStore };
-  },
-};
 </script>
 
 <style scoped lang="scss"></style>

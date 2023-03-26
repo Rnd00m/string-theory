@@ -2,12 +2,8 @@
   <div
     class="fretboard-settings-wrapper flex flex-col mx-auto lg:space-y-5 space-y-2"
   >
-    <BaseCard
-      body-padding="lg:p-4 p-2"
-    >
-      <div
-          class="flex flex-col w-full lg:flex-row justify-center"
-      >
+    <BaseCard :body-classes="['lg:p-4', 'p-2']">
+      <div class="flex flex-col w-full lg:flex-row justify-center">
         <div class="flex gap-3 justify-center">
           <SettingsNote />
         </div>
@@ -20,9 +16,7 @@
       </div>
     </BaseCard>
 
-    <BaseCard
-      body-padding="lg:p-4 p-2"
-    >
+    <BaseCard :body-classes="['lg:p-4', 'p-2']">
       <div class="flex flex-wrap items-center justify-evenly">
         <SettingsSelectTuningModal />
 
@@ -33,9 +27,7 @@
       </div>
     </BaseCard>
 
-    <BaseCard
-      body-padding="lg:p-4 p-2"
-    >
+    <BaseCard :body-classes="['lg:p-4', 'p-2']">
       <div class="flex gap-2 lg:gap-4 items-center justify-center">
         <SettingsChordType
           v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
