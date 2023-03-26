@@ -1,5 +1,5 @@
 <template>
-  <p>
+  <p class="max-w-prose">
     The {{ chord.name }} is a
     {{ chord.type }} chord composed of
     {{
@@ -19,8 +19,8 @@
       }}.
     </span>
   </p>
-  <p>It contains the notes :</p>
-  <div class="flex justify-center gap-8 w-full flex-row">
+  <p class="max-w-prose">It contains the notes :</p>
+  <div class="flex justify-center gap-8 flex-row">
     <div
       v-for="(note, index) in getChordNotes(chord)"
       :key="'chord-information-note-' + note"

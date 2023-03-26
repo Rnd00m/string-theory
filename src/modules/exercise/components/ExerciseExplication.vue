@@ -1,19 +1,19 @@
 <template>
   <div class="exercise-wrapper flex justify-center gap-4">
-    <div class="card bg-base-200 shadow-xl">
-      <div class="card-body">
-        <h2 class="card-title">Note finding exercise</h2>
-        <p>A note will be given to you. Find all the occurrences on the fretboard.</p>
-        <p>Choose your settings below.</p>
-        <div class="card-actions justify-end">
-          <button class="btn btn-primary" @click="startExercise">Start</button>
-        </div>
-      </div>
-    </div>
+    <BaseCard>
+      <template #title>Note finding exercise</template>
+      <p>A note will be given to you. Find all the occurrences on the fretboard.</p>
+      <p>Choose your settings below.</p>
+      <template #card-actions>
+        <button class="btn btn-primary place-self-end" @click="startExercise">Start</button>
+      </template>
+    </BaseCard>
   </div>
 </template>
 
 <script setup lang="ts">
+import BaseCard from "@/components/base/BaseCard.vue";
+
 const emit = defineEmits(["exercise-started"]);
 
 function startExercise() {

@@ -1,39 +1,16 @@
 <template>
-  <div class="form-control">
-    <label class="label cursor-pointer">
-      <input
-        type="checkbox"
-        class="checkbox checkbox-sm lg:checkbox-md checkbox-primary"
-        v-model="showNotes"
-      />
-      <span class="label-text text-sm lg:text-base"
-        >&nbsp;&nbsp;Show notes</span
-      >
-    </label>
-  </div>
+  <BaseInputCheckbox
+    name="show-notes"
+    label="Show notes"
+    v-model="fretboardParametersStore.showNotes"
+  />
 </template>
 
-<script>
-import { ref } from "vue";
+<script setup lang="ts">
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import BaseInputCheckbox from "@/components/base/Input/BaseInputCheckbox.vue";
 
-export default {
-  name: "SettingsTriad",
-  setup() {
-    const fretboardParametersStore = useFretboardParametersStore();
-    const showNotes = ref(false);
-
-    return {
-      fretboardParametersStore,
-      showNotes,
-    };
-  },
-  watch: {
-    showNotes() {
-      this.fretboardParametersStore.showNotes = this.showNotes;
-    },
-  },
-};
+const fretboardParametersStore = useFretboardParametersStore();
 </script>
 
 <style scoped lang="scss"></style>

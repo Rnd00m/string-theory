@@ -1,18 +1,14 @@
 <template>
   <MqResponsive target="lg+">
-    <div class="chord-information flex items-center justify-center">
-      <div class="card w-10/12 bg-base-200 shadow-xl">
-        <div class="card-body">
-          <template v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord">
-            <h2 class="card-title">Chord Information</h2>
-            <ChordInformation></ChordInformation>
-          </template>
-          <template v-else>
-            <h2 class="card-title">Scale Information</h2>
-            <ScaleInformation></ScaleInformation>
-          </template>
-        </div>
-      </div>
+    <div class="chord-information flex justify-center">
+      <BaseCard v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord">
+        <template #title>Chord Information</template>
+        <ChordInformation></ChordInformation>
+      </BaseCard>
+      <BaseCard v-else>
+        <template #title>Scale Information</template>
+        <ScaleInformation></ScaleInformation>
+      </BaseCard>
     </div>
   </MqResponsive>
   <MqResponsive target="lg-">
@@ -39,6 +35,7 @@ import ChordInformation from "@/modules/information/components/ChordInformation.
 import ScaleInformation from "@/modules/information/components/ScaleInformation.vue";
 import { MqResponsive } from "vue3-mq";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
+import BaseCard from "@/components/base/BaseCard.vue";
 
 const fretboardParametersStore = useFretboardParametersStore();
 </script>

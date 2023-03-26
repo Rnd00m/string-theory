@@ -1,40 +1,16 @@
 <template>
-  <div class="form-control">
-    <label class="label cursor-pointer">
-      <input
-        type="checkbox"
-        class="checkbox checkbox-sm lg:checkbox-md checkbox-primary"
-        v-model="showOctave"
-      />
-      <span class="label-text text-sm lg:text-base"
-        >&nbsp;&nbsp;Show octave</span
-      >
-    </label>
-  </div>
+  <BaseInputCheckbox
+    name="show-octave"
+    label="Show octave"
+    v-model="fretboardParametersStore.showOctave"
+  />
 </template>
 
-<script>
-import { ref } from "vue";
+<script setup lang="ts">
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import BaseInputCheckbox from "@/components/base/Input/BaseInputCheckbox.vue";
 
-export default {
-  name: "SettingsOctave",
-  setup() {
-    const fretboardParametersStore = useFretboardParametersStore();
-
-    const showOctave = ref(false);
-
-    return {
-      fretboardParametersStore,
-      showOctave,
-    };
-  },
-  watch: {
-    showOctave() {
-      this.fretboardParametersStore.showOctave = this.showOctave;
-    },
-  },
-};
+const fretboardParametersStore = useFretboardParametersStore();
 </script>
 
 <style scoped lang="scss"></style>

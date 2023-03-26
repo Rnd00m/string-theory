@@ -2,53 +2,45 @@
   <div
     class="fretboard-settings-wrapper flex flex-col mx-auto lg:space-y-5 space-y-2"
   >
-    <div class="card bg-base-200 shadow-xl">
-      <div
-        class="card-body lg:p-5 p-2 flex flex-col w-full lg:flex-row justify-center"
-      >
-        <div class="flex gap-3 justify-center">
-          <SettingsNote />
-        </div>
-
-        <div class="divider lg:divider-horizontal -my-2 lg:my-0"></div>
-
-        <div class="flex gap-3 justify-center">
-          <SettingsNoteVariation />
-        </div>
+    <BaseCard :body-classes="['lg:p-4', 'p-2']">
+      <div class="flex gap-3 justify-center">
+        <SettingsNote />
       </div>
-    </div>
 
-    <div class="card bg-base-200 shadow-xl">
-      <div class="card-body lg:p-4 p-2">
-        <div class="flex flex-wrap items-center justify-evenly">
-          <SettingsTriad />
+      <div class="divider lg:divider-horizontal -my-2 lg:my-0"></div>
 
-          <div class="divider lg:divider-horizontal"></div>
-
-          <SettingsOctave />
-        </div>
+      <div class="flex gap-3 justify-center">
+        <SettingsNoteVariation />
       </div>
-    </div>
+    </BaseCard>
 
-    <div class="card bg-base-200 shadow-xl">
-      <div class="card-body lg:p-4 p-2">
-        <div class="flex gap-2 lg:gap-4 items-center justify-center">
-          <SettingsChordType
+    <BaseCard :body-classes="['lg:p-4', 'p-2']">
+      <div class="flex flex-wrap items-center justify-evenly">
+        <SettingsTriad />
+
+        <div class="divider lg:divider-horizontal"></div>
+
+        <SettingsOctave />
+      </div>
+    </BaseCard>
+
+    <BaseCard :body-classes="['lg:p-4', 'p-2']">
+      <div class="flex gap-2 lg:gap-4 items-center justify-center">
+        <SettingsChordType
             v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
-          />
+        />
 
-          <SettingsScaleModal v-else />
+        <SettingsScaleModal v-else />
 
-          <div class="divider lg:divider-horizontal"></div>
+        <div class="divider lg:divider-horizontal"></div>
 
-          <SettingsDisplayType />
-        </div>
+        <SettingsDisplayType />
       </div>
-    </div>
+    </BaseCard>
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 
 import SettingsNote from "@/modules/settings/components/SettingsNote.vue";
@@ -59,24 +51,9 @@ import SettingsDisplayType from "@/modules/settings/components/SettingsDisplayTy
 import SettingsTriad from "@/modules/settings/components/SettingsTriad.vue";
 import SettingsScaleModal from "@/modules/settings/components/SettingsScaleModal.vue";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
+import BaseCard from "@/components/base/BaseCard.vue";
 
-export default {
-  name: "FretboardSettings",
-  components: {
-    SettingsNote,
-    SettingsNoteVariation,
-    SettingsOctave,
-    SettingsChordType,
-    SettingsDisplayType,
-    SettingsTriad,
-    SettingsScaleModal,
-  },
-  setup() {
-    const fretboardParametersStore = useFretboardParametersStore();
-
-    return { fretboardParametersStore, DisplayTypeEnum };
-  },
-};
+const fretboardParametersStore = useFretboardParametersStore();
 </script>
 
 <style scoped lang="scss"></style>
