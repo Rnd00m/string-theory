@@ -48,8 +48,8 @@ import SettingsTuningSelection from "@/modules/settings/components/tuning/Settin
 import SettingsTuningGuitarType from "@/modules/settings/components/tuning/SettingsTuningGuitarType.vue";
 import SettingsTuningBassType from "@/modules/settings/components/tuning/SettingsTuningBassType.vue";
 import SettingsSound from "@/modules/settings/components/SettingsSound.vue";
-import BaseTabs from "@/components/base/Tabs/BaseTabs.vue";
-import BaseTab from "@/components/base/Tabs/BaseTab.vue";
+import BaseTabs from "@/components/base/tabs/BaseTabs.vue";
+import BaseTab from "@/components/base/tabs/BaseTab.vue";
 </script>
 
 <style scoped lang="scss">

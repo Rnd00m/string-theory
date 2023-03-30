@@ -50,7 +50,7 @@
 <script setup lang="ts">
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 
-import BaseCard from "@/components/base/BaseCard.vue";
+import BaseCard from "@/components/base/cards/BaseCard.vue";
 
 import SettingsNote from "@/modules/settings/components/SettingsNote.vue";
 import SettingsNoteVariation from "@/modules/settings/components/SettingsNoteVariation.vue";

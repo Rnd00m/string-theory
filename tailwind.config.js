@@ -29,8 +29,15 @@ module.exports = {
           error: "#dc3055",
         },
       },
-      "emerald",
-      "winter",
+      {
+        winter: {
+          ...require("daisyui/src/colors/themes")["[data-theme=winter]"],
+          info: "#3ABFF8",
+          success: "#02a659",
+          warning: "#fd8621",
+          error: "#dc3055",
+        },
+      },
     ],
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],

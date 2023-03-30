@@ -12,6 +12,8 @@
     "@capacitor/android": "^4.6.3",
     "@capacitor/core": "^4.6.3",
     "@capacitor/ios": "^4.6.3",
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.2.96",
     "@tailwindcss/typography": "^0.5.2",
     "@tonaljs/tonal": "^4.6.5",
     "cordova-plugin-screen-orientation": "^3.0.2",

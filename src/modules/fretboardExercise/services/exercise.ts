@@ -1,5 +1,5 @@
 import { Note, Scale } from "@tonaljs/tonal";
-import type { NotePosition } from "@/modules/exercise/types/NotePosition";
+import type { NotePosition } from "@/modules/fretboardExercise/types/fretboardExercise";
 import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
 import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
 

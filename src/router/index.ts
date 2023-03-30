@@ -15,9 +15,19 @@ const router = createRouter({
       component: () => import("../views/VisualizerView.vue"),
     },
     {
-      path: "/training",
-      name: "training",
-      component: () => import("../views/exercises/find-notes/ExerciseFindNoteView.vue"),
+      path: "/exercise",
+      name: "exercise",
+      component: () => import("../views/exercises/ExerciseIndexView.vue"),
+    },
+    {
+      path: "/exercise/find-notes",
+      name: "exercise.findNotes",
+      component: () => import("../views/exercises/fretboard/ExerciseFindNotesView.vue"),
+    },
+    {
+      path: "/exercise/find-intervals",
+      name: "exercise.findIntervals",
+      component: () => import("../views/exercises/fretboard/ExerciseFindIntervalsView.vue"),
     },
     {
       path: "/about",
