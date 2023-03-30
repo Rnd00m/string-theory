@@ -1,48 +1,66 @@
 <template>
-  <div class="exercise-wrapper grid grid-cols-6 gap-4">
-    <div class="col-start-2 col-span-4 stats bg-base-200">
-      <div class="stat">
-        <div>Find all <span class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find">{{ noteToFind.pc }}</span> on the fretboard</div>
-        <div class="stat-value text-xl lg:text-2xl">{{ totalNoteFound }} / {{ totalNoteToFind }}</div>
-      </div>
+  <div class="training">
+    <FretboardExercise @exercise-started="startExercise">
+      <template #exercise-explication-title>
+        Note finding exercise
+      </template>
 
-      <div class="stat">
-        <div>Errors</div>
-        <div class="stat-value text-xl lg:text-2xl">{{ errorsNumber }}</div>
-      </div>
-    </div>
+      <template #exercise-explication-content>
+        <p>A note will be given to you. Find all the occurrences on the fretboard.</p>
+        <p>Choose your settings below.</p>
+      </template>
 
-    <div class="col-start-1 col-end-7">
-      <FretboardVisualizer
-        :fretboard-notes="fretboardNotes"
-        :is-note-selectable="true"
-        :is-sound-active="false"
-        @note-selected="selectNote"
-      />
-    </div>
+      <template #exercise-detail>
+        <div class="w-full stats bg-base-200">
+          <div class="stat">
+            <div>Find all <span class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find">{{ noteToFind.pc }}</span> on the fretboard</div>
+            <div class="stat-value text-xl lg:text-2xl">{{ totalNoteFound }} / {{ totalNoteToFind }}</div>
+          </div>
 
-    <input type="checkbox" id="modal-restart-exercise" class="modal-toggle" :checked="isStartModalDisplayed"/>
-    <div class="modal">
-      <div class="modal-box">
-        <h3 class="font-bold text-lg">Congratulations you've found all the notes</h3>
-        <p class="py-4">You could now restart the exercise with a new note or go back to another exercise.</p>
-        <div class="modal-action">
-          <button class="btn" @click="startExercise">Restart</button>
+          <div class="stat">
+            <div>Errors</div>
+            <div class="stat-value text-xl lg:text-2xl">{{ errorsNumber }}</div>
+          </div>
         </div>
-      </div>
-    </div>
+      </template>
+
+      <template #exercise-fretboard>
+        <FretboardVisualizer
+          :fretboard-notes="fretboardNotes"
+          :is-note-selectable="true"
+          :is-sound-active="false"
+          @note-selected="selectNote"
+        />
+      </template>
+
+      <template #exercise-modal>
+        <input type="checkbox" id="modal-restart-exercise" class="modal-toggle" :checked="isStartModalDisplayed"/>
+        <div class="modal">
+          <div class="modal-box">
+            <h3 class="font-bold text-lg">Congratulations you've found all the notes</h3>
+            <p class="py-4">You could now restart the exercise with a new note or go back to another exercise.</p>
+            <div class="modal-action">
+              <button class="btn" @click="startExercise">Restart</button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </FretboardExercise>
   </div>
 </template>
 
+<style></style>
 <script setup lang="ts">
+import FretboardExercise from "@/modules/fretboardExercise/components/FretboardExercise.vue";
+
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
 import { Note } from "@tonaljs/tonal";
-import { computed, onBeforeMount, ref } from "vue";
+import { computed, ref } from "vue";
 import {
   getDisplayVariationTypeToUse,
   getFretboardNotes,
 } from "@/modules/fretboard/services/fretboard";
-import type { NotePosition } from "@/modules/exercise/types/NotePosition";
+import type { NotePosition } from "@/modules/fretboardExercise/types/fretboardExercise";
 import type {
   FretboardNote,
   FretboardNoteSelectedEvent,
@@ -50,7 +68,7 @@ import type {
 import {
   getPositionOfNoteToFindOnFretboard,
   getRandomNote,
-} from "@/modules/exercise/services/exercise";
+} from "@/modules/fretboardExercise/services/exercise";
 
 const noteToFind = ref<typeof Note>();
 const baseNotes: typeof Note[] = [
@@ -115,10 +133,6 @@ function selectNote(eventData: FretboardNoteSelectedEvent) {
     return false;
   });
 }
-
-onBeforeMount(() => {
-  startExercise();
-});
 </script>
 
 <style scoped lang="scss">

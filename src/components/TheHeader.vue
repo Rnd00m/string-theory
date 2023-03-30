@@ -11,10 +11,10 @@
         <div class="flex-1 px-2 mx-2 hidden lg:block">String Theory</div>
         <div class="flex-none hidden lg:block">
           <ul class="menu menu-horizontal place-items-center">
-            <li><RouterLink to="/">Home</RouterLink></li>
-            <li><RouterLink to="/visualizer">Visualizer</RouterLink></li>
-            <li><RouterLink to="/training">Training</RouterLink></li>
-            <li><RouterLink to="/about">About</RouterLink></li>
+            <li><RouterLink :to="{name: 'home'}">Home</RouterLink></li>
+            <li><RouterLink :to="{name: 'visualizer'}">Visualizer</RouterLink></li>
+            <li><RouterLink :to="{name: 'exercise'}">Exercise</RouterLink></li>
+            <li><RouterLink :to="{name: 'about'}">About</RouterLink></li>
             <BaseThemeSelector :show-label="false"/>
           </ul>
         </div>
@@ -26,10 +26,10 @@
     <div class="drawer-side">
       <label for="header-menu-drawer" class="drawer-overlay"></label>
       <ul class="menu p-4 w-80 bg-base-100 relative">
-        <li><RouterLink to="/">Home</RouterLink></li>
-        <li><RouterLink to="/visualizer">Visualizer</RouterLink></li>
-        <li><RouterLink to="/training">Training</RouterLink></li>
-        <li><RouterLink to="/about">About</RouterLink></li>
+        <li><RouterLink :to="{name: 'home'}">Home</RouterLink></li>
+        <li><RouterLink :to="{name: 'visualizer'}">Visualizer</RouterLink></li>
+        <li><RouterLink :to="{name: 'exercise'}">Exercise</RouterLink></li>
+        <li><RouterLink :to="{name: 'about'}">About</RouterLink></li>
         <BaseThemeSelector class="absolute bottom-4 w-36 place-self-center"/>
       </ul>
     </div>

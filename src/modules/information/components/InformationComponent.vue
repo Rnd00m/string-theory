@@ -35,7 +35,7 @@ import ChordInformation from "@/modules/information/components/ChordInformation.
 import ScaleInformation from "@/modules/information/components/ScaleInformation.vue";
 import { MqResponsive } from "vue3-mq";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
-import BaseCard from "@/components/base/BaseCard.vue";
+import BaseCard from "@/components/base/cards/BaseCard.vue";
 
 const fretboardParametersStore = useFretboardParametersStore();
 </script>

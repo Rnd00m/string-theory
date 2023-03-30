@@ -51,7 +51,7 @@ import SettingsDisplayType from "@/modules/settings/components/SettingsDisplayTy
 import SettingsTriad from "@/modules/settings/components/SettingsTriad.vue";
 import SettingsScaleModal from "@/modules/settings/components/SettingsScaleModal.vue";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
-import BaseCard from "@/components/base/BaseCard.vue";
+import BaseCard from "@/components/base/cards/BaseCard.vue";
 
 const fretboardParametersStore = useFretboardParametersStore();
 </script>

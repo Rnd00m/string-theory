@@ -32,7 +32,7 @@ import { Note } from "@tonaljs/tonal";
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 import { ref } from "vue";
 import { SoundSampleInstrumentTypeEnum } from "@/modules/settings/enums/SoundSampleInstrumentTypeEnum";
-import BaseInputRadio from "@/components/base/Input/BaseInputRadio.vue";
+import BaseInputRadio from "@/components/base/inputs/BaseInputRadio.vue";
 
 const fretboardParametersStore = useFretboardParametersStore();
 const selectedInstrumentType = ref<string>("6strings-guitar");
