@@ -91,7 +91,11 @@ const isStartModalDisplayed = computed<boolean>(() => {
 });
 
 function startExercise(): void {
-  noteToFind.value = getRandomNote();
+  noteToFind.value = getRandomNote({
+    lowerNote: Note.get("E2"),
+    higherNote: Note.get("E5"),
+  });
+
   fretboardNotes.value = getFretboardNotes(
     baseNotes,
     12,

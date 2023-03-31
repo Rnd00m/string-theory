@@ -1,13 +1,43 @@
 import { Note, Scale } from "@tonaljs/tonal";
-import type { NotePosition } from "@/modules/fretboardExercise/types/fretboardExercise";
+import type {
+  NotePosition,
+  NoteRange
+} from "@/modules/fretboardExercise/types/fretboardExercise";
 import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
 import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
 
-function getRandomNote(): typeof Note {
-  const chromaticScale: string[] = Scale.get("C chromatic").notes;
-  const randomNote = Math.floor(Math.random() * chromaticScale.length);
+/**
+ * Get a random note from chromatic scale if no range specified
+ * Else get a random note between lower and higher note of the note range
+ * Note from NoteRange should include their octave (for example: "E4", "G2", etc.)
+ *
+ * @param noteRange
+ */
+function getRandomNote(noteRange?: NoteRange): typeof Note {
+  let notesArray: string[] = [];
 
-  return Note.get(chromaticScale[randomNote]);
+  if (noteRange === undefined) {
+    notesArray = Scale.get("C chromatic").notes;
+  } else {
+    notesArray = getNotesInRange(noteRange);
+  }
+
+  const randomNote = Math.floor(Math.random() * notesArray.length);
+
+  return Note.get(notesArray[randomNote]);
+}
+
+function getNotesInRange(noteRange: NoteRange): string[] {
+  const notesArray: string[] = [];
+  let currentNote: string = noteRange.lowerNote.name;
+  notesArray.push(currentNote);
+
+  do {
+    currentNote = Note.enharmonic(Note.transpose(Note.get(currentNote), "2m"));
+    notesArray.push(currentNote);
+  } while (currentNote !== noteRange.higherNote.name);
+
+  return notesArray;
 }
 
 function getPositionOfNoteToFindOnFretboard(
