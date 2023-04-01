@@ -57,5 +57,5 @@
 
 .note-to-find {
     background: hsl(var(--pf));
-    color: var(--color-white);
+    color: var(--color-white) !important;
 }
