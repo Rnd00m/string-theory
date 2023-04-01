@@ -1,10 +1,11 @@
-import { Note, Scale } from "@tonaljs/tonal";
+import {Interval, Note, Scale} from "@tonaljs/tonal";
 import type {
   NotePosition,
-  NoteRange
+  NoteRange,
 } from "@/modules/fretboardExercise/types/fretboardExercise";
 import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
 import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
+import { getRandomInt } from "@/scripts/helpers/utils";
 
 /**
  * Get a random note from chromatic scale if no range specified
@@ -22,9 +23,13 @@ function getRandomNote(noteRange?: NoteRange): typeof Note {
     notesArray = getNotesInRange(noteRange);
   }
 
-  const randomNote = Math.floor(Math.random() * notesArray.length);
+  const randomNoteIndex = getRandomInt(0, notesArray.length);
 
-  return Note.get(notesArray[randomNote]);
+  return Note.get(notesArray[randomNoteIndex]);
+}
+
+function getRandomInterval(): typeof Interval {
+  return Interval.get(Interval.fromSemitones(getRandomInt(0, 24)));
 }
 
 function getNotesInRange(noteRange: NoteRange): string[] {
@@ -42,13 +47,14 @@ function getNotesInRange(noteRange: NoteRange): string[] {
 
 function getPositionOfNoteToFindOnFretboard(
   fretboardNotes: FretboardNote[][],
-  noteToFind: typeof Note
+  notesToFind: typeof Note[],
+  isRestrictedToOctave: boolean
 ): NotePosition[] {
   const notePositions: NotePosition[] = [];
 
   fretboardNotes.forEach((string: FretboardNote[], stringNumber: number) => {
     string.forEach((fret: FretboardNote, fretNumber: number) => {
-      if (noteToFind.pc === fret.note.pc) {
+      if (areNotesMatchingFretboardNote(notesToFind, fret, isRestrictedToOctave)) {
         notePositions.push({
           key: getFretboardNoteKey(stringNumber, fretNumber),
           string: stringNumber,
@@ -61,4 +67,22 @@ function getPositionOfNoteToFindOnFretboard(
   return notePositions;
 }
 
-export { getRandomNote, getPositionOfNoteToFindOnFretboard };
+function areNotesMatchingFretboardNote(
+  notesToFind: typeof Note[],
+  fretboardNote: FretboardNote,
+  isRestrictedToOctave: boolean
+): boolean {
+  if (isRestrictedToOctave) {
+    if (notesToFind.findIndex((noteToFind) => noteToFind.name === fretboardNote.note.name) > -1) {
+      return true;
+    }
+    return false;
+  }
+
+  if (notesToFind.findIndex((noteToFind) => noteToFind.pc === fretboardNote.note.pc) > -1) {
+    return true;
+  }
+  return false;
+}
+
+export { getRandomNote, getRandomInterval, getPositionOfNoteToFindOnFretboard };

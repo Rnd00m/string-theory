@@ -101,7 +101,8 @@ function startExercise(): void {
   );
   positionsOfNoteToFind.value = getPositionOfNoteToFindOnFretboard(
     fretboardNotes.value,
-    noteToFind.value
+    [noteToFind.value],
+    false
   );
   totalNoteToFind.value = positionsOfNoteToFind.value.length;
   totalNoteFound.value = 0;
