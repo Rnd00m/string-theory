@@ -1,18 +1,18 @@
 <template>
   <div
-    class="fretboard-marker-wrapper h-8 grid lg:grid-cols-[repeat(13,_4.5rem)] grid-cols-[repeat(13,_3.5rem)]"
+    class="fretboard-marker-wrapper h-6 grid lg:grid-cols-[repeat(13,_4.5rem)] grid-cols-[repeat(13,_3.5rem)] content-center"
   >
     <div
-      class="fretboard-marker text-center"
+      class="fretboard-marker flex place-content-center"
       v-for="(n, index) in props.stringLength + 1"
       :key="n"
     >
       <template v-if="dotsPosition.includes(index)">
-        <div class="marker-dot"></div>
+        <div class="marker-dot rounded-full bg-base-content inline-block"></div>
       </template>
       <template v-else-if="doubleDotsPosition.includes(index)">
-        <div class="marker-dot"></div>
-        <div class="marker-dot"></div>
+        <div class="marker-dot rounded-full bg-base-content inline-block mr-1"></div>
+        <div class="marker-dot rounded-full bg-base-content inline-block"></div>
       </template>
     </div>
   </div>
@@ -37,11 +37,6 @@ const doubleDotsPosition = ref([12, 24]);
     .marker-dot {
       height: 0.3em;
       width: 0.3em;
-      margin-left: 0.2em;
-      margin-right: 0.2em;
-      border-radius: 50%;
-      background: hsl(var(--bc));
-      display: inline-block;
     }
   }
 }

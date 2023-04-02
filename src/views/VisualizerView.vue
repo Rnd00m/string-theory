@@ -11,7 +11,7 @@
         <svg-icon type="mdi" :path="mdiCogOutline" />
       </label>
     </div>
-    <div class="grid lg:gap-8">
+    <div class="grid lg:gap-4">
       <FretboardSettingsLayout></FretboardSettingsLayout>
       <FretboardVisualizer
         :fretboard-notes="fretboardNotes"
