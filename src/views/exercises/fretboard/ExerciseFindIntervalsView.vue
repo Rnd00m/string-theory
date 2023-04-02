@@ -108,7 +108,7 @@ function startExercise(): void {
     12,
     [],
     getDisplayVariationTypeToUse(startNote.value),
-    true
+    false
   );
 
   // Display start note on fretboard
