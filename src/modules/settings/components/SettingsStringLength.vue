@@ -1,19 +1,19 @@
 <template>
   <BaseSelect
     name="chord-type"
-    :items="chordTypeList"
-    value="notation"
-    display="name"
-    v-model="fretboardParametersStore.chordType"
+    :items="stringLength"
+    v-model="fretboardParametersStore.fretboard.stringLength"
   />
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-import { chordTypeList } from "@/modules/settings/services/ChordTypeList";
 import BaseSelect from "@/components/base/BaseSelect.vue";
 
 const fretboardParametersStore = useFretboardParametersStore();
+
+const stringLength = ref<number[]>([12, 24]);
 </script>
 
 <style scoped lang="scss"></style>

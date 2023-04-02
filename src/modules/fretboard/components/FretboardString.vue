@@ -1,8 +1,6 @@
 <template>
   <div class="strings-wrapper">
-    <div
-      class="grid lg:grid-cols-[repeat(13,_4.5rem)] grid-cols-[repeat(13,_3.5rem)]"
-    >
+    <div class="grid grid-flow-col auto-cols-[3.5rem] lg:auto-cols-[4.5rem]">
       <FretboardNote
         v-for="(fretboardNote, index) in props.stringNotes"
         :key="`string-${props.string}-fret-${index}`"

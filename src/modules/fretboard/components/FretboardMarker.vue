@@ -1,18 +1,16 @@
 <template>
-  <div
-    class="fretboard-marker-wrapper h-6 grid lg:grid-cols-[repeat(13,_4.5rem)] grid-cols-[repeat(13,_3.5rem)] content-center"
-  >
+  <div class="fretboard-marker-wrapper h-6 grid grid-flow-col auto-cols-[3.5rem] lg:auto-cols-[4.5rem] content-center">
     <div
-      class="fretboard-marker flex place-content-center"
-      v-for="(n, index) in props.stringLength + 1"
+      class="fretboard-marker inline-flex justify-center"
+      v-for="(n, index) in props.stringLength"
       :key="n"
     >
       <template v-if="dotsPosition.includes(index)">
-        <div class="marker-dot rounded-full bg-base-content inline-block"></div>
+        <div class="marker-dot rounded-full bg-base-content"></div>
       </template>
       <template v-else-if="doubleDotsPosition.includes(index)">
-        <div class="marker-dot rounded-full bg-base-content inline-block mr-1"></div>
-        <div class="marker-dot rounded-full bg-base-content inline-block"></div>
+        <div class="marker-dot rounded-full bg-base-content mr-1"></div>
+        <div class="marker-dot rounded-full bg-base-content"></div>
       </template>
     </div>
   </div>
@@ -35,8 +33,8 @@ const doubleDotsPosition = ref([12, 24]);
 .fretboard-marker-wrapper {
   .fretboard-marker {
     .marker-dot {
-      height: 0.3em;
-      width: 0.3em;
+      height: 5px;
+      width: 5px;
     }
   }
 }

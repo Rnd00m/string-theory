@@ -65,7 +65,7 @@ const fretboardNotes = computed<FretboardNote[][]>(() => {
   return getFretboardNotes(
     fretboardParametersStore.fretboard.baseNotes,
     fretboardParametersStore.fretboard.stringLength,
-    noteClassMaps.value,
+      noteClassMaps.value,
     displayVariationType.value
   );
 });
