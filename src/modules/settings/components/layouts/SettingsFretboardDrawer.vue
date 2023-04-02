@@ -7,7 +7,7 @@
         <SettingsNote />
       </div>
 
-      <div class="divider lg:divider-horizontal -my-2 lg:my-0"></div>
+      <div class="divider lg:divider-horizontal -my-3"></div>
 
       <div class="flex gap-3 justify-center">
         <SettingsNoteVariation />
@@ -18,9 +18,9 @@
       <div class="flex flex-wrap items-center justify-evenly">
         <SettingsTriad />
 
-        <div class="divider lg:divider-horizontal"></div>
-
         <SettingsOctave />
+
+        <SettingsStringLength />
       </div>
     </BaseCard>
 
@@ -31,8 +31,6 @@
         />
 
         <SettingsScaleModal v-else />
-
-        <div class="divider lg:divider-horizontal"></div>
 
         <SettingsDisplayType />
       </div>
@@ -52,6 +50,7 @@ import SettingsTriad from "@/modules/settings/components/SettingsTriad.vue";
 import SettingsScaleModal from "@/modules/settings/components/SettingsScaleModal.vue";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
 import BaseCard from "@/components/base/cards/BaseCard.vue";
+import SettingsStringLength from "@/modules/settings/components/SettingsStringLength.vue";
 
 const fretboardParametersStore = useFretboardParametersStore();
 </script>

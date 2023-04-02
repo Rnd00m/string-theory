@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fretboard-settings-wrapper flex flex-col mx-auto lg:space-y-5 space-y-2"
+    class="fretboard-settings-wrapper w-4xl max-w-4xl flex flex-col mx-auto lg:space-y-5 space-y-2"
   >
     <BaseCard :body-classes="['lg:p-4', 'p-2']">
       <div class="flex flex-col w-full lg:flex-row justify-center">
@@ -19,6 +19,10 @@
     <BaseCard :body-classes="['lg:p-4', 'p-2']">
       <div class="flex flex-wrap items-center justify-evenly">
         <SettingsSelectTuningModal />
+
+        <div class="divider lg:divider-horizontal"></div>
+
+        <SettingsStringLength />
 
         <div class="divider lg:divider-horizontal"></div>
 
@@ -61,6 +65,7 @@ import SettingsTriad from "@/modules/settings/components/SettingsTriad.vue";
 import SettingsScaleModal from "@/modules/settings/components/SettingsScaleModal.vue";
 import SettingsSelectTuningModal from "@/modules/settings/components/layouts/SettingsSelectTuningModal.vue";
 import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
+import SettingsStringLength from "@/modules/settings/components/SettingsStringLength.vue";
 
 const fretboardParametersStore = useFretboardParametersStore();
 </script>
