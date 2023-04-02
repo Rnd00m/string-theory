@@ -13,7 +13,7 @@
       <template #exercise-detail>
         <div class="w-full stats bg-base-200">
           <div class="stat">
-            <div>Find all <span class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find">{{ noteToFind.pc }}</span> on the fretboard</div>
+            <div>Find a <span class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find">{{ intervalToFind.name }}</span> from the selected <span class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find">{{ startNote.pc }}</span></div>
             <div class="stat-value text-xl lg:text-2xl">{{ totalNoteFound }} / {{ totalNoteToFind }}</div>
           </div>
 
@@ -54,7 +54,7 @@
 import FretboardExercise from "@/modules/fretboardExercise/components/FretboardExercise.vue";
 
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
-import { Note } from "@tonaljs/tonal";
+import {Interval, Note} from "@tonaljs/tonal";
 import { computed, ref } from "vue";
 import {
   getDisplayVariationTypeToUse,
@@ -66,10 +66,14 @@ import type {
   FretboardNoteSelectedEvent,
 } from "@/modules/fretboard/types/fretboard";
 import {
-  getPositionOfNoteToFindOnFretboard,
+  getPositionOfNoteToFindOnFretboard, getRandomInterval,
   getRandomNote,
 } from "@/modules/fretboardExercise/services/exercise";
+import {getRandomInt, getRandomIntInclusive} from "@/scripts/helpers/utils";
+import {getTransposedNote} from "@/scripts/helpers/notes";
 
+const startNote = ref<typeof Note>();
+const intervalToFind = ref<typeof Interval>();
 const noteToFind = ref<typeof Note>();
 const baseNotes: typeof Note[] = [
   Note.get("E4"),
@@ -91,21 +95,69 @@ const isStartModalDisplayed = computed<boolean>(() => {
 });
 
 function startExercise(): void {
-  noteToFind.value = getRandomNote();
+  // Get a random start note and a random interval to start exercise
+  startNote.value = getRandomNote({
+    lowerNote: Note.get("E2"),
+    higherNote: Note.get("E5"),
+  });
+  intervalToFind.value = getRandomInterval();
+
+  // Initialize fretboard
   fretboardNotes.value = getFretboardNotes(
     baseNotes,
     12,
     [],
-    getDisplayVariationTypeToUse(noteToFind.value),
-    false
+    getDisplayVariationTypeToUse(startNote.value),
+    true
   );
+
+  // Display start note on fretboard
+  displayNoteOnFretboard(startNote.value);
+
+  noteToFind.value = getTransposedNote(startNote.value, intervalToFind.value);
+
   positionsOfNoteToFind.value = getPositionOfNoteToFindOnFretboard(
     fretboardNotes.value,
-    noteToFind.value
+    [noteToFind.value],
+    true
   );
+
+  if (positionsOfNoteToFind.value.length === 0) {
+    startExercise();
+  }
+
   totalNoteToFind.value = positionsOfNoteToFind.value.length;
   totalNoteFound.value = 0;
   errorsNumber.value = 0;
+}
+
+/**
+ * Select a random note on fretboard with the same octave as the given one
+ *
+ * @param note
+ */
+function displayNoteOnFretboard(note: typeof Note): void {
+  const foundNotes: FretboardNote[] = [];
+
+  fretboardNotes.value.forEach((strings: FretboardNote[]) => {
+    const foundNoteOnFretboard = strings.find((fretboardNote: FretboardNote) => fretboardNote.note.name === note.name);
+
+    if (foundNoteOnFretboard !== undefined) {
+      foundNotes.push(foundNoteOnFretboard);
+    }
+  });
+
+  const randomNoteIndex = getRandomInt(0, foundNotes.length);
+  const selectedFretboardNote: FretboardNote = foundNotes[randomNoteIndex];
+
+  fretboardNotes.value.some((strings: FretboardNote[]) => {
+    const foundNoteOnFretboard = strings.find((fretboardNote: FretboardNote) => fretboardNote.key === selectedFretboardNote.key);
+
+    if (foundNoteOnFretboard !== undefined) {
+      foundNoteOnFretboard.isDisplayed = true;
+      foundNoteOnFretboard.classes.push("note-to-find");
+    }
+  });
 }
 
 function selectNote(eventData: FretboardNoteSelectedEvent) {
@@ -136,7 +188,4 @@ function selectNote(eventData: FretboardNoteSelectedEvent) {
 </script>
 
 <style scoped lang="scss">
-.note-to-find {
-  background: hsl(var(--pf));
-}
 </style>

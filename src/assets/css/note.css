@@ -54,3 +54,8 @@
     background: hsl(var(--su));
     color: var(--color-white) !important;
 }
+
+.note-to-find {
+    background: hsl(var(--pf));
+    color: var(--color-white) !important;
+}

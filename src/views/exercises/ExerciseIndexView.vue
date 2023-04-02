@@ -18,7 +18,7 @@
       icon-class="bg-green-500"
     >
       <template #title>Find intervals on fretboard</template>
-      <template #content>To perfectly know different prositions on fretboard</template>
+      <template #content>To easily find your chord positions on fretboard</template>
       <template #card-actions>
         <RouterLink class="btn btn-primary place-self-end" >Start</RouterLink>
       </template>

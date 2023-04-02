@@ -1,7 +1,7 @@
 <template>
   <RouterLink
     :to="props.to"
-    class="card-link relative flex justify-between py-6 px-6 rounded-2xl w-72 md:w-96 my-4 shadow-xl"
+    class="card-link relative flex justify-between py-6 px-6 rounded-2xl w-72 md:w-80 lg:w-96 my-4 shadow-xl"
   >
     <div
       class="text-white flex items-center absolute rounded-full p-2 lg:p-4 shadow-xl left-4 -top-6"
@@ -10,10 +10,10 @@
       <svg-icon type="mdi" :path="props.iconPath" size="28" />
     </div>
     <div class="mt-2 lg:mt-4">
-      <h2 class="sm:text-base md:text-xl font-semibold lg:my-2" v-if="!!$slots.title">
+      <h2 class="sm:text-base md:text-lg lg:text-xl font-semibold lg:my-2 my-1" v-if="!!$slots.title">
         <slot name="title"></slot>
       </h2>
-      <div class="flex space-x-2 text-gray-400 text-sm" v-if="!!$slots.content">
+      <div class="flex space-x-2 text-gray-400 text-sm md:text-base" v-if="!!$slots.content">
         <slot name="content" />
       </div>
     </div>
