@@ -21,7 +21,7 @@
     </div>
     <div>
       <div class="grid grid-flow-col gap-4">
-        <a href="https://github.com/Bre4kd0wn" target="_blank">
+        <a href="https://github.com/Rnd00m" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

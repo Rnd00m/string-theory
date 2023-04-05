@@ -64,7 +64,7 @@ import SettingsDisplayType from "@/modules/settings/components/SettingsDisplayTy
 import SettingsTriad from "@/modules/settings/components/SettingsTriad.vue";
 import SettingsScaleModal from "@/modules/settings/components/SettingsScaleModal.vue";
 import SettingsSelectTuningModal from "@/modules/settings/components/layouts/SettingsSelectTuningModal.vue";
-import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
+import { DisplayTypeEnum } from "@/commons/enums/DisplayTypeEnum";
 import SettingsStringLength from "@/modules/settings/components/SettingsStringLength.vue";
 
 const fretboardParametersStore = useFretboardParametersStore();

@@ -1,5 +1,3 @@
-import type { ChordType } from "@/scripts/types/global";
-
 export const chordTypeList: ChordType[] = [
   {
     name: "Major",

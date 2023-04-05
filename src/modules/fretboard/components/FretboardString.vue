@@ -1,7 +1,7 @@
 <template>
   <div class="strings-wrapper">
     <div class="grid grid-flow-col auto-cols-[3.5rem] lg:auto-cols-[4.5rem]">
-      <FretboardNote
+      <FretboardNoteComponent
         v-for="(fretboardNote, index) in props.stringNotes"
         :key="`string-${props.string}-fret-${index}`"
         :fret="index"
@@ -11,18 +11,17 @@
         :sampler="sampler"
         :is-sound-active="props.isSoundActive"
         v-bind="$attrs"
-      ></FretboardNote>
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import FretboardNote from "./FretboardNote.vue";
+import FretboardNoteComponent from "./FretboardNote.vue";
 import * as Tone from "tone";
-import type { FretboardNote as FretboardNoteType } from "@/modules/fretboard/types/fretboard";
 
 interface Props {
-  stringNotes: FretboardNoteType[];
+  stringNotes: FretboardNote[];
   string: number;
   showOctave?: boolean;
   sampler: Tone.Sampler;

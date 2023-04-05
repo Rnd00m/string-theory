@@ -48,7 +48,7 @@ import SettingsChordType from "@/modules/settings/components/SettingsChordType.v
 import SettingsDisplayType from "@/modules/settings/components/SettingsDisplayType.vue";
 import SettingsTriad from "@/modules/settings/components/SettingsTriad.vue";
 import SettingsScaleModal from "@/modules/settings/components/SettingsScaleModal.vue";
-import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
+import { DisplayTypeEnum } from "@/commons/enums/DisplayTypeEnum";
 import BaseCard from "@/components/base/cards/BaseCard.vue";
 import SettingsStringLength from "@/modules/settings/components/SettingsStringLength.vue";
 

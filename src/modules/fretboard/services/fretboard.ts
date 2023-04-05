@@ -1,7 +1,6 @@
 import { Note } from "@tonaljs/tonal";
 import { getNoteClass } from "@/modules/fretboard/services/noteClassMaps";
 import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariationType";
-import type { FretboardNote, NoteClassMap } from "../types/fretboard";
 
 /**
  * Generate the unique key for a note on the fretboard
@@ -23,19 +22,15 @@ function getFretboardNoteKey(string: number, fret: number): string {
  * @param displayNote
  */
 function getFretboardNotes(
-  baseNotes: typeof Note[],
+  baseNotes: Note[],
   stringLength: number,
-  noteClassMap?: NoteClassMap[],
-  displayVariationType?: DisplayVariationType,
-  displayNote?: boolean
+  noteClassMap: NoteClassMap[] = [],
+  displayVariationType: DisplayVariationType = DisplayVariationType.Sharp,
+  displayNote: true
 ): FretboardNote[][] {
   const fretboardNote: FretboardNote[][] = [];
 
-  if (noteClassMap === undefined) noteClassMap = [] as NoteClassMap[];
-  if (displayVariationType === undefined) displayVariationType = DisplayVariationType.Sharp;
-  if (displayNote === undefined) displayNote = true;
-
-  baseNotes.forEach((baseNote: typeof Note, stringNumber: number) => {
+  baseNotes.forEach((baseNote: Note, stringNumber: number) => {
     fretboardNote.push(
       getStringNotes(
         baseNote,
@@ -62,7 +57,7 @@ function getFretboardNotes(
  * @param displayNote
  */
 function getStringNotes(
-  baseNote: typeof Note,
+  baseNote: Note,
   stringLength: number,
   stringNumber: number,
   noteClassMap: NoteClassMap[],
@@ -70,7 +65,7 @@ function getStringNotes(
   displayNote: boolean
 ): FretboardNote[] {
   const stringNotes: FretboardNote[] = [];
-  let currentNote: typeof Note = baseNote;
+  let currentNote: Note = baseNote;
   stringNotes.push({
     key: getFretboardNoteKey(stringNumber, 0),
     string: stringNumber,
@@ -81,7 +76,7 @@ function getStringNotes(
   });
 
   for (let fretNumber = 1; fretNumber <= stringLength; fretNumber++) {
-    let newNote: typeof Note = Note.get(
+    let newNote: Note = Note.get(
       Note.simplify(
         Note.transpose(currentNote, "2m")
       )
@@ -110,7 +105,7 @@ function getStringNotes(
  * @param note
  * @param classMap
  */
-function getNoteClassesFromClassMap(note: typeof Note, classMap: NoteClassMap[]): string[] {
+function getNoteClassesFromClassMap(note: Note, classMap: NoteClassMap[]): string[] {
   const noteClasses: string[] = [];
 
   if (classMap !== undefined) {
@@ -131,9 +126,9 @@ function getNoteClassesFromClassMap(note: typeof Note, classMap: NoteClassMap[])
  * @param displayVariationType
  */
 function getNoteToDisplay(
-  note: typeof Note,
+  note: Note,
   displayVariationType?: DisplayVariationType
-): typeof Note {
+): Note {
   switch (displayVariationType) {
     case DisplayVariationType.Flat:
       return note;
@@ -150,7 +145,7 @@ function getNoteToDisplay(
  * @param notes
  */
 function getDisplayVariationTypeToUse(
-  notes: typeof Note[] | typeof Note
+  notes: Note[] | Note
 ): DisplayVariationType {
   if (!Array.isArray(notes)) {
     return getNoteVariation(notes) === DisplayVariationType.Flat ? DisplayVariationType.Flat : DisplayVariationType.Sharp;
@@ -173,7 +168,7 @@ function getDisplayVariationTypeToUse(
   return currentNoteVariation;
 }
 
-function getNoteVariation(note: typeof Note): DisplayVariationType {
+function getNoteVariation(note: Note): DisplayVariationType {
   if (note.alt === 1) {
     return DisplayVariationType.Sharp;
   } else if (note.alt === -1) {

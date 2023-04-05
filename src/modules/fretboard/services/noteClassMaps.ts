@@ -1,11 +1,10 @@
 import { Chord, Interval, Note, Scale } from "@tonaljs/tonal";
-import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
-import { getIntervalStringName } from "@/scripts/helpers/intervals";
-import { getChordNotes } from "@/scripts/helpers/chords";
-import { getScaleNotes } from "@/scripts/helpers/scales";
+import { getIntervalStringName } from "@/commons/helpers/intervals";
+import { getChordNotes } from "@/commons/helpers/chords";
+import { getScaleNotes } from "@/commons/helpers/scales";
 
-const chordNoteClassPrefix: string = "note-chord-";
-const scaleNoteClassPrefix: string = "note-scale-";
+const chordNoteClassPrefix = "note-chord-";
+const scaleNoteClassPrefix = "note-scale-";
 
 /**
  * Retrieve the class for a note in the class map
@@ -13,7 +12,7 @@ const scaleNoteClassPrefix: string = "note-scale-";
  * @param note
  * @param noteClassMap
  */
-function getNoteClass(note: typeof Note, noteClassMap: NoteClassMap[]): string | null{
+function getNoteClass(note: Note, noteClassMap: NoteClassMap[]): string | null{
   const mappedClass = noteClassMap.find((map) => map.note.pc === note.pc);
 
   if (mappedClass === undefined) {
@@ -40,7 +39,7 @@ function isChordType(object: any): boolean {
  * @param showOtherNotesBackground
  */
 function getClassMap(
-  subject: typeof Chord | typeof Scale,
+  subject: Chord | Scale,
   showRootNoteBackground: boolean,
   showOtherNotesBackground: boolean
 ): NoteClassMap[] {
@@ -57,7 +56,7 @@ function getClassMap(
   const subjectIntervals: string[] = subject.intervals;
 
   subjectIntervals.forEach((interval: string, index: number) => {
-    const intervalNumber: number = Interval.num(interval);
+    const intervalNumber: number | undefined = Interval.num(interval);
 
     if ((showRootNoteBackground && intervalNumber === 1)
       || (showOtherNotesBackground && intervalNumber !== 1)
