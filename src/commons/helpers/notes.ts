@@ -1,9 +1,9 @@
 import { Interval, Note } from "@tonaljs/tonal";
 
 function getTransposedNote(
-  note: typeof Note,
-  interval: typeof Interval
-): typeof Note {
+  note: Note,
+  interval: Interval
+): Note {
   return Note.get(Note.simplify(Note.transpose(note, interval)));
 }
 

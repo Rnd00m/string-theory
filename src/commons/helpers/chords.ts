@@ -1,5 +1,4 @@
 import { Chord, Note } from "@tonaljs/tonal";
-import type { ChordType } from "@/scripts/types/global";
 
 /**
  * Return a Chord from a rootNote and a ChordType
@@ -8,9 +7,9 @@ import type { ChordType } from "@/scripts/types/global";
  * @param chordType
  */
 function getChord(
-  rootNote: typeof Note,
+  rootNote: Note,
   chordType: ChordType
-): typeof Chord {
+): Chord {
   return Chord.get(`${rootNote.pc}${chordType}`);
 }
 
@@ -20,7 +19,7 @@ function getChord(
  *
  * @param chord
  */
-function getChordNotes(chord: typeof Chord): typeof Note[] {
+function getChordNotes(chord: Chord): Note[] {
   return chord.notes.map((note: string) => Note.get(Note.simplify(note)));
 }
 

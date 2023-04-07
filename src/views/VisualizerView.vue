@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-import { useGlobalStore } from "@/scripts/stores/globalStore";
+import { useGlobalStore } from "@/commons/stores/globalStore";
 
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
 import FretboardSettingsLayout from "@/components/layouts/FretboardSettingsViewLayout.vue";
@@ -37,11 +37,7 @@ import { mdiCogOutline } from "@mdi/js";
 import { mdiTune } from "@mdi/js";
 
 import { computed } from "vue";
-import type {
-  FretboardNote,
-  NoteClassMap,
-} from "@/modules/fretboard/types/fretboard";
-import { DisplayTypeEnum } from "@/scripts/enums/DisplayTypeEnum";
+import { DisplayTypeEnum } from "@/commons/enums/DisplayTypeEnum";
 import { getClassMap } from "@/modules/fretboard/services/noteClassMaps";
 import {
   getDisplayVariationTypeToUse,
@@ -52,11 +48,11 @@ import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariation
 import {
   getChord,
   getChordNotes
-} from "@/scripts/helpers/chords";
+} from "@/commons/helpers/chords";
 import {
   getScale,
   getScaleNotes,
-} from "@/scripts/helpers/scales";
+} from "@/commons/helpers/scales";
 
 const globalStore = useGlobalStore();
 const fretboardParametersStore = useFretboardParametersStore();
@@ -66,12 +62,13 @@ const fretboardNotes = computed<FretboardNote[][]>(() => {
     fretboardParametersStore.fretboard.baseNotes,
     fretboardParametersStore.fretboard.stringLength,
     noteClassMaps.value,
-    displayVariationType.value
+    displayVariationType.value,
+    true
   );
 });
 
 // Selected chord in the store
-const chord = computed<typeof Chord>(() => {
+const chord = computed<Chord>(() => {
   return getChord(
     Note.get(fretboardParametersStore.note),
     fretboardParametersStore.chordType
@@ -79,7 +76,7 @@ const chord = computed<typeof Chord>(() => {
 });
 
 // Selected scale in the store
-const scale = computed<typeof Scale>(() => {
+const scale = computed<Scale>(() => {
   return getScale(
     Note.get(fretboardParametersStore.note),
     fretboardParametersStore.scaleName

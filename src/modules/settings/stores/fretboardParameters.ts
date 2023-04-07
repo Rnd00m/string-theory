@@ -1,9 +1,9 @@
-import {defineStore} from "pinia";
-import {Note} from "@tonaljs/tonal";
-import {SoundSampleInstrumentTypeEnum} from "@/modules/settings/enums/SoundSampleInstrumentTypeEnum";
-import {soundSampleList} from "@/modules/settings/services/soundSampleList";
-import {DisplayTypeEnum} from "@/scripts/enums/DisplayTypeEnum";
-import {NoteVariationEnum} from "@/scripts/enums/NoteVariationEnum";
+import { defineStore } from "pinia";
+import { Note } from "@tonaljs/tonal";
+import { SoundSampleInstrumentTypeEnum } from "@/modules/settings/enums/SoundSampleInstrumentTypeEnum";
+import { DisplayTypeEnum } from "@/commons/enums/DisplayTypeEnum";
+import { NoteVariationEnum } from "@/commons/enums/NoteVariationEnum";
+import { soundSampleList } from "@/modules/settings/services/SoundSampleList";
 
 export const useFretboardParametersStore = defineStore("fretboard-parameters", {
   state: () => {

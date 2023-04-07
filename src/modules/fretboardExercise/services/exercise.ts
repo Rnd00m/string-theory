@@ -1,11 +1,6 @@
-import {Interval, Note, Scale} from "@tonaljs/tonal";
-import type {
-  NotePosition,
-  NoteRange,
-} from "@/modules/fretboardExercise/types/fretboardExercise";
+import { Interval, Note, Scale } from "@tonaljs/tonal";
 import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
-import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
-import { getRandomInt } from "@/scripts/helpers/utils";
+import { getRandomInt } from "@/commons/helpers/utils";
 
 /**
  * Get a random note from chromatic scale if no range specified
@@ -14,7 +9,7 @@ import { getRandomInt } from "@/scripts/helpers/utils";
  *
  * @param noteRange
  */
-function getRandomNote(noteRange?: NoteRange): typeof Note {
+function getRandomNote(noteRange?: NoteRange): Note {
   let notesArray: string[] = [];
 
   if (noteRange === undefined) {
@@ -28,7 +23,7 @@ function getRandomNote(noteRange?: NoteRange): typeof Note {
   return Note.get(notesArray[randomNoteIndex]);
 }
 
-function getRandomInterval(): typeof Interval {
+function getRandomInterval(): Interval {
   return Interval.get(Interval.fromSemitones(getRandomInt(0, 24)));
 }
 
@@ -47,7 +42,7 @@ function getNotesInRange(noteRange: NoteRange): string[] {
 
 function getPositionOfNoteToFindOnFretboard(
   fretboardNotes: FretboardNote[][],
-  notesToFind: typeof Note[],
+  notesToFind: Note[],
   isRestrictedToOctave: boolean
 ): NotePosition[] {
   const notePositions: NotePosition[] = [];
@@ -68,7 +63,7 @@ function getPositionOfNoteToFindOnFretboard(
 }
 
 function areNotesMatchingFretboardNote(
-  notesToFind: typeof Note[],
+  notesToFind: Note[],
   fretboardNote: FretboardNote,
   isRestrictedToOctave: boolean
 ): boolean {

@@ -60,18 +60,13 @@ import {
   getDisplayVariationTypeToUse,
   getFretboardNotes,
 } from "@/modules/fretboard/services/fretboard";
-import type { NotePosition } from "@/modules/fretboardExercise/types/fretboardExercise";
-import type {
-  FretboardNote,
-  FretboardNoteSelectedEvent,
-} from "@/modules/fretboard/types/fretboard";
 import {
   getPositionOfNoteToFindOnFretboard,
   getRandomNote,
 } from "@/modules/fretboardExercise/services/exercise";
 
-const noteToFind = ref<typeof Note>();
-const baseNotes: typeof Note[] = [
+const noteToFind = ref<Note>();
+const baseNotes: Note[] = [
   Note.get("E4"),
   Note.get("B3"),
   Note.get("G3"),

@@ -1,12 +1,10 @@
-export as namespace fretboardExercise;
-
-export type NotePosition = {
+declare type NotePosition = {
   key: string;
   string: number;
   fret: number;
 };
 
-export type NoteRange = {
-  lowerNote: typeof Note; // Note should include its octave for example "E2", "G4", etc.
-  higherNote: typeof Note; // Note should include its octave for example "E2", "G4", etc.
+declare type NoteRange = {
+  lowerNote: Note; // Note should include its octave for example "E2", "G4", etc.
+  higherNote: Note; // Note should include its octave for example "E2", "G4", etc.
 };

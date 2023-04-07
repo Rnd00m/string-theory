@@ -54,28 +54,23 @@
 import FretboardExercise from "@/modules/fretboardExercise/components/FretboardExercise.vue";
 
 import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
-import {Interval, Note} from "@tonaljs/tonal";
+import { Interval, Note } from "@tonaljs/tonal";
 import { computed, ref } from "vue";
 import {
   getDisplayVariationTypeToUse,
   getFretboardNotes,
 } from "@/modules/fretboard/services/fretboard";
-import type { NotePosition } from "@/modules/fretboardExercise/types/fretboardExercise";
-import type {
-  FretboardNote,
-  FretboardNoteSelectedEvent,
-} from "@/modules/fretboard/types/fretboard";
 import {
   getPositionOfNoteToFindOnFretboard, getRandomInterval,
   getRandomNote,
 } from "@/modules/fretboardExercise/services/exercise";
-import {getRandomInt, getRandomIntInclusive} from "@/scripts/helpers/utils";
-import {getTransposedNote} from "@/scripts/helpers/notes";
+import { getRandomInt } from "@/commons/helpers/utils";
+import { getTransposedNote } from "@/commons/helpers/notes";
 
-const startNote = ref<typeof Note>();
-const intervalToFind = ref<typeof Interval>();
-const noteToFind = ref<typeof Note>();
-const baseNotes: typeof Note[] = [
+const startNote = ref<Note>();
+const intervalToFind = ref<Interval>();
+const noteToFind = ref<Note>();
+const baseNotes: Note[] = [
   Note.get("E4"),
   Note.get("B3"),
   Note.get("G3"),
@@ -136,7 +131,7 @@ function startExercise(): void {
  *
  * @param note
  */
-function displayNoteOnFretboard(note: typeof Note): void {
+function displayNoteOnFretboard(note: Note): void {
   const foundNotes: FretboardNote[] = [];
 
   fretboardNotes.value.forEach((strings: FretboardNote[]) => {

@@ -1,4 +1,4 @@
-import { Note, Scale} from "@tonaljs/tonal";
+import { Note, Scale } from "@tonaljs/tonal";
 
 /**
  * Return a Scale from a rootNote and a scale name
@@ -7,9 +7,9 @@ import { Note, Scale} from "@tonaljs/tonal";
  * @param scaleName
  */
 function getScale(
-  rootNote: typeof Note,
+  rootNote: Note,
   scaleName: string
-): typeof Scale {
+): Scale {
   return Scale.get(`${rootNote.pc} ${scaleName}`);
 }
 
@@ -19,7 +19,7 @@ function getScale(
  *
  * @param scale
  */
-function getScaleNotes(scale: typeof Scale): typeof Note[] {
+function getScaleNotes(scale: Scale): Note[] {
   return scale.notes.map((note: string) => Note.get(Note.simplify(note)));
 }
 
