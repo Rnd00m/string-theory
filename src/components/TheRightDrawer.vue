@@ -12,15 +12,15 @@
 </template>
 
 <script>
-import SettingsFretboardDrawer from "@/modules/settings/components/layouts/SettingsFretboardDrawer.vue";
-import SettingsFretboardTuningDrawer from "@/modules/settings/components/layouts/SettingsFretboardTuningDrawer.vue";
+import SettingsFretboardDrawer from "@/modules/settings/layouts/SettingsFretboardDrawer.vue";
+import SettingsFretboardTuningDrawer from "@/modules/settings/layouts/SettingsFretboardTuningDrawer.vue";
 import { useGlobalStore } from "@/commons/stores/globalStore";
 
 export default {
   name: "TheRightDrawer",
   components: {
     SettingsFretboardDrawer,
-    SettingsFretboardTuningDrawer
+    SettingsFretboardTuningDrawer,
   },
   setup() {
     const globalStore = useGlobalStore();
