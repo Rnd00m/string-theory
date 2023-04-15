@@ -13,7 +13,7 @@
       {{
         disjunctionFormatter.format(
           chord.aliases.map(
-            (alias) => `${chord.tonic} ${alias}`
+            (alias: string) => `${chord.tonic} ${alias}`
           )
         )
       }}.

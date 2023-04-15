@@ -27,7 +27,7 @@
     <BaseCard :body-classes="['lg:p-4', 'p-2']">
       <div class="flex gap-2 lg:gap-4 items-center justify-center">
         <SettingsChordType
-            v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
+          v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
         />
 
         <SettingsScaleModal v-else />

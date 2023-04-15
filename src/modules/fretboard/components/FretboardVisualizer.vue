@@ -21,7 +21,7 @@ import FretboardMarker from "@/modules/fretboard/components/FretboardMarker.vue"
 import * as Tone from "tone";
 import { computed } from "vue";
 import { SoundSample } from "@/modules/settings/services/classes/SoundSample";
-import { soundSampleList } from "@/modules/settings/services/soundSampleList";
+import { soundSampleList } from "@/modules/settings/services/SoundSampleList";
 
 interface Props {
   fretboardNotes: FretboardNote[][];

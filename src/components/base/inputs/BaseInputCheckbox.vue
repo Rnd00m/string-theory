@@ -24,7 +24,7 @@ interface Props {
 const props = defineProps<Props>();
 const emit = defineEmits(["update:modelValue"]);
 
-const value = computed({
+const value = computed<boolean>({
   get() {
     return props.modelValue;
   },

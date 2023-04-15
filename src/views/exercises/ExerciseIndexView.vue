@@ -1,5 +1,5 @@
 <template>
-  <div class="exercise-list-wrapper grid grid-cols-2 gap-x-6 lg:gap-x-12 gap-y-3 lg:gap-y-6">
+  <div class="exercise-list-wrapper grid xs:grid-flow-row sm:grid-cols-2 gap-x-6 lg:gap-x-12 gap-y-3 lg:gap-y-6">
     <BaseCardLink
       :to="{name: 'exercise.findNotes'}"
       :icon-path="mdiMagnify"

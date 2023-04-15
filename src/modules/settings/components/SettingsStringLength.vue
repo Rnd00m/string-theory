@@ -3,6 +3,7 @@
     name="chord-type"
     :items="stringLength"
     v-model="fretboardParametersStore.fretboard.stringLength"
+    value="string-length"
   />
 </template>
 

@@ -27,7 +27,7 @@ interface Props {
   name: string;
   modelValue: string | number;
   items: object[] | string[] | number[];
-  value?: string;
+  value: string;
   display?: string;
 }
 const props = defineProps<Props>();
@@ -38,7 +38,7 @@ function isItemStringOrNumberType(item: any): boolean {
   return typeof item === 'string' || typeof item === 'number';
 }
 
-const value = computed({
+const value = computed<string | number>({
   get() {
     return props.modelValue;
   },
