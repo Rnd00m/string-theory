@@ -1,54 +1,37 @@
 <template>
-  <div class="fretboard-visualizer">
-    <MqResponsive target="sm-">
-      <div class="absolute right-2 top-2 flex-1 gap-1 justify-end inline-flex">
-        <label class="p-2" for="information-modal">
-          <svg-icon type="mdi" :path="mdiInformationOutline" />
-        </label>
-        <label for="app-drawer" class="drawer-button p-2" @click="globalStore.selectedDrawer = 'settings-tuning'">
-          <svg-icon type="mdi" :path="mdiTune" />
-        </label>
-        <label for="app-drawer" class="drawer-button p-2" @click="globalStore.selectedDrawer = 'settings'">
-          <svg-icon type="mdi" :path="mdiCogOutline" />
-        </label>
-      </div>
+  <div class="fretboard-viewer mt-8 lg:mt-0">
+    <MqResponsive group>
+      <template #md-:landscape>
+        <TheViewerDrawerIcons />
+      </template>
     </MqResponsive>
 
-    <div class="grid gap-4">
-      <MqResponsive group>
+    <div class="grid grid-flow-row gap-8">
+      <MqResponsive group class="p-4 lg:p-0">
         <template #lg+><SettingsFretboard /></template>
-        <template #md:landscape><SettingsFretboard /></template>
-        <template #md-lg:portrait><SettingsFretboard /></template>
+        <template #lg-:portrait><SettingsFretboard /></template>
       </MqResponsive>
-      <FretboardVisualizer
+      <FretboardViewer
         :fretboard-notes="fretboardNotes"
         :show-octave="fretboardParametersStore.showOctave"
         :is-sound-active="true"
         :selected-sound-sample="fretboardParametersStore.selectedSoundSample"
       />
-      <MqResponsive group>
+      <MqResponsive group class="p-4 lg:p-0">
         <template #lg+><InformationCardComponent /></template>
-        <template #md:landscape><InformationCardComponent /></template>
-        <template #md-lg:portrait><InformationCardComponent /></template>
-        <template #md-><InformationModalComponent /></template>
+        <template #lg-:portrait><InformationCardComponent /></template>
       </MqResponsive>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
+import FretboardViewer from "@/modules/fretboard/components/FretboardViewer.vue";
 import InformationCardComponent from "@/modules/information/components/InformationCardComponent.vue";
-import InformationModalComponent from "@/modules/information/components/InformationModalComponent.vue";
 import SettingsFretboard from "@/modules/settings/layouts/SettingsFretboard.vue";
+import TheViewerDrawerIcons from "@/components/TheViewerDrawerIcons.vue";
 
-import { useGlobalStore } from "@/commons/stores/globalStore";
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-
-import SvgIcon from "@jamescoyle/vue-icon";
-import { mdiInformationOutline } from "@mdi/js";
-import { mdiCogOutline } from "@mdi/js";
-import { mdiTune } from "@mdi/js";
 
 import { computed } from "vue";
 import { DisplayTypeEnum } from "@/commons/enums/DisplayTypeEnum";
@@ -69,7 +52,6 @@ import {
 } from "@/commons/helpers/scales";
 import { MqResponsive } from "vue3-mq";
 
-const globalStore = useGlobalStore();
 const fretboardParametersStore = useFretboardParametersStore();
 
 const fretboardNotes = computed<FretboardNote[][]>(() => {

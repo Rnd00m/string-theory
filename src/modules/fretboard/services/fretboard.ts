@@ -26,7 +26,7 @@ function getFretboardNotes(
   stringLength: number,
   noteClassMap: NoteClassMap[] = [],
   displayVariationType: DisplayVariationType = DisplayVariationType.Sharp,
-  displayNote: true
+  displayNote: boolean
 ): FretboardNote[][] {
   const fretboardNote: FretboardNote[][] = [];
 
