@@ -1,13 +1,13 @@
 <template>
-  <div class="fretboard-viewer mt-8 lg:mt-0">
+  <div class="fretboard-viewer mt-8 sm:mt-0">
     <MqResponsive group>
       <template #md-:landscape>
         <TheViewerDrawerIcons />
       </template>
     </MqResponsive>
 
-    <div class="grid grid-flow-row gap-8">
-      <MqResponsive group class="p-4 lg:p-0">
+    <div class="grid grid-flow-row gap-4 md:gap-8">
+      <MqResponsive group class="p-4 sm:p-0">
         <template #lg+><SettingsFretboard /></template>
         <template #lg-:portrait><SettingsFretboard /></template>
       </MqResponsive>
@@ -17,7 +17,7 @@
         :is-sound-active="true"
         :selected-sound-sample="fretboardParametersStore.selectedSoundSample"
       />
-      <MqResponsive group class="p-4 lg:p-0">
+      <MqResponsive group class="p-4 sm:p-0">
         <template #lg+><InformationCardComponent /></template>
         <template #lg-:portrait><InformationCardComponent /></template>
       </MqResponsive>
