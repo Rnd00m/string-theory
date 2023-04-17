@@ -8,7 +8,7 @@ import { Chord, Note } from "@tonaljs/tonal";
  */
 function getChord(
   rootNote: Note,
-  chordType: ChordType
+  chordType: string
 ): Chord {
   return Chord.get(`${rootNote.pc}${chordType}`);
 }

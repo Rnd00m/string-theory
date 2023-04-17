@@ -25,7 +25,7 @@
       </template>
 
       <template #exercise-fretboard>
-        <FretboardVisualizer
+        <FretboardViewer
           :fretboard-notes="fretboardNotes"
           :is-note-selectable="true"
           :is-sound-active="false"
@@ -53,7 +53,7 @@
 <script setup lang="ts">
 import FretboardExercise from "@/modules/fretboardExercise/components/FretboardExercise.vue";
 
-import FretboardVisualizer from "@/modules/fretboard/components/FretboardVisualizer.vue";
+import FretboardViewer from "@/modules/fretboard/components/FretboardViewer.vue";
 import { Note } from "@tonaljs/tonal";
 import { computed, ref } from "vue";
 import {
