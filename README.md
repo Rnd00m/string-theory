@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/911bfdcb-e048-45c5-8fc1-ee87dcd15bff/deploy-status)](https://app.netlify.com/sites/musicstringtheory/deploys)
+
 # String Theory
 
 TODO : Add project description
