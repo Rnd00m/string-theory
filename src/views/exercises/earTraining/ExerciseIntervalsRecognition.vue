@@ -132,7 +132,7 @@ function consumeAnswerButtonClicked(isCorrectlyAnswered: boolean): void {
   if (!isCorrectlyAnswered) errorsNumber.value += 1;
   else {
     isStartModalDisplayed.value = true;
-    foundNumber.value =+ 1;
+    foundNumber.value += 1;
   }
 }
 </script>
