@@ -11,18 +11,23 @@ const router = createRouter({
     },
     {
       path: "/exercise",
-      name: "exercise",
+      name: "exercise.index",
       component: () => import("../views/exercises/ExerciseIndexView.vue"),
     },
     {
-      path: "/exercise/find-notes",
-      name: "exercise.findNotes",
+      path: "/exercise/fretboard/find-notes",
+      name: "exercise.fretboard.findNotes",
       component: () => import("../views/exercises/fretboard/ExerciseFindNotesView.vue"),
     },
     {
-      path: "/exercise/find-intervals",
-      name: "exercise.findIntervals",
+      path: "/exercise/fretboard/find-intervals",
+      name: "exercise.fretboard.findIntervals",
       component: () => import("../views/exercises/fretboard/ExerciseFindIntervalsView.vue"),
+    },
+    {
+      path: "/exercise/ear-training/find-intervals",
+      name: "exercise.earTraining.findIntervals",
+      component: () => import("../views/exercises/earTraining/ExerciseIntervalsRecognition.vue"),
     },
     {
       path: "/about",
