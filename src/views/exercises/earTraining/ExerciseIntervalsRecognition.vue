@@ -26,11 +26,15 @@
             <div>Errors</div>
             <div class="stat-value text-xl lg:text-2xl">{{ errorsNumber }}</div>
           </div>
+          <div class="stat">
+            <div>Found</div>
+            <div class="stat-value text-xl lg:text-2xl">{{ foundNumber }}</div>
+          </div>
         </div>
       </template>
 
       <template #exercise-responses>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid landscape:grid-cols-4 grid-cols-2 gap-4">
           <EarTrainingExerciseAnswerButton
             v-for="interval in intervalsList"
             :key="interval.name + intervalToFind.name + noteWithIntervalApplied.name"
@@ -77,6 +81,7 @@ const rootNote = ref<Note | null>(null);
 const intervalToFind = ref<Interval | null>(null);
 const noteWithIntervalApplied = ref<Note | null>(null);
 const errorsNumber = ref<number>(0);
+const foundNumber = ref<number>(0);
 const isStartModalDisplayed = ref<boolean>(false);
 
 const sampler = new Tone.Sampler({
@@ -125,7 +130,10 @@ function playExerciseNotes(): void {
 
 function consumeAnswerButtonClicked(isCorrectlyAnswered: boolean): void {
   if (!isCorrectlyAnswered) errorsNumber.value += 1;
-  else isStartModalDisplayed.value = true;
+  else {
+    isStartModalDisplayed.value = true;
+    foundNumber.value =+ 1;
+  }
 }
 </script>
 

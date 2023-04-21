@@ -14,7 +14,7 @@
     </BaseCard>
   </div>
 
-  <div v-else class="exercise-wrapper grid gap-4 w-72 sm:w-[32rem]">
+  <div v-else class="exercise-wrapper grid gap-4 w-80 sm:w-[32rem]">
     <slot name="exercise-detail" />
 
     <slot name="exercise-responses" />

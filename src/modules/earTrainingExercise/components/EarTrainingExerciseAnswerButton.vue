@@ -1,6 +1,6 @@
 <template>
   <button
-    class="btn btn-accent normal-case"
+    class="btn btn-secondary normal-case"
     :class="buttonClass"
     @click="checkAnswer"
   >{{ props.interval.name }}</button>
