@@ -1,6 +1,6 @@
 import { Interval } from "@tonaljs/tonal";
 
-export function getIntervalStringName(intervalName: string): string {
+function getIntervalStringName(intervalName: string): string {
   switch (Interval.num(intervalName)) {
     case 1:
       return "root";
@@ -20,3 +20,29 @@ export function getIntervalStringName(intervalName: string): string {
       return "";
   }
 }
+
+/**
+ * List intervals between two given intervals
+ *
+ * @param from
+ * @param to
+ */
+function getIntervalsList(from: Interval, to: Interval): Interval[] {
+  const intervalsList: Interval[] = [];
+  let currentInterval: Interval = from;
+  let semitonesNumber: number = currentInterval.semitones;
+
+  intervalsList.push(currentInterval);
+
+  while (currentInterval.semitones < to.semitones) {
+    semitonesNumber += 1;
+
+    currentInterval = Interval.get(Interval.fromSemitones(semitonesNumber));
+
+    intervalsList.push(currentInterval);
+  }
+
+  return intervalsList;
+}
+
+export { getIntervalStringName, getIntervalsList }
