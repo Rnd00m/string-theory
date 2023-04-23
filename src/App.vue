@@ -3,7 +3,7 @@
     <input id="app-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
       <TheHeader>
-        <div class="flex items-center justify-center flex-1 lg:py-2">
+        <div class="flex items-center justify-center flex-1">
           <div class="max-h-full mx-auto">
             <RouterView />
           </div>
