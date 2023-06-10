@@ -1,21 +1,17 @@
 <template>
-  <div class="drawer drawer-end">
-    <input id="app-drawer" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content">
-      <TheHeader>
-        <div class="flex items-center justify-center flex-1">
-          <div class="max-h-full mx-auto">
-            <RouterView />
-          </div>
-        </div>
-      </TheHeader>
-
-      <MqResponsive target="lg+">
-        <TheFooter></TheFooter>
-      </MqResponsive>
+  <TheHeader>
+    <div class="h-full drawer drawer-end">
+      <input id="app-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content flex items-center justify-center">
+        <RouterView />
+      </div>
+      <TheRightDrawer></TheRightDrawer>
     </div>
-    <TheRightDrawer></TheRightDrawer>
-  </div>
+
+    <MqResponsive target="lg+">
+      <TheFooter></TheFooter>
+    </MqResponsive>
+  </TheHeader>
 </template>
 
 <script setup lang="ts">

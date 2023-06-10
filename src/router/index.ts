@@ -11,23 +11,33 @@ const router = createRouter({
     },
     {
       path: "/exercise",
-      name: "exercise.index",
+      name: "exercises.index",
       component: () => import("../views/exercises/ExerciseIndexView.vue"),
     },
     {
       path: "/exercise/fretboard/find-notes",
-      name: "exercise.fretboard.findNotes",
+      name: "exercises.fretboard.findNotes",
       component: () => import("../views/exercises/fretboard/ExerciseFindNotesView.vue"),
     },
     {
       path: "/exercise/fretboard/find-intervals",
-      name: "exercise.fretboard.findIntervals",
+      name: "exercises.fretboard.findIntervals",
       component: () => import("../views/exercises/fretboard/ExerciseFindIntervalsView.vue"),
     },
     {
       path: "/exercise/ear-training/find-intervals",
-      name: "exercise.earTraining.findIntervals",
+      name: "exercises.earTraining.findIntervals",
       component: () => import("../views/exercises/earTraining/ExerciseIntervalsRecognition.vue"),
+    },
+    {
+      path: "/tools",
+      name: "tools.index",
+      component: () => import("../views/tools/ToolIndexView.vue"),
+    },
+    {
+      path: "/tools/string-tension",
+      name: "tools.stringTensionsCalculator",
+      component: () => import("../views/tools/ToolStringTensionsCalculatorView.vue"),
     },
     {
       path: "/about",

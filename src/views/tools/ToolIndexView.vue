@@ -1,18 +1,15 @@
 <template>
   <div class="exercise-list-wrapper grid xs:grid-flow-row sm:grid-cols-2 gap-x-6 lg:gap-x-12 gap-y-3 lg:gap-y-6">
     <BaseCardLink
-      :to="{name: 'exercises.fretboard.findNotes'}"
+      :to="{name: 'tools.stringTensionsCalculator'}"
       :icon-path="mdiMagnify"
       icon-class="bg-pink-500"
     >
-      <template #title>Find notes on fretboard</template>
-      <template #content>To perfectly know your fretboard</template>
-      <template #card-actions>
-        <RouterLink class="btn btn-primary place-self-end" >Start</RouterLink>
-      </template>
+      <template #title>String tension calculator</template>
+      <template #content>Calculate the tensions applied to the neck by the different strings</template>
     </BaseCardLink>
 
-    <BaseCardLink
+<!--    <BaseCardLink
       :to="{name: 'exercises.fretboard.findIntervals'}"
       :icon-path="mdiMusicAccidentalSharp"
       icon-class="bg-green-500"
@@ -22,9 +19,9 @@
       <template #card-actions>
         <RouterLink class="btn btn-primary place-self-end" >Start</RouterLink>
       </template>
-    </BaseCardLink>
+    </BaseCardLink>-->
 
-    <BaseCardLink
+<!--    <BaseCardLink
       :to="{name: 'exercises.earTraining.findIntervals'}"
       :icon-path="mdiEarHearing"
       icon-class="bg-blue-500"
@@ -34,7 +31,7 @@
       <template #card-actions>
         <RouterLink class="btn btn-primary place-self-end" >Start</RouterLink>
       </template>
-    </BaseCardLink>
+    </BaseCardLink>-->
 
 <!--    <BaseCardLink
       :to="{name: 'exercises.findNotes'}"

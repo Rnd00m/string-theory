@@ -1,6 +1,6 @@
 <template>
   <div class="chord-information flex justify-center">
-    <BaseCard v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord">
+    <BaseCard v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord" :body-classes="['p-6']">
       <template #title>Chord Information</template>
       <ChordInformation></ChordInformation>
     </BaseCard>

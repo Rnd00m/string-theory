@@ -7,6 +7,7 @@ module.exports = {
     themes: [
       {
         dark: {
+          ...require("daisyui/src/theming/themes")["[data-theme=dark]"],
           primary: "hsl(28, 71%, 57%)", // --color-persian-orange-400
           "primary-focus": "hsl(28, 71%, 49%)", // --color-persian-orange-500
           "primary-content": "#000000",
@@ -31,7 +32,7 @@ module.exports = {
       },
       {
         winter: {
-          ...require("daisyui/src/colors/themes")["[data-theme=winter]"],
+          ...require("daisyui/src/theming/themes")["[data-theme=winter]"],
           info: "#3ABFF8",
           success: "#02a659",
           warning: "#fd8621",
