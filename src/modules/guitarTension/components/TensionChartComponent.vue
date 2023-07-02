@@ -1,6 +1,4 @@
-<!--
 <script lang="ts">
-import { useTensionStore } from "@/stores/tension";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { BarChart, LinesChart } from "echarts/charts";
@@ -14,6 +12,7 @@ import {
 } from "echarts/components";
 import VChart, { THEME_KEY } from "vue-echarts";
 import { ref, defineComponent, computed } from "vue";
+import {StringTension} from "@/modules/guitarTension/services/StringTension";
 
 use([
   CanvasRenderer,
@@ -35,12 +34,14 @@ export default defineComponent({
   provide: {
     [THEME_KEY]: "light",
   },
-  setup() {
-    const tensionStore = useTensionStore();
-
+  props: {
+    stringTensions: Object,
+  },
+  setup(props) {
     const source = computed(() =>
-      tensionStore.strings
-        .map((string) => [string.tension, string.note])
+      props
+        .stringTensions
+        .map((string: StringTension) => [string.getTensionInKg(), string.note.name])
         .reverse()
     );
 
@@ -79,7 +80,7 @@ export default defineComponent({
       renderer: "canvas",
     };
 
-    return { option, initOptions, tensionStore };
+    return { option, initOptions };
   },
 });
 </script>
@@ -103,4 +104,3 @@ export default defineComponent({
   width: 600px;
 }
 </style>
--->

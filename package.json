@@ -18,10 +18,12 @@
     "@tonaljs/tonal": "^4.6.5",
     "cordova-plugin-screen-orientation": "^3.0.2",
     "daisyui": "^3.1.7",
+    "echarts": "^5.4.2",
     "es6-promise-plugin": "^4.2.2",
     "pinia": "^2.0.13",
     "tone": "^14.7.77",
     "vue": "^3.2.31",
+    "vue-echarts": "^6.6.0",
     "vue-router": "^4.0.12",
     "vue3-mq": "^3.1.0"
   },

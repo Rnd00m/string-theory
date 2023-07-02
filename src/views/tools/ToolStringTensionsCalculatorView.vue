@@ -12,7 +12,9 @@
         />
       </div>
 
-      <!--      <TensionChart />-->
+      <TensionChartComponent
+        :string-tensions="stringTensions"
+      />
     </div>
     <div class="grid justify-items-center">
       <!--      <TensionStat />-->
@@ -21,6 +23,7 @@
 </template>
 <script setup lang="ts">
 import GuitarTension from "@/modules/guitarTension/components/guitar/GuitarTensionComponent.vue";
+import TensionChartComponent from "@/modules/guitarTension/components/TensionChartComponent.vue";
 import { Note } from "@tonaljs/tonal";
 import { getGuitarString } from "@/modules/guitarTension/data/stringsData";
 import type {
