@@ -14,6 +14,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import { ThemeEnum } from "@/commons/enums/ThemeEnum";
 
 interface Props {
   showLabel: boolean;
@@ -26,11 +27,6 @@ const themeStorageKey = ref<string>("user-theme");
 const dataThemeKey = ref<string>("data-theme");
 const selectedTheme = ref<string | null>(null);
 const HTMLElement = ref<HTMLElement>(document.getElementsByTagName("html")[0]);
-
-enum ThemeEnum {
-  Light = "winter",
-  Dark = "dark",
-}
 
 /**
  * Add selected theme to local storage and apply attribute to html element
