@@ -1,14 +1,77 @@
 <template>
-  <div class="about prose max-w-3xl mx-6">
-    <h1>About this project</h1>
-    <p>This application has been developed to help guitarists of all levels to learn music theory and practice applied to guitar and bass.</p>
-    <!--      It also provides useful tools such as a tuner.-->
+  <div class="wrapper grid grid-flow-row items-center gap-4">
+    <div class="grid justify-items-center mb-4">
+      <h1 class="text-4xl font-bold">String tension calculator</h1>
+    </div>
+    <div class="grid grid-flow-row grid-cols-2">
+      <div class="grid gap-4">
+        <!--        <SettingsComponent />-->
+        <GuitarTension
+          :string-tensions="stringTensions"
+          @tensionParameterUpdated="updateTensionParameter"
+        />
+      </div>
 
-    <p>It is a personal project with no commercial purpose. It is planned to become open source to allow other developers to contribute to its evolution.</p>
-
-    <p>Here is my <a href="https://github.com/Rnd00m" target="_blank">Github</a> profile.</p>
-    <p>Hope you enjoy.</p>
+      <!--      <TensionChart />-->
+    </div>
+    <div class="grid justify-items-center">
+      <!--      <TensionStat />-->
+    </div>
   </div>
 </template>
 <script setup lang="ts">
+import GuitarTension from "@/modules/guitarTension/components/guitar/GuitarTensionComponent.vue";
+import { Note } from "@tonaljs/tonal";
+import { getGuitarString } from "@/modules/guitarTension/data/stringsData";
+import type {
+  StringNotePair,
+  TensionParameterUpdateEvent,
+} from "@/modules/guitarTension/types/stringTension";
+import { StringTension } from "@/modules/guitarTension/services/StringTension";
+import {ref, shallowRef} from "vue";
+
+const stringNotePairs: StringNotePair[] = [
+  {
+    string: getGuitarString("PL010"),
+    note: Note.get("E4"),
+  },
+  {
+    string: getGuitarString("PL013"),
+    note: Note.get("B3"),
+  },
+  {
+    string: getGuitarString("PL017"),
+    note: Note.get("G3"),
+  },
+  {
+    string: getGuitarString("NW026"),
+    note: Note.get("D3"),
+  },
+  {
+    string: getGuitarString("NW036"),
+    note: Note.get("A2"),
+  },
+  {
+    string: getGuitarString("NW046"),
+    note: Note.get("E2"),
+  },
+];
+
+const stringTensions = ref<StringTension[]>([]);
+
+const addString = (stringTension: StringTension) => {
+  stringTensions.value.push(stringTension);
+}
+
+stringNotePairs.forEach((stringNotePair: StringNotePair) => {
+  addString(new StringTension(stringNotePair.string, stringNotePair.note));
+});
+
+function updateTensionParameter(data: TensionParameterUpdateEvent) {
+  stringTensions.value.splice(
+    data.index,
+    1,
+    new StringTension(data.string, data.note)
+  );
+}
 </script>
