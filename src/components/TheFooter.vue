@@ -3,7 +3,7 @@
     class="footer footer-center sticky top-[100vh] p-10 bg-primary text-primary-content"
   >
     <div>
-      <img class="logo" src="/public/img/logo-black.png" width="50" height="50" alt="Logo white">
+      <img class="logo" src="/img/logo-black.png" width="50" height="50" alt="Logo black">
       <div class="logo"></div>
       <p class="font-bold">String Theory<br /></p>
       <p>Copyright © 2022 - All right reserved</p>

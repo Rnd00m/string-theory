@@ -8,7 +8,12 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </label>
         </div>
-        <div class="flex-1 px-2 mx-2 hidden lg:block">String Theory</div>
+        <div class="flex-1 px-2 mx-2 hidden lg:block">
+          <RouterLink :to="{name: 'home'}" class="btn btn-ghost normal-case text-xl">
+            <img class="logo" src="/img/logo-white.png" width="24" height="24" alt="Logo white">
+            String Theory
+          </RouterLink>
+        </div>
         <div class="flex-none hidden lg:block">
           <ul class="menu menu-horizontal px-1">
             <li><RouterLink :to="{name: 'home'}">Home</RouterLink></li>
