@@ -1,7 +1,7 @@
 <template>
   <div class="drawer h-screen">
     <input id="header-menu-drawer" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content flex lg:flex-col">
+    <div class="drawer-content flex lg:flex-col min-h-screen">
       <div class="absolute lg:relative lg:flex-none lg:w-full lg:navbar bg-base-100 z-10">
         <div class="lg:hidden">
           <label for="header-menu-drawer" class="btn btn-square btn-ghost">

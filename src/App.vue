@@ -8,10 +8,12 @@
       <TheRightDrawer></TheRightDrawer>
     </div>
 
-    <MqResponsive target="lg+">
-      <TheFooter></TheFooter>
-    </MqResponsive>
+
   </TheHeader>
+
+  <MqResponsive target="lg+">
+    <TheFooter></TheFooter>
+  </MqResponsive>
 </template>
 
 <script setup lang="ts">
