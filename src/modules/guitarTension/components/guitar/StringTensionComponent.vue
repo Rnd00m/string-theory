@@ -67,7 +67,7 @@ watch(
 
     <select
       v-model="selected.string"
-      class="select select-primary max-w-xs flex-auto"
+      class="select select-sm lg:select-md select-primary select-bordered w-full max-w-xs"
       @change="emitNewTensionParameter"
     >
       <option v-for="string in stringsData" :value="string" :key="string.name">
@@ -81,8 +81,8 @@ watch(
       </span>
     </div>
 
-    <button
-      class="btn btn-square btn-outline btn-sm"
+<!--    <button
+      class="btn btn-square btn-outline btn-xs"
       @click="tensionStore.deleteString(index)"
     >
       <svg
@@ -91,6 +91,8 @@ watch(
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
+        width="12"
+        height="12"
       >
         <path
           stroke-linecap="round"
@@ -99,7 +101,7 @@ watch(
           d="M6 18L18 6M6 6l12 12"
         />
       </svg>
-    </button>
+    </button>-->
   </div>
 </template>
 

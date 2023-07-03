@@ -12,7 +12,7 @@ import {
 } from "echarts/components";
 import VChart, { THEME_KEY } from "vue-echarts";
 import { ref, defineComponent, computed } from "vue";
-import {StringTension} from "@/modules/guitarTension/services/StringTension";
+import type { StringTension } from "@/modules/guitarTension/services/StringTension";
 
 use([
   CanvasRenderer,
@@ -39,9 +39,11 @@ export default defineComponent({
   },
   setup(props) {
     const source = computed(() =>
-      props
-        .stringTensions
-        .map((string: StringTension) => [string.getTensionInKg(), string.note.name])
+      props.stringTensions
+        .map((string: StringTension) => [
+          string.getTensionInKg(),
+          string.note.name,
+        ])
         .reverse()
     );
 
@@ -50,7 +52,7 @@ export default defineComponent({
         source: source,
       },
       grid: { containLabel: true },
-      xAxis: { name: "Tension" },
+      xAxis: { name: "" },
       yAxis: { type: "category" },
       visualMap: {
         orient: "horizontal",
@@ -86,21 +88,15 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="tension-chart-wrapper grid items-center">
-    <div class="tension-chart-container">
-      <v-chart
-        :option="option"
-        class="tension-chart"
-        :init-options="initOptions"
-        autoresize
-      />
-    </div>
+  <div class="tension-chart-container w-full h-96 md:w-[500px] md:h-[550px]">
+    <v-chart
+      :option="option"
+      class="tension-chart"
+      :init-options="initOptions"
+      autoresize
+    />
   </div>
 </template>
 
 <style scoped>
-.tension-chart-container {
-  height: 500px;
-  width: 600px;
-}
 </style>

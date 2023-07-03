@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper grid grid-flow-row items-center gap-4">
-    <div class="grid justify-items-center mb-4">
-      <h1 class="text-4xl font-bold">String tension calculator</h1>
+    <div class="hidden md:grid justify-items-center mb-4">
+      <h1 class="text-center text-4xl font-bold">String tension calculator</h1>
     </div>
-    <div class="grid grid-flow-row grid-cols-2">
+    <div class="grid grid-flow-row auto-rows-max md:grid-cols-2">
       <div class="grid gap-4">
         <!--        <SettingsComponent />-->
         <GuitarTension
