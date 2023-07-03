@@ -1,6 +1,8 @@
 /* semantic color variables for this project */
 :root {
-  --color-white: #e5e7eb;
+  --color-white: #ffffff;
+  --color-white-base-content: #d8dbe2;
+  --color-black: #000000;
 
   --color-blue-light: hsl(197, 100%, 42%);
   --color-blue: hsl(197, 100%, 32%);
@@ -26,3 +28,21 @@
 }
 
 html, body { height: 100%;}
+
+html[data-theme='winter'] {
+  --footer-logo-color: var(--color-white-base-content);
+  --logo-color: #394E6A;
+}
+
+html[data-theme='dark'] {
+  --footer-logo-color: var(--color-black);
+  --logo-color: var(--color-white);
+}
+
+.header-logo path {
+  fill: var(--logo-color);
+}
+
+footer .footer-logo path {
+  fill: var(--footer-logo-color);
+}
