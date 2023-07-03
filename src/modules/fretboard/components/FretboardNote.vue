@@ -94,7 +94,6 @@ function playNote() {
 .fret-wrapper {
   .note {
     color: hsl(var(--bc));
-    z-index: 5;
   }
 
   border-right: 0.125rem hsl(var(--bc)) solid;
