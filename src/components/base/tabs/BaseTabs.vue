@@ -33,11 +33,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-[data-theme="dark"] .tab-active {
+[data-theme="dark"] .tab-lifted.tab-active:not(.tab-disabled):not([disabled]) {
   background: hsl(var(--b2));
 }
 
-[data-theme="winter"] .tab-active {
+[data-theme="winter"] .tab-lifted.tab-active:not(.tab-disabled):not([disabled]) {
   background: hsl(var(--b3));
 }
 </style>

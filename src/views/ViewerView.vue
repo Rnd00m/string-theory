@@ -1,5 +1,5 @@
 <template>
-  <div class="fretboard-viewer mt-8 sm:mt-0">
+  <div class="fretboard-viewer place-self-end md:place-self-center">
     <MqResponsive group>
       <template #md-:landscape>
         <TheViewerDrawerIcons />
