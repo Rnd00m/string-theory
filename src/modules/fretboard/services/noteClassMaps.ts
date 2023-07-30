@@ -12,7 +12,7 @@ const scaleNoteClassPrefix = "note-scale-";
  * @param note
  * @param noteClassMap
  */
-function getNoteClass(note: Note, noteClassMap: NoteClassMap[]): string | null{
+function getNoteClass(note: Note, noteClassMap: NoteClassMap[]): string | null {
   const mappedClass = noteClassMap.find((map) => map.note.pc === note.pc);
 
   if (mappedClass === undefined) {
@@ -58,10 +58,13 @@ function getClassMap(
   subjectIntervals.forEach((interval: string, index: number) => {
     const intervalNumber: number | undefined = Interval.num(interval);
 
-    if ((showRootNoteBackground && intervalNumber === 1)
-      || (showOtherNotesBackground && intervalNumber !== 1)
+    if (
+      (showRootNoteBackground && intervalNumber === 1) ||
+      (showOtherNotesBackground && intervalNumber !== 1)
     ) {
-      const classPrefix: string = isChordType(subject) ? chordNoteClassPrefix : scaleNoteClassPrefix;
+      const classPrefix: string = isChordType(subject)
+        ? chordNoteClassPrefix
+        : scaleNoteClassPrefix;
 
       classMap.push({
         note: Note.get(subjectNotes[index]),

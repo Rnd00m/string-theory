@@ -3,7 +3,9 @@
     class="btn btn-secondary normal-case"
     :class="buttonClass"
     @click="checkAnswer"
-  >{{ props.interval.name }}</button>
+  >
+    {{ props.interval.name }}
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -16,10 +18,11 @@ interface Props {
 const props = defineProps<Props>();
 const emit = defineEmits(["earTrainingExercise:answered"]);
 
-const buttonClass= ref<string | null>(null);
+const buttonClass = ref<string | null>(null);
 
 function checkAnswer(): void {
-  const isAnswerCorrect: boolean = props.interval.name === props.intervalToFind.name;
+  const isAnswerCorrect: boolean =
+    props.interval.name === props.intervalToFind.name;
 
   if (!isAnswerCorrect) buttonClass.value = "btn-error";
   else buttonClass.value = "btn-success";
@@ -28,6 +31,4 @@ function checkAnswer(): void {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

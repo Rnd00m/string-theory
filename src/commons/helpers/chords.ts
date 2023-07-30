@@ -6,10 +6,7 @@ import { Chord, Note } from "@tonaljs/tonal";
  * @param rootNote
  * @param chordType
  */
-function getChord(
-  rootNote: Note,
-  chordType: string
-): Chord {
+function getChord(rootNote: Note, chordType: string): Chord {
   return Chord.get(`${rootNote.pc}${chordType}`);
 }
 

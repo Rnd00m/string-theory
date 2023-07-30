@@ -37,7 +37,12 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
         (soundSample) => soundSample.instrumentType === instrumentType
       );
 
-      if (!filteredSoundSampleList.find(filteredSoundSample => filteredSoundSample.name  === this.selectedSoundSample.name)) {
+      if (
+        !filteredSoundSampleList.find(
+          (filteredSoundSample) =>
+            filteredSoundSample.name === this.selectedSoundSample.name
+        )
+      ) {
         this.selectedSoundSample = filteredSoundSampleList[0];
       }
 

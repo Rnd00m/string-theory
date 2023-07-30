@@ -8,7 +8,9 @@
         class="checkbox checkbox-xs lg:checkbox-sm checkbox-primary"
         v-bind="$attrs"
       />
-      <span class="label-text text-sm lg:text-base">&nbsp;&nbsp;{{ props.label }}</span>
+      <span class="label-text text-sm lg:text-base"
+        >&nbsp;&nbsp;{{ props.label }}</span
+      >
     </label>
   </div>
 </template>
@@ -34,6 +36,4 @@ const value = computed<boolean>({
 });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

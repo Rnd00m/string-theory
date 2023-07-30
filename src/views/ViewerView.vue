@@ -42,14 +42,8 @@ import {
 } from "@/modules/fretboard/services/fretboard";
 import { Chord, Note, Scale } from "@tonaljs/tonal";
 import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariationType";
-import {
-  getChord,
-  getChordNotes
-} from "@/commons/helpers/chords";
-import {
-  getScale,
-  getScaleNotes,
-} from "@/commons/helpers/scales";
+import { getChord, getChordNotes } from "@/commons/helpers/chords";
+import { getScale, getScaleNotes } from "@/commons/helpers/scales";
 import { MqResponsive } from "vue3-mq";
 
 const fretboardParametersStore = useFretboardParametersStore();
@@ -84,18 +78,10 @@ const scale = computed<Scale>(() => {
 const noteClassMaps = computed<NoteClassMap[]>(() => {
   switch (fretboardParametersStore.displayType) {
     case DisplayTypeEnum.Chord: {
-      return getClassMap(
-        chord.value,
-        true,
-        fretboardParametersStore.showNotes
-      );
+      return getClassMap(chord.value, true, fretboardParametersStore.showNotes);
     }
     case DisplayTypeEnum.Scale: {
-      return getClassMap(
-        scale.value,
-        true,
-        fretboardParametersStore.showNotes
-      );
+      return getClassMap(scale.value, true, fretboardParametersStore.showNotes);
     }
   }
 });

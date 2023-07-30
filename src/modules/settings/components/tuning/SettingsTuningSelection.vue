@@ -22,9 +22,7 @@
       </button>
     </div>
     <div class="flex flex-col gap-1">
-      <button class="btn btn-square btn-xs lg:btn-sm" @click="tuneUp">
-        +
-      </button>
+      <button class="btn btn-square btn-xs lg:btn-sm" @click="tuneUp">+</button>
       <div class="text-center text-base lg:text-lg">All</div>
       <button class="btn btn-square btn-xs lg:btn-sm" @click="tuneDown">
         -
@@ -67,7 +65,11 @@ function changeStringTuning(
 }
 
 function changeGuitarTuning(direction: TuningDirectionEnum) {
-  for (let stringNumber = 0; stringNumber < fretboardParametersStore.fretboard.baseNotes.length; stringNumber++) {
+  for (
+    let stringNumber = 0;
+    stringNumber < fretboardParametersStore.fretboard.baseNotes.length;
+    stringNumber++
+  ) {
     changeStringTuning(stringNumber, direction);
   }
 }

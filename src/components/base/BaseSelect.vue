@@ -10,7 +10,11 @@
     >
       <option
         v-for="(item, index) in props.items"
-        :key="areItemsStringOrNumberType ? `${item}_${index}` : `${item[props.value]}_${index}`"
+        :key="
+          areItemsStringOrNumberType
+            ? `${item}_${index}`
+            : `${item[props.value]}_${index}`
+        "
         :value="areItemsStringOrNumberType ? item : item[props.value]"
       >
         {{ areItemsStringOrNumberType ? item : item[props.display] }}
@@ -20,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref} from "vue";
+import { computed, ref } from "vue";
 
 interface Props {
   label?: string | undefined;
@@ -32,10 +36,12 @@ interface Props {
 }
 const props = defineProps<Props>();
 const emit = defineEmits(["update:modelValue"]);
-const areItemsStringOrNumberType = ref<boolean>(isItemStringOrNumberType(props.items[0]));
+const areItemsStringOrNumberType = ref<boolean>(
+  isItemStringOrNumberType(props.items[0])
+);
 
 function isItemStringOrNumberType(item: any): boolean {
-  return typeof item === 'string' || typeof item === 'number';
+  return typeof item === "string" || typeof item === "number";
 }
 
 const value = computed<string | number>({
@@ -48,6 +54,4 @@ const value = computed<string | number>({
 });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -45,4 +45,4 @@ function getIntervalsList(from: Interval, to: Interval): Interval[] {
   return intervalsList;
 }
 
-export { getIntervalStringName, getIntervalsList }
+export { getIntervalStringName, getIntervalsList };

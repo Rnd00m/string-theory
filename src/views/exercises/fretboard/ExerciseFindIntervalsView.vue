@@ -6,15 +6,31 @@
       </template>
 
       <template #exercise-explication-content>
-        <p>A note and an interval will be given to you. Find all the corresponding notes on the fretboard.</p>
+        <p>
+          A note and an interval will be given to you. Find all the
+          corresponding notes on the fretboard.
+        </p>
         <p>Choose your settings below.</p>
       </template>
 
       <template #exercise-detail>
         <div class="w-full stats bg-base-200">
           <div class="stat">
-            <div>Find a <span class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find">{{ intervalToFind.name }}</span> from the selected <span class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find">{{ startNote.pc }}</span></div>
-            <div class="stat-value text-xl lg:text-2xl">{{ totalNoteFound }} / {{ totalNoteToFind }}</div>
+            <div>
+              Find a
+              <span
+                class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find"
+                >{{ intervalToFind.name }}</span
+              >
+              from the selected
+              <span
+                class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find"
+                >{{ startNote.pc }}</span
+              >
+            </div>
+            <div class="stat-value text-xl lg:text-2xl">
+              {{ totalNoteFound }} / {{ totalNoteToFind }}
+            </div>
           </div>
 
           <div class="stat">
@@ -34,11 +50,21 @@
       </template>
 
       <template #exercise-modal>
-        <input type="checkbox" id="modal-restart-exercise" class="modal-toggle" :checked="isStartModalDisplayed"/>
+        <input
+          type="checkbox"
+          id="modal-restart-exercise"
+          class="modal-toggle"
+          :checked="isStartModalDisplayed"
+        />
         <div class="modal">
           <div class="modal-box">
-            <h3 class="font-bold text-lg">Congratulations you've found all the notes</h3>
-            <p class="py-4">You could now restart the exercise with a new note or go back to another exercise.</p>
+            <h3 class="font-bold text-lg">
+              Congratulations you've found all the notes
+            </h3>
+            <p class="py-4">
+              You could now restart the exercise with a new note or go back to
+              another exercise.
+            </p>
             <div class="modal-action">
               <button class="btn" @click="startExercise">Restart</button>
             </div>
@@ -61,7 +87,8 @@ import {
   getFretboardNotes,
 } from "@/modules/fretboard/services/fretboard";
 import {
-  getPositionOfNoteToFindOnFretboard, getRandomInterval,
+  getPositionOfNoteToFindOnFretboard,
+  getRandomInterval,
   getRandomNote,
 } from "@/modules/fretboardExercise/services/exercise";
 import { getRandomInt } from "@/commons/helpers/utils";
@@ -135,7 +162,9 @@ function displayNoteOnFretboard(note: Note): void {
   const foundNotes: FretboardNote[] = [];
 
   fretboardNotes.value.forEach((strings: FretboardNote[]) => {
-    const foundNoteOnFretboard = strings.find((fretboardNote: FretboardNote) => fretboardNote.note.name === note.name);
+    const foundNoteOnFretboard = strings.find(
+      (fretboardNote: FretboardNote) => fretboardNote.note.name === note.name
+    );
 
     if (foundNoteOnFretboard !== undefined) {
       foundNotes.push(foundNoteOnFretboard);
@@ -146,7 +175,10 @@ function displayNoteOnFretboard(note: Note): void {
   const selectedFretboardNote: FretboardNote = foundNotes[randomNoteIndex];
 
   fretboardNotes.value.some((strings: FretboardNote[]) => {
-    const foundNoteOnFretboard = strings.find((fretboardNote: FretboardNote) => fretboardNote.key === selectedFretboardNote.key);
+    const foundNoteOnFretboard = strings.find(
+      (fretboardNote: FretboardNote) =>
+        fretboardNote.key === selectedFretboardNote.key
+    );
 
     if (foundNoteOnFretboard !== undefined) {
       foundNoteOnFretboard.isDisplayed = true;
@@ -157,12 +189,19 @@ function displayNoteOnFretboard(note: Note): void {
 
 function selectNote(eventData: FretboardNoteSelectedEvent) {
   fretboardNotes.value.some((strings: FretboardNote[]) => {
-    const foundNoteOnFretboard = strings.find((fretboardNote: FretboardNote) => fretboardNote.key === eventData.key);
+    const foundNoteOnFretboard = strings.find(
+      (fretboardNote: FretboardNote) => fretboardNote.key === eventData.key
+    );
 
     if (foundNoteOnFretboard !== undefined) {
-      const foundIndex: number = positionsOfNoteToFind.value.findIndex((notePosition: NotePosition) => {
-        return notePosition.string === foundNoteOnFretboard.string && notePosition.fret === foundNoteOnFretboard.fret;
-      });
+      const foundIndex: number = positionsOfNoteToFind.value.findIndex(
+        (notePosition: NotePosition) => {
+          return (
+            notePosition.string === foundNoteOnFretboard.string &&
+            notePosition.fret === foundNoteOnFretboard.fret
+          );
+        }
+      );
 
       let noteClasses: string[] = foundNoteOnFretboard.classes;
 
@@ -182,5 +221,4 @@ function selectNote(eventData: FretboardNoteSelectedEvent) {
 }
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

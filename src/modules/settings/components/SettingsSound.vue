@@ -29,17 +29,18 @@ export default {
 
     return {
       fretboardParametersStore,
-      soundSampleList
+      soundSampleList,
     };
   },
   computed: {
     filteredSoundSampleList() {
       return this.soundSampleList.filter(
         (soundSample) =>
-          soundSample.instrumentType === this.fretboardParametersStore.instrumentType
+          soundSample.instrumentType ===
+          this.fretboardParametersStore.instrumentType
       );
     },
-  }
+  },
 };
 </script>
 

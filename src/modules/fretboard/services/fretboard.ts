@@ -77,9 +77,7 @@ function getStringNotes(
 
   for (let fretNumber = 1; fretNumber <= stringLength; fretNumber++) {
     let newNote: Note = Note.get(
-      Note.simplify(
-        Note.transpose(currentNote, "2m")
-      )
+      Note.simplify(Note.transpose(currentNote, "2m"))
     );
 
     // Change fretboard display according to the chord or scale parameters selected
@@ -105,7 +103,10 @@ function getStringNotes(
  * @param note
  * @param classMap
  */
-function getNoteClassesFromClassMap(note: Note, classMap: NoteClassMap[]): string[] {
+function getNoteClassesFromClassMap(
+  note: Note,
+  classMap: NoteClassMap[]
+): string[] {
   const noteClasses: string[] = [];
 
   if (classMap !== undefined) {
@@ -148,7 +149,9 @@ function getDisplayVariationTypeToUse(
   notes: Note[] | Note
 ): DisplayVariationType {
   if (!Array.isArray(notes)) {
-    return getNoteVariation(notes) === DisplayVariationType.Flat ? DisplayVariationType.Flat : DisplayVariationType.Sharp;
+    return getNoteVariation(notes) === DisplayVariationType.Flat
+      ? DisplayVariationType.Flat
+      : DisplayVariationType.Sharp;
   }
 
   let currentNoteVariation: DisplayVariationType = DisplayVariationType.Sharp;
@@ -177,8 +180,4 @@ function getNoteVariation(note: Note): DisplayVariationType {
   return DisplayVariationType.None;
 }
 
-export {
-  getFretboardNotes,
-  getFretboardNoteKey,
-  getDisplayVariationTypeToUse,
-};
+export { getFretboardNotes, getFretboardNoteKey, getDisplayVariationTypeToUse };

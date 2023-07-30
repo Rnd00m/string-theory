@@ -6,10 +6,7 @@ import { Note, Scale } from "@tonaljs/tonal";
  * @param rootNote
  * @param scaleName
  */
-function getScale(
-  rootNote: Note,
-  scaleName: string
-): Scale {
+function getScale(rootNote: Note, scaleName: string): Scale {
   return Scale.get(`${rootNote.pc} ${scaleName}`);
 }
 

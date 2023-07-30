@@ -7,8 +7,6 @@
       </div>
       <TheRightDrawer></TheRightDrawer>
     </div>
-
-
   </TheHeader>
 
   <MqResponsive target="lg+">

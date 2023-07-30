@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="fretboard-settings-wrapper flex flex-col mx-auto space-y-2"
-  >
+  <div class="fretboard-settings-wrapper flex flex-col mx-auto space-y-2">
     <SettingsSelectTuning />
   </div>
 </template>

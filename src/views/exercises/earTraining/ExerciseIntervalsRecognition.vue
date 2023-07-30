@@ -37,7 +37,9 @@
         <div class="grid landscape:grid-cols-4 grid-cols-2 gap-4">
           <EarTrainingExerciseAnswerButton
             v-for="interval in intervalsList"
-            :key="interval.name + intervalToFind.name + noteWithIntervalApplied.name"
+            :key="
+              interval.name + intervalToFind.name + noteWithIntervalApplied.name
+            "
             :interval="interval"
             :interval-to-find="intervalToFind"
             @earTrainingExercise:answered="consumeAnswerButtonClicked"
@@ -46,11 +48,20 @@
       </template>
 
       <template #exercise-modal>
-        <input type="checkbox" id="modal-restart-exercise" class="modal-toggle" :checked="isStartModalDisplayed"/>
+        <input
+          type="checkbox"
+          id="modal-restart-exercise"
+          class="modal-toggle"
+          :checked="isStartModalDisplayed"
+        />
         <div class="modal">
           <div class="modal-box">
-            <h3 class="font-bold text-lg">Congratulations you've found the correct interval</h3>
-            <p class="py-4">You could now restart the exercise with a new interval.</p>
+            <h3 class="font-bold text-lg">
+              Congratulations you've found the correct interval
+            </h3>
+            <p class="py-4">
+              You could now restart the exercise with a new interval.
+            </p>
             <div class="modal-action">
               <button class="btn" @click="startExercise">Restart</button>
             </div>
@@ -72,7 +83,7 @@ import { getRandomInt } from "@/commons/helpers/utils";
 import * as Tone from "tone";
 import { soundSampleList } from "@/modules/settings/services/SoundSampleList";
 import SvgIcon from "@jamescoyle/vue-icon";
-import { mdiPlay } from '@mdi/js';
+import { mdiPlay } from "@mdi/js";
 
 const intervalsList = ref<Interval[]>(
   getIntervalsList(Interval.get("2m"), Interval.get("8P"))
@@ -101,7 +112,9 @@ const sampler = new Tone.Sampler({
     A7: "A7.mp3",
     D7: "D7.mp3",
   },
-  baseUrl: soundSampleList.find(soundSample => soundSample.name === "Acoustic Guitar Nylon")?.url,
+  baseUrl: soundSampleList.find(
+    (soundSample) => soundSample.name === "Acoustic Guitar Nylon"
+  )?.url,
 }).toDestination();
 
 function startExercise(): void {
@@ -114,7 +127,11 @@ function startExercise(): void {
   const randomIntervalIndex = getRandomInt(0, intervalsList.value.length);
 
   intervalToFind.value = intervalsList.value[randomIntervalIndex];
-  noteWithIntervalApplied.value = Note.get(Note.simplify(Note.transpose(rootNote.value.name, intervalToFind.value.name)));
+  noteWithIntervalApplied.value = Note.get(
+    Note.simplify(
+      Note.transpose(rootNote.value.name, intervalToFind.value.name)
+    )
+  );
 
   setTimeout(() => {
     playExerciseNotes();
@@ -125,7 +142,11 @@ function playExerciseNotes(): void {
   const now = Tone.now();
 
   sampler.triggerAttackRelease(rootNote.value.name, 2, now);
-  sampler.triggerAttackRelease(noteWithIntervalApplied.value.name, 2, now + 0.5);
+  sampler.triggerAttackRelease(
+    noteWithIntervalApplied.value.name,
+    2,
+    now + 0.5
+  );
 }
 
 function consumeAnswerButtonClicked(isCorrectlyAnswered: boolean): void {
@@ -137,6 +158,4 @@ function consumeAnswerButtonClicked(isCorrectlyAnswered: boolean): void {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

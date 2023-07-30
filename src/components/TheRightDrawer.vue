@@ -4,9 +4,17 @@
     <div
       class="menu grid place-items-center p-4 gap-2 relative overflow-y-auto w-3/5 bg-base-100 text-base-content h-full"
     >
-      <label for="app-drawer" class="drawer-button btn btn-sm btn-circle absolute top-4 left-4">✕</label>
-      <SettingsFretboardDrawer v-if="globalStore.selectedDrawer === 'settings'"></SettingsFretboardDrawer>
-      <SettingsFretboardTuningDrawer v-if="globalStore.selectedDrawer === 'settings-tuning'"></SettingsFretboardTuningDrawer>
+      <label
+        for="app-drawer"
+        class="drawer-button btn btn-sm btn-circle absolute top-4 left-4"
+        >✕</label
+      >
+      <SettingsFretboardDrawer
+        v-if="globalStore.selectedDrawer === 'settings'"
+      ></SettingsFretboardDrawer>
+      <SettingsFretboardTuningDrawer
+        v-if="globalStore.selectedDrawer === 'settings-tuning'"
+      ></SettingsFretboardTuningDrawer>
     </div>
   </div>
 </template>

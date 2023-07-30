@@ -4,12 +4,16 @@
     class="exercise-wrapper flex justify-center gap-4"
   >
     <BaseCard class="w-10/12 lg:w-full">
-      <template #title><slot name="exercise-explication-title"></slot></template>
+      <template #title
+        ><slot name="exercise-explication-title"></slot
+      ></template>
       <div class="text-base lg:text-md max-w-prose">
         <slot name="exercise-explication-content"></slot>
       </div>
       <template #card-actions>
-        <button class="btn btn-primary place-self-end" @click="startExercise">Start</button>
+        <button class="btn btn-primary place-self-end" @click="startExercise">
+          Start
+        </button>
       </template>
     </BaseCard>
   </div>
@@ -43,6 +47,4 @@ function startExercise() {
 const isExerciseStarted = ref<boolean>(false);
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

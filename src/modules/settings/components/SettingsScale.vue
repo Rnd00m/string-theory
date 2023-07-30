@@ -5,11 +5,7 @@
         <li class="menu-title">
           <span>Modes</span>
         </li>
-        <li
-          v-for="mode in modes"
-          :key="mode.name"
-          @click="setScale(mode)"
-        >
+        <li v-for="mode in modes" :key="mode.name" @click="setScale(mode)">
           <a
             class="chord-name"
             :class="{

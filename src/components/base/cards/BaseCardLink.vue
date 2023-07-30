@@ -10,10 +10,16 @@
       <svg-icon type="mdi" :path="props.iconPath" size="28" />
     </div>
     <div class="mt-2 lg:mt-4">
-      <h2 class="sm:text-base md:text-lg lg:text-xl font-semibold lg:my-2 my-1" v-if="!!$slots.title">
+      <h2
+        class="sm:text-base md:text-lg lg:text-xl font-semibold lg:my-2 my-1"
+        v-if="!!$slots.title"
+      >
         <slot name="title"></slot>
       </h2>
-      <div class="flex space-x-2 text-gray-400 text-sm md:text-base" v-if="!!$slots.content">
+      <div
+        class="flex space-x-2 text-gray-400 text-sm md:text-base"
+        v-if="!!$slots.content"
+      >
         <slot name="content" />
       </div>
     </div>

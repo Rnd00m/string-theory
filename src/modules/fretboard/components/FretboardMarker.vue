@@ -1,5 +1,7 @@
 <template>
-  <div class="fretboard-marker-wrapper h-6 grid grid-flow-col auto-cols-[3.5rem] lg:auto-cols-[4.5rem] content-center">
+  <div
+    class="fretboard-marker-wrapper h-6 grid grid-flow-col auto-cols-[3.5rem] lg:auto-cols-[4.5rem] content-center"
+  >
     <div
       class="fretboard-marker inline-flex justify-center"
       v-for="(n, index) in props.stringLength"

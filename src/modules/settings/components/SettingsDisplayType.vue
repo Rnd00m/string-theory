@@ -1,5 +1,7 @@
 <template>
-  <div class="settings-display-type flex gap-2 lg:gap-4 items-center justify-center">
+  <div
+    class="settings-display-type flex gap-2 lg:gap-4 items-center justify-center"
+  >
     <BaseInputRadio
       name="type"
       :value="DisplayTypeEnum.Chord"

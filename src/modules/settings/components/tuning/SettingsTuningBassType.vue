@@ -31,7 +31,7 @@ import { ref } from "vue";
 import { Note } from "@tonaljs/tonal";
 
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-import {SoundSampleInstrumentTypeEnum} from "@/modules/settings/enums/SoundSampleInstrumentTypeEnum";
+import { SoundSampleInstrumentTypeEnum } from "@/modules/settings/enums/SoundSampleInstrumentTypeEnum";
 import BaseInputRadio from "@/components/base/inputs/BaseInputRadio.vue";
 
 const fretboardParametersStore = useFretboardParametersStore();
@@ -45,10 +45,10 @@ const baseBassStrings = [
 ];
 
 function setBassBaseTuning(): void {
-  fretboardParametersStore.fretboard.baseNotes = [
-    ...baseBassStrings,
-  ];
-  fretboardParametersStore.changeInstrumentType(SoundSampleInstrumentTypeEnum.Bass)
+  fretboardParametersStore.fretboard.baseNotes = [...baseBassStrings];
+  fretboardParametersStore.changeInstrumentType(
+    SoundSampleInstrumentTypeEnum.Bass
+  );
 }
 
 function set5StringsBassTuning(): void {
@@ -57,7 +57,9 @@ function set5StringsBassTuning(): void {
   strings.push(Note.get("B0"));
 
   fretboardParametersStore.fretboard.baseNotes = strings;
-  fretboardParametersStore.changeInstrumentType(SoundSampleInstrumentTypeEnum.Bass)
+  fretboardParametersStore.changeInstrumentType(
+    SoundSampleInstrumentTypeEnum.Bass
+  );
 }
 
 function set6StringsBassTuning(): void {
@@ -67,9 +69,10 @@ function set6StringsBassTuning(): void {
   strings.push(Note.get("B0"));
 
   fretboardParametersStore.fretboard.baseNotes = strings;
-  fretboardParametersStore.changeInstrumentType(SoundSampleInstrumentTypeEnum.Bass)
+  fretboardParametersStore.changeInstrumentType(
+    SoundSampleInstrumentTypeEnum.Bass
+  );
 }
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

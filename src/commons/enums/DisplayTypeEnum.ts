@@ -1,4 +1,4 @@
 export enum DisplayTypeEnum {
   Chord = "Chord",
-  Scale = "Scale"
+  Scale = "Scale",
 }

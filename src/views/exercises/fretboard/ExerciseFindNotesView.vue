@@ -1,20 +1,30 @@
 <template>
   <div class="training">
     <FretboardExercise @exercise-started="startExercise">
-      <template #exercise-explication-title>
-        Note finding exercise
-      </template>
+      <template #exercise-explication-title> Note finding exercise </template>
 
       <template #exercise-explication-content>
-        <p>A note will be given to you. Find all the occurrences on the fretboard.</p>
+        <p>
+          A note will be given to you. Find all the occurrences on the
+          fretboard.
+        </p>
         <p>Choose your settings below.</p>
       </template>
 
       <template #exercise-detail>
         <div class="w-full stats bg-base-200">
           <div class="stat">
-            <div>Find all <span class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find">{{ noteToFind.pc }}</span> on the fretboard</div>
-            <div class="stat-value text-xl lg:text-2xl">{{ totalNoteFound }} / {{ totalNoteToFind }}</div>
+            <div>
+              Find all
+              <span
+                class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find"
+                >{{ noteToFind.pc }}</span
+              >
+              on the fretboard
+            </div>
+            <div class="stat-value text-xl lg:text-2xl">
+              {{ totalNoteFound }} / {{ totalNoteToFind }}
+            </div>
           </div>
 
           <div class="stat">
@@ -34,11 +44,21 @@
       </template>
 
       <template #exercise-modal>
-        <input type="checkbox" id="modal-restart-exercise" class="modal-toggle" :checked="isStartModalDisplayed"/>
+        <input
+          type="checkbox"
+          id="modal-restart-exercise"
+          class="modal-toggle"
+          :checked="isStartModalDisplayed"
+        />
         <div class="modal">
           <div class="modal-box">
-            <h3 class="font-bold text-lg">Congratulations you've found all the notes</h3>
-            <p class="py-4">You could now restart the exercise with a new note or go back to another exercise.</p>
+            <h3 class="font-bold text-lg">
+              Congratulations you've found all the notes
+            </h3>
+            <p class="py-4">
+              You could now restart the exercise with a new note or go back to
+              another exercise.
+            </p>
             <div class="modal-action">
               <button class="btn" @click="startExercise">Restart</button>
             </div>
@@ -106,12 +126,19 @@ function startExercise(): void {
 
 function selectNote(eventData: FretboardNoteSelectedEvent) {
   fretboardNotes.value.some((strings: FretboardNote[]) => {
-    const foundNoteOnFretboard = strings.find((fretboardNote: FretboardNote) => fretboardNote.key === eventData.key);
+    const foundNoteOnFretboard = strings.find(
+      (fretboardNote: FretboardNote) => fretboardNote.key === eventData.key
+    );
 
     if (foundNoteOnFretboard !== undefined) {
-      const foundIndex: number = positionsOfNoteToFind.value.findIndex((notePosition: NotePosition) => {
-        return notePosition.string === foundNoteOnFretboard.string && notePosition.fret === foundNoteOnFretboard.fret;
-      });
+      const foundIndex: number = positionsOfNoteToFind.value.findIndex(
+        (notePosition: NotePosition) => {
+          return (
+            notePosition.string === foundNoteOnFretboard.string &&
+            notePosition.fret === foundNoteOnFretboard.fret
+          );
+        }
+      );
 
       let noteClasses: string[] = foundNoteOnFretboard.classes;
 

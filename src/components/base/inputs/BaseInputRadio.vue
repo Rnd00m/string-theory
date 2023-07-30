@@ -8,7 +8,9 @@
         class="radio radio-xs lg:radio-sm radio-primary checked:bg-primary"
         v-bind="$attrs"
       />
-      <span class="label-text text-sm lg:text-base" v-if="props.label">&nbsp;&nbsp;{{ props.label }}</span>
+      <span class="label-text text-sm lg:text-base" v-if="props.label"
+        >&nbsp;&nbsp;{{ props.label }}</span
+      >
     </label>
   </div>
 </template>
@@ -34,6 +36,4 @@ const value = computed({
 });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

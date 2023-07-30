@@ -17,17 +17,22 @@ const router = createRouter({
     {
       path: "/exercise/fretboard/find-notes",
       name: "exercises.fretboard.findNotes",
-      component: () => import("../views/exercises/fretboard/ExerciseFindNotesView.vue"),
+      component: () =>
+        import("../views/exercises/fretboard/ExerciseFindNotesView.vue"),
     },
     {
       path: "/exercise/fretboard/find-intervals",
       name: "exercises.fretboard.findIntervals",
-      component: () => import("../views/exercises/fretboard/ExerciseFindIntervalsView.vue"),
+      component: () =>
+        import("../views/exercises/fretboard/ExerciseFindIntervalsView.vue"),
     },
     {
       path: "/exercise/ear-training/find-intervals",
       name: "exercises.earTraining.findIntervals",
-      component: () => import("../views/exercises/earTraining/ExerciseIntervalsRecognition.vue"),
+      component: () =>
+        import(
+          "../views/exercises/earTraining/ExerciseIntervalsRecognition.vue"
+        ),
     },
     {
       path: "/tools",
@@ -37,7 +42,8 @@ const router = createRouter({
     {
       path: "/tools/string-tension",
       name: "tools.stringTensionsCalculator",
-      component: () => import("../views/tools/ToolStringTensionsCalculatorView.vue"),
+      component: () =>
+        import("../views/tools/ToolStringTensionsCalculatorView.vue"),
     },
     {
       path: "/about",

@@ -7,11 +7,11 @@
       >
         <template v-if="props.fretboardNote.isDisplayed">
           <span>{{ noteFullName }}</span>
-          <span class="note-octave" v-if="props.showOctave">{{ props.fretboardNote.note.oct }}</span>
+          <span class="note-octave" v-if="props.showOctave">{{
+            props.fretboardNote.note.oct
+          }}</span>
         </template>
-        <template v-else>
-         &nbsp;
-        </template>
+        <template v-else> &nbsp; </template>
       </div>
     </div>
   </div>
@@ -36,7 +36,9 @@ const props = withDefaults(defineProps<Props>(), {
   isSoundActive: false,
 });
 
-const cssStringProperties = ref<string>((0.075 + 0.03 * props.string) + 'em solid hsl(var(--bc))');
+const cssStringProperties = ref<string>(
+  0.075 + 0.03 * props.string + "em solid hsl(var(--bc))"
+);
 
 const noteClasses = computed<string[]>(() => {
   if (props.fretboardNote.isDisplayed) {
@@ -52,7 +54,10 @@ const noteClasses = computed<string[]>(() => {
 const emit = defineEmits(["note-selected"]);
 
 const noteFullName = computed(() => {
-  return props.fretboardNote.note.letter + beautifyAccidentalValue(props.fretboardNote.note.acc);
+  return (
+    props.fretboardNote.note.letter +
+    beautifyAccidentalValue(props.fretboardNote.note.acc)
+  );
 });
 
 function beautifyAccidentalValue(accidental: string): string {

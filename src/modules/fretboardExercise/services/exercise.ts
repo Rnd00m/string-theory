@@ -49,7 +49,9 @@ function getPositionOfNoteToFindOnFretboard(
 
   fretboardNotes.forEach((string: FretboardNote[], stringNumber: number) => {
     string.forEach((fret: FretboardNote, fretNumber: number) => {
-      if (areNotesMatchingFretboardNote(notesToFind, fret, isRestrictedToOctave)) {
+      if (
+        areNotesMatchingFretboardNote(notesToFind, fret, isRestrictedToOctave)
+      ) {
         notePositions.push({
           key: getFretboardNoteKey(stringNumber, fretNumber),
           string: stringNumber,
@@ -68,13 +70,21 @@ function areNotesMatchingFretboardNote(
   isRestrictedToOctave: boolean
 ): boolean {
   if (isRestrictedToOctave) {
-    if (notesToFind.findIndex((noteToFind) => noteToFind.name === fretboardNote.note.name) > -1) {
+    if (
+      notesToFind.findIndex(
+        (noteToFind) => noteToFind.name === fretboardNote.note.name
+      ) > -1
+    ) {
       return true;
     }
     return false;
   }
 
-  if (notesToFind.findIndex((noteToFind) => noteToFind.pc === fretboardNote.note.pc) > -1) {
+  if (
+    notesToFind.findIndex(
+      (noteToFind) => noteToFind.pc === fretboardNote.note.pc
+    ) > -1
+  ) {
     return true;
   }
   return false;

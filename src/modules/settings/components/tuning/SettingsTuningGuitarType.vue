@@ -47,10 +47,10 @@ const baseGuitarStrings = [
 ];
 
 function setBaseTuning(): void {
-  fretboardParametersStore.fretboard.baseNotes = [
-    ...baseGuitarStrings,
-  ];
-  fretboardParametersStore.changeInstrumentType(SoundSampleInstrumentTypeEnum.Guitar)
+  fretboardParametersStore.fretboard.baseNotes = [...baseGuitarStrings];
+  fretboardParametersStore.changeInstrumentType(
+    SoundSampleInstrumentTypeEnum.Guitar
+  );
 }
 
 function set7StringsBaseTuning(): void {
@@ -59,7 +59,9 @@ function set7StringsBaseTuning(): void {
   strings.push(Note.get("B1"));
 
   fretboardParametersStore.fretboard.baseNotes = strings;
-  fretboardParametersStore.changeInstrumentType(SoundSampleInstrumentTypeEnum.Guitar);
+  fretboardParametersStore.changeInstrumentType(
+    SoundSampleInstrumentTypeEnum.Guitar
+  );
 }
 function set8StringsBaseTuning(): void {
   let strings = [...baseGuitarStrings];
@@ -68,9 +70,10 @@ function set8StringsBaseTuning(): void {
   strings.push(Note.get("F#1"));
 
   fretboardParametersStore.fretboard.baseNotes = strings;
-  fretboardParametersStore.changeInstrumentType(SoundSampleInstrumentTypeEnum.Guitar)
+  fretboardParametersStore.changeInstrumentType(
+    SoundSampleInstrumentTypeEnum.Guitar
+  );
 }
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

@@ -28,10 +28,7 @@ import {
 } from "@/modules/fretboard/services/noteClassMaps";
 import { Note, Scale } from "@tonaljs/tonal";
 import { computed } from "vue";
-import {
-  getScale,
-  getScaleNotes
-} from "@/commons/helpers/scales";
+import { getScale, getScaleNotes } from "@/commons/helpers/scales";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
@@ -43,11 +40,7 @@ const scale = computed<Scale>(() => {
 });
 
 const classMap = computed<NoteClassMap[]>(() => {
-  return getClassMap(
-    scale.value,
-    true,
-    true
-  );
+  return getClassMap(scale.value, true, true);
 });
 </script>
 

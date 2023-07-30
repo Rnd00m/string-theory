@@ -1,12 +1,7 @@
 <template>
   <p class="max-w-prose">
-    The {{ chord.name }} is a
-    {{ chord.type }} chord composed of
-    {{
-      conjunctionFormatter.format(
-        chord.intervals
-      )
-    }}
+    The {{ chord.name }} is a {{ chord.type }} chord composed of
+    {{ conjunctionFormatter.format(chord.intervals) }}
     intervals.
     <span v-if="chord.aliases.length">
       It can be written
@@ -16,6 +11,46 @@
             (alias: string) => `${chord.tonic} ${alias}`
           )
         )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       }}.
     </span>
   </p>
@@ -45,9 +80,7 @@ import {
 } from "@/modules/fretboard/services/noteClassMaps";
 import { computed } from "vue";
 import { Chord, Note } from "@tonaljs/tonal";
-import {
-  getChord, getChordNotes,
-} from "@/commons/helpers/chords";
+import { getChord, getChordNotes } from "@/commons/helpers/chords";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
@@ -68,11 +101,7 @@ const chord = computed<Chord>(() => {
 });
 
 const classMap = computed<NoteClassMap[]>(() => {
-  return getClassMap(
-    chord.value,
-    true,
-    true
-  );
+  return getClassMap(chord.value, true, true);
 });
 </script>
 
