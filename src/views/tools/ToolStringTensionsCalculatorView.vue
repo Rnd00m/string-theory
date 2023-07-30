@@ -73,7 +73,7 @@ function updateTensionParameter(data: TensionParameterUpdateEvent): void {
   stringTensions.value.splice(
     data.index,
     1,
-    new StringTension(data.string, data.note)
+    new StringTension(data.string, data.note, diapason.value)
   );
 }
 
@@ -83,7 +83,7 @@ function updateDiapasonParameter(data: number): void {
 }
 
 function updateNotesParameter(data: Note[]): void {
-  notes.value = data.value;
+  notes.value = data;
 
   const noteNumber: number = notes.value.length;
 
@@ -97,7 +97,7 @@ function updateNotesParameter(data: Note[]): void {
 }
 
 function updateStringsParameter(data: GuitarString[]): void {
-  strings.value = data.value;
+  strings.value = data;
 
   const stringNumber: number = strings.value.length;
 

@@ -115,15 +115,15 @@ watchEffect(() => {
 const emit = defineEmits(["diapasonUpdated", "notesUpdated", "stringsUpdated"]);
 
 function emitDiapasonUpdated(): void {
-  emit("diapasonUpdated", selectedDiapason);
+  emit("diapasonUpdated", selectedDiapason.value);
 }
 
 function emitNotesUpdated(): void {
-  emit("notesUpdated", selectedNotes);
+  emit("notesUpdated", selectedNotes.value);
 }
 
 function emitStringsUpdated(): void {
-  emit("stringsUpdated", selectedStrings);
+  emit("stringsUpdated", selectedStrings.value);
 }
 </script>
 
