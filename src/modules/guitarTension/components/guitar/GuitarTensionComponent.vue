@@ -1,5 +1,5 @@
 <template>
-  <div class="guitar-tension grid gap-3 content-center place-items-center">
+  <div class="guitar-tension grid gap-8 lg:gap-5 content-center">
     <StringTensionComponent
       :string-tension="string"
       :index="index"
@@ -10,18 +10,17 @@
       v-bind="$attrs"
     />
     <div class="self-auto">
-<!--      <button class="btn btn-outline btn-block" @click="addNewString">
+      <!--      <button class="btn btn-outline btn-block" @click="addNewString">
         Add string
       </button>-->
     </div>
   </div>
 </template>
 
-
 <script setup lang="ts">
 import StringTensionComponent from "./StringTensionComponent.vue";
 import { StringTension } from "@/modules/guitarTension/services/StringTension";
-import {ref} from "vue";
+import { ref } from "vue";
 
 interface Props {
   stringTensions: StringTension[];

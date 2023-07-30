@@ -538,9 +538,13 @@ export const stringSets: StringSet[] = [
 ];
 
 export function getGuitarString(string: string): GuitarString {
-  return stringsData.find((guitarString: GuitarString) => guitarString.name === string);
+  return stringsData.find(
+    (guitarString: GuitarString) => guitarString.name === string
+  );
 }
 
 export function getGuitarStringsFromList(list: string[]): GuitarString[] {
-  return stringsData.filter((string: GuitarString) => list.includes(string.name));
+  return stringsData.filter((string: GuitarString) =>
+    list.includes(string.name)
+  );
 }

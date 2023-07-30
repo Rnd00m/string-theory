@@ -81,7 +81,7 @@ watch(
       </span>
     </div>
 
-<!--    <button
+    <!--    <button
       class="btn btn-square btn-outline btn-xs"
       @click="tensionStore.deleteString(index)"
     >

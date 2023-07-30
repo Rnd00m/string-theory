@@ -3,27 +3,29 @@
     <div class="hidden md:grid justify-items-center mb-4">
       <h1 class="text-center text-4xl font-bold">String tension calculator</h1>
     </div>
-    <div class="grid grid-flow-row auto-rows-max md:grid-cols-2">
-      <div class="grid gap-4">
-        <!--        <SettingsComponent />-->
+    <div class="grid grid-flow-row auto-rows-max">
+      <div class="grid justify-items-center">
+        <TensionSettingsComponent @diapasonUpdated="updateDiapasonParameter" />
+      </div>
+
+      <div class="grid grid-flow-row auto-rows-max md:grid-cols-2">
         <GuitarTension
           :string-tensions="stringTensions"
           @tensionParameterUpdated="updateTensionParameter"
         />
+        <TensionChartComponent :string-tensions="stringTensions" />
       </div>
 
-      <TensionChartComponent
-        :string-tensions="stringTensions"
-      />
-    </div>
-    <div class="grid justify-items-center">
-      <!--      <TensionStat />-->
+      <!--      <div class="grid justify-items-center">
+          <TensionStat />
+      </div>-->
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import GuitarTension from "@/modules/guitarTension/components/guitar/GuitarTensionComponent.vue";
 import TensionChartComponent from "@/modules/guitarTension/components/TensionChartComponent.vue";
+import TensionSettingsComponent from "@/modules/guitarTension/components/TensionSettingsComponent.vue";
 import { Note } from "@tonaljs/tonal";
 import { getGuitarString } from "@/modules/guitarTension/data/stringsData";
 import type {
@@ -31,7 +33,7 @@ import type {
   TensionParameterUpdateEvent,
 } from "@/modules/guitarTension/types/stringTension";
 import { StringTension } from "@/modules/guitarTension/services/StringTension";
-import {ref, shallowRef} from "vue";
+import { ref } from "vue";
 
 const stringNotePairs: StringNotePair[] = [
   {
@@ -64,17 +66,23 @@ const stringTensions = ref<StringTension[]>([]);
 
 const addString = (stringTension: StringTension) => {
   stringTensions.value.push(stringTension);
-}
+};
 
 stringNotePairs.forEach((stringNotePair: StringNotePair) => {
   addString(new StringTension(stringNotePair.string, stringNotePair.note));
 });
 
-function updateTensionParameter(data: TensionParameterUpdateEvent) {
+function updateTensionParameter(data: TensionParameterUpdateEvent): void {
   stringTensions.value.splice(
     data.index,
     1,
     new StringTension(data.string, data.note)
   );
+}
+
+function updateDiapasonParameter(data: number): void {
+  stringTensions.value.forEach((stringTension) => {
+    stringTension.diapason = data;
+  });
 }
 </script>

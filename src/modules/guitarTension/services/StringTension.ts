@@ -1,5 +1,5 @@
 import { Note } from "@tonaljs/tonal";
-import type {GuitarString} from "@/modules/guitarTension/types/stringTension";
+import type { GuitarString } from "@/modules/guitarTension/types/stringTension";
 
 export class StringTension {
   #newtonCoefficient = 9.81;
@@ -7,7 +7,7 @@ export class StringTension {
   constructor(
     public string: GuitarString,
     public note: Note,
-    public diapason: number = 0.648, // (in meters) default diapason 25.5 in
+    public diapason: number = 0.648 // (in meters) default diapason 25.5 in
   ) {}
 
   getSizeInMeter(): number {
@@ -27,7 +27,7 @@ export class StringTension {
   getTension(): number {
     return (
       this.string.unitWeight *
-      Math.pow(Note.freq(this.note.name), 2) *
+      Math.pow(Note.freq(this.note.name) || 0, 2) *
       4 *
       Math.pow(this.diapason, 2)
     );

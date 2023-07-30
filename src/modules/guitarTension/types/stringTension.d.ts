@@ -11,10 +11,10 @@ declare type GuitarString = {
 declare type StringNotePair = {
   string: GuitarString;
   note: Note;
-}
+};
 
 declare type TensionParameterUpdateEvent = {
   note: Note;
   string: GuitarString;
   index: number;
-}
+};
