@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { stringsData } from "@/modules/guitarTension/data/stringsData";
-import { reactive, ref, toRef, watch } from "vue";
+import { reactive } from "vue";
 import { Note, Scale } from "@tonaljs/tonal";
 import { StringTension } from "@/modules/guitarTension/services/StringTension";
 import BaseSelect from "@/components/base/BaseSelect.vue";
@@ -29,28 +29,6 @@ function emitNewTensionParameter() {
     index: props.index,
   } as TensionParameterUpdateEvent);
 }
-
-/*watch(
-  () => selected.note,
-  (note) => {
-    tensionStore.updateString(props.index, {
-      note: note,
-      string: selected.string,
-      tension: 0,
-    });
-  }
-);
-
-watch(
-  () => selected.string,
-  (string) => {
-    tensionStore.updateString(props.index, {
-      note: selected.note,
-      string: string,
-      tension: 0,
-    });
-  }
-);*/
 </script>
 
 <template>
@@ -67,7 +45,7 @@ watch(
 
     <select
       v-model="selected.string"
-      class="select select-sm lg:select-md select-primary select-bordered w-full max-w-xs"
+      class="select select-sm md:select-md select-primary select-bordered w-full max-w-xs"
       @change="emitNewTensionParameter"
     >
       <option v-for="string in stringsData" :value="string" :key="string.name">
@@ -80,28 +58,6 @@ watch(
         {{ props.stringTension.getTensionInKg().toFixed(2) }} kg
       </span>
     </div>
-
-    <!--    <button
-      class="btn btn-square btn-outline btn-xs"
-      @click="tensionStore.deleteString(index)"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        width="12"
-        height="12"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12"
-        />
-      </svg>
-    </button>-->
   </div>
 </template>
 

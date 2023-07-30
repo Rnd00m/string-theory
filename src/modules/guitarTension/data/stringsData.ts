@@ -1,9 +1,10 @@
 import type { GuitarString } from "@/modules/guitarTension/types/stringTension";
 import { StringType } from "../enums/StringType";
+import { Note } from "@tonaljs/tonal";
 
 interface Tuning {
   name: string;
-  notes: string[];
+  notes: Note[];
 }
 
 interface StringSet {
@@ -353,35 +354,94 @@ export const stringsData: GuitarString[] = [
 export const tunings: Tuning[] = [
   {
     name: "Standard",
-    notes: ["E4", "B3", "G3", "D3", "A2", "E2"],
+    notes: [
+      Note.get("E4"),
+      Note.get("B3"),
+      Note.get("G3"),
+      Note.get("D3"),
+      Note.get("A2"),
+      Note.get("E2"),
+    ],
   },
   {
     name: "Drop D",
-    notes: ["E4", "B3", "G3", "D3", "A2", "D2"],
+    notes: [
+      Note.get("E4"),
+      Note.get("B3"),
+      Note.get("G3"),
+      Note.get("D3"),
+      Note.get("A2"),
+      Note.get("D2"),
+    ],
   },
   {
     name: "1/2 step down",
-    notes: ["Eb4", "Bb3", "F3", "C3", "G2", "Eb2"],
+    notes: [
+      Note.get("Eb4"),
+      Note.get("Bb3"),
+      Note.get("Gb3"),
+      Note.get("Db3"),
+      Note.get("Ab2"),
+      Note.get("Eb2"),
+    ],
   },
   {
     name: "1 step down",
-    notes: ["D4", "A3", "F3", "C3", "G2", "D2"],
+    notes: [
+      Note.get("D4"),
+      Note.get("A3"),
+      Note.get("F3"),
+      Note.get("C3"),
+      Note.get("G2"),
+      Note.get("D2"),
+    ],
   },
   {
     name: "Drop C",
-    notes: ["D4", "A3", "F3", "C3", "G2", "C2"],
+    notes: [
+      Note.get("D4"),
+      Note.get("A3"),
+      Note.get("F3"),
+      Note.get("C3"),
+      Note.get("G2"),
+      Note.get("C2"),
+    ],
   },
   {
     name: "2 step down",
-    notes: ["C4", "G3", "Eb3", "Bb2", "F2", "C2"],
+    notes: [
+      Note.get("C4"),
+      Note.get("G3"),
+      Note.get("Eb3"),
+      Note.get("Bb2"),
+      Note.get("F2"),
+      Note.get("C2"),
+    ],
   },
   {
     name: "Standard 7 strings",
-    notes: ["E4", "B3", "G3", "D3", "A2", "E2", "B1"],
+    notes: [
+      Note.get("E4"),
+      Note.get("B3"),
+      Note.get("G3"),
+      Note.get("D3"),
+      Note.get("A2"),
+      Note.get("E2"),
+      Note.get("B1"),
+    ],
   },
   {
     name: "Standard 8 strings",
-    notes: ["E4", "B3", "G3", "D3", "A2", "E2", "B1", "Gb1"],
+    notes: [
+      Note.get("E4"),
+      Note.get("B3"),
+      Note.get("G3"),
+      Note.get("D3"),
+      Note.get("A2"),
+      Note.get("E2"),
+      Note.get("B1"),
+      Note.get("Gb1"),
+    ],
   },
 ];
 
@@ -537,9 +597,11 @@ export const stringSets: StringSet[] = [
   },
 ];
 
-export function getGuitarString(string: string): GuitarString {
-  return stringsData.find(
-    (guitarString: GuitarString) => guitarString.name === string
+export function getGuitarString(string: string): GuitarString | null {
+  return (
+    stringsData.find(
+      (guitarString: GuitarString) => guitarString.name === string
+    ) || null
   );
 }
 

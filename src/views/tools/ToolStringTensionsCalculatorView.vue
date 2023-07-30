@@ -4,9 +4,15 @@
       <h1 class="text-center text-4xl font-bold">String tension calculator</h1>
     </div>
     <div class="grid grid-flow-row auto-rows-max">
-      <div class="grid justify-items-center">
-        <TensionSettingsComponent @diapasonUpdated="updateDiapasonParameter" />
-      </div>
+      <TensionSettingsComponent
+        :diapason="diapason"
+        :notes="notes"
+        :strings="strings"
+        @diapasonUpdated="updateDiapasonParameter"
+        @notesUpdated="updateNotesParameter"
+        @stringsUpdated="updateStringsParameter"
+        class="mb-5 md:mb-0"
+      />
 
       <div class="grid grid-flow-row auto-rows-max md:grid-cols-2">
         <GuitarTension
@@ -27,51 +33,42 @@ import GuitarTension from "@/modules/guitarTension/components/guitar/GuitarTensi
 import TensionChartComponent from "@/modules/guitarTension/components/TensionChartComponent.vue";
 import TensionSettingsComponent from "@/modules/guitarTension/components/TensionSettingsComponent.vue";
 import { Note } from "@tonaljs/tonal";
-import { getGuitarString } from "@/modules/guitarTension/data/stringsData";
+import { stringSets, tunings } from "@/modules/guitarTension/data/stringsData";
 import type {
-  StringNotePair,
+  GuitarString,
   TensionParameterUpdateEvent,
 } from "@/modules/guitarTension/types/stringTension";
 import { StringTension } from "@/modules/guitarTension/services/StringTension";
 import { ref } from "vue";
 
-const stringNotePairs: StringNotePair[] = [
-  {
-    string: getGuitarString("PL010"),
-    note: Note.get("E4"),
-  },
-  {
-    string: getGuitarString("PL013"),
-    note: Note.get("B3"),
-  },
-  {
-    string: getGuitarString("PL017"),
-    note: Note.get("G3"),
-  },
-  {
-    string: getGuitarString("NW026"),
-    note: Note.get("D3"),
-  },
-  {
-    string: getGuitarString("NW036"),
-    note: Note.get("A2"),
-  },
-  {
-    string: getGuitarString("NW046"),
-    note: Note.get("E2"),
-  },
-];
+const notes = ref<Note[]>(
+  tunings.find((tuning) => tuning.name === "Standard")?.notes || []
+);
+
+const strings = ref<GuitarString[]>(
+  stringSets.find((stringSet) => stringSet.name === "EXL110 (10-46)")
+    ?.strings || []
+);
+
+const diapason = ref<number>(0.648);
 
 const stringTensions = ref<StringTension[]>([]);
+
+function processStringTensions(): void {
+  stringTensions.value.splice(0, stringTensions.value.length);
+
+  notes.value.forEach((note: Note, index: number) => {
+    addString(new StringTension(strings.value[index], note, diapason.value));
+  });
+}
 
 const addString = (stringTension: StringTension) => {
   stringTensions.value.push(stringTension);
 };
 
-stringNotePairs.forEach((stringNotePair: StringNotePair) => {
-  addString(new StringTension(stringNotePair.string, stringNotePair.note));
-});
+processStringTensions();
 
+// ------------------------ Events ------------------------>
 function updateTensionParameter(data: TensionParameterUpdateEvent): void {
   stringTensions.value.splice(
     data.index,
@@ -81,8 +78,35 @@ function updateTensionParameter(data: TensionParameterUpdateEvent): void {
 }
 
 function updateDiapasonParameter(data: number): void {
-  stringTensions.value.forEach((stringTension) => {
-    stringTension.diapason = data;
-  });
+  diapason.value = data;
+  processStringTensions();
+}
+
+function updateNotesParameter(data: Note[]): void {
+  notes.value = data.value;
+
+  const noteNumber: number = notes.value.length;
+
+  if (noteNumber !== strings.value.length) {
+    strings.value =
+      stringSets.find((stringSet) => stringSet.strings.length === noteNumber)
+        ?.strings || [];
+  }
+
+  processStringTensions();
+}
+
+function updateStringsParameter(data: GuitarString[]): void {
+  strings.value = data.value;
+
+  const stringNumber: number = strings.value.length;
+
+  if (stringNumber !== notes.value.length) {
+    notes.value =
+      tunings.find((tuning) => tuning.notes.length === stringNumber)?.notes ||
+      [];
+  }
+
+  processStringTensions();
 }
 </script>
