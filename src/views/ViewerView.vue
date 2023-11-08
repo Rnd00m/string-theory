@@ -45,6 +45,10 @@ import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariation
 import { getChord, getChordNotes } from "@/commons/helpers/chords";
 import { getScale, getScaleNotes } from "@/commons/helpers/scales";
 import { MqResponsive } from "vue3-mq";
+import type {
+  FretboardNote,
+  NoteClassMap,
+} from "@/modules/fretboard/types/fretboard";
 
 const fretboardParametersStore = useFretboardParametersStore();
 

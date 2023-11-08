@@ -1,6 +1,11 @@
 import { Interval, Note, Scale } from "@tonaljs/tonal";
 import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
 import { getRandomInt } from "@/commons/helpers/utils";
+import type {
+  NotePosition,
+  NoteRange,
+} from "@/modules/fretboardExercise/types/fretboardExercise";
+import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
 
 /**
  * Get a random note from chromatic scale if no range specified

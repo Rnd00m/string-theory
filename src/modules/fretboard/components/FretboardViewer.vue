@@ -22,6 +22,7 @@ import * as Tone from "tone";
 import { computed } from "vue";
 import { SoundSample } from "@/modules/settings/services/classes/SoundSample";
 import { soundSampleList } from "@/modules/settings/services/SoundSampleList";
+import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
 
 interface Props {
   fretboardNotes: FretboardNote[][];

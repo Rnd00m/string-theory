@@ -93,6 +93,11 @@ import {
 } from "@/modules/fretboardExercise/services/exercise";
 import { getRandomInt } from "@/commons/helpers/utils";
 import { getTransposedNote } from "@/commons/helpers/notes";
+import type {
+  FretboardNote,
+  FretboardNoteSelectedEvent,
+} from "@/modules/fretboard/types/fretboard";
+import type { NotePosition } from "@/modules/fretboardExercise/types/fretboardExercise";
 
 const startNote = ref<Note>();
 const intervalToFind = ref<Interval>();

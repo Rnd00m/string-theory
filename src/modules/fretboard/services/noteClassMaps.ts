@@ -2,6 +2,7 @@ import { Chord, Interval, Note, Scale } from "@tonaljs/tonal";
 import { getIntervalStringName } from "@/commons/helpers/intervals";
 import { getChordNotes } from "@/commons/helpers/chords";
 import { getScaleNotes } from "@/commons/helpers/scales";
+import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
 
 const chordNoteClassPrefix = "note-chord-";
 const scaleNoteClassPrefix = "note-scale-";

@@ -84,6 +84,11 @@ import {
   getPositionOfNoteToFindOnFretboard,
   getRandomNote,
 } from "@/modules/fretboardExercise/services/exercise";
+import type {
+  FretboardNote,
+  FretboardNoteSelectedEvent,
+} from "@/modules/fretboard/types/fretboard";
+import type { NotePosition } from "@/modules/fretboardExercise/types/fretboardExercise";
 
 const noteToFind = ref<Note>();
 const baseNotes: Note[] = [

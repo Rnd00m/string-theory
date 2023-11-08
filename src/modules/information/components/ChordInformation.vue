@@ -11,6 +11,46 @@
             (alias: string) => `${chord.tonic} ${alias}`
           )
         )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       }}.
     </span>
   </p>
@@ -41,6 +81,7 @@ import {
 import { computed } from "vue";
 import { Chord, Note } from "@tonaljs/tonal";
 import { getChord, getChordNotes } from "@/commons/helpers/chords";
+import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
 
 const fretboardParametersStore = useFretboardParametersStore();
 

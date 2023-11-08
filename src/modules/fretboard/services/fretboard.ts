@@ -1,6 +1,10 @@
 import { Note } from "@tonaljs/tonal";
 import { getNoteClass } from "@/modules/fretboard/services/noteClassMaps";
 import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariationType";
+import type {
+  FretboardNote,
+  NoteClassMap,
+} from "@/modules/fretboard/types/fretboard";
 
 /**
  * Generate the unique key for a note on the fretboard

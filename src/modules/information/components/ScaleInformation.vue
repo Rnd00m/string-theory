@@ -29,6 +29,7 @@ import {
 import { Note, Scale } from "@tonaljs/tonal";
 import { computed } from "vue";
 import { getScale, getScaleNotes } from "@/commons/helpers/scales";
+import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
