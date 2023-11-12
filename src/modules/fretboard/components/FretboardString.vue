@@ -10,6 +10,7 @@
         :show-octave="props.showOctave"
         :sampler="sampler"
         :is-sound-active="props.isSoundActive"
+        :is-note-selectable="props.isNoteSelectable"
         v-bind="$attrs"
       />
     </div>

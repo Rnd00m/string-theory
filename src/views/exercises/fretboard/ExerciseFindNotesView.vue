@@ -1,18 +1,8 @@
 <template>
   <div class="training">
-    <FretboardExercise @exercise-started="startExercise">
-      <template #exercise-explication-title> Note finding exercise </template>
-
-      <template #exercise-explication-content>
-        <p>
-          A note will be given to you. Find all the occurrences on the
-          fretboard.
-        </p>
-        <p>Choose your settings below.</p>
-      </template>
-
+    <FretboardExercise>
       <template #exercise-detail>
-        <div class="w-full stats bg-base-200">
+        <div class="stats bg-base-200">
           <div class="stat">
             <div>
               Find all
@@ -32,38 +22,38 @@
             <div class="stat-value text-xl lg:text-2xl">{{ errorsNumber }}</div>
           </div>
         </div>
+        <button
+          class="btn btn-outline self-center"
+          v-if="!isExerciseInProgress"
+        >
+          <SvgIcon type="mdi" :path="mdiRestart" @click="startExercise" />
+        </button>
       </template>
 
       <template #exercise-fretboard>
         <FretboardViewer
           :fretboard-notes="fretboardNotes"
-          :is-note-selectable="true"
+          :is-note-selectable="isExerciseInProgress"
           :is-sound-active="false"
           @note-selected="selectNote"
         />
       </template>
 
       <template #exercise-modal>
-        <input
-          type="checkbox"
-          id="modal-restart-exercise"
-          class="modal-toggle"
-          :checked="isStartModalDisplayed"
-        />
-        <div class="modal">
-          <div class="modal-box">
-            <h3 class="font-bold text-lg">
-              Congratulations you've found all the notes
-            </h3>
-            <p class="py-4">
-              You could now restart the exercise with a new note or go back to
-              another exercise.
-            </p>
-            <div class="modal-action">
-              <button class="btn" @click="startExercise">Restart</button>
-            </div>
-          </div>
-        </div>
+        <BaseDialog
+          ref="baseDialog"
+          confirm-text="Restart"
+          show-cancel
+          @confirm="startExercise"
+        >
+          <h3 class="font-bold text-lg">
+            Congratulations you've found all the notes
+          </h3>
+          <p class="py-4">
+            You could now restart the exercise with a new note or go back to
+            another exercise.
+          </p>
+        </BaseDialog>
       </template>
     </FretboardExercise>
   </div>
@@ -72,7 +62,6 @@
 <style></style>
 <script setup lang="ts">
 import FretboardExercise from "@/modules/fretboardExercise/components/FretboardExercise.vue";
-
 import FretboardViewer from "@/modules/fretboard/components/FretboardViewer.vue";
 import { Note } from "@tonaljs/tonal";
 import { computed, ref } from "vue";
@@ -89,6 +78,9 @@ import type {
   FretboardNoteSelectedEvent,
 } from "@/modules/fretboard/types/fretboard";
 import type { NotePosition } from "@/modules/fretboardExercise/types/fretboardExercise";
+import BaseDialog from "@/components/BaseDialog.vue";
+import { mdiRestart } from "@mdi/js";
+import SvgIcon from "@jamescoyle/vue-icon";
 
 const noteToFind = ref<Note>();
 const baseNotes: Note[] = [
@@ -105,11 +97,14 @@ const positionsOfNoteToFind = ref<NotePosition[]>([]);
 const totalNoteToFind = ref<number>(0);
 const totalNoteFound = ref<number>(0);
 const errorsNumber = ref<number>(0);
+const isExerciseInProgress = ref<boolean>(false);
 
-const isStartModalDisplayed = computed<boolean>(() => {
-  return totalNoteFound.value === totalNoteToFind.value;
-});
+const baseDialog = ref<InstanceType<typeof BaseDialog>>();
+const showEndExerciseDialog = () => baseDialog.value?.show();
 
+/**
+ * Start a new exercise by selecting a new note to find and resetting the fretboard
+ */
 function startExercise(): void {
   noteToFind.value = getRandomNote();
   fretboardNotes.value = getFretboardNotes(
@@ -127,9 +122,11 @@ function startExercise(): void {
   totalNoteToFind.value = positionsOfNoteToFind.value.length;
   totalNoteFound.value = 0;
   errorsNumber.value = 0;
+  isExerciseInProgress.value = true; // Enable the note selection
 }
 
 function selectNote(eventData: FretboardNoteSelectedEvent) {
+  // We check if the note selected is the one to find
   fretboardNotes.value.some((strings: FretboardNote[]) => {
     const foundNoteOnFretboard = strings.find(
       (fretboardNote: FretboardNote) => fretboardNote.key === eventData.key
@@ -160,7 +157,15 @@ function selectNote(eventData: FretboardNoteSelectedEvent) {
     }
     return false;
   });
+
+  // If user has found all the notes, we show a dialog to restart the exercise
+  if (totalNoteFound.value === totalNoteToFind.value) {
+    showEndExerciseDialog();
+    isExerciseInProgress.value = false; // At the end of the exercise, we disable the selection of notes to preserve the state
+  }
 }
+
+startExercise();
 </script>
 
 <style scoped lang="scss">

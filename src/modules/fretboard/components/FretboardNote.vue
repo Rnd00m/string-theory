@@ -33,11 +33,13 @@ interface Props {
   showOctave?: boolean;
   sampler: Tone.Sampler;
   isSoundActive?: boolean;
+  isNoteSelectable?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
   showOctave: false,
   noteClass: "",
   isSoundActive: false,
+  isNoteSelectable: false,
 });
 
 const cssStringProperties = ref<string>(
@@ -73,6 +75,8 @@ function beautifyAccidentalValue(accidental: string): string {
 }
 
 function selectNote() {
+  if (!props.isNoteSelectable) return;
+
   const noteClassMap: FretboardNoteSelectedEvent = {
     key: getFretboardNoteKey(props.string, props.fret),
     string: props.string,
