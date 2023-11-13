@@ -8,7 +8,7 @@
       v-if="visible"
       method="dialog"
       :class="{
-        'modal-box rounded-none p-4': true,
+        'modal-box': true,
         [props.classes]: props.classes,
       }"
     >
