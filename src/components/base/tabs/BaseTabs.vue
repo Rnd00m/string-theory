@@ -1,26 +1,30 @@
 <template>
-  <div class="flex flex-shrink-0 flex-col xl:mx-0 xl:w-full">
-    <div class="bg-opacity-100">
-      <div class="tabs w-full flex-grow-0">
-        <button
+  <TabGroup>
+    <div class="grid">
+      <TabList class="tabs tabs-boxed justify-self-center">
+        <Tab
+          as="template"
           v-for="tabTitle in tabTitles"
-          :key="'tab-' + tabTitle"
-          @click="selectedTab = tabTitle"
-          class="tab tab-lifted tab-border-none tab-lg flex-1"
-          :class="{ 'tab-active': selectedTab === tabTitle }"
+          :key="tabTitle"
+          v-slot="{ selected }"
         >
-          {{ tabTitle }}
-        </button>
-      </div>
+          <a class="tab" :class="{ 'tab-active': selected }">{{ tabTitle }}</a>
+        </Tab>
+      </TabList>
+      <TabPanels>
+        <slot />
+      </TabPanels>
     </div>
-    <slot />
-  </div>
+  </TabGroup>
 </template>
 
 <script>
+import { TabGroup, TabList, Tab, TabPanels } from "@headlessui/vue";
+
 import { provide, ref } from "vue";
 
 export default {
+  components: { TabPanels, Tab, TabList, TabGroup },
   setup(props, { slots }) {
     const tabTitles = slots.default().map((tab) => tab.props.title);
     const selectedTab = ref(tabTitles[0]);
@@ -32,13 +36,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-[data-theme="dark"] .tab-lifted.tab-active:not(.tab-disabled):not([disabled]) {
-  background: hsl(var(--b2));
-}
-
-[data-theme="winter"]
-  .tab-lifted.tab-active:not(.tab-disabled):not([disabled]) {
-  background: hsl(var(--b3));
-}
-</style>
+<style scoped lang="scss"></style>
