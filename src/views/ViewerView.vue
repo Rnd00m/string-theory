@@ -6,7 +6,7 @@
       </template>
     </MqResponsive>
 
-    <div class="grid grid-flow-row gap-4">
+    <div class="grid grid-flow-row gap-8">
       <MqResponsive group class="p-4 sm:p-0">
         <template #lg+><SettingsFretboard /></template>
         <template #lg-:portrait><SettingsFretboard /></template>
