@@ -1,8 +1,6 @@
 <template>
-  <h1 class="text-xl font-bold hidden lg:block">Tuning</h1>
-
   <div class="grid h-20 lg:h-32 place-items-center mt-4">
-    <SettingsTuningSelection />
+    <SettingsTuningStrings />
   </div>
 
   <div class="divider">Settings</div>
@@ -44,12 +42,12 @@
 </template>
 
 <script setup lang="ts">
-import SettingsTuningSelection from "@/modules/settings/components/tuning/SettingsTuningSelection.vue";
 import SettingsTuningGuitarType from "@/modules/settings/components/tuning/SettingsTuningGuitarType.vue";
 import SettingsTuningBassType from "@/modules/settings/components/tuning/SettingsTuningBassType.vue";
 import SettingsSound from "@/modules/settings/components/SettingsSound.vue";
 import BaseTabs from "@/components/base/tabs/BaseTabs.vue";
 import BaseTab from "@/components/base/tabs/BaseTab.vue";
+import SettingsTuningStrings from "@/modules/settings/components/tuning/SettingsTuningStrings.vue";
 </script>
 
 <style scoped lang="scss">

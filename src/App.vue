@@ -2,7 +2,7 @@
   <TheHeader>
     <div class="h-full drawer drawer-end">
       <input id="app-drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content flex justify-center items-center lg:py-4">
+      <div class="drawer-content flex justify-center items-center">
         <RouterView />
       </div>
       <TheRightDrawer></TheRightDrawer>

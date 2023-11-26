@@ -12,6 +12,7 @@
     "@capacitor/android": "^4.6.3",
     "@capacitor/core": "^4.6.3",
     "@capacitor/ios": "^4.6.3",
+    "@headlessui/vue": "^1.7.16",
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^7.2.96",
     "@tailwindcss/typography": "^0.5.2",

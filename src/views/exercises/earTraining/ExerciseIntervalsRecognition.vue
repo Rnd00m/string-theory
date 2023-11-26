@@ -1,14 +1,6 @@
 <template>
   <div class="training">
-    <EarTrainingExercise @exercise-started="startExercise">
-      <template #exercise-explication-title>
-        Ear training with intervals
-      </template>
-
-      <template #exercise-explication-content>
-        <p>Listen and find the correct interval</p>
-      </template>
-
+    <EarTrainingExercise>
       <template #exercise-detail>
         <div class="stats bg-base-200">
           <div class="stat">
@@ -31,6 +23,12 @@
             <div class="stat-value text-xl lg:text-2xl">{{ foundNumber }}</div>
           </div>
         </div>
+        <button
+          class="btn btn-outline self-center"
+          v-if="!isExerciseInProgress"
+        >
+          <SvgIcon type="mdi" :path="mdiRestart" @click="startExercise" />
+        </button>
       </template>
 
       <template #exercise-responses>
@@ -48,25 +46,17 @@
       </template>
 
       <template #exercise-modal>
-        <input
-          type="checkbox"
-          id="modal-restart-exercise"
-          class="modal-toggle"
-          :checked="isStartModalDisplayed"
-        />
-        <div class="modal">
-          <div class="modal-box">
-            <h3 class="font-bold text-lg">
-              Congratulations you've found the correct interval
-            </h3>
-            <p class="py-4">
-              You could now restart the exercise with a new interval.
-            </p>
-            <div class="modal-action">
-              <button class="btn" @click="startExercise">Restart</button>
-            </div>
-          </div>
-        </div>
+        <BaseDialog
+          ref="exerciseModal"
+          title="Congratulations you've found the correct interval"
+          confirm-text="Restart"
+          show-confirm
+          @confirm="startExercise"
+        >
+          <p class="py-4">
+            You could now restart the exercise with a new interval.
+          </p>
+        </BaseDialog>
       </template>
     </EarTrainingExercise>
   </div>
@@ -83,7 +73,8 @@ import { getRandomInt } from "@/commons/helpers/utils";
 import * as Tone from "tone";
 import { soundSampleList } from "@/modules/settings/services/SoundSampleList";
 import SvgIcon from "@jamescoyle/vue-icon";
-import { mdiPlay } from "@mdi/js";
+import { mdiPlay, mdiRestart } from "@mdi/js";
+import BaseDialog from "@/components/BaseDialog.vue";
 
 const intervalsList = ref<Interval[]>(
   getIntervalsList(Interval.get("2m"), Interval.get("8P"))
@@ -93,7 +84,10 @@ const intervalToFind = ref<Interval | null>(null);
 const noteWithIntervalApplied = ref<Note | null>(null);
 const errorsNumber = ref<number>(0);
 const foundNumber = ref<number>(0);
-const isStartModalDisplayed = ref<boolean>(false);
+const isExerciseInProgress = ref<boolean>(false);
+
+const exerciseModal = ref<InstanceType<typeof BaseDialog>>();
+const openEndExerciseDialog = () => exerciseModal.value?.open();
 
 const sampler = new Tone.Sampler({
   urls: {
@@ -118,7 +112,6 @@ const sampler = new Tone.Sampler({
 }).toDestination();
 
 function startExercise(): void {
-  isStartModalDisplayed.value = false;
   rootNote.value = getRandomNote({
     lowerNote: Note.get("E2"),
     higherNote: Note.get("E5"),
@@ -136,6 +129,7 @@ function startExercise(): void {
   setTimeout(() => {
     playExerciseNotes();
   }, 600);
+  isExerciseInProgress.value = true; // Enable the note selection
 }
 
 function playExerciseNotes(): void {
@@ -152,10 +146,13 @@ function playExerciseNotes(): void {
 function consumeAnswerButtonClicked(isCorrectlyAnswered: boolean): void {
   if (!isCorrectlyAnswered) errorsNumber.value += 1;
   else {
-    isStartModalDisplayed.value = true;
     foundNumber.value += 1;
+    isExerciseInProgress.value = false;
+    openEndExerciseDialog();
   }
 }
+
+startExercise();
 </script>
 
 <style scoped></style>

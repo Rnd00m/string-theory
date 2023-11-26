@@ -13,7 +13,7 @@ module.exports = {
           "primary-content": "#000000",
           secondary: "hsl(197, 100%, 32%)", // --color-blue-500
           "secondary-focus": "hsl(197, 100%, 24%)", // --color-blue-600
-          "secondary-content": "#000000",
+          "secondary-content": "#ffffff",
           accent: "#fdca40",
           "accent-focus": "#fdc01f",
           "accent-content": "#000000",

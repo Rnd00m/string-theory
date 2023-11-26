@@ -45,14 +45,13 @@
 
       <template #exercise-modal>
         <BaseDialog
-          ref="baseDialog"
+          ref="endExerciseDialog"
+          title="Congratulations you've found all the notes"
           confirm-text="Restart"
           show-cancel
+          show-confirm
           @confirm="startExercise"
         >
-          <h3 class="font-bold text-lg">
-            Congratulations you've found all the notes
-          </h3>
           <p class="py-4">
             You could now restart the exercise with a new note or go back to
             another exercise.
@@ -69,7 +68,7 @@ import FretboardExercise from "@/modules/fretboardExercise/components/FretboardE
 import FretboardViewer from "@/modules/fretboard/components/FretboardViewer.vue";
 
 import { Interval, Note } from "@tonaljs/tonal";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import {
   getDisplayVariationTypeToUse,
   getFretboardNotes,
@@ -109,8 +108,8 @@ const totalNoteFound = ref<number>(0);
 const errorsNumber = ref<number>(0);
 const isExerciseInProgress = ref<boolean>(false);
 
-const baseDialog = ref<InstanceType<typeof BaseDialog>>();
-const showEndExerciseDialog = () => baseDialog.value?.show();
+const endExerciseDialog = ref<InstanceType<typeof BaseDialog>>();
+const openEndExerciseDialog = () => endExerciseDialog.value?.open();
 
 function startExercise(): void {
   // Get a random start note and a random interval to start exercise
@@ -218,7 +217,7 @@ function selectNote(eventData: FretboardNoteSelectedEvent) {
 
   // If user has found all the notes, we show a dialog to restart the exercise
   if (totalNoteFound.value === totalNoteToFind.value) {
-    showEndExerciseDialog();
+    openEndExerciseDialog();
     isExerciseInProgress.value = false; // At the end of the exercise, we disable the selection of notes to preserve the state
   }
 }

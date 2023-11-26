@@ -18,7 +18,7 @@
 
     <BaseCard :body-classes="['lg:p-4', 'p-2']">
       <div class="flex flex-wrap items-center justify-evenly">
-        <SettingsSelectTuningModal />
+        <SettingsTuningModal />
 
         <div class="divider lg:divider-horizontal"></div>
 
@@ -62,9 +62,9 @@ import SettingsChordType from "@/modules/settings/components/SettingsChordType.v
 import SettingsDisplayType from "@/modules/settings/components/SettingsDisplayType.vue";
 import SettingsTriad from "@/modules/settings/components/SettingsTriad.vue";
 import SettingsScaleModal from "@/modules/settings/components/SettingsScaleModal.vue";
-import SettingsSelectTuningModal from "@/modules/settings/layouts/SettingsSelectTuningModal.vue";
 import { DisplayTypeEnum } from "@/commons/enums/DisplayTypeEnum";
 import SettingsStringLength from "@/modules/settings/components/SettingsStringLength.vue";
+import SettingsTuningModal from "@/modules/settings/components/tuning/SettingsTuningModal.vue";
 
 const fretboardParametersStore = useFretboardParametersStore();
 </script>

@@ -1,53 +1,88 @@
 <template>
-  <dialog
-    ref="dialog"
-    class="modal modal-bottom sm:modal-middle"
-    @close="visible = false"
-  >
-    <form
-      v-if="visible"
-      method="dialog"
-      :class="{
-        'modal-box': true,
-        [props.classes]: props.classes,
-      }"
-    >
-      <slot />
+  <TransitionRoot appear :show="isOpen" as="template">
+    <Dialog as="div" @close="close" class="relative z-10">
+      <TransitionChild
+        as="template"
+        enter="duration-200 ease-out"
+        enter-from="opacity-0"
+        enter-to="opacity-100"
+        leave="duration-100 ease-in"
+        leave-from="opacity-100"
+        leave-to="opacity-0"
+      >
+        <div class="fixed inset-0 bg-black/25" />
+      </TransitionChild>
+      <div class="fixed inset-0 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center">
+          <TransitionChild
+            as="template"
+            enter="duration-200 ease-out"
+            enter-from="opacity-0 scale-95"
+            enter-to="opacity-100 scale-100"
+            leave="duration-100 ease-in"
+            leave-from="opacity-100 scale-100"
+            leave-to="opacity-0 scale-95"
+          >
+            <DialogPanel
+              class="modal-box text-left"
+              :class="{
+                [props.modalBoxClasses]: props.modalBoxClasses,
+              }"
+            >
+              <DialogTitle v-if="props.title" as="h3" class="text-lg font-bold">
+                {{ props.title }}
+              </DialogTitle>
+              <slot name="title" v-else />
 
-      <div class="modal-action" v-if="!props.hideConfirm || props.showCancel">
-        <slot name="footer" />
-        <slot name="actionButtons">
-          <button
-            v-if="props.showCancel"
-            value="false"
-            class="btn"
-            @click.prevent="cancel"
-          >
-            {{ props.cancelText }}
-          </button>
-          <button
-            v-if="!props.hideConfirm"
-            value="true"
-            class="btn btn-primary"
-            @click.prevent="confirm"
-          >
-            {{ props.confirmText }}
-          </button>
-        </slot>
+              <slot />
+
+              <div
+                class="modal-action"
+                v-if="props.showConfirm || props.showCancel"
+              >
+                <slot name="footer" />
+                <slot name="actionButtons">
+                  <button
+                    v-if="props.showCancel"
+                    value="false"
+                    class="btn"
+                    @click.prevent="cancel"
+                  >
+                    {{ props.cancelText }}
+                  </button>
+                  <button
+                    v-if="props.showConfirm"
+                    value="true"
+                    class="btn"
+                    @click.prevent="confirm"
+                  >
+                    {{ props.confirmText }}
+                  </button>
+                </slot>
+              </div>
+            </DialogPanel>
+          </TransitionChild>
+        </div>
       </div>
-    </form>
-    <form method="dialog" class="modal-backdrop">
-      <button>close</button>
-    </form>
-  </dialog>
+    </Dialog>
+  </TransitionRoot>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-
-const dialog = ref<HTMLDialogElement>();
+import {
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  TransitionChild,
+  TransitionRoot,
+} from "@headlessui/vue";
 
 const props = defineProps({
+  title: {
+    type: String,
+    default: null,
+  },
   confirmText: {
     type: String,
     default: "Confirm",
@@ -56,7 +91,7 @@ const props = defineProps({
     type: String,
     default: "Cancel",
   },
-  hideConfirm: {
+  showConfirm: {
     type: Boolean,
     default: false,
   },
@@ -64,34 +99,51 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  classes: {
+  modalBoxClasses: {
     type: String,
     default: "",
   },
 });
 
+const isOpen = ref(false);
+
+const close = () => {
+  isOpen.value = false;
+};
+const open = () => {
+  isOpen.value = true;
+};
+
 const emit = defineEmits(["confirm", "cancel"]);
 
 const cancel = () => {
-  dialog.value?.close();
+  close();
   emit("cancel");
 };
 
 const confirm = () => {
-  dialog.value?.close();
+  close();
   emit("confirm");
 };
 
-const visible = ref(false);
-
-const showModal = () => {
-  dialog.value?.showModal();
-  visible.value = true;
-};
-
 defineExpose({
-  show: showModal,
-  close: (returnVal?: string): void => dialog.value?.close(returnVal),
-  visible,
+  open,
+  close,
+  isOpen,
 });
 </script>
+
+<style scoped lang="scss">
+.modal-box::-webkit-scrollbar-thumb {
+  border: 6px solid transparent;
+  border-radius: var(--rounded-box);
+  background-color: hsl(var(--bc) / var(--tw-bg-opacity));
+  background-clip: padding-box;
+  --tw-bg-opacity: 0.5;
+  --tw-border-opacity: 0.2;
+}
+
+.modal-box::-webkit-scrollbar {
+  width: 20px;
+}
+</style>
