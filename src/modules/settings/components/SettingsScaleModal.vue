@@ -148,6 +148,9 @@ import { DialogTitle } from "@headlessui/vue";
 const fretboardParametersStore = useFretboardParametersStore();
 
 const settingsScaleDialog = ref(null);
+const openModal = () => {
+  settingsScaleDialog.value?.open();
+};
 
 const modes = Mode.all();
 const scales = ScaleType.all();
@@ -189,10 +192,6 @@ const otherScales = list.filter((scale: typeof Mode | Scale) => {
 
 const setScale = (scale: Scale) => {
   fretboardParametersStore.scaleName = scale.name;
-};
-
-const openModal = () => {
-  settingsScaleDialog.value?.open();
 };
 </script>
 
