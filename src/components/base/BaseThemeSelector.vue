@@ -1,12 +1,25 @@
 <template>
   <div class="form-control">
-    <label class="label cursor-pointer">
-      <span v-if="props.showLabel" class="label-text">Dark Mode</span>
+    <label class="label cursor-pointer swap swap-rotate">
       <input
         type="checkbox"
-        class="toggle"
         :checked="selectedTheme === ThemeEnum.Dark"
         @change="toggleTheme"
+      />
+
+      <svg-icon
+        class="swap-on"
+        type="mdi"
+        :path="mdiWeatherNight"
+        width="24"
+        height="24"
+      />
+      <svg-icon
+        class="swap-off"
+        type="mdi"
+        :path="mdiWhiteBalanceSunny"
+        width="24"
+        height="24"
       />
     </label>
   </div>
@@ -15,13 +28,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { ThemeEnum } from "@/commons/enums/ThemeEnum";
-
-interface Props {
-  showLabel: boolean;
-}
-const props = withDefaults(defineProps<Props>(), {
-  showLabel: true,
-});
+import SvgIcon from "@jamescoyle/vue-icon";
+import { mdiWhiteBalanceSunny, mdiWeatherNight } from "@mdi/js";
 
 const themeStorageKey = ref<string>("user-theme");
 const dataThemeKey = ref<string>("data-theme");

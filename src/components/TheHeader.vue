@@ -100,7 +100,7 @@
           </ul>
         </div>
         <div class="flex-none hidden lg:block">
-          <BaseThemeSelector :show-label="false" />
+          <BaseThemeSelector />
         </div>
       </div>
       <!-- Page Content-->
