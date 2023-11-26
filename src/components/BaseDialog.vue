@@ -38,7 +38,7 @@
 
               <div
                 class="modal-action"
-                v-if="!props.showConfirm || props.showCancel"
+                v-if="props.showConfirm || props.showCancel"
               >
                 <slot name="footer" />
                 <slot name="actionButtons">

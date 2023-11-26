@@ -68,7 +68,7 @@ import FretboardExercise from "@/modules/fretboardExercise/components/FretboardE
 import FretboardViewer from "@/modules/fretboard/components/FretboardViewer.vue";
 
 import { Interval, Note } from "@tonaljs/tonal";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import {
   getDisplayVariationTypeToUse,
   getFretboardNotes,
