@@ -2,7 +2,7 @@
   <div class="training">
     <FretboardExercise>
       <template #exercise-detail>
-        <div class="stats bg-base-200">
+        <div class="stats bg-base-300">
           <div class="stat">
             <div>
               Find all
@@ -169,6 +169,6 @@ startExercise();
 
 <style scoped lang="scss">
 .note-to-find {
-  background: hsl(var(--pf));
+  background: oklch(var(--pf));
 }
 </style>

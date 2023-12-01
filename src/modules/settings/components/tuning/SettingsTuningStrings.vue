@@ -75,8 +75,4 @@ function changeGuitarTuning(direction: TuningDirectionEnum) {
 }
 </script>
 
-<style scoped lang="scss">
-.chord-name {
-  text-transform: capitalize;
-}
-</style>
+<style scoped lang="scss"></style>

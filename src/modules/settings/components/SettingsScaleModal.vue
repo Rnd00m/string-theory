@@ -3,7 +3,7 @@
     <button
       type="button"
       @click="openModal"
-      class="btn btn-outline btn-primary btn-sm lg:btn-md modal-button"
+      class="btn btn-outline btn-primary btn-sm lg:btn-md modal-button capitalize"
     >
       {{ fretboardParametersStore.scaleName }}
     </button>
@@ -34,7 +34,7 @@
               @click="setScale(mode)"
             >
               <a
-                class="chord-name"
+                class="capitalize"
                 :class="{
                   active: fretboardParametersStore.scaleName === mode.name,
                 }"
@@ -56,7 +56,7 @@
               @click="setScale(scale)"
             >
               <a
-                class="chord-name"
+                class="capitalize"
                 :class="{
                   active: fretboardParametersStore.scaleName === scale.name,
                 }"
@@ -78,7 +78,7 @@
               @click="setScale(scale)"
             >
               <a
-                class="chord-name"
+                class="capitalize"
                 :class="{
                   active: fretboardParametersStore.scaleName === scale.name,
                 }"
@@ -100,7 +100,7 @@
               @click="setScale(scale)"
             >
               <a
-                class="chord-name"
+                class="capitalize"
                 :class="{
                   active: fretboardParametersStore.scaleName === scale.name,
                 }"
@@ -122,7 +122,7 @@
               @click="setScale(scale)"
             >
               <a
-                class="chord-name"
+                class="capitalize"
                 :class="{
                   active: fretboardParametersStore.scaleName === scale.name,
                 }"
@@ -196,7 +196,4 @@ const setScale = (scale: Scale) => {
 </script>
 
 <style scoped lang="scss">
-.chord-name {
-  text-transform: capitalize;
-}
 </style>

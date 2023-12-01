@@ -43,7 +43,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const cssStringProperties = ref<string>(
-  0.075 + 0.03 * props.string + "em solid hsl(var(--bc))"
+  0.075 + 0.03 * props.string + "em solid oklch(var(--bc))"
 );
 
 const noteClasses = computed<string[]>(() => {
@@ -109,7 +109,7 @@ function playNote() {
     color: hsl(var(--bc));
   }
 
-  border-right: 0.125rem hsl(var(--bc)) solid;
+  border-right: 0.125rem oklch(var(--bc)) solid;
 
   &:before {
     content: "";
@@ -120,7 +120,7 @@ function playNote() {
   }
 
   &:first-child {
-    border-right: 0.3rem hsl(var(--bc)) solid;
+    border-right: 0.3rem oklch(var(--bc)) solid;
 
     &:before {
       right: 0;

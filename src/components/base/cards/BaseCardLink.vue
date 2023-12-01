@@ -1,7 +1,7 @@
 <template>
   <RouterLink
     :to="props.to"
-    class="card-link relative flex justify-between py-6 px-6 rounded-2xl w-72 md:w-80 lg:w-96 my-4 shadow-xl"
+    class="card-link relative flex justify-between bg-base-300 py-6 px-6 rounded-2xl w-72 md:w-80 lg:w-96 my-4 shadow-xl"
   >
     <div
       class="text-white flex items-center absolute rounded-full p-2 lg:p-4 shadow-xl left-4 -top-6"
@@ -51,12 +51,4 @@ interface Props {
 const props = defineProps<Props>();
 </script>
 
-<style scoped lang="scss">
-[data-theme="dark"] .card-link {
-  background: hsl(var(--b2));
-}
-
-[data-theme="winter"] .card-link {
-  background: hsl(var(--b3));
-}
-</style>
+<style scoped lang="scss"></style>
