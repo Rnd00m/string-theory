@@ -41,21 +41,21 @@
 }
 
 .fretboard-note-selected {
-    background: hsl(var(--pf));
+    background: oklch(var(--pf));
     color: var(--color-white) !important;
 }
 
 .note-error {
-    background: hsl(var(--er));
+    background: oklch(var(--er));
     color: var(--color-white) !important;
 }
 
 .note-success {
-    background: hsl(var(--su));
+    background: oklch(var(--su));
     color: var(--color-white) !important;
 }
 
 .note-to-find {
-    background: hsl(var(--pf));
+    background: oklch(var(--pf));
     color: var(--color-white) !important;
 }

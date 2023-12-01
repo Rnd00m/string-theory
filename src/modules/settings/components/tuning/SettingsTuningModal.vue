@@ -30,7 +30,4 @@ const openModal = () => {
 </script>
 
 <style scoped lang="scss">
-.chord-name {
-  text-transform: capitalize;
-}
 </style>

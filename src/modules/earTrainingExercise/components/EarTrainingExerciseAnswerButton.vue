@@ -1,6 +1,6 @@
 <template>
   <button
-    class="btn btn-secondary normal-case"
+    class="btn btn-primary normal-case"
     :class="buttonClass"
     @click="checkAnswer"
   >

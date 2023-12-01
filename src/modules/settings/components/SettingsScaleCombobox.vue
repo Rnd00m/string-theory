@@ -5,7 +5,7 @@
         class="relative w-full cursor-default overflow-hidden rounded-lg text-left shadow-md focus:outline-none"
       >
         <ComboboxInput
-          class="w-full py-2 pl-3 pr-10 input input-sm input-bordered input-secondary"
+          class="w-full py-2 pl-3 pr-10 input input-sm input-bordered input-primary"
           :displayValue="(scale) => scale.name"
           @change="query = $event.target.value"
           placeholder="Search for a scale..."
@@ -28,7 +28,7 @@
         @after-leave="query = ''"
       >
         <ComboboxOptions
-          class="combobox-options absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-base-200 py-1 shadow-lg focus:outline-none sm:text-sm"
+          class="combobox-options absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-base-300 py-1 shadow-lg focus:outline-none sm:text-sm"
         >
           <div
             v-if="filteredScaleList.length === 0 && query !== ''"
@@ -47,7 +47,7 @@
             <li
               class="relative cursor-default select-none py-2 pl-10 pr-4"
               :class="{
-                'bg-secondary text-secondary-content': active,
+                'bg-primary text-primary-content': active,
                 'text-base-content': !active,
               }"
             >
@@ -61,7 +61,7 @@
                 v-if="selected"
                 class="absolute inset-y-0 left-0 flex items-center pl-3 text-base-content"
                 :class="{
-                  'text-secondary-content': active,
+                  'text-primary-content': active,
                   'text-base-content': !active,
                 }"
               >

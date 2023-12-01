@@ -87,7 +87,7 @@
                 <summary>
                   <RouterLink :to="{ name: 'tools.index' }">Tools</RouterLink>
                 </summary>
-                <ul class="p-2 bg-base-200">
+                <ul class="p-2 bg-base-300">
                   <li>
                     <RouterLink :to="{ name: 'tools.stringTensionsCalculator' }"
                       >Tension calculator</RouterLink

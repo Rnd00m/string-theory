@@ -18,7 +18,7 @@
     "@tailwindcss/typography": "^0.5.2",
     "@tonaljs/tonal": "^4.6.5",
     "cordova-plugin-screen-orientation": "^3.0.2",
-    "daisyui": "^3.1.7",
+    "daisyui": "^4.4.17",
     "echarts": "^5.4.2",
     "es6-promise-plugin": "^4.2.2",
     "pinia": "^2.0.13",

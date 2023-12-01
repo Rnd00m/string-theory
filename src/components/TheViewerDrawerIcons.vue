@@ -1,6 +1,6 @@
 <template>
   <div class="absolute right-2 top-2 flex-1 gap-1 justify-end inline-flex">
-    <ul class="menu menu-horizontal bg-base-200 rounded-box">
+    <ul class="menu menu-horizontal bg-base-300 rounded-box">
       <li>
         <label class="p-2" for="information-modal">
           <svg-icon

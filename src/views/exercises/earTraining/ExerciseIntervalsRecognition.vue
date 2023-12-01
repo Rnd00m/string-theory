@@ -2,7 +2,7 @@
   <div class="training">
     <EarTrainingExercise>
       <template #exercise-detail>
-        <div class="stats bg-base-200">
+        <div class="stats bg-base-300">
           <div class="stat">
             <div class="stat-value flex items-center justify-center">
               <button

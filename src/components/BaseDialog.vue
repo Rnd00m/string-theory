@@ -137,7 +137,7 @@ defineExpose({
 .modal-box::-webkit-scrollbar-thumb {
   border: 6px solid transparent;
   border-radius: var(--rounded-box);
-  background-color: hsl(var(--bc) / var(--tw-bg-opacity));
+  background-color: oklch(var(--bc) / var(--tw-bg-opacity));
   background-clip: padding-box;
   --tw-bg-opacity: 0.5;
   --tw-border-opacity: 0.2;

@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow-xl" v-if="isDisplayed">
+  <div class="card shadow-xl bg-base-300" v-if="isDisplayed">
     <div class="card-body" :class="props.bodyClasses">
       <div class="card-actions justify-end" v-if="props.showCloseButton">
         <button class="btn btn-square btn-sm">
@@ -33,12 +33,4 @@ const props = withDefaults(defineProps<Props>(), {
 const isDisplayed = ref<boolean>(true);
 </script>
 
-<style scoped lang="scss">
-[data-theme="dark"] .card {
-  background: hsl(var(--b2));
-}
-
-[data-theme="winter"] .card {
-  background: hsl(var(--b3));
-}
-</style>
+<style scoped lang="scss"></style>
