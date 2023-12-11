@@ -1,6 +1,6 @@
 {
-  "name": "fretboard-viewer",
-  "version": "0.0.1",
+  "name": "string-theory",
+  "version": "0.1.1",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

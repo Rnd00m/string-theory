@@ -1,5 +1,5 @@
 <template>
-  <div class="drawer h-screen">
+  <div class="drawer h-screen grid grid-flow-row">
     <input id="header-menu-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex lg:flex-col min-h-screen">
       <div
