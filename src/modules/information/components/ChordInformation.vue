@@ -14,22 +14,6 @@
       }}.
     </span>
   </p>
-  <p class="max-w-prose">It contains the notes :</p>
-  <div class="flex justify-center gap-8 flex-row">
-    <div
-      v-for="(note, index) in getChordNotes(chord)"
-      :key="'chord-information-note-' + note"
-      class="grid h-20 card place-items-center"
-    >
-      <span
-        class="px-3 py-1 text-lg rounded-lg"
-        :class="getNoteClass(Note.get(note), classMap)"
-      >
-        {{ note.pc }}
-      </span>
-      <span>{{ chord.intervals[index] }}</span>
-    </div>
-  </div>
 </template>
 
 <script setup lang="ts">

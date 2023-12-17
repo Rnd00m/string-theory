@@ -12,6 +12,7 @@ export const useFretboardParametersStore = defineStore("fretboard-parameters", {
       noteVariation: NoteVariationEnum.None,
       displayType: DisplayTypeEnum.Chord,
       chordType: "M",
+      defaultPitchClass: 4,
       scaleName: "ionian" as string,
       showOctave: false,
       showNotes: false,
