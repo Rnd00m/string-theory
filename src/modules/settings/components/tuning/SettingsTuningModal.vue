@@ -12,7 +12,6 @@
     title="Tuning"
     :showConfirm="false"
     :showCancel="false"
-    modal-box-classes="w-10/12 lg:w-3/5 max-w-5xl"
   >
     <SettingsTuning />
   </BaseDialog>

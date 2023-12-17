@@ -1,11 +1,5 @@
 <template>
-  <div class="fretboard-viewer place-self-end md:place-self-center">
-    <MqResponsive group>
-      <template #md-:landscape>
-        <TheViewerDrawerIcons />
-      </template>
-    </MqResponsive>
-
+  <div class="fretboard-viewer place-self-center">
     <div class="grid grid-flow-row gap-8">
       <MqResponsive group class="p-4 sm:p-0">
         <template #lg+><SettingsFretboard /></template>
@@ -29,7 +23,6 @@
 import FretboardViewer from "@/modules/fretboard/components/FretboardViewer.vue";
 import InformationCardComponent from "@/modules/information/components/InformationCardComponent.vue";
 import SettingsFretboard from "@/modules/settings/layouts/SettingsFretboard.vue";
-import TheViewerDrawerIcons from "@/components/TheViewerDrawerIcons.vue";
 
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 

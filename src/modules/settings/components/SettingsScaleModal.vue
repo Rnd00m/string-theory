@@ -10,7 +10,7 @@
 
     <BaseDialog
       ref="settingsScaleDialog"
-      modal-box-classes="w-10/12 max-w-5xl max-h-[32rem]"
+      modal-box-classes="max-h-[32rem]"
     >
       <template #title>
         <div class="flex items-center justify-between">
@@ -22,7 +22,7 @@
         </div>
       </template>
 
-      <div class="grid grid-cols-3 gap-2 lg:gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 lg:gap-6">
         <div>
           <ul class="menu menu-compact mode">
             <li class="menu-title">

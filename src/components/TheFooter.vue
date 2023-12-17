@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="hidden lg:block footer footer-center sticky top-[100vh] p-10 bg-primary text-primary-content"
+    class="hidden lg:block footer footer-center p-10 bg-primary text-primary-content"
   >
     <div>
       <svg

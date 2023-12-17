@@ -1,11 +1,11 @@
 <template>
-  <div class="drawer h-screen grid grid-flow-row">
+  <div class="drawer">
     <input id="header-menu-drawer" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content flex lg:flex-col min-h-screen">
+    <div class="drawer-content main-content min-h-screen">
       <div
-        class="absolute lg:relative lg:flex-none lg:w-full lg:navbar bg-base-100 z-10"
+        class="relative flex-none w-full navbar bg-base-100"
       >
-        <div class="lg:hidden">
+        <div class="lg:hidden flex-1">
           <label for="header-menu-drawer" class="btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@
             </svg>
           </label>
         </div>
-        <div class="flex-1 px-2 mx-2 hidden lg:block">
+        <div class="flex-1 px-2 mx-2 hidden lg:block navbar-center">
           <RouterLink
             :to="{ name: 'home' }"
             class="btn btn-ghost normal-case text-xl"
@@ -73,6 +73,13 @@
             </svg>
             String Theory
           </RouterLink>
+        </div>
+        <div class="flex-none lg:hidden">
+          <MqResponsive group>
+            <template #md-:landscape>
+              <TheViewerDrawerIcons />
+            </template>
+          </MqResponsive>
         </div>
         <div class="flex-none hidden lg:block">
           <ul class="menu menu-horizontal px-1">
@@ -184,17 +191,12 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { MqResponsive } from "vue3-mq";
 import BaseThemeSelector from "@/components/base/BaseThemeSelector.vue";
-import { RouterLink } from "vue-router";
+import TheViewerDrawerIcons from "@/components/TheViewerDrawerIcons.vue";
 
-export default {
-  name: "HeaderComponent",
-  components: {
-    BaseThemeSelector,
-    RouterLink,
-  },
-};
+import { RouterLink } from "vue-router";
 </script>
 
 <style scoped></style>

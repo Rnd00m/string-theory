@@ -1,6 +1,6 @@
 <template>
   <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div" @close="close" class="relative z-10">
+    <Dialog as="div" @close="close" class="relative">
       <TransitionChild
         as="template"
         enter="duration-200 ease-out"
@@ -24,7 +24,7 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="modal-box text-left"
+              class="modal-box text-left w-full lg:w-3/5 max-w-5xl"
               :class="{
                 [props.modalBoxClasses]: props.modalBoxClasses,
               }"
