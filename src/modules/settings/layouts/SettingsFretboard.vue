@@ -4,13 +4,13 @@
   >
     <BaseCard :body-classes="['lg:p-4', 'p-2']">
       <div class="flex flex-col w-full lg:flex-row justify-center">
-        <div class="flex gap-3 justify-center">
+        <div class="flex gap-1 md:gap-3 justify-center">
           <SettingsNote />
         </div>
 
         <div class="divider lg:divider-horizontal -my-2 lg:my-0"></div>
 
-        <div class="flex gap-3 justify-center">
+        <div class="flex gap-1 md:gap-3 justify-center">
           <SettingsNoteVariation />
         </div>
       </div>

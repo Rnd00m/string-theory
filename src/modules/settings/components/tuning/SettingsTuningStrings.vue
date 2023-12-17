@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row-reverse justify-center gap-5 lg:gap-8">
+  <div class="flex flex-row-reverse justify-center gap-3 lg:gap-8">
     <div
       class="flex flex-col gap-1"
       v-for="(note, index) in fretboardParametersStore.fretboard.baseNotes"

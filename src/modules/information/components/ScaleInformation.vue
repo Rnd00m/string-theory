@@ -3,14 +3,14 @@
     The {{ fretboardParametersStore.noteLetter }}
     {{ fretboardParametersStore.scaleName }} scale contains the notes :
   </p>
-  <div class="flex justify-center gap-8 w-full flex-row">
+  <div class="flex justify-center gap-2 md:gap-4 lg:gap-8 w-full flex-row">
     <div
       v-for="(note, index) in getScaleNotes(scale)"
       :key="'scale-information-note-' + note"
       class="grid h-20 card place-items-center"
     >
       <span
-        class="px-3 py-1 text-lg rounded-lg"
+        class="px-3 py-1 text-sm md:text-lg rounded-lg"
         :class="getNoteClass(Note.get(note), classMap)"
       >
         {{ note.pc }}

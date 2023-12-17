@@ -36,3 +36,8 @@ html, body { height: 100%;}
 footer .footer-logo path {
   fill: oklch(var(--pc));
 }
+
+.main-content {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+}

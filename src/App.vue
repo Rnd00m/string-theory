@@ -9,14 +9,11 @@
     </div>
   </TheHeader>
 
-  <MqResponsive target="lg+">
-    <TheFooter></TheFooter>
-  </MqResponsive>
+  <TheFooter></TheFooter>
 </template>
 
 <script setup lang="ts">
 import { RouterView } from "vue-router";
-import { MqResponsive } from "vue3-mq";
 import TheHeader from "@/components/TheHeader.vue";
 import TheFooter from "@/components/TheFooter.vue";
 import TheRightDrawer from "@/components/TheRightDrawer.vue";
