@@ -75,6 +75,7 @@ function beautifyAccidentalValue(accidental: string): string {
 }
 
 function selectNote() {
+  if (props.isSoundActive) playNote();
   if (!props.isNoteSelectable) return;
 
   const noteClassMap: FretboardNoteSelectedEvent = {
@@ -85,8 +86,6 @@ function selectNote() {
   };
 
   emit("note-selected", noteClassMap);
-
-  if (props.isSoundActive) playNote();
 }
 
 function playNote() {
