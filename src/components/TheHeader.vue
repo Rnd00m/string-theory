@@ -3,7 +3,7 @@
     <input id="header-menu-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content main-content min-h-screen">
       <div
-        class="relative flex-none w-full navbar bg-base-100"
+        class="relative flex-none w-full navbar bg-base-100 z-10"
       >
         <div class="lg:hidden flex-1">
           <label for="header-menu-drawer" class="btn btn-square btn-ghost">
@@ -113,7 +113,7 @@
       <!-- Page Content-->
       <slot />
     </div>
-    <div class="drawer-side z-20">
+    <div class="drawer-side">
       <label for="header-menu-drawer" class="drawer-overlay"></label>
       <ul class="menu h-full p-4 w-80 bg-base-100 relative">
         <RouterLink
