@@ -9,8 +9,6 @@ async function playNotes(notes: Note[]): Promise<void> {
   const now = Tone.now();
   let increment = 0;
 
-  console.log(notes);
-
   notes.forEach((note) => {
     sampler.triggerAttackRelease(note, 1, now + increment);
 

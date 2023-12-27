@@ -26,6 +26,7 @@ import { computed } from "vue";
 import { Chord, Note } from "@tonaljs/tonal";
 import { getChord, getChordNotes } from "@/commons/helpers/chords";
 import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
+import * as Tone from "tone";
 
 const fretboardParametersStore = useFretboardParametersStore();
 

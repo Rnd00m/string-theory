@@ -30,7 +30,12 @@
           >
             {{ note.pc }}
           </span>
-          <span>{{ entity.intervals[index] }}</span>
+          <span
+            class="information-note"
+            :class="{
+              'highlitghted-note': note.pc === currentPlayedNote
+            }"
+          >{{ entity.intervals[index] }}</span>
         </div>
       </div>
     </BaseCard>
@@ -44,7 +49,6 @@ import { DisplayTypeEnum } from "@/commons/enums/DisplayTypeEnum";
 import BaseCard from "@/components/base/cards/BaseCard.vue";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiPlay } from "@mdi/js";
-import { playNotes } from "@/modules/information/services/informations";
 import { getChord, getChordNotes } from "@/commons/helpers/chords";
 import {
   getClassMap,
@@ -54,6 +58,8 @@ import { Chord, type NoNote, Note, Scale } from "@tonaljs/tonal";
 import { computed, ref } from "vue";
 import { getScale, getScaleNotes } from "@/commons/helpers/scales";
 import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
+import { getSampler } from "@/commons/helpers/utils";
+import * as Tone from "tone";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
@@ -94,6 +100,34 @@ const notesToPlay = computed<string[]>(() => {
 const classMap = computed<NoteClassMap[]>(() => {
   return getClassMap(entity.value, true, true);
 });
+
+const currentPlayedNote = ref<string | null>(null);
+
+async function playNotes(notes: Note[]): Promise<void> {
+  const sampler = await getSampler(fretboardParametersStore.selectedSoundSample.url);
+
+  notes.forEach((note, index) => {
+    setTimeout(() => {
+      currentPlayedNote.value = note.slice(0, -1);
+
+      sampler.triggerAttackRelease(note, 1);
+    }, index * 500);
+    if (index === notes.length - 1) {
+      setTimeout(() => {
+        currentPlayedNote.value = null;
+      }, (index + 1) * 500);
+    }
+  });
+}
 </script>
 
-<style scoped></style>
+<style scoped>
+.information-note {
+  transition: transform 300ms ease;
+}
+
+.highlitghted-note {
+  transform: translateY(-5px);
+  font-weight: bold;
+}
+</style>
