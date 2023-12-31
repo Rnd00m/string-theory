@@ -1,5 +1,5 @@
 <template>
-  <div class="chord-information flex justify-center">
+  <div class="hidden portrait:flex lg:flex chord-information justify-center">
     <BaseCard :body-classes="['p-4', 'lg:p-6']">
       <template #title>
         <template
@@ -7,12 +7,10 @@
           >Chord Information</template
         >
         <template v-else>Chord Information</template>
-        <button
-          class="btn btn-primary btn-sm"
-          @click="playNotes(notesToPlay)"
-        >
-          <svg-icon type="mdi" :path="mdiPlay" size="18" /></button
-      ></template>
+        <button class="btn btn-primary btn-sm" @click="playNotes(notesToPlay)">
+          <svg-icon type="mdi" :path="mdiPlay" size="18" />
+        </button>
+      </template>
 
       <ChordInformation
         v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
@@ -33,13 +31,61 @@
           <span
             class="information-note"
             :class="{
-              'highlitghted-note': note.pc === currentPlayedNote
+              'highlitghted-note': note.pc === currentPlayedNote,
             }"
-          >{{ entity.intervals[index] }}</span>
+            >{{ entity.intervals[index] }}</span
+          >
         </div>
       </div>
     </BaseCard>
   </div>
+
+  <input type="checkbox" id="information-modal" class="modal-toggle" />
+  <label for="information-modal" class="modal cursor-pointer">
+    <label class="modal-box relative w-3/4 max-w-5xl" for="">
+      <label
+        for="information-modal"
+        class="btn btn-sm btn-circle absolute right-2 top-2"
+        >✕</label
+      >
+      <h2 class="card-title mb-2">
+        <template
+          v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
+          >Chord Information</template
+        >
+        <template v-else>Chord Information</template>
+        <button class="btn btn-primary btn-sm" @click="playNotes(notesToPlay)">
+          <svg-icon type="mdi" :path="mdiPlay" size="18" />
+        </button>
+      </h2>
+
+      <ChordInformation
+        v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
+      ></ChordInformation>
+
+      <div class="flex justify-center gap-2 md:gap-4 lg:gap-8 flex-row">
+        <div
+          v-for="(note, index) in notes"
+          :key="'chord-information-note-' + note"
+          class="grid h-20 card place-items-center"
+        >
+          <span
+            class="px-3 py-1 text-lg rounded-lg"
+            :class="getNoteClass(Note.get(note), classMap)"
+          >
+            {{ note.pc }}
+          </span>
+          <span
+            class="information-note"
+            :class="{
+              'highlitghted-note': note.pc === currentPlayedNote,
+            }"
+            >{{ entity.intervals[index] }}</span
+          >
+        </div>
+      </div>
+    </label>
+  </label>
 </template>
 
 <script setup lang="ts">
@@ -59,7 +105,6 @@ import { computed, ref } from "vue";
 import { getScale, getScaleNotes } from "@/commons/helpers/scales";
 import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
 import { getSampler } from "@/commons/helpers/utils";
-import * as Tone from "tone";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
@@ -104,7 +149,9 @@ const classMap = computed<NoteClassMap[]>(() => {
 const currentPlayedNote = ref<string | null>(null);
 
 async function playNotes(notes: Note[]): Promise<void> {
-  const sampler = await getSampler(fretboardParametersStore.selectedSoundSample.url);
+  const sampler = await getSampler(
+    fretboardParametersStore.selectedSoundSample.url
+  );
 
   notes.forEach((note, index) => {
     setTimeout(() => {

@@ -28,7 +28,7 @@
         @after-leave="query = ''"
       >
         <ComboboxOptions
-          class="combobox-options absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-base-300 py-1 shadow-lg focus:outline-none sm:text-sm"
+          class="z-10 combobox-options absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-base-300 py-1 shadow-lg focus:outline-none sm:text-sm"
         >
           <div
             v-if="filteredScaleList.length === 0 && query !== ''"

@@ -11,17 +11,16 @@
         :is-sound-active="true"
         :selected-sound-sample="fretboardParametersStore.selectedSoundSample"
       />
-      <MqResponsive group class="p-4 sm:p-0">
-        <template #lg+><InformationCardComponent /></template>
-        <template #lg-:portrait><InformationCardComponent /></template>
-      </MqResponsive>
+      <div class="p-4 sm:p-0">
+        <InformationComponent />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import FretboardViewer from "@/modules/fretboard/components/FretboardViewer.vue";
-import InformationCardComponent from "@/modules/information/components/InformationCardComponent.vue";
+import InformationComponent from "@/modules/information/components/InformationComponent.vue";
 import SettingsFretboard from "@/modules/settings/layouts/SettingsFretboard.vue";
 
 import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
