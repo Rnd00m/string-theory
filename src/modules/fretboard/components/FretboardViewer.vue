@@ -18,11 +18,11 @@
 <script setup lang="ts">
 import FretboardString from "@/modules/fretboard/components/FretboardString.vue";
 import FretboardMarker from "@/modules/fretboard/components/FretboardMarker.vue";
-import { computed } from "vue";
 import { SoundSample } from "@/modules/settings/services/classes/SoundSample";
 import { soundSampleList } from "@/modules/settings/services/SoundSampleList";
 import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
 import { getSampler } from "@/commons/helpers/utils";
+import { computedAsync } from '@vueuse/core'
 
 interface Props {
   fretboardNotes: FretboardNote[][];
@@ -35,9 +35,12 @@ const props = withDefaults(defineProps<Props>(), {
   selectedSoundSample: soundSampleList[0],
 });
 
-const sampler = computed(() => {
-  // return getSampler(props.selectedSoundSample?.url);
-});
+const sampler = computedAsync(
+  async () => {
+    return await getSampler(props.selectedSoundSample?.url);
+  },
+  null // initial state
+);
 </script>
 
 <style scoped lang="scss"></style>

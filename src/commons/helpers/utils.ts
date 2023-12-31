@@ -31,7 +31,11 @@ function getRandomIntInclusive(min: number, max: number): number {
  *
  * @param {string} sampleUrl
  */
-function getSampler(sampleUrl: string): Promise<Sampler> {
+function getSampler(sampleUrl?: string): Promise<Sampler> {
+  if (!sampleUrl) {
+    sampleUrl = "/sound-samples/acoustic_guitar_steel_mp3/";
+  }
+
   return new Promise((resolve) => {
     const sampler: Sampler = new Tone.Sampler({
       urls: {
