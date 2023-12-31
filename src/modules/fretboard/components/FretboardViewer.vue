@@ -18,11 +18,11 @@
 <script setup lang="ts">
 import FretboardString from "@/modules/fretboard/components/FretboardString.vue";
 import FretboardMarker from "@/modules/fretboard/components/FretboardMarker.vue";
-import * as Tone from "tone";
-import { computed } from "vue";
 import { SoundSample } from "@/modules/settings/services/classes/SoundSample";
 import { soundSampleList } from "@/modules/settings/services/SoundSampleList";
 import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
+import { getSampler } from "@/commons/helpers/utils";
+import { computedAsync } from '@vueuse/core'
 
 interface Props {
   fretboardNotes: FretboardNote[][];
@@ -35,27 +35,12 @@ const props = withDefaults(defineProps<Props>(), {
   selectedSoundSample: soundSampleList[0],
 });
 
-const sampler = computed(() => {
-  return new Tone.Sampler({
-    urls: {
-      A1: "A1.mp3",
-      D1: "D1.mp3",
-      A2: "A2.mp3",
-      D2: "D2.mp3",
-      A3: "A3.mp3",
-      D3: "D3.mp3",
-      A4: "A4.mp3",
-      D4: "D4.mp3",
-      A5: "A5.mp3",
-      D5: "D5.mp3",
-      A6: "A6.mp3",
-      D6: "D6.mp3",
-      A7: "A7.mp3",
-      D7: "D7.mp3",
-    },
-    baseUrl: props.selectedSoundSample?.url,
-  }).toDestination();
-});
+const sampler = computedAsync(
+  async () => {
+    return await getSampler(props.selectedSoundSample?.url);
+  },
+  null // initial state
+);
 </script>
 
 <style scoped lang="scss"></style>

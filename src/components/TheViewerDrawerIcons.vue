@@ -29,12 +29,9 @@
       </label>
     </li>
   </ul>
-
-  <InformationModalComponent />
 </template>
 
 <script setup lang="ts">
-import InformationModalComponent from "@/modules/information/components/InformationModalComponent.vue";
 
 import { useGlobalStore } from "@/commons/stores/globalStore";
 import SvgIcon from "@jamescoyle/vue-icon";

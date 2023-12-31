@@ -16,11 +16,15 @@
 
           <div class="stat">
             <div>Errors</div>
-            <div class="stat-value text-xl lg:text-2xl">{{ errorsNumber }}</div>
+            <div class="stat-value text-xl lg:text-2xl">
+              {{ errorsNumber }}
+            </div>
           </div>
           <div class="stat">
             <div>Found</div>
-            <div class="stat-value text-xl lg:text-2xl">{{ foundNumber }}</div>
+            <div class="stat-value text-xl lg:text-2xl">
+              {{ foundNumber }}
+            </div>
           </div>
         </div>
         <button
@@ -69,7 +73,7 @@ import { Interval, Note } from "@tonaljs/tonal";
 import { ref } from "vue";
 import { getIntervalsList } from "@/commons/helpers/intervals";
 import { getRandomNote } from "@/modules/fretboardExercise/services/exercise";
-import { getRandomInt } from "@/commons/helpers/utils";
+import { getRandomInt, getSampler } from "@/commons/helpers/utils";
 import * as Tone from "tone";
 import { soundSampleList } from "@/modules/settings/services/SoundSampleList";
 import SvgIcon from "@jamescoyle/vue-icon";
@@ -89,27 +93,11 @@ const isExerciseInProgress = ref<boolean>(false);
 const exerciseModal = ref<InstanceType<typeof BaseDialog>>();
 const openEndExerciseDialog = () => exerciseModal.value?.open();
 
-const sampler = new Tone.Sampler({
-  urls: {
-    A1: "A1.mp3",
-    D1: "D1.mp3",
-    A2: "A2.mp3",
-    D2: "D2.mp3",
-    A3: "A3.mp3",
-    D3: "D3.mp3",
-    A4: "A4.mp3",
-    D4: "D4.mp3",
-    A5: "A5.mp3",
-    D5: "D5.mp3",
-    A6: "A6.mp3",
-    D6: "D6.mp3",
-    A7: "A7.mp3",
-    D7: "D7.mp3",
-  },
-  baseUrl: soundSampleList.find(
+const sampler = getSampler(
+  soundSampleList.find(
     (soundSample) => soundSample.name === "Acoustic Guitar Nylon"
-  )?.url,
-}).toDestination();
+  )?.url
+);
 
 function startExercise(): void {
   rootNote.value = getRandomNote({
@@ -135,12 +123,14 @@ function startExercise(): void {
 function playExerciseNotes(): void {
   const now = Tone.now();
 
-  sampler.triggerAttackRelease(rootNote.value.name, 2, now);
-  sampler.triggerAttackRelease(
-    noteWithIntervalApplied.value.name,
-    2,
-    now + 0.5
-  );
+  sampler.then((sampler) => {
+    sampler.triggerAttackRelease(rootNote.value.name, 2, now);
+    sampler.triggerAttackRelease(
+      noteWithIntervalApplied.value.name,
+      2,
+      now + 0.5
+    );
+  });
 }
 
 function consumeAnswerButtonClicked(isCorrectlyAnswered: boolean): void {
