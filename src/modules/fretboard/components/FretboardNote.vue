@@ -105,7 +105,7 @@ function playNote() {
 
 .fret-wrapper {
   .note {
-    color: hsl(var(--bc));
+    color: oklch(var(--bc));
   }
 
   border-right: 0.125rem oklch(var(--bc)) solid;
