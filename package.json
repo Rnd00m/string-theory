@@ -17,6 +17,7 @@
     "@mdi/js": "^7.2.96",
     "@tailwindcss/typography": "^0.5.2",
     "@tonaljs/tonal": "^4.6.5",
+    "@vercel/analytics": "^1.2.2",
     "@vueuse/core": "^10.7.1",
     "cordova-plugin-screen-orientation": "^3.0.2",
     "daisyui": "^4.4.17",

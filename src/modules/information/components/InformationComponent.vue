@@ -6,7 +6,7 @@
           v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
           >Chord Information</template
         >
-        <template v-else>Chord Information</template>
+        <template v-else>Scale Information</template>
         <button class="btn btn-primary btn-sm" @click="playNotes(notesToPlay)">
           <svg-icon type="mdi" :path="mdiPlay" size="18" />
         </button>
@@ -24,7 +24,12 @@
         >
           <span
             class="px-3 py-1 text-lg rounded-lg"
-            :class="getNoteClass(Note.get(note), classMap)"
+            :class="[
+              getNoteClass(Note.get(note), classMap),
+              {
+                'highlitghted-note': note.pc === currentPlayedNote,
+              }
+            ]"
           >
             {{ note.pc }}
           </span>
@@ -53,7 +58,7 @@
           v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
           >Chord Information</template
         >
-        <template v-else>Chord Information</template>
+        <template v-else>Scale Information</template>
         <button class="btn btn-primary btn-sm" @click="playNotes(notesToPlay)">
           <svg-icon type="mdi" :path="mdiPlay" size="18" />
         </button>
@@ -70,7 +75,7 @@
           class="grid h-20 card place-items-center"
         >
           <span
-            class="px-3 py-1 text-lg rounded-lg"
+            class="px-3 py-1 text-lg rounded-lg information-note"
             :class="getNoteClass(Note.get(note), classMap)"
           >
             {{ note.pc }}
