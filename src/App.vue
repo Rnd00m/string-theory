@@ -10,6 +10,8 @@
   </TheHeader>
 
   <TheFooter></TheFooter>
+
+  <SpeedInsights />
 </template>
 
 <script setup lang="ts">
@@ -17,6 +19,7 @@ import { RouterView } from "vue-router";
 import TheHeader from "@/components/TheHeader.vue";
 import TheFooter from "@/components/TheFooter.vue";
 import TheRightDrawer from "@/components/TheRightDrawer.vue";
+import { SpeedInsights } from "@vercel/speed-insights/vue";
 import "./assets/css/base.css";
 import "./assets/css/index.css";
 import "./assets/css/note.css";
