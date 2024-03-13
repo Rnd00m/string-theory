@@ -1,4 +1,4 @@
-import { Chord, Interval, Note, Scale } from "@tonaljs/tonal";
+import { Chord, Interval, type NoNote, Note, Scale } from "@tonaljs/tonal";
 import { getIntervalStringName } from "@/commons/helpers/intervals";
 import { getChordNotes } from "@/commons/helpers/chords";
 import { getScaleNotes } from "@/commons/helpers/scales";
@@ -9,11 +9,11 @@ const scaleNoteClassPrefix = "note-scale-";
 
 /**
  * Retrieve the class for a note in the class map
- *
- * @param note
- * @param noteClassMap
  */
-function getNoteClass(note: Note, noteClassMap: NoteClassMap[]): string | null {
+function getNoteClass(
+  note: Note | NoNote,
+  noteClassMap: NoteClassMap[]
+): string | null {
   const mappedClass = noteClassMap.find((map) => map.note.pc === note.pc);
 
   if (mappedClass === undefined) {
@@ -25,8 +25,6 @@ function getNoteClass(note: Note, noteClassMap: NoteClassMap[]): string | null {
 
 /**
  * Determine whether the object passed in parameter is type Chord or other (Scale)
- *
- * @param object
  */
 function isChordType(object: any): boolean {
   return object.quality !== undefined;
@@ -34,10 +32,6 @@ function isChordType(object: any): boolean {
 
 /**
  * Build the class map for a chord or a scale
- *
- * @param subject
- * @param showRootNoteBackground
- * @param showOtherNotesBackground
  */
 function getClassMap(
   subject: Chord | Scale,
