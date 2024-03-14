@@ -21,7 +21,7 @@
     "@vercel/speed-insights": "^1.0.10",
     "@vueuse/core": "^10.7.1",
     "cordova-plugin-screen-orientation": "^3.0.2",
-    "daisyui": "^4.4.17",
+    "daisyui": "^4.7.3",
     "echarts": "^5.4.2",
     "es6-promise-plugin": "^4.2.2",
     "pinia": "^2.0.13",

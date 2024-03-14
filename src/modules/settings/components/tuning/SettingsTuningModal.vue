@@ -2,7 +2,7 @@
   <button
     type="button"
     @click="openModal"
-    class="btn btn-outline btn-primary btn-sm lg:btn-md modal-button"
+    class="btn btn-primary btn-sm modal-button"
   >
     Select Tuning
   </button>
@@ -28,5 +28,4 @@ const openModal = () => {
 };
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

@@ -8,12 +8,12 @@
 }
 
 .note-chord-third {
-    background: var(--color-persian-orange);
+    background: var(--color-orange);
     color: var(--color-white) !important;
 }
 
 .note-chord-fifth {
-    background: var(--color-orange);
+    background: var(--color-red);
     color: var(--color-white) !important;
 }
 
@@ -25,14 +25,14 @@
 .note-scale-third,
 .note-scale-fifth,
 .note-scale-seventh {
-    background: var(--color-persian-orange);
+    background: var(--color-blue-800);
     color: var(--color-white) !important;
 }
 
 .note-scale-second,
 .note-scale-fourth,
 .note-scale-sixth {
-    background: var(--color-persian-orange-darker);
+    background: var(--color-blue-200);
     color: var(--color-white) !important;
 }
 
@@ -56,6 +56,7 @@
 }
 
 .note-to-find {
-    background: oklch(var(--pf));
-    color: var(--color-white) !important;
+    background: oklch(var(--p));
+    color: oklch(var(--pc)) !important;
+    padding: 0.375em;
 }

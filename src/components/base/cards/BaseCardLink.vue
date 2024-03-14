@@ -1,7 +1,7 @@
 <template>
   <RouterLink
     :to="props.to"
-    class="card-link relative flex justify-between bg-base-300 py-6 px-6 rounded-2xl w-72 md:w-80 lg:w-96 my-4 shadow-xl"
+    class="card-link relative flex justify-between bg-base-100 border border-neutral-content shadow py-6 px-6 rounded-2xl w-72 md:w-80 lg:w-96 my-4"
   >
     <div
       class="text-white flex items-center absolute rounded-full p-2 lg:p-4 shadow-xl left-4 -top-6"

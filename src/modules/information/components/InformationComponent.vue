@@ -7,9 +7,6 @@
           >Chord Information</template
         >
         <template v-else>Scale Information</template>
-        <button class="btn btn-primary btn-sm" @click="playNotes(notesToPlay)">
-          <svg-icon type="mdi" :path="mdiPlay" size="18" />
-        </button>
       </template>
 
       <ChordInformation
@@ -17,10 +14,13 @@
       ></ChordInformation>
 
       <div class="flex justify-center gap-2 md:gap-4 lg:gap-8 flex-row">
+        <button class="btn btn-primary btn-sm" @click="playNotes(notesToPlay)">
+          <svg-icon type="mdi" :path="mdiPlay" size="18" />
+        </button>
         <div
           v-for="(note, index) in notes"
           :key="'chord-information-note-' + note"
-          class="grid h-20 card place-items-center"
+          class="flex flex-col gap-2"
         >
           <span
             class="px-3 py-1 text-lg rounded-lg"
@@ -34,7 +34,7 @@
             {{ note.pc }}
           </span>
           <span
-            class="information-note"
+            class="information-note text-center"
             :class="{
               'highlitghted-note': note.pc === currentPlayedNote,
             }"
@@ -153,7 +153,7 @@ const classMap = computed<NoteClassMap[]>(() => {
 
 const currentPlayedNote = ref<string | null>(null);
 
-async function playNotes(notes: Note[]): Promise<void> {
+async function playNotes(notes: string[]): Promise<void> {
   const sampler = await getSampler(
     fretboardParametersStore.selectedSoundSample.url
   );

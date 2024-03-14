@@ -167,8 +167,4 @@ function selectNote(eventData: FretboardNoteSelectedEvent) {
 startExercise();
 </script>
 
-<style scoped lang="scss">
-.note-to-find {
-  background: oklch(var(--pf));
-}
-</style>
+<style scoped lang="scss"></style>
