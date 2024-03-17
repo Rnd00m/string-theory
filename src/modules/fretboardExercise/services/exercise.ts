@@ -11,8 +11,6 @@ import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
  * Get a random note from chromatic scale if no range specified
  * Else get a random note between lower and higher note of the note range
  * Note from NoteRange should include their octave (for example: "E4", "G2", etc.)
- *
- * @param noteRange
  */
 function getRandomNote(noteRange?: NoteRange): Note {
   let notesArray: string[] = [];

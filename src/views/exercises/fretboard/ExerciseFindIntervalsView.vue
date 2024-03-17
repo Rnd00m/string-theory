@@ -151,8 +151,6 @@ function startExercise(): void {
 
 /**
  * Select a random note on fretboard with the same octave as the given one
- *
- * @param note
  */
 function displayNoteOnFretboard(note: Note): void {
   const foundNotes: FretboardNote[] = [];

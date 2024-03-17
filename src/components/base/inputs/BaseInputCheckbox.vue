@@ -5,7 +5,7 @@
         type="checkbox"
         :name="props.name"
         v-model="value"
-        class="checkbox checkbox-xs lg:checkbox-sm checkbox-primary"
+        class="checkbox checkbox-xs lg:checkbox-sm checked:checkbox-primary"
         v-bind="$attrs"
       />
       <span class="label-text text-sm lg:text-base"

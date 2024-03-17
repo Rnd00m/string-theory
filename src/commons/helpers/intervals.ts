@@ -23,9 +23,6 @@ function getIntervalStringName(intervalName: string): string {
 
 /**
  * List intervals between two given intervals
- *
- * @param from
- * @param to
  */
 function getIntervalsList(from: Interval, to: Interval): Interval[] {
   const intervalsList: Interval[] = [];

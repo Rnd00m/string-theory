@@ -3,9 +3,6 @@ import * as Tone from "tone";
 
 /**
  * Get a random integer the minimum (inclusive) and  between maximum (exclusive)
- *
- * @param min
- * @param max
  */
 function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min);
@@ -15,9 +12,6 @@ function getRandomInt(min: number, max: number): number {
 
 /**
  * Get a random integer between the minimum (inclusive) and maximum (inclusive)
- *
- * @param min
- * @param max
  */
 function getRandomIntInclusive(min: number, max: number): number {
   min = Math.ceil(min);
@@ -28,8 +22,6 @@ function getRandomIntInclusive(min: number, max: number): number {
 /**
  * Return a new Tone.Sampler from the given sampleUrl path
  * Samples paths are stored in SoundSampleList.ts
- *
- * @param {string} sampleUrl
  */
 function getSampler(sampleUrl?: string): Promise<Sampler> {
   if (!sampleUrl) {

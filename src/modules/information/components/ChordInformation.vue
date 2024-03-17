@@ -7,9 +7,7 @@
       It can be written
       {{
         disjunctionFormatter.format(
-          chord.aliases.map(
-            (alias: string) => `${chord.tonic} ${alias}`
-          )
+          chord.aliases.map((alias: string) => `${chord.tonic} ${alias}`)
         )
       }}.
     </span>

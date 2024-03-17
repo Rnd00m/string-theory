@@ -5,7 +5,7 @@
         type="radio"
         :name="props.name"
         v-model="value"
-        class="radio radio-xs lg:radio-sm radio-primary checked:bg-primary"
+        class="radio radio-xs lg:radio-sm checked:bg-primary"
         v-bind="$attrs"
       />
       <span class="label-text text-sm lg:text-base" v-if="props.label"

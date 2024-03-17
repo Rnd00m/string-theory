@@ -8,9 +8,6 @@ import type {
 
 /**
  * Generate the unique key for a note on the fretboard
- *
- * @param string
- * @param fret
  */
 function getFretboardNoteKey(string: number, fret: number): string {
   return `string-${string}-fret-${fret}`;
@@ -18,12 +15,6 @@ function getFretboardNoteKey(string: number, fret: number): string {
 
 /**
  * Generate a two-dimensional array containing all the FretboardNote to build the fretboard
- *
- * @param baseNotes
- * @param stringLength
- * @param noteClassMap
- * @param displayVariationType
- * @param displayNote
  */
 function getFretboardNotes(
   baseNotes: Note[],
@@ -52,13 +43,6 @@ function getFretboardNotes(
 
 /**
  * Generate an array containing all the FretboardNote to build a string on the fretboard
- *
- * @param baseNote
- * @param stringLength
- * @param stringNumber
- * @param noteClassMap
- * @param displayVariationType
- * @param displayNote
  */
 function getStringNotes(
   baseNote: Note,
@@ -103,9 +87,6 @@ function getStringNotes(
 
 /**
  * Bind all classes associated to a note from class map
- *
- * @param note
- * @param classMap
  */
 function getNoteClassesFromClassMap(
   note: Note,
@@ -126,9 +107,6 @@ function getNoteClassesFromClassMap(
  * Get note to display on the fretboard depending on whether the display type is sharp or flat
  * The returned note is cleaned-up from "##"
  * It allows fretboard to contain only # or only b notes
- *
- * @param note
- * @param displayVariationType
  */
 function getNoteToDisplay(
   note: Note,
@@ -146,8 +124,6 @@ function getNoteToDisplay(
 /**
  * Determine whether the fretboard should contain only # notes or only b notes
  * By default return sharp display
- *
- * @param notes
  */
 function getDisplayVariationTypeToUse(
   notes: Note[] | Note

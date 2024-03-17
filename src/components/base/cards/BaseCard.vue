@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow-xl bg-base-300" v-if="isDisplayed">
+  <div class="card shadow border border-neutral-content" v-if="isDisplayed">
     <div class="card-body" :class="props.bodyClasses">
       <div class="card-actions justify-end" v-if="props.showCloseButton">
         <button class="btn btn-square btn-sm">

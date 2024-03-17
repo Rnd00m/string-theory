@@ -38,8 +38,6 @@ const HTMLElement = ref<HTMLElement>(document.getElementsByTagName("html")[0]);
 
 /**
  * Add selected theme to local storage and apply attribute to html element
- *
- * @param themeName
  */
 function setTheme(themeName: string): void {
   window.localStorage.setItem(themeStorageKey.value, themeName);

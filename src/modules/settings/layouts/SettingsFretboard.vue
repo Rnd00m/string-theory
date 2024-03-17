@@ -1,48 +1,46 @@
 <template>
-  <div
-    class="fretboard-settings-wrapper w-4xl max-w-4xl flex flex-col mx-auto lg:space-y-5 space-y-2"
-  >
-    <BaseCard :body-classes="['lg:p-4', 'p-2']">
-      <div class="flex flex-col w-full lg:flex-row justify-center">
+  <div class="fretboard-settings-wrapper w-4xl max-w-4xl flex flex-col mx-auto">
+    <BaseCard :body-classes="['md:p-4', 'p-2']">
+      <div class="flex flex-col w-full sm:flex-row justify-center">
         <div class="flex gap-1 md:gap-3 justify-center">
           <SettingsNote />
         </div>
 
-        <div class="divider lg:divider-horizontal -my-2 lg:my-0"></div>
+        <div class="divider sm:divider-horizontal -my-2 sm:my-0" />
 
         <div class="flex gap-1 md:gap-3 justify-center">
           <SettingsNoteVariation />
         </div>
       </div>
-    </BaseCard>
 
-    <BaseCard :body-classes="['lg:p-4', 'p-2']">
+      <div class="divider -my-2 sm:my-0.5" />
+
       <div class="flex flex-wrap items-center justify-evenly">
         <SettingsTuningModal />
 
-        <div class="divider lg:divider-horizontal"></div>
+        <div class="divider sm:divider-horizontal"></div>
 
         <SettingsStringLength />
 
-        <div class="divider lg:divider-horizontal"></div>
+        <div class="divider sm:divider-horizontal"></div>
 
         <SettingsOctave />
       </div>
-    </BaseCard>
 
-    <BaseCard :body-classes="['lg:p-4', 'p-2']">
+      <div class="divider -my-2 sm:my-0.5" />
+
       <div class="flex gap-2 lg:gap-4 items-center justify-center">
+        <SettingsDisplayType />
+
+        <div class="divider sm:divider-horizontal"></div>
+
         <SettingsChordType
           v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
         />
 
         <SettingsScaleModal v-else />
 
-        <div class="divider lg:divider-horizontal"></div>
-
-        <SettingsDisplayType />
-
-        <div class="divider lg:divider-horizontal"></div>
+        <div class="divider sm:divider-horizontal"></div>
 
         <SettingsTriad />
       </div>

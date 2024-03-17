@@ -1,40 +1,34 @@
 <template>
-  <div
-    class="fretboard-settings-wrapper flex flex-col mx-auto lg:space-y-5 space-y-2"
-  >
-    <BaseCard :body-classes="['lg:p-4', 'p-2']">
-      <div class="flex gap-3 justify-center">
-        <SettingsNote />
-      </div>
+  <div class="flex gap-3 justify-center">
+    <SettingsNote />
+  </div>
 
-      <div class="divider lg:divider-horizontal -my-3"></div>
+  <div class="divider my-0 mx-12">Note</div>
 
-      <div class="flex gap-3 justify-center">
-        <SettingsNoteVariation />
-      </div>
-    </BaseCard>
+  <div class="flex gap-3 justify-center">
+    <SettingsNoteVariation />
+  </div>
 
-    <BaseCard :body-classes="['lg:p-4', 'p-2']">
-      <div class="flex flex-wrap items-center justify-evenly">
-        <SettingsTriad />
+  <div class="divider my-1.5 mx-1"></div>
 
-        <SettingsOctave />
+  <div class="flex flex-wrap items-center justify-evenly">
+    <SettingsTriad />
 
-        <SettingsStringLength />
-      </div>
-    </BaseCard>
+    <SettingsOctave />
 
-    <BaseCard :body-classes="['lg:p-4', 'p-2']">
-      <div class="flex gap-2 lg:gap-4 items-center justify-center">
-        <SettingsChordType
-          v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
-        />
+    <SettingsStringLength />
+  </div>
 
-        <SettingsScaleModal v-else />
+  <div class="divider my-1.5 mx-1"></div>
 
-        <SettingsDisplayType />
-      </div>
-    </BaseCard>
+  <div class="flex gap-2 lg:gap-4 items-center justify-center">
+    <SettingsChordType
+      v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
+    />
+
+    <SettingsScaleModal v-else />
+
+    <SettingsDisplayType />
   </div>
 </template>
 
