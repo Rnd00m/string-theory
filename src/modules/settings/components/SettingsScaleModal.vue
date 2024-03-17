@@ -3,7 +3,7 @@
     <button
       type="button"
       @click="openModal"
-      class="btn btn-outline btn-sm modal-button capitalize"
+      class="btn btn-outline btn-sm sm:btn-md modal-button capitalize"
     >
       {{ fretboardParametersStore.scaleName }}
     </button>

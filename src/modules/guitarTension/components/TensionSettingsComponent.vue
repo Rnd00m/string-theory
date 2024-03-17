@@ -1,5 +1,5 @@
 <template>
-  <div class="settings grid grid-flow-col gap-4">
+  <div class="settings flex gap-4">
     <div class="form-control w-full max-w-xs">
       <label class="label">
         <span class="label-text">Diapason</span>
@@ -20,7 +20,7 @@
       </label>
       <select
         v-model="selectedNotes"
-        class="select select-sm md:select-md select-primary select-bordered w-full max-w-xs"
+        class="select select-sm md:select-md select-bordered w-full max-w-xs"
         @change="emitNotesUpdated"
       >
         <option

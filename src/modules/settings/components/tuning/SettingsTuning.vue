@@ -1,9 +1,9 @@
 <template>
-  <div class="grid h-20 lg:h-32 place-items-center mt-4">
+  <div class="grid h-20 lg:h-32">
     <SettingsTuningStrings />
   </div>
 
-  <div class="divider">Settings</div>
+  <div class="divider my-4">Settings</div>
 
   <BaseTabs>
     <BaseTab title="Guitar">
@@ -50,5 +50,4 @@ import BaseTab from "@/components/base/tabs/BaseTab.vue";
 import SettingsTuningStrings from "@/modules/settings/components/tuning/SettingsTuningStrings.vue";
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

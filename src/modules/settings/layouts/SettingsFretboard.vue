@@ -1,21 +1,19 @@
 <template>
-  <div
-    class="fretboard-settings-wrapper w-4xl max-w-4xl flex flex-col mx-auto lg:space-y-5 space-y-2"
-  >
+  <div class="fretboard-settings-wrapper w-4xl max-w-4xl flex flex-col mx-auto">
     <BaseCard :body-classes="['md:p-4', 'p-2']">
       <div class="flex flex-col w-full sm:flex-row justify-center">
         <div class="flex gap-1 md:gap-3 justify-center">
           <SettingsNote />
         </div>
 
-        <div class="divider sm:divider-horizontal -my-2 md:my-0" />
+        <div class="divider sm:divider-horizontal -my-2 sm:my-0" />
 
         <div class="flex gap-1 md:gap-3 justify-center">
           <SettingsNoteVariation />
         </div>
       </div>
 
-      <div class="divider -my-2 md:my-0.5" />
+      <div class="divider -my-2 sm:my-0.5" />
 
       <div class="flex flex-wrap items-center justify-evenly">
         <SettingsTuningModal />
@@ -29,7 +27,7 @@
         <SettingsOctave />
       </div>
 
-      <div class="divider -my-2 md:my-0.5" />
+      <div class="divider -my-2 sm:my-0.5" />
 
       <div class="flex gap-2 lg:gap-4 items-center justify-center">
         <SettingsDisplayType />

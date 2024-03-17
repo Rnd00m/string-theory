@@ -1,7 +1,5 @@
 <template>
-  <TabPanel
-    class="tab-content grid w-full gap-3 p-6"
-  >
+  <TabPanel class="tab-content grid w-full gap-3 p-3">
     <slot />
   </TabPanel>
 </template>
@@ -19,5 +17,4 @@ const props = defineProps<Props>();
 const selectedTab = inject("selectedTab");
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>
