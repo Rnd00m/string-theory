@@ -6,7 +6,7 @@
       :key="'note-' + index"
     >
       <button
-        class="btn btn-square btn-xs lg:btn-sm btn-primary"
+        class="btn btn-square btn-xs lg:btn-sm"
         @click="changeStringTuning(index, TuningDirectionEnum.Asc)"
       >
         +
@@ -15,7 +15,7 @@
         {{ note.name }}
       </div>
       <button
-        class="btn btn-square btn-xs lg:btn-sm btn-primary"
+        class="btn btn-square btn-xs lg:btn-sm"
         @click="changeStringTuning(index, TuningDirectionEnum.Desc)"
       >
         -

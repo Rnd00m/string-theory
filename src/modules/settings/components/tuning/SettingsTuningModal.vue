@@ -2,7 +2,7 @@
   <button
     type="button"
     @click="openModal"
-    class="btn btn-primary btn-sm modal-button"
+    class="btn btn-sm btn-outline modal-button"
   >
     Select Tuning
   </button>

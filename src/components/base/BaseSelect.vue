@@ -5,7 +5,7 @@
     </label>
     <select
       v-model="value"
-      class="select select-sm select-primary select-bordered w-full max-w-xs"
+      class="select select-sm select-bordered w-full max-w-xs"
       v-bind="$attrs"
     >
       <option

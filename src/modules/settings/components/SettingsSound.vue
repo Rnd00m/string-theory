@@ -3,7 +3,7 @@
     <div class="form-control">
       <select
         v-model="fretboardParametersStore.selectedSoundSample"
-        class="select select-primary select-sm lg:select-md select-bordered w-full max-w-xs"
+        class="select select-sm lg:select-md select-bordered w-full max-w-xs"
       >
         <option
           v-for="soundSample in filteredSoundSampleList"
@@ -44,5 +44,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

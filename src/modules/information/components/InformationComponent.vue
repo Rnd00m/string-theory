@@ -13,8 +13,13 @@
         v-if="fretboardParametersStore.displayType === DisplayTypeEnum.Chord"
       ></ChordInformation>
 
-      <div class="flex justify-center gap-2 md:gap-4 lg:gap-8 flex-row">
-        <button class="btn btn-primary btn-sm" @click="playNotes(notesToPlay)">
+      <div
+        class="grid grid-flow-col justify-center gap-2 md:gap-4 lg:gap-6 items-start"
+      >
+        <button
+          class="btn btn-primary btn-sm h-9"
+          @click="playNotes(notesToPlay)"
+        >
           <svg-icon type="mdi" :path="mdiPlay" size="18" />
         </button>
         <div
@@ -22,24 +27,25 @@
           :key="'chord-information-note-' + note"
           class="flex flex-col gap-2"
         >
-          <span
-            class="px-3 py-1 text-lg rounded-lg"
+          <div
+            class="px-3 text-lg rounded-lg h-9 leading-9"
             :class="[
               getNoteClass(Note.get(note), classMap),
               {
                 'highlitghted-note': note.pc === currentPlayedNote,
-              }
+              },
             ]"
           >
             {{ note.pc }}
-          </span>
-          <span
+          </div>
+          <div
             class="information-note text-center"
             :class="{
               'highlitghted-note': note.pc === currentPlayedNote,
             }"
-            >{{ entity.intervals[index] }}</span
           >
+            {{ entity.intervals[index] }}
+          </div>
         </div>
       </div>
     </BaseCard>

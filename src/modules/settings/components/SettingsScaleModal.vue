@@ -3,15 +3,12 @@
     <button
       type="button"
       @click="openModal"
-      class="btn btn-outline btn-primary btn-sm lg:btn-md modal-button capitalize"
+      class="btn btn-outline btn-sm modal-button capitalize"
     >
       {{ fretboardParametersStore.scaleName }}
     </button>
 
-    <BaseDialog
-      ref="settingsScaleDialog"
-      modal-box-classes="max-h-[32rem]"
-    >
+    <BaseDialog ref="settingsScaleDialog" modal-box-classes="max-h-[32rem]">
       <template #title>
         <div class="flex items-center justify-between">
           <DialogTitle as="h3" class="text-lg font-bold"> Scales </DialogTitle>
@@ -22,17 +19,15 @@
         </div>
       </template>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 lg:gap-6">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 lg:gap-6"
+      >
         <div>
           <ul class="menu menu-compact mode">
             <li class="menu-title">
               <span>Modes</span>
             </li>
-            <li
-              v-for="mode in modes"
-              :key="mode.name"
-              @click="setScale(mode)"
-            >
+            <li v-for="mode in modes" :key="mode.name" @click="setScale(mode)">
               <a
                 class="capitalize"
                 :class="{
@@ -195,5 +190,4 @@ const setScale = (scale: Scale) => {
 };
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

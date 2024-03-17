@@ -32,7 +32,7 @@
 .note-scale-second,
 .note-scale-fourth,
 .note-scale-sixth {
-    background: var(--color-blue-200);
+    background: var(--color-blue-300);
     color: var(--color-white) !important;
 }
 
