@@ -73,11 +73,7 @@
           </RouterLink>
         </div>
         <div class="flex-none lg:hidden">
-          <MqResponsive group>
-            <template #md-:landscape>
-              <TheViewerDrawerIcons />
-            </template>
-          </MqResponsive>
+          <TheViewerDrawerIcons class="flex portrait:hidden lg:hidden" />
         </div>
         <div class="flex-none hidden lg:block">
           <ul class="menu menu-horizontal px-1">
@@ -190,7 +186,6 @@
 </template>
 
 <script setup lang="ts">
-import { MqResponsive } from "vue3-mq";
 import BaseThemeSelector from "@/components/base/BaseThemeSelector.vue";
 import TheViewerDrawerIcons from "@/components/TheViewerDrawerIcons.vue";
 
