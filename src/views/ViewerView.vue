@@ -1,10 +1,9 @@
 <template>
   <div class="fretboard-viewer place-self-center">
     <div class="grid grid-flow-row gap-8">
-      <MqResponsive group class="p-4 sm:p-0">
-        <template #lg+><SettingsFretboard /></template>
-        <template #lg-:portrait><SettingsFretboard /></template>
-      </MqResponsive>
+      <div class="p-4 sm:p-0">
+        <SettingsFretboard class="hidden portrait:block lg:block" />
+      </div>
       <FretboardViewer
         :fretboard-notes="fretboardNotes"
         :show-octave="fretboardParametersStore.showOctave"
@@ -36,7 +35,6 @@ import { Chord, Note, Scale } from "@tonaljs/tonal";
 import { DisplayVariationType } from "@/modules/fretboard/enums/DisplayVariationType";
 import { getChord, getChordNotes } from "@/commons/helpers/chords";
 import { getScale, getScaleNotes } from "@/commons/helpers/scales";
-import { MqResponsive } from "vue3-mq";
 import type {
   FretboardNote,
   NoteClassMap,

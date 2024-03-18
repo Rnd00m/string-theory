@@ -24,12 +24,18 @@
       </div>
     </div>
     <div class="w-12 flex items-center align-middle">
-      <MqResponsive target="lg+">
-        <svg-icon type="mdi" :path="mdiChevronRight" size="48" />
-      </MqResponsive>
-      <MqResponsive target="xs-md">
-        <svg-icon type="mdi" :path="mdiChevronRight" size="32" />
-      </MqResponsive>
+      <svg-icon
+        type="mdi"
+        :path="mdiChevronRight"
+        class="hidden lg:block"
+        size="48"
+      />
+      <svg-icon
+        type="mdi"
+        :path="mdiChevronRight"
+        class="block lg:hidden"
+        size="32"
+      />
     </div>
   </RouterLink>
 </template>
@@ -37,7 +43,6 @@
 <script setup lang="ts">
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiChevronRight } from "@mdi/js";
-import { MqResponsive } from "vue3-mq";
 
 interface RouterLink {
   name: string;
