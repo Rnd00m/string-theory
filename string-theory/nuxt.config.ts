@@ -19,4 +19,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  build: {
+    transpile: ['echarts', 'zrender', 'tslib'],
+  },
 });

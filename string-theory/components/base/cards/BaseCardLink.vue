@@ -1,5 +1,5 @@
 <template>
-  <RouterLink
+  <NuxtLink
     :to="props.to"
     class="card-link relative flex justify-between bg-base-100 border border-neutral-content shadow py-6 px-6 rounded-2xl w-72 md:w-80 lg:w-96 my-4"
   >
@@ -37,7 +37,7 @@
         size="32"
       />
     </div>
-  </RouterLink>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
@@ -49,7 +49,7 @@ interface RouterLink {
 }
 
 interface Props {
-  to: string | RouterLink;
+  to: string;
   iconPath: string;
   iconClass: string;
 }
