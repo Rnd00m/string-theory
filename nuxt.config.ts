@@ -7,6 +7,25 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     "nuxt-headlessui",
   ],
+  app: {
+    head: {
+      title: 'String Theory',
+      link: [
+        {
+          rel: 'icon',
+          href: '/img/logo-white.png',
+          media: '(prefers-color-scheme: dark)',
+        },
+        {
+          rel: 'icon',
+          href: '/img/logo-black.png',
+          media: '(prefers-color-scheme: light)',
+        },
+      ],
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+    }
+  },
   colorMode: {
     preference: 'winter',
     dataValue: 'theme', // activate data-theme in <html> tag
