@@ -7,7 +7,7 @@
             <div>
               Find all
               <span
-                class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find"
+                class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
                 >{{ noteToFind.pc }}</span
               >
               on the fretboard
@@ -62,7 +62,6 @@
 <script setup lang="ts">
 import FretboardExercise from "@/components/modules/fretboardExercise/components/FretboardExercise.vue";
 import { Note } from "@tonaljs/tonal";
-import { ref } from "vue";
 import {
   getDisplayVariationTypeToUse,
   getFretboardNotes,

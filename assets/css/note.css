@@ -58,5 +58,4 @@
 .note-to-find {
     background: oklch(var(--p));
     color: oklch(var(--pc)) !important;
-    padding: 0.375em;
 }
