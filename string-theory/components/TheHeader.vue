@@ -76,7 +76,7 @@
           <ul class="menu menu-horizontal px-1">
             <li><NuxtLink to="/">Home</NuxtLink></li>
             <li>
-<!--              <NuxtLink to="/exercises">Exercise</NuxtLink>-->
+              <NuxtLink to="/exercises">Exercise</NuxtLink>
             </li>
             <li>
               <details>
@@ -154,7 +154,7 @@
         </NuxtLink>
         <li><NuxtLink to="/">Home</NuxtLink></li>
         <li>
-<!--          <NuxtLink to="/exercises">Exercise</NuxtLink>-->
+          <NuxtLink to="/exercises">Exercise</NuxtLink>
         </li>
         <li>
           <details>
