@@ -1,4 +1,4 @@
-// import tailwindTypography from '@tailwindcss/typography'
+import tailwindTypography from '@tailwindcss/typography'
 import daisyui from "daisyui";
 
 module.exports = {
@@ -39,5 +39,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [daisyui],
+  plugins: [tailwindTypography, daisyui],
 };

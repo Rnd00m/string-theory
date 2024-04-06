@@ -92,7 +92,7 @@
                 </ul>
               </details>
             </li>
-<!--            <li><NuxtLink to="/about">About</NuxtLink></li>-->
+            <li><NuxtLink to="/about">About</NuxtLink></li>
           </ul>
         </div>
         <div class="flex-none hidden lg:block">
@@ -170,7 +170,7 @@
             </ul>
           </details>
         </li>
-<!--        <li><NuxtLink to="/about">About</NuxtLink></li>-->
+        <li><NuxtLink to="/about">About</NuxtLink></li>
         <BaseThemeSelector class="absolute bottom-4 w-36 place-self-center" />
       </ul>
     </div>

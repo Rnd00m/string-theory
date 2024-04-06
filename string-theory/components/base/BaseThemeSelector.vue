@@ -3,7 +3,7 @@
     <label class="label cursor-pointer swap swap-rotate">
       <input
         type="checkbox"
-        :checked="selectedTheme === ThemeEnum.Dark"
+        :checked="colorMode.preference === ThemeEnum.Light"
         @change="toggleTheme"
       />
 
@@ -26,45 +26,18 @@
 </template>
 
 <script setup lang="ts">
-const colorMode = useColorMode();
-import { getData, setData } from 'nuxt-storage/local-storage';
-import SvgIcon from "@jamescoyle/vue-icon";
-
 import { ThemeEnum } from "@/utils/enums/ThemeEnum";
+const colorMode = useColorMode();
+import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiWeatherNight, mdiWhiteBalanceSunny } from "@mdi/js";
 
-const themeStorageKey = "user-theme";
-const selectedTheme = ref<string | null>(null);
-
-
-/**
- * Add selected theme to local storage and apply attribute to html element
- */
-function setTheme(themeName: string): void {
-  setData(themeStorageKey, themeName);
-  colorMode.preference = themeName;
-}
-
-/**
- * Switch between dark and light theme
- */
 function toggleTheme(): void {
-  if (getData(themeStorageKey) === ThemeEnum.Dark) {
-    setTheme(ThemeEnum.Light);
+  if (colorMode.preference === ThemeEnum.Dark) {
+    colorMode.preference = ThemeEnum.Light;
   } else {
-    setTheme(ThemeEnum.Dark);
+    colorMode.preference = ThemeEnum.Dark;
   }
 }
-
-onMounted(() => {
-  colorMode.preference = getData(themeStorageKey);
-
-  if (selectedTheme.value === ThemeEnum.Light) {
-    setTheme(ThemeEnum.Light);
-  } else {
-    setTheme(ThemeEnum.Dark);
-  }
-});
 </script>
 
 <style scoped></style>

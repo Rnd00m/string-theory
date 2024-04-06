@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     "nuxt-headlessui",
   ],
   colorMode: {
-    preference: undefined, // default theme
+    preference: 'winter',
     dataValue: 'theme', // activate data-theme in <html> tag
     classSuffix: '',
   },

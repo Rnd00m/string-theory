@@ -41,9 +41,6 @@ dependencies:
   nuxt-headlessui:
     specifier: ^1.1.5
     version: 1.1.5(vue@3.4.21)
-  nuxt-storage:
-    specifier: ^1.2.2
-    version: 1.2.2
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(vue@3.4.21)
@@ -5488,10 +5485,6 @@ packages:
       - rollup
       - supports-color
       - vue
-    dev: false
-
-  /nuxt-storage@1.2.2:
-    resolution: {integrity: sha512-quJbZ87NO7QRCSp7YZolot6VwktciSLuTS/sRl8NPz5rAWA84U5Py0y9FmAsbKTiaqJtFcCKSaJGzky948jA3w==}
     dev: false
 
   /nuxt@3.11.1(@unocss/reset@0.58.9)(floating-vue@5.2.2)(sass@1.74.1)(unocss@0.58.9)(vite@5.2.8):
