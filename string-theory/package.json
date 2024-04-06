@@ -12,17 +12,22 @@
   "dependencies": {
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^7.2.96",
+    "@nuxtjs/color-mode": "^3.2.0",
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "@headlessui/vue": "^1.7.16",
+    "@pinia/nuxt": "^0.5.1",
+    "@tailwindcss/typography": "^0.5.2",
     "@tonaljs/tonal": "^4.6.5",
-    "daisyui": "^3",
+    "daisyui": "^4",
     "nuxt": "^3.11.1",
+    "nuxt-headlessui": "^1.1.5",
     "nuxt-storage": "^1.2.2",
+    "pinia": "^2.1.7",
     "tone": "^14.7.77",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.11.4",
-    "@pinia/nuxt": "^0.5.1",
-    "nuxt-headlessui": "^1.1.5"
+    "sass": "^1.74.1"
   }
 }

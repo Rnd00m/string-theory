@@ -21,15 +21,13 @@
 </template>
 
 <script setup lang="ts">
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 import {
-  getClassMap,
-  getNoteClass,
-} from "@/modules/fretboard/services/noteClassMaps";
-import { Note, Scale } from "@tonaljs/tonal";
-import { computed } from "vue";
-import { getScale, getScaleNotes } from "@/commons/helpers/scales";
-import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
+getClassMap,
+getNoteClass,
+} from "@/components/modules/fretboard/services/noteClassMaps";
+import type { NoteClassMap } from "@/components/modules/fretboard/types/fretboard";
+import { getScale, getScaleNotes } from "@/utils/helpers/scales";
+import { Note } from "@tonaljs/tonal";
 
 const fretboardParametersStore = useFretboardParametersStore();
 

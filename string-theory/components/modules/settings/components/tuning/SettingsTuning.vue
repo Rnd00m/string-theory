@@ -42,12 +42,6 @@
 </template>
 
 <script setup lang="ts">
-import SettingsTuningGuitarType from "@/modules/settings/components/tuning/SettingsTuningGuitarType.vue";
-import SettingsTuningBassType from "@/modules/settings/components/tuning/SettingsTuningBassType.vue";
-import SettingsSound from "@/modules/settings/components/SettingsSound.vue";
-import BaseTabs from "@/components/base/tabs/BaseTabs.vue";
-import BaseTab from "@/components/base/tabs/BaseTab.vue";
-import SettingsTuningStrings from "@/modules/settings/components/tuning/SettingsTuningStrings.vue";
 </script>
 
 <style scoped lang="scss"></style>

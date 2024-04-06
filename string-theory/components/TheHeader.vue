@@ -21,7 +21,7 @@
           </label>
         </div>
         <div class="flex-1 px-2 mx-2 hidden lg:block navbar-center">
-          <NuxtLink to="/index" class="btn btn-ghost normal-case text-xl">
+          <NuxtLink to="/" class="btn btn-ghost normal-case text-xl">
             <svg
               class="header-logo"
               data-name="String Theory Logo Black"
@@ -74,29 +74,29 @@
         </div>
         <div class="flex-none hidden lg:block">
           <ul class="menu menu-horizontal px-1">
-            <li><NuxtLink to="/index">Home</NuxtLink></li>
+            <li><NuxtLink to="/">Home</NuxtLink></li>
             <li>
-              <NuxtLink to="/exercises">Exercise</NuxtLink>
+<!--              <NuxtLink to="/exercises">Exercise</NuxtLink>-->
             </li>
             <li>
               <details>
                 <summary>
-                  <NuxtLink to="/tools">Tools</NuxtLink>
+<!--                  <NuxtLink to="/tools">Tools</NuxtLink>-->
                 </summary>
                 <ul class="p-2 bg-base-300">
                   <li>
-                    <NuxtLink to="/tools/string-tension"
+<!--                    <NuxtLink to="/tools/string-tension"
                       >Tension&nbsp;calculator</NuxtLink
-                    >
+                    >-->
                   </li>
                 </ul>
               </details>
             </li>
-            <li><NuxtLink to="/about">About</NuxtLink></li>
+<!--            <li><NuxtLink to="/about">About</NuxtLink></li>-->
           </ul>
         </div>
         <div class="flex-none hidden lg:block">
-          <!--          <BaseThemeSelector />-->
+          <BaseThemeSelector />
         </div>
       </div>
       <!-- Page Content-->
@@ -105,7 +105,7 @@
     <div class="drawer-side z-20">
       <label for="header-menu-drawer" class="drawer-overlay"></label>
       <ul class="menu h-full p-4 w-80 bg-base-100 relative">
-        <NuxtLink to="/index" class="btn btn-ghost normal-case text-xl mb-2">
+        <NuxtLink to="/" class="btn btn-ghost normal-case text-xl mb-2">
           <svg
             class="header-logo"
             data-name="String Theory Logo Black"
@@ -152,26 +152,26 @@
           </svg>
           String Theory
         </NuxtLink>
-        <li><NuxtLink to="/index">Home</NuxtLink></li>
+        <li><NuxtLink to="/">Home</NuxtLink></li>
         <li>
-          <NuxtLink to="/exercises">Exercise</NuxtLink>
+<!--          <NuxtLink to="/exercises">Exercise</NuxtLink>-->
         </li>
         <li>
           <details>
             <summary>
-              <NuxtLink to="/tools">Tools</NuxtLink>
+<!--              <NuxtLink to="/tools">Tools</NuxtLink>-->
             </summary>
             <ul class="p-2">
               <li>
-                <NuxtLink to="/tools/string-tension"
+<!--                <NuxtLink to="/tools/string-tension"
                   >Tension&nbsp;calculator</NuxtLink
-                >
+                >-->
               </li>
             </ul>
           </details>
         </li>
-        <li><NuxtLink to="/about">About</NuxtLink></li>
-        <!--        <BaseThemeSelector class="absolute bottom-4 w-36 place-self-center" />-->
+<!--        <li><NuxtLink to="/about">About</NuxtLink></li>-->
+        <BaseThemeSelector class="absolute bottom-4 w-36 place-self-center" />
       </ul>
     </div>
   </div>

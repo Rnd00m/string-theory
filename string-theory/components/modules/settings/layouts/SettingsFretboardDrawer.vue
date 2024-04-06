@@ -33,16 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import SettingsNote from "@/modules/settings/components/SettingsNote.vue";
-import SettingsNoteVariation from "@/modules/settings/components/SettingsNoteVariation.vue";
-import SettingsOctave from "@/modules/settings/components/SettingsOctave.vue";
-import SettingsChordType from "@/modules/settings/components/SettingsChordType.vue";
-import SettingsDisplayType from "@/modules/settings/components/SettingsDisplayType.vue";
-import SettingsTriad from "@/modules/settings/components/SettingsTriad.vue";
-import SettingsScaleModal from "@/modules/settings/components/SettingsScaleModal.vue";
-import { DisplayTypeEnum } from "@/commons/enums/DisplayTypeEnum";
-import BaseCard from "@/components/base/cards/BaseCard.vue";
-import SettingsStringLength from "@/modules/settings/components/SettingsStringLength.vue";
+import { DisplayTypeEnum } from '@/utils/enums/DisplayTypeEnum';
 
 const fretboardParametersStore = useFretboardParametersStore();
 </script>

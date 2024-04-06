@@ -22,9 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 import BaseInputRadio from "@/components/base/inputs/BaseInputRadio.vue";
-import { NoteVariationEnum } from "@/commons/enums/NoteVariationEnum";
+import { NoteVariationEnum } from "@/utils/enums/NoteVariationEnum";
 
 const fretboardParametersStore = useFretboardParametersStore();
 </script>

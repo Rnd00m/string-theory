@@ -16,13 +16,11 @@
 </template>
 
 <script setup lang="ts">
-import FretboardString from "@/modules/fretboard/components/FretboardString.vue";
-import FretboardMarker from "@/modules/fretboard/components/FretboardMarker.vue";
-import { SoundSample } from "@/modules/settings/services/classes/SoundSample";
-import { soundSampleList } from "@/modules/settings/services/SoundSampleList";
-import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
-import { getSampler } from "@/commons/helpers/utils";
-import { computedAsync } from '@vueuse/core'
+import type { FretboardNote } from "@/components/modules/fretboard/types/fretboard";
+import { soundSampleList } from "@/components/modules/settings/services/SoundSampleList";
+import { SoundSample } from "@/components/modules/settings/services/classes/SoundSample";
+import { getSampler } from "@/utils/helpers/utils";
+import { computedAsync } from '@vueuse/core';
 
 interface Props {
   fretboardNotes: FretboardNote[][];

@@ -18,9 +18,7 @@
 </template>
 
 <script>
-import { soundSampleList } from "@/modules/settings/services/SoundSampleList";
-
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import { soundSampleList } from "@/components/modules/settings/services/SoundSampleList.ts";
 
 export default {
   name: "SettingsSound",

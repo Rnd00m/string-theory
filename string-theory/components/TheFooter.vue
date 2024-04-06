@@ -54,7 +54,7 @@
     <div>
       <div class="grid grid-flow-col gap-4">
         <a href="https://github.com/Rnd00m" target="_blank">
-          <svg-icon type="mdi" :path="mdiGithub" size="32" />
+          <SvgIcon type="mdi" :path="mdiGithub" size="32" />
         </a>
       </div>
     </div>

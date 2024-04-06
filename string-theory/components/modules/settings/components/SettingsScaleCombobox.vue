@@ -13,7 +13,7 @@
         <ComboboxButton
           class="absolute inset-y-0 right-0 flex items-center pr-2"
         >
-          <svg-icon
+          <SvgIcon
             type="mdi"
             :path="mdiUnfoldMoreHorizontal"
             width="20"
@@ -65,7 +65,7 @@
                   'text-base-content': !active,
                 }"
               >
-                <svg-icon type="mdi" :path="mdiCheck" width="20" height="20" />
+                <SvgIcon type="mdi" :path="mdiCheck" width="20" height="20" />
               </span>
             </li>
           </ComboboxOption>
@@ -76,17 +76,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, defineEmits } from "vue";
 import {
-  Combobox,
-  ComboboxInput,
-  ComboboxButton,
-  ComboboxOptions,
-  ComboboxOption,
-  TransitionRoot,
+Combobox,
+ComboboxButton,
+ComboboxInput,
+ComboboxOption,
+ComboboxOptions,
+TransitionRoot,
 } from "@headlessui/vue";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiCheck, mdiUnfoldMoreHorizontal } from "@mdi/js";
+import { computed, defineEmits, ref } from "vue";
 
 interface Props {
   scaleList: Scale[];

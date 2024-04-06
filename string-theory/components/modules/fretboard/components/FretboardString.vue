@@ -18,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import FretboardNoteComponent from "./FretboardNote.vue";
+import type { FretboardNote } from "@/components/modules/fretboard/types/fretboard";
 import * as Tone from "tone";
-import type { FretboardNote } from "@/modules/fretboard/types/fretboard";
+import FretboardNoteComponent from "./FretboardNote.vue";
 
 interface Props {
   stringNotes: FretboardNote[];

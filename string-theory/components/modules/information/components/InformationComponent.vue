@@ -20,7 +20,7 @@
           class="btn btn-primary btn-sm h-9"
           @click="playNotes(notesToPlay)"
         >
-          <svg-icon type="mdi" :path="mdiPlay" size="18" />
+          <SvgIcon type="mdi" :path="mdiPlay" size="18" />
         </button>
         <div
           v-for="(note, index) in notes"
@@ -66,7 +66,7 @@
         >
         <template v-else>Scale Information</template>
         <button class="btn btn-primary btn-sm" @click="playNotes(notesToPlay)">
-          <svg-icon type="mdi" :path="mdiPlay" size="18" />
+          <SvgIcon type="mdi" :path="mdiPlay" size="18" />
         </button>
       </h2>
 
@@ -100,22 +100,19 @@
 </template>
 
 <script setup lang="ts">
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-import ChordInformation from "@/modules/information/components/ChordInformation.vue";
-import { DisplayTypeEnum } from "@/commons/enums/DisplayTypeEnum";
-import BaseCard from "@/components/base/cards/BaseCard.vue";
+import {
+getClassMap,
+getNoteClass,
+} from "@/components/modules/fretboard/services/noteClassMaps";
+import type { NoteClassMap } from "@/components/modules/fretboard/types/fretboard";
+import { DisplayTypeEnum } from "@/utils/enums/DisplayTypeEnum";
+import { getChord, getChordNotes } from "@/utils/helpers/chords";
+import { getScale, getScaleNotes } from "@/utils/helpers/scales";
+import { getSampler } from "@/utils/helpers/utils";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiPlay } from "@mdi/js";
-import { getChord, getChordNotes } from "@/commons/helpers/chords";
-import {
-  getClassMap,
-  getNoteClass,
-} from "@/modules/fretboard/services/noteClassMaps";
-import { Chord, type NoNote, Note, Scale } from "@tonaljs/tonal";
+import { Note, type NoNote } from "@tonaljs/tonal";
 import { computed, ref } from "vue";
-import { getScale, getScaleNotes } from "@/commons/helpers/scales";
-import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
-import { getSampler } from "@/commons/helpers/utils";
 
 const fretboardParametersStore = useFretboardParametersStore();
 

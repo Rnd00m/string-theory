@@ -32,9 +32,8 @@
 </template>
 
 <script setup lang="ts">
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import { TuningDirectionEnum } from "@/components/modules/settings/enums/TuningDirectionEnum";
 import { Note } from "@tonaljs/tonal";
-import { TuningDirectionEnum } from "@/modules/settings/enums/TuningDirectionEnum";
 
 const fretboardParametersStore = useFretboardParametersStore();
 

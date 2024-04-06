@@ -3,7 +3,7 @@
     <div class="card-body" :class="props.bodyClasses">
       <div class="card-actions justify-end" v-if="props.showCloseButton">
         <button class="btn btn-square btn-sm">
-          <svg-icon type="mdi" :path="mdiClose" size="24" />
+          <SvgIcon type="mdi" :path="mdiClose" size="24" />
         </button>
       </div>
       <h2 class="card-title" v-if="!!$slots.title">

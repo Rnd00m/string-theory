@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { TabPanel } from "@headlessui/vue";
 import { inject } from "vue";
 
 interface Props {

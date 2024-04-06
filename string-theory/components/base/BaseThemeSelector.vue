@@ -7,14 +7,14 @@
         @change="toggleTheme"
       />
 
-      <svg-icon
+      <SvgIcon
         class="swap-on"
         type="mdi"
         :path="mdiWeatherNight"
         width="24"
         height="24"
       />
-      <svg-icon
+      <SvgIcon
         class="swap-off"
         type="mdi"
         :path="mdiWhiteBalanceSunny"
@@ -26,41 +26,38 @@
 </template>
 
 <script setup lang="ts">
-import { getData, setData } from "nuxt-storage/local-storage";
+const colorMode = useColorMode();
+import { getData, setData } from 'nuxt-storage/local-storage';
+import SvgIcon from "@jamescoyle/vue-icon";
+
+import { ThemeEnum } from "@/utils/enums/ThemeEnum";
+import { mdiWeatherNight, mdiWhiteBalanceSunny } from "@mdi/js";
+
 const themeStorageKey = "user-theme";
-const dataThemeKey = "data-theme";
 const selectedTheme = ref<string | null>(null);
-// const HTMLElement = ref<HTMLElement>(document.getElementsByTagName("html")[0]);
+
 
 /**
  * Add selected theme to local storage and apply attribute to html element
  */
 function setTheme(themeName: string): void {
-  window.localStorage.setItem(themeStorageKey, themeName);
-  HTMLElement.value.setAttribute(dataThemeKey, themeName);
-  selectedTheme.value = themeName;
+  setData(themeStorageKey, themeName);
+  colorMode.preference = themeName;
 }
 
 /**
  * Switch between dark and light theme
  */
 function toggleTheme(): void {
-  if (getLocalStorageTheme() === ThemeEnum.Dark) {
+  if (getData(themeStorageKey) === ThemeEnum.Dark) {
     setTheme(ThemeEnum.Light);
   } else {
     setTheme(ThemeEnum.Dark);
   }
 }
 
-/**
- * Return the current value in local storage of selected theme
- */
-function getLocalStorageTheme(): string | null {
-  return window.localStorage.getItem(themeStorageKey.value);
-}
-
 onMounted(() => {
-  selectedTheme.value = getLocalStorageTheme();
+  colorMode.preference = getData(themeStorageKey);
 
   if (selectedTheme.value === ThemeEnum.Light) {
     setTheme(ThemeEnum.Light);

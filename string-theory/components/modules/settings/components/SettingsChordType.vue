@@ -9,9 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-import { chordTypeList } from "@/modules/settings/services/ChordTypeList";
-import BaseSelect from "@/components/base/BaseSelect.vue";
+import { chordTypeList } from "@/components/modules/settings/services/ChordTypeList";
 
 const fretboardParametersStore = useFretboardParametersStore();
 </script>

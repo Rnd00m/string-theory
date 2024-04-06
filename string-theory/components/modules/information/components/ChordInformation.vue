@@ -15,16 +15,12 @@
 </template>
 
 <script setup lang="ts">
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 import {
-  getClassMap,
-  getNoteClass,
-} from "@/modules/fretboard/services/noteClassMaps";
-import { computed } from "vue";
-import { Chord, Note } from "@tonaljs/tonal";
-import { getChord, getChordNotes } from "@/commons/helpers/chords";
-import type { NoteClassMap } from "@/modules/fretboard/types/fretboard";
-import * as Tone from "tone";
+getClassMap
+} from "@/components/modules/fretboard/services/noteClassMaps";
+import type { NoteClassMap } from "@/components/modules/fretboard/types/fretboard";
+import { getChord } from "@/utils/helpers/chords";
+import { Note } from "@tonaljs/tonal";
 
 const fretboardParametersStore = useFretboardParametersStore();
 

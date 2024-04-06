@@ -10,10 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-import BaseInputRadio from "@/components/base/inputs/BaseInputRadio.vue";
-
 const fretboardParametersStore = useFretboardParametersStore();
 
 const notes = ref(["A", "B", "C", "D", "E", "F", "G"]);

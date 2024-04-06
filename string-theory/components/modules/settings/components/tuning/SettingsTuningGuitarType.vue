@@ -29,9 +29,8 @@
 <script setup lang="ts">
 import { Note } from "@tonaljs/tonal";
 
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
 import { ref } from "vue";
-import { SoundSampleInstrumentTypeEnum } from "@/modules/settings/enums/SoundSampleInstrumentTypeEnum";
+import { SoundSampleInstrumentTypeEnum } from "@/components/modules/settings/enums/SoundSampleInstrumentTypeEnum";
 import BaseInputRadio from "@/components/base/inputs/BaseInputRadio.vue";
 
 const fretboardParametersStore = useFretboardParametersStore();

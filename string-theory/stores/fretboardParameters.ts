@@ -3,7 +3,6 @@ import { soundSampleList } from "@/components/modules/settings/services/SoundSam
 import { DisplayTypeEnum } from "@/utils/enums/DisplayTypeEnum";
 import { NoteVariationEnum } from "@/utils/enums/NoteVariationEnum";
 import { Note } from "@tonaljs/tonal";
-import { defineStore } from "pinia";
 
 export const useFretboardParametersStore = defineStore("fretboard-parameters", {
   state: () => {

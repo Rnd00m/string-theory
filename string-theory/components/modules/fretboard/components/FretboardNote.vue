@@ -18,13 +18,13 @@
 </template>
 
 <script setup lang="ts">
+import { getFretboardNoteKey } from "@/components/modules/fretboard/services/fretboard";
+import type {
+FretboardNote,
+FretboardNoteSelectedEvent,
+} from "@/components/modules/fretboard/types/fretboard";
 import * as Tone from "tone";
 import { computed, ref } from "vue";
-import { getFretboardNoteKey } from "@/modules/fretboard/services/fretboard";
-import type {
-  FretboardNote,
-  FretboardNoteSelectedEvent,
-} from "@/modules/fretboard/types/fretboard";
 
 interface Props {
   string: number; // String of the current note

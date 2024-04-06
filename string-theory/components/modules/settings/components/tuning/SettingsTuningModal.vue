@@ -18,10 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import BaseDialog from "@/components/BaseDialog.vue";
-import { ref } from "vue";
-import SettingsTuning from "@/modules/settings/components/tuning/SettingsTuning.vue";
-
 const settingsTuningModal = ref(null);
 const openModal = () => {
   settingsTuningModal.value?.open();

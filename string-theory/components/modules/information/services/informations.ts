@@ -1,5 +1,4 @@
-import { getSampler } from "@/commons/helpers/utils";
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
+import { getSampler } from "@/utils/helpers/utils";
 import * as Tone from "tone";
 
 const fretboardParameterStore = useFretboardParametersStore();

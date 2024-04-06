@@ -4,9 +4,19 @@ export default defineNuxtConfig({
   modules: [
     "@pinia/nuxt",
     "@nuxtjs/tailwindcss",
+    '@nuxtjs/color-mode',
     "nuxt-headlessui",
   ],
-  pinia: {
-    storesDirs: ["./stores/**"],
+  colorMode: {
+    preference: undefined, // default theme
+    dataValue: 'theme', // activate data-theme in <html> tag
+    classSuffix: '',
   },
+  experimental: { renderJsonPayloads: false },
+  components: [
+    {
+      path: '~/components', // will get any components nested in let's say /components/test too
+      pathPrefix: false,
+    },
+  ],
 });

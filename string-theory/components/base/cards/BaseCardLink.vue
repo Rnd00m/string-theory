@@ -7,7 +7,7 @@
       class="text-white flex items-center absolute rounded-full p-2 lg:p-4 shadow-xl left-4 -top-6"
       :class="props.iconClass"
     >
-      <svg-icon type="mdi" :path="props.iconPath" size="28" />
+      <SvgIcon type="mdi" :path="props.iconPath" size="28" />
     </div>
     <div class="mt-2 lg:mt-4">
       <h2
@@ -24,13 +24,13 @@
       </div>
     </div>
     <div class="w-12 flex items-center align-middle">
-      <svg-icon
+      <SvgIcon
         type="mdi"
         :path="mdiChevronRight"
         class="hidden lg:block"
         size="48"
       />
-      <svg-icon
+      <SvgIcon
         type="mdi"
         :path="mdiChevronRight"
         class="block lg:hidden"

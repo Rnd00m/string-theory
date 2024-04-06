@@ -19,9 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-import { DisplayTypeEnum } from "@/commons/enums/DisplayTypeEnum";
-import BaseInputRadio from "@/components/base/inputs/BaseInputRadio.vue";
+import { DisplayTypeEnum } from "@/utils/enums/DisplayTypeEnum";
 
 const fretboardParametersStore = useFretboardParametersStore();
 </script>

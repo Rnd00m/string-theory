@@ -133,12 +133,9 @@
 </template>
 
 <script setup lang="ts">
-import BaseDialog from "@/components/BaseDialog.vue";
-import SettingsScaleCombobox from "@/modules/settings/components/SettingsScaleCombobox.vue";
-import { useFretboardParametersStore } from "@/modules/settings/stores/fretboardParameters";
-import { Mode, Scale, ScaleType } from "@tonaljs/tonal";
-import { ref } from "vue";
 import { DialogTitle } from "@headlessui/vue";
+import { Mode, ScaleType } from "@tonaljs/tonal";
+import { ref } from "vue";
 
 const fretboardParametersStore = useFretboardParametersStore();
 
