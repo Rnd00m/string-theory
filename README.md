@@ -1,47 +1,75 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/911bfdcb-e048-45c5-8fc1-ee87dcd15bff/deploy-status)](https://app.netlify.com/sites/musicstringtheory/deploys)
+# Nuxt 3 Minimal Starter
 
-# String Theory
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-TODO : Add project description
+## Setup
 
-## Project Setup
+Make sure to install the dependencies:
 
-```sh
+```bash
+# npm
 npm install
+
+# pnpm
+pnpm install
+
+# yarn
+yarn install
+
+# bun
+bun install
 ```
 
-### Compile and Hot-Reload for Development
+## Development Server
 
-```sh
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
 npm run dev
+
+# pnpm
+pnpm run dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+## Production
 
-```sh
+Build the application for production:
+
+```bash
+# npm
 npm run build
+
+# pnpm
+pnpm run build
+
+# yarn
+yarn build
+
+# bun
+bun run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+Locally preview production build:
 
-```sh
-npm run lint
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm run preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
 ```
 
-## Create mobile application
-
-This project use [Capacitor](https://capacitorjs.com/) to create a cross-platform native application
-
-To create a buildable mobile application run the following command
-```sh
-vite build && cap sync
-```
-
-To launch application on android device
-```sh
-cap run android
-```
-To launch application on iOS device
-```sh
-cap run ios
-```
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
