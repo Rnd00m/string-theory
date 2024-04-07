@@ -33,7 +33,7 @@
             </button>
           </div>
         </div>
-        <div class="stats bg-base-300 skeleton w-96 h-24" v-else />
+        <div class="skeleton w-[24.75rem] h-[5.25rem] lg:h-[5.75rem]" v-else />
       </template>
 
       <template #exercise-fretboard>
@@ -44,7 +44,7 @@
             :is-sound-active="false"
             @note-selected="selectNote"
         />
-        <div class="skeleton w-[59rem] h-[18rem]" v-else/>
+        <div class="skeleton w-[45.5rem] lg:w-[58.5rem] h-[15rem] lg:h-[18rem]" v-else />
       </template>
 
       <template #exercise-modal>
