@@ -2,18 +2,18 @@
   <div class="training">
     <FretboardExercise>
       <template #exercise-detail>
-        <div class="stats bg-base-300">
+        <div class="stats bg-base-300" v-if="isExerciseInProgress">
           <div class="stat">
             <div>
               Find a
               <span
-                class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
-                >{{ intervalToFind.name }}</span
+                  class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
+              >{{ intervalToFind.name }}</span
               >
               from the selected
               <span
-                class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
-                >{{ startNote.pc }}</span
+                  class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
+              >{{ startNote.pc }}</span
               >
             </div>
             <div class="stat-value text-xl lg:text-2xl">
@@ -25,32 +25,36 @@
             <div>Errors</div>
             <div class="stat-value text-xl lg:text-2xl">{{ errorsNumber }}</div>
           </div>
+          <div class="stat" v-if="!isExerciseInProgress">
+            <button
+                class="btn btn-outline self-center"
+            >
+              <SvgIcon type="mdi" :path="mdiRestart" @click="startExercise"/>
+            </button>
+          </div>
         </div>
-        <button
-          class="btn btn-outline self-center"
-          v-if="!isExerciseInProgress"
-        >
-          <SvgIcon type="mdi" :path="mdiRestart" @click="startExercise" />
-        </button>
+        <div class="stats bg-base-300 skeleton w-96 h-24" v-else />
       </template>
 
       <template #exercise-fretboard>
         <FretboardViewer
-          :fretboard-notes="fretboardNotes"
-          :is-note-selectable="isExerciseInProgress"
-          :is-sound-active="false"
-          @note-selected="selectNote"
+            v-if="isExerciseInProgress"
+            :fretboard-notes="fretboardNotes"
+            :is-note-selectable="isExerciseInProgress"
+            :is-sound-active="false"
+            @note-selected="selectNote"
         />
+        <div class="skeleton w-[59rem] h-[18rem]" v-else/>
       </template>
 
       <template #exercise-modal>
         <BaseDialog
-          ref="endExerciseDialog"
-          title="Congratulations you've found all the notes"
-          confirm-text="Restart"
-          show-cancel
-          show-confirm
-          @confirm="startExercise"
+            ref="endExerciseDialog"
+            title="Congratulations you've found all the notes"
+            confirm-text="Restart"
+            show-cancel
+            show-confirm
+            @confirm="startExercise"
         >
           <p class="py-4">
             You could now restart the exercise with a new note or go back to
@@ -66,7 +70,7 @@
 <script setup lang="ts">
 import FretboardExercise from "@/components/modules/fretboardExercise/components/FretboardExercise.vue";
 
-import { Note } from "@tonaljs/tonal";
+import {Note} from "@tonaljs/tonal";
 import {
   getDisplayVariationTypeToUse,
   getFretboardNotes,
@@ -76,15 +80,15 @@ import {
   getRandomInterval,
   getRandomNote,
 } from "@/components/modules/fretboardExercise/services/exercise";
-import { getRandomInt } from "@/utils/helpers/utils";
-import { getTransposedNote } from "@/utils/helpers/notes";
+import {getRandomInt} from "@/utils/helpers/utils";
+import {getTransposedNote} from "@/utils/helpers/notes";
 import type {
   FretboardNote,
   FretboardNoteSelectedEvent,
 } from "@/components/modules/fretboard/types/fretboard";
-import type { NotePosition } from "@/components/modules/fretboardExercise/types/fretboardExercise";
+import type {NotePosition} from "@/components/modules/fretboardExercise/types/fretboardExercise";
 import BaseDialog from "@/components/BaseDialog.vue";
-import { mdiRestart } from "@mdi/js";
+import {mdiRestart} from "@mdi/js";
 import SvgIcon from "@jamescoyle/vue-icon";
 
 const startNote = ref<Note>();
@@ -119,11 +123,11 @@ function startExercise(): void {
 
   // Initialize fretboard
   fretboardNotes.value = getFretboardNotes(
-    baseNotes,
-    12,
-    [],
-    getDisplayVariationTypeToUse(startNote.value),
-    false
+      baseNotes,
+      12,
+      [],
+      getDisplayVariationTypeToUse(startNote.value),
+      false
   );
 
   // Display start note on fretboard
@@ -132,9 +136,9 @@ function startExercise(): void {
   noteToFind.value = getTransposedNote(startNote.value, intervalToFind.value);
 
   positionsOfNoteToFind.value = getPositionOfNoteToFindOnFretboard(
-    fretboardNotes.value,
-    [noteToFind.value],
-    true
+      fretboardNotes.value,
+      [noteToFind.value],
+      true
   );
 
   if (positionsOfNoteToFind.value.length === 0) {
@@ -155,7 +159,7 @@ function displayNoteOnFretboard(note: Note): void {
 
   fretboardNotes.value.forEach((strings: FretboardNote[]) => {
     const foundNoteOnFretboard = strings.find(
-      (fretboardNote: FretboardNote) => fretboardNote.note.name === note.name
+        (fretboardNote: FretboardNote) => fretboardNote.note.name === note.name
     );
 
     if (foundNoteOnFretboard !== undefined) {
@@ -168,8 +172,8 @@ function displayNoteOnFretboard(note: Note): void {
 
   fretboardNotes.value.some((strings: FretboardNote[]) => {
     const foundNoteOnFretboard = strings.find(
-      (fretboardNote: FretboardNote) =>
-        fretboardNote.key === selectedFretboardNote.key
+        (fretboardNote: FretboardNote) =>
+            fretboardNote.key === selectedFretboardNote.key
     );
 
     if (foundNoteOnFretboard !== undefined) {
@@ -182,17 +186,17 @@ function displayNoteOnFretboard(note: Note): void {
 function selectNote(eventData: FretboardNoteSelectedEvent) {
   fretboardNotes.value.some((strings: FretboardNote[]) => {
     const foundNoteOnFretboard = strings.find(
-      (fretboardNote: FretboardNote) => fretboardNote.key === eventData.key
+        (fretboardNote: FretboardNote) => fretboardNote.key === eventData.key
     );
 
     if (foundNoteOnFretboard !== undefined) {
       const foundIndex: number = positionsOfNoteToFind.value.findIndex(
-        (notePosition: NotePosition) => {
-          return (
-            notePosition.string === foundNoteOnFretboard.string &&
-            notePosition.fret === foundNoteOnFretboard.fret
-          );
-        }
+          (notePosition: NotePosition) => {
+            return (
+                notePosition.string === foundNoteOnFretboard.string &&
+                notePosition.fret === foundNoteOnFretboard.fret
+            );
+          }
       );
 
       let noteClasses: string[] = foundNoteOnFretboard.classes;
@@ -218,7 +222,9 @@ function selectNote(eventData: FretboardNoteSelectedEvent) {
   }
 }
 
-startExercise();
+onMounted(() => {
+  startExercise();
+});
 </script>
 
 <style scoped lang="scss"></style>

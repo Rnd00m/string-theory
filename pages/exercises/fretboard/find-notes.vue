@@ -2,7 +2,7 @@
   <div class="training">
     <FretboardExercise>
       <template #exercise-detail>
-        <div class="stats bg-base-300">
+        <div class="stats bg-base-300" v-if="isExerciseInProgress">
           <div class="stat">
             <div>
               Find all
@@ -21,22 +21,26 @@
             <div>Errors</div>
             <div class="stat-value text-xl lg:text-2xl">{{ errorsNumber }}</div>
           </div>
+          <div class="stat" v-if="!isExerciseInProgress">
+            <button
+                class="btn btn-outline self-center"
+            >
+              <SvgIcon type="mdi" :path="mdiRestart" @click="startExercise"/>
+            </button>
+          </div>
         </div>
-        <button
-          class="btn btn-outline self-center"
-          v-if="!isExerciseInProgress"
-        >
-          <SvgIcon type="mdi" :path="mdiRestart" @click="startExercise" />
-        </button>
+        <div class="stats bg-base-300 skeleton w-96 h-24" v-else />
       </template>
 
       <template #exercise-fretboard>
         <FretboardViewer
+          v-if="isExerciseInProgress"
           :fretboard-notes="fretboardNotes"
           :is-note-selectable="isExerciseInProgress"
           :is-sound-active="false"
           @note-selected="selectNote"
         />
+        <div class="skeleton w-[59rem] h-[18rem]" v-else />
       </template>
 
       <template #exercise-modal>
@@ -162,7 +166,9 @@ function selectNote(eventData: FretboardNoteSelectedEvent) {
   }
 }
 
-startExercise();
+onMounted(() => {
+  startExercise();
+});
 </script>
 
 <style scoped lang="scss"></style>
