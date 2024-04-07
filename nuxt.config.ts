@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     '@nuxtjs/color-mode',
     "nuxt-headlessui",
+    "nuxt-vercel-analytics",
   ],
   app: {
     head: {

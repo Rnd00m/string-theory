@@ -7,17 +7,17 @@
           <NuxtPage />
         </NuxtLayout>
       </div>
-      <TheRightDrawer></TheRightDrawer>
+      <TheRightDrawer />
     </div>
   </TheHeader>
 
-  <TheFooter></TheFooter>
+  <TheFooter />
 
-  <!--  <SpeedInsights />-->
+  <SpeedInsights />
 </template>
 
 <script setup lang="ts">
-// import { SpeedInsights } from "@vercel/speed-insights/vue";
+import { SpeedInsights } from '@vercel/speed-insights/vue';
 import "./assets/css/base.css";
 import "./assets/css/index.css";
 import "./assets/css/note.css";
