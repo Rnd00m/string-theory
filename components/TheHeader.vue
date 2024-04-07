@@ -69,7 +69,7 @@
             String Theory
           </NuxtLink>
         </div>
-        <div class="flex-none lg:hidden">
+        <div v-if="route.path === '/'" class="flex-none lg:hidden">
           <TheViewerDrawerIcons class="flex portrait:hidden lg:hidden" />
         </div>
         <div class="flex-none hidden lg:block">
@@ -177,6 +177,8 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const route = useRoute();
+</script>
 
 <style scoped></style>
