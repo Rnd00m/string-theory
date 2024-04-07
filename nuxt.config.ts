@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     manifest: {
       name: 'String Theory',
       short_name: 'String Theory',
-      description: 'A simple app to learn string theory',
+      description: 'A simple app to learn guitar and bass',
       icons: [
         {
           src: "/icons/maskable_icon_x144.png",
@@ -84,6 +84,12 @@ export default defineNuxtConfig({
         },
       ],
       lang: 'en',
+      theme_color: '#2d69eb',
+      background_color: '#2d69eb',
+      display: 'standalone',
+      start_url: '/',
+      orientation: 'landscape',
+      categories: ['education', 'music', 'utilities'],
     },
     workbox: {
       navigateFallback: '/',
