@@ -23,14 +23,15 @@
     "echarts": "^5.4.2",
     "nuxt": "^3.11.1",
     "nuxt-headlessui": "^1.1.5",
+    "nuxt-vercel-analytics": "^1.0.0",
     "pinia": "^2.1.7",
     "tone": "^14.7.77",
     "vue": "^3.4.21",
     "vue-echarts": "^6.6.0",
-    "vue-router": "^4.3.0",
-    "nuxt-vercel-analytics": "^1.0.0"
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@vite-pwa/nuxt": "^0.6.0",
     "sass": "^1.74.1"
   }
 }

@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     "nuxt-headlessui",
     "nuxt-vercel-analytics",
+    '@vite-pwa/nuxt'
   ],
   app: {
     head: {
@@ -25,6 +26,28 @@ export default defineNuxtConfig({
       ],
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
+    }
+  },
+  pwa: {
+    manifest: {
+      name: 'String Theory',
+      short_name: 'String Theory',
+      description: 'A simple app to learn string theory',
+      icons: [
+        {
+          src: '/icons/icon.svg',
+          sizes: 'any',
+          type: 'image/svg+xml',
+        },
+      ],
+      lang: 'en',
+    },
+    workbox: {
+      navigateFallback: '/',
+    },
+    devOptions: {
+      enabled: true,
+      type: 'module',
     }
   },
   colorMode: {
