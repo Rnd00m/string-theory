@@ -28,7 +28,7 @@
     "vue": "^3.4.21",
     "vue-echarts": "^6.6.0",
     "vue-router": "^4.3.0",
-    "nuxt-vercel-analytics": "^1.0.0",
+    "nuxt-vercel-analytics": "^1.0.0"
   },
   "devDependencies": {
     "sass": "^1.74.1"
