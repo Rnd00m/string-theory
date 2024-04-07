@@ -1,0 +1,61 @@
+/* Todo : install scss and correctly import and compile css files */
+
+.note-root,
+.note-chord-root,
+.note-scale-root {
+    background: var(--color-blue);
+    color: var(--color-white) !important;
+}
+
+.note-chord-third {
+    background: var(--color-orange);
+    color: var(--color-white) !important;
+}
+
+.note-chord-fifth {
+    background: var(--color-red);
+    color: var(--color-white) !important;
+}
+
+.note-chord-seventh {
+    background: var(--color-green);
+    color: var(--color-white) !important;
+}
+
+.note-scale-third,
+.note-scale-fifth,
+.note-scale-seventh {
+    background: var(--color-blue-800);
+    color: var(--color-white) !important;
+}
+
+.note-scale-second,
+.note-scale-fourth,
+.note-scale-sixth {
+    background: var(--color-blue-300);
+    color: var(--color-white) !important;
+}
+
+.note-octave {
+    font-size: 0.75rem;
+}
+
+.fretboard-note-selected {
+    background: oklch(var(--pf));
+    color: var(--color-white) !important;
+}
+
+.note-error {
+    background: oklch(var(--er));
+    color: var(--color-white) !important;
+}
+
+.note-success {
+    background: oklch(var(--su));
+    color: var(--color-white) !important;
+}
+
+.note-to-find {
+    background: oklch(var(--p));
+    color: oklch(var(--pc)) !important;
+}
