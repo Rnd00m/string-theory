@@ -83,6 +83,24 @@ export default defineNuxtConfig({
           purpose: "maskable"
         },
       ],
+      screenshots: [
+        {
+          src: '/screenshots/browser_index.png',
+          sizes: '3426x1918',
+          type: 'image/png',
+          form_factor: "wide",
+          label: 'Home screen of the app on desktop',
+          platform: 'web'
+        },
+        {
+          src: '/screenshots/mobile_index.png',
+          sizes: '1438x646',
+          type: 'image/png',
+          form_factor: "narrow",
+          label: 'Home screen of the app on mobile',
+          platform: 'mobile'
+        },
+      ],
       lang: 'en',
       theme_color: '#2d69eb',
       background_color: '#2d69eb',
