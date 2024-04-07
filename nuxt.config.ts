@@ -88,7 +88,6 @@ export default defineNuxtConfig({
       background_color: '#2d69eb',
       display: 'standalone',
       start_url: '/',
-      orientation: 'landscape',
       categories: ['education', 'music', 'utilities'],
     },
     workbox: {
