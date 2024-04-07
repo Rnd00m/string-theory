@@ -35,9 +35,52 @@ export default defineNuxtConfig({
       description: 'A simple app to learn string theory',
       icons: [
         {
-          src: '/icons/icon.svg',
-          sizes: 'any',
-          type: 'image/svg+xml',
+          src: "/icons/maskable_icon_x144.png",
+          sizes: "144x144",
+          type: "image/png",
+          purpose: "any"
+        },
+        {
+          src: "/icons/maskable_icon_x72.png",
+          sizes: "72x72",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x96.png",
+          sizes: "96x96",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x128.png",
+          sizes: "128x128",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x144.png",
+          sizes: "144x144",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x384.png",
+          sizes: "384x384",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable"
         },
       ],
       lang: 'en',
