@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     "nuxt-headlessui",
     "nuxt-vercel-analytics",
+    '@vite-pwa/nuxt'
   ],
   app: {
     head: {
@@ -25,6 +26,94 @@ export default defineNuxtConfig({
       ],
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
+    }
+  },
+  pwa: {
+    manifest: {
+      name: 'String Theory',
+      short_name: 'String Theory',
+      description: 'A simple app to learn guitar and bass',
+      icons: [
+        {
+          src: "/icons/maskable_icon_x144.png",
+          sizes: "144x144",
+          type: "image/png",
+          purpose: "any"
+        },
+        {
+          src: "/icons/maskable_icon_x72.png",
+          sizes: "72x72",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x96.png",
+          sizes: "96x96",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x128.png",
+          sizes: "128x128",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x144.png",
+          sizes: "144x144",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x384.png",
+          sizes: "384x384",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable"
+        },
+      ],
+      screenshots: [
+        {
+          src: '/screenshots/browser_index.png',
+          sizes: '3426x1918',
+          type: 'image/png',
+          form_factor: "wide",
+          label: 'Home screen of the app on desktop',
+          platform: 'web'
+        },
+        {
+          src: '/screenshots/mobile_index.png',
+          sizes: '1438x646',
+          type: 'image/png',
+          form_factor: "narrow",
+          label: 'Home screen of the app on mobile',
+          platform: 'mobile'
+        },
+      ],
+      lang: 'en',
+      theme_color: '#2d69eb',
+      background_color: '#2d69eb',
+      display: 'standalone',
+      start_url: '/',
+      categories: ['education', 'music', 'utilities'],
+    },
+    workbox: {
+      navigateFallback: '/',
+    },
+    devOptions: {
+      enabled: true,
+      type: 'module',
     }
   },
   colorMode: {

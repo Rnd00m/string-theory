@@ -17,6 +17,13 @@
       Here is my
       <a href="https://github.com/Rnd00m" target="_blank">Github</a> profile.
     </p>
+
+    <p>
+      Logo by <a href="https://github.com/Nicoka11" target="_blank">Nicolas Ka</a>.
+    </p>
+
     <p>Hope you enjoy.</p>
   </div>
 </template>
+<script setup lang="ts">
+</script>

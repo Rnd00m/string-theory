@@ -1,4 +1,6 @@
 <template>
+  <VitePwaManifest />
+
   <TheHeader>
     <div class="h-full drawer drawer-end">
       <input id="app-drawer" type="checkbox" class="drawer-toggle" />
