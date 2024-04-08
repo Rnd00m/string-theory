@@ -35,53 +35,11 @@ export default defineNuxtConfig({
       description: 'A simple app to learn guitar and bass',
       icons: [
         {
-          src: "/icons/maskable_icon_x144.png",
-          sizes: "144x144",
-          type: "image/png",
-          purpose: "any"
-        },
-        {
-          src: "/icons/maskable_icon_x72.png",
-          sizes: "72x72",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_x96.png",
-          sizes: "96x96",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_x128.png",
-          sizes: "128x128",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_x144.png",
-          sizes: "144x144",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_x192.png",
-          sizes: "192x192",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_x384.png",
-          sizes: "384x384",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_x512.png",
+          src: "/icons/maskable_icon.svg",
           sizes: "512x512",
-          type: "image/png",
-          purpose: "maskable"
-        },
+          type: "image/svg+xml",
+          purpose: "any"
+        }
       ],
       lang: 'en',
       theme_color: '#2d69eb',
