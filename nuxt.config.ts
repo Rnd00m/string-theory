@@ -41,39 +41,33 @@ export default defineNuxtConfig({
           purpose: "any"
         },
         {
+          src: "/icons/maskable_icon_72.svg",
+          sizes: "72x72",
+          type: "image/svg+xml",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_128.svg",
+          sizes: "128x128",
+          type: "image/svg+xml",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_144.svg",
+          sizes: "144x144",
+          type: "image/svg+xml",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_192.svg",
+          sizes: "192x192",
+          type: "image/svg+xml",
+          purpose: "maskable"
+        },
+        {
           src: "/icons/maskable_icon_512.svg",
           sizes: "512x512",
           type: "image/svg+xml",
-          purpose: "any"
-        },
-        {
-          src: "/icons/maskable_icon_72.png",
-          sizes: "72x72",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_128.png",
-          sizes: "128x128",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_144.png",
-          sizes: "144x144",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_192.png",
-          sizes: "192x192",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_512.png",
-          sizes: "512x512",
-          type: "image/png",
           purpose: "maskable"
         },
       ],
