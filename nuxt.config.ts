@@ -35,6 +35,11 @@ export default defineNuxtConfig({
       description: 'A simple app to learn guitar and bass',
       icons: [
         {
+          src: "/icons/icon_144.svg",
+          sizes: "144x144",
+          type: "image/svg+xml",
+        },
+        {
           src: "/icons/icon_192.svg",
           sizes: "192x192",
           type: "image/svg+xml",
