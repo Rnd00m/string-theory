@@ -59,8 +59,20 @@ export default defineNuxtConfig({
           purpose: "any",
         },
         {
+          src: "/icons/icon_256.svg",
+          sizes: "256x256",
+          type: "image/svg+xml",
+          purpose: "any",
+        },
+        {
           src: "/icons/icon_512.svg",
           sizes: "512x512",
+          type: "image/svg+xml",
+          purpose: "any",
+        },
+        {
+          src: "/icons/icon_1024.svg",
+          sizes: "1024x1024",
           type: "image/svg+xml",
           purpose: "any",
         },
@@ -71,8 +83,20 @@ export default defineNuxtConfig({
           purpose: "maskable"
         },
         {
+          src: "/icons/maskable_icon_256.svg",
+          sizes: "256x256",
+          type: "image/svg+xml",
+          purpose: "maskable"
+        },
+        {
           src: "/icons/maskable_icon_512.svg",
           sizes: "512x512",
+          type: "image/svg+xml",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_1024.svg",
+          sizes: "1024x1024",
           type: "image/svg+xml",
           purpose: "maskable"
         },
