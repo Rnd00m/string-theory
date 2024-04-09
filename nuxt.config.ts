@@ -71,12 +71,6 @@ export default defineNuxtConfig({
           purpose: "any",
         },
         {
-          src: "/icons/icon_1024.svg",
-          sizes: "1024x1024",
-          type: "image/svg+xml",
-          purpose: "any",
-        },
-        {
           src: "/icons/maskable_icon_192.svg",
           sizes: "192x192",
           type: "image/svg+xml",
