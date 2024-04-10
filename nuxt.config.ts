@@ -51,26 +51,8 @@ export default defineNuxtConfig({
           purpose: "maskable"
         },
         {
-          src: "/icons/maskable_icon_256.png",
-          sizes: "256x256",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_384.png",
-          sizes: "384x384",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
           src: "/icons/maskable_icon_512.png",
           sizes: "512x512",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_1024.png",
-          sizes: "1024x1024",
           type: "image/png",
           purpose: "maskable"
         },
