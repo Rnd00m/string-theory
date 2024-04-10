@@ -35,64 +35,29 @@ export default defineNuxtConfig({
       description: 'A simple app to learn guitar and bass',
       icons: [
         {
-          src: "/icons/icon_64.png",
-          sizes: "64x64",
-          type: "image/png",
-          purpose: "any",
-        },
-        {
-          src: "/icons/icon_128.png",
-          sizes: "128x128",
-          type: "image/png",
-          purpose: "any",
-        },
-        {
-          src: "/icons/icon_144.png",
-          sizes: "144x144",
-          type: "image/png",
-          purpose: "any",
-        },
-        {
           src: "/icons/icon_192.png",
           sizes: "192x192",
           type: "image/png",
-          purpose: "any",
         },
         {
           src: "/icons/icon_256.png",
           sizes: "256x256",
           type: "image/png",
-          purpose: "any",
+        },
+        {
+          src: "/icons/icon_384.png",
+          sizes: "384x384",
+          type: "image/png",
         },
         {
           src: "/icons/icon_512.png",
           sizes: "512x512",
           type: "image/png",
-          purpose: "any",
         },
         {
           src: "/icons/icon_1024.png",
           sizes: "1024x1024",
           type: "image/png",
-          purpose: "any",
-        },
-        {
-          src: "/icons/maskable_icon_64.png",
-          sizes: "64x64",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_128.png",
-          sizes: "128x128",
-          type: "image/png",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_144.png",
-          sizes: "144x144",
-          type: "image/png",
-          purpose: "maskable"
         },
         {
           src: "/icons/maskable_icon_192.png",
@@ -103,6 +68,12 @@ export default defineNuxtConfig({
         {
           src: "/icons/maskable_icon_256.png",
           sizes: "256x256",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_384.png",
+          sizes: "384x384",
           type: "image/png",
           purpose: "maskable"
         },
