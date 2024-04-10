@@ -35,51 +35,87 @@ export default defineNuxtConfig({
       description: 'A simple app to learn guitar and bass',
       icons: [
         {
-          src: "/icons/icon_144.svg",
+          src: "/icons/icon_64.png",
+          sizes: "64x64",
+          type: "image/png",
+          purpose: "any",
+        },
+        {
+          src: "/icons/icon_128.png",
+          sizes: "128x128",
+          type: "image/png",
+          purpose: "any",
+        },
+        {
+          src: "/icons/icon_144.png",
           sizes: "144x144",
-          type: "image/svg+xml",
+          type: "image/png",
           purpose: "any",
         },
         {
-          src: "/icons/icon_192.svg",
+          src: "/icons/icon_192.png",
           sizes: "192x192",
-          type: "image/svg+xml",
+          type: "image/png",
           purpose: "any",
         },
         {
-          src: "/icons/icon_256.svg",
+          src: "/icons/icon_256.png",
           sizes: "256x256",
-          type: "image/svg+xml",
+          type: "image/png",
           purpose: "any",
         },
         {
-          src: "/icons/icon_512.svg",
+          src: "/icons/icon_512.png",
           sizes: "512x512",
-          type: "image/svg+xml",
+          type: "image/png",
           purpose: "any",
         },
         {
-          src: "/icons/maskable_icon_192.svg",
-          sizes: "192x192",
-          type: "image/svg+xml",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_256.svg",
-          sizes: "256x256",
-          type: "image/svg+xml",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_512.svg",
-          sizes: "512x512",
-          type: "image/svg+xml",
-          purpose: "maskable"
-        },
-        {
-          src: "/icons/maskable_icon_1024.svg",
+          src: "/icons/icon_1024.png",
           sizes: "1024x1024",
-          type: "image/svg+xml",
+          type: "image/png",
+          purpose: "any",
+        },
+        {
+          src: "/icons/maskable_icon_64.png",
+          sizes: "64x64",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_128.png",
+          sizes: "128x128",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_144.png",
+          sizes: "144x144",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_256.png",
+          sizes: "256x256",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/icons/maskable_icon_1024.png",
+          sizes: "1024x1024",
+          type: "image/png",
           purpose: "maskable"
         },
       ],
