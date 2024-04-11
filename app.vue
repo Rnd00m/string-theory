@@ -26,6 +26,30 @@ import "./assets/css/note.css";
 
 const route = useRoute()
 
+useHead(() => ({
+  link: [
+    {
+      rel: 'icon',
+      href: '/img/logo-white.png',
+      media: '(prefers-color-scheme: dark)',
+    },
+    {
+      rel: 'icon',
+      href: '/img/logo-black.png',
+      media: '(prefers-color-scheme: light)',
+    },
+    {
+      rel: 'canonical',
+      href: "https://www.string-theory.app" + route.path,
+    }
+  ],
+  charset: 'utf-8',
+  viewport: 'width=device-width, initial-scale=1',
+  htmlAttrs: {
+    lang: 'en',
+  },
+}))
+
 useSeoMeta({
   title: () => `String Theory · ${route.meta.title}`,
   ogTitle: () => `String Theory · ${route.meta.title}`,

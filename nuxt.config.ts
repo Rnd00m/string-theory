@@ -9,27 +9,6 @@ export default defineNuxtConfig({
     "nuxt-vercel-analytics",
     '@vite-pwa/nuxt'
   ],
-  app: {
-    head: {
-      link: [
-        {
-          rel: 'icon',
-          href: '/img/logo-white.png',
-          media: '(prefers-color-scheme: dark)',
-        },
-        {
-          rel: 'icon',
-          href: '/img/logo-black.png',
-          media: '(prefers-color-scheme: light)',
-        },
-      ],
-      charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1',
-    },
-    htmlAttrs: {
-      lang: 'en'
-    }
-  },
   pwa: {
     manifest: {
       name: 'String Theory',
