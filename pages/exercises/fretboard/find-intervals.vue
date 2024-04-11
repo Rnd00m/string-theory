@@ -91,6 +91,10 @@ import BaseDialog from "@/components/BaseDialog.vue";
 import {mdiRestart} from "@mdi/js";
 import SvgIcon from "@jamescoyle/vue-icon";
 
+definePageMeta({
+  title: 'Learn to find intervals on fretboard'
+})
+
 const startNote = ref<Note>();
 const intervalToFind = ref<Interval>();
 const noteToFind = ref<Note>();

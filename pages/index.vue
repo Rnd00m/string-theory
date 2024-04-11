@@ -27,6 +27,10 @@ import { getChord, getChordNotes } from "@/utils/helpers/chords";
 import { getScale, getScaleNotes } from "@/utils/helpers/scales";
 import { Note } from "@tonaljs/tonal";
 
+definePageMeta({
+  title: 'Fretboard Visualizer'
+})
+
 const fretboardParametersStore = useFretboardParametersStore();
 
 const fretboardNotes = computed<FretboardNote[][]>(() => {

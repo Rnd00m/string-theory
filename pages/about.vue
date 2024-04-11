@@ -26,4 +26,8 @@
   </div>
 </template>
 <script setup lang="ts">
+definePageMeta({
+  title: 'About'
+})
+
 </script>

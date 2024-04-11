@@ -83,6 +83,10 @@ import BaseDialog from "@/components/BaseDialog.vue";
 import { mdiRestart } from "@mdi/js";
 import SvgIcon from "@jamescoyle/vue-icon";
 
+definePageMeta({
+  title: 'Learn to find notes on fretboard'
+})
+
 const noteToFind = ref<Note>();
 const baseNotes: Note[] = [
   Note.get("E4"),

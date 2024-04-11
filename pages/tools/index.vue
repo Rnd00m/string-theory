@@ -55,4 +55,8 @@
 <style></style>
 <script setup lang="ts">
 import { mdiMagnify } from "@mdi/js";
+
+definePageMeta({
+  title: 'Tools'
+})
 </script>

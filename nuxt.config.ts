@@ -11,7 +11,6 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      title: 'String Theory',
       link: [
         {
           rel: 'icon',
@@ -26,13 +25,16 @@ export default defineNuxtConfig({
       ],
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
+    },
+    htmlAttrs: {
+      lang: 'en'
     }
   },
   pwa: {
     manifest: {
       name: 'String Theory',
       short_name: 'String Theory',
-      description: 'A simple app to learn guitar and bass',
+      description: 'A simple app to learn guitar and bass. Learn the notes, intervals, and chords on the fretboard. Use tools to help you practice and improve your skills.',
       icons: [
         {
           src: "/icons/icon_192.png",

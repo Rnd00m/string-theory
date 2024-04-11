@@ -61,4 +61,8 @@
 import { mdiMagnify, mdiMusicAccidentalSharp, mdiEarHearing } from "@mdi/js";
 
 import BaseCardLink from "@/components/base/cards/BaseCardLink.vue";
+
+definePageMeta({
+  title: 'Exercises'
+})
 </script>

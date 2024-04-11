@@ -37,6 +37,10 @@ import type {
 import { StringTension } from "@/components/modules/guitarTension/services/StringTension";
 import { ref } from "vue";
 
+definePageMeta({
+  title: 'String Tension Calculator'
+})
+
 const notes = ref<Note[]>(
   tunings.find((tuning) => tuning.name === "Standard")?.notes || []
 );

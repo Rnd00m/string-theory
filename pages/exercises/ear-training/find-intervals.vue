@@ -80,6 +80,10 @@ import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiPlay, mdiRestart } from "@mdi/js";
 import BaseDialog from "@/components/BaseDialog.vue";
 
+definePageMeta({
+  title: 'Learn to recognize intervals by ear'
+})
+
 const intervalsList = ref<Interval[]>(
   getIntervalsList(Interval.get("2m"), Interval.get("8P"))
 );
