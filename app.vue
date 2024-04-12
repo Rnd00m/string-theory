@@ -53,8 +53,8 @@ useHead(() => ({
 }));
 
 useSeoMeta({
-  ogImage: "https://www.string-theory.app/icons/icon_512.png",
-  ogImageUrl: "https://www.string-theory.app/icons/icon_512.png",
+  ogImage: "https://www.string-theory.app/icons/og_image.png",
+  ogImageUrl: "https://www.string-theory.app/icons/og_image.png",
   ogImageType: "image/png",
   twitterCard: "summary_large_image",
   twitterTitle: "String Theory",
