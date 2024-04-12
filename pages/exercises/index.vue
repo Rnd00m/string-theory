@@ -61,4 +61,10 @@
 import { mdiMagnify, mdiMusicAccidentalSharp, mdiEarHearing } from "@mdi/js";
 
 import BaseCardLink from "@/components/base/cards/BaseCardLink.vue";
+
+definePageMeta({
+  title: 'Exercises'
+})
+
+useSEODescription("Discover our comprehensive collection of interactive exercises designed to enhance your musical skills. From fretboard navigation to interval recognition, our application offers tailored exercises for guitarists and bassists of all levels. Dive in now to explore a wealth of tools to improve your playing and deepen your understanding of music theory!");
 </script>

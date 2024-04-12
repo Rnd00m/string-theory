@@ -15,6 +15,7 @@
     "@mdi/js": "^7.2.96",
     "@nuxtjs/color-mode": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "@nuxtjs/sitemap": "^5.1.4",
     "@pinia/nuxt": "^0.5.1",
     "@tailwindcss/typography": "^0.5.2",
     "@tonaljs/tonal": "^4.6.5",

@@ -83,6 +83,12 @@ import BaseDialog from "@/components/BaseDialog.vue";
 import { mdiRestart } from "@mdi/js";
 import SvgIcon from "@jamescoyle/vue-icon";
 
+definePageMeta({
+  title: 'Learn to find notes on fretboard'
+})
+
+useSEODescription("Discover a practical exercise designed to help musicians find notes on their instrument's fretboard. Perfect for guitarists and bassists, this exercise offers a hands-on approach to improve fretboard navigation and enhance musical understanding. Try it now to sharpen your skills and master the fretboard!");
+
 const noteToFind = ref<Note>();
 const baseNotes: Note[] = [
   Note.get("E4"),

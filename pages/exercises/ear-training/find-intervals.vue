@@ -80,6 +80,12 @@ import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiPlay, mdiRestart } from "@mdi/js";
 import BaseDialog from "@/components/BaseDialog.vue";
 
+definePageMeta({
+  title: 'Learn to recognize intervals by ear'
+})
+
+useSEODescription("Develop your ear training skills with the interval recognition exercise. Perfect for musicians of all levels, this exercise helps you train your ear to identify intervals by sound. Whether you're a guitarist, bassist, or any other musician, this exercise provides a valuable tool to enhance your musical abilities. Try it now to sharpen your ear and deepen your musical understanding!");
+
 const intervalsList = ref<Interval[]>(
   getIntervalsList(Interval.get("2m"), Interval.get("8P"))
 );
