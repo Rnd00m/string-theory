@@ -10,14 +10,6 @@ export default defineNuxtConfig({
     "@vite-pwa/nuxt",
     "@nuxtjs/sitemap",
   ],
-  nitro: {
-    prerender: {
-      // enabled by default with nuxt generate, not required
-      crawlLinks: true,
-      // add any routes to prerender
-      routes: ["/"],
-    },
-  },
   pwa: {
     manifest: {
       name: "String Theory",
