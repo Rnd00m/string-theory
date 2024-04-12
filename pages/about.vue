@@ -2,7 +2,7 @@
   <div class="about prose max-w-3xl mx-6">
     <h1>About this project</h1>
     <p>
-      Welcome to my project! I embarked on this journey with a clear mission: to support musicians in their practice and learning journeys. As a guitarist myself, I understand the importance of having access to the right tools and resources. That's why I created this application to provide a one-stop solution for all the utilities needed to enhance your practice sessions.
+      Welcome to my project! I embarked on this journey with a clear mission: to support musicians in their practice and learning journeys. As a guitarist myself, I understand the importance of having access to the right tools and resources. That's why I created this application to provide a all-in-one solution for all the utilities needed to enhance your practice sessions.
     </p>
 
     <p>
@@ -10,7 +10,7 @@
     </p>
 
     <p>
-      Beyond that, my goal is to foster a sense of community among guitarists and bassists worldwide. Through this project, I hope to connect with fellow musicians, share knowledge, and contribute to the vibrant community of guitarists and bassists.
+      Beyond that, my goal is to foster a sense of community among guitarists and bassists worldwide. Through this project, I hope to share knowledge and contribute to the vibrant community of guitarists and bassists.
     </p>
 
     <p>
