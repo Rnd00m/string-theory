@@ -95,6 +95,14 @@ definePageMeta({
   title: 'Learn to find intervals on fretboard'
 })
 
+const SEODescription = "Explore an engaging exercise focused on locating intervals across the fretboard of your instrument. Designed for guitarists and bassists, this exercise provides a practical approach to improve your ability to identify intervals visually on the fretboard. Try it now to enhance your fretboard proficiency and strengthen your understanding of interval relationships!"
+
+useSeoMeta({
+  description: SEODescription,
+  ogDescription:SEODescription,
+  twitterDescription: SEODescription,
+});
+
 const startNote = ref<Note>();
 const intervalToFind = ref<Interval>();
 const noteToFind = ref<Note>();

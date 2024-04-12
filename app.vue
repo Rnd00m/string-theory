@@ -53,17 +53,11 @@ useHead(() => ({
 }));
 
 useSeoMeta({
-  description:
-    "A simple app to learn guitar and bass. Learn the notes, intervals, and chords on the fretboard. Use tools to help you practice and improve your skills.",
-  ogDescription:
-    "A simple app to learn guitar and bass. Learn the notes, intervals, and chords on the fretboard. Use tools to help you practice and improve your skills.",
   ogImage: "https://www.string-theory.app/icons/icon_512.png",
   ogImageUrl: "https://www.string-theory.app/icons/icon_512.png",
   ogImageType: "image/png",
   twitterCard: "summary_large_image",
   twitterTitle: "String Theory",
-  twitterDescription:
-    "A simple app to learn guitar and bass. Learn the notes, intervals, and chords on the fretboard. Use tools to help you practice and improve your skills.",
   twitterImage: "https://www.string-theory.app/icons/icon_512.png",
   keywords: "guitar, fretboard, trainer, learn, notes, intervals, chords",
   themeColor: "#2d69eb",
