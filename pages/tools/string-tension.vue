@@ -41,6 +41,8 @@ definePageMeta({
   title: 'String Tension Calculator'
 })
 
+useSEODescription("Explore the string tension calculator designed to determine the applied tension of various string sets based on different tunings. This tool provides insights into string hardness and the tensions exerted on each string and across the fretboard. Whether you're a guitarist or a bassist, the calculator offers valuable information to optimize your instrument setup and playing experience. Try it now to find the perfect balance of tension for your musical needs!");
+
 const notes = ref<Note[]>(
   tunings.find((tuning) => tuning.name === "Standard")?.notes || []
 );

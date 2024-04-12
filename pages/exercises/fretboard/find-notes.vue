@@ -87,13 +87,7 @@ definePageMeta({
   title: 'Learn to find notes on fretboard'
 })
 
-const SEODescription = "Discover a practical exercise designed to help musicians find notes on their instrument's fretboard. Perfect for guitarists and bassists, this exercise offers a hands-on approach to improve fretboard navigation and enhance musical understanding. Try it now to sharpen your skills and master the fretboard!"
-
-useSeoMeta({
-  description: SEODescription,
-  ogDescription:SEODescription,
-  twitterDescription: SEODescription,
-});
+useSEODescription("Discover a practical exercise designed to help musicians find notes on their instrument's fretboard. Perfect for guitarists and bassists, this exercise offers a hands-on approach to improve fretboard navigation and enhance musical understanding. Try it now to sharpen your skills and master the fretboard!");
 
 const noteToFind = ref<Note>();
 const baseNotes: Note[] = [

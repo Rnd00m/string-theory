@@ -37,13 +37,7 @@ definePageMeta({
   title: "Fretboard Visualizer",
 });
 
-const SEODescription = "Explore an interactive guitar fretboard tool for visualizing notes, chords, and scales in any tuning. Perfect for independent guitarists and bassists, this tool offers a practical experience to work on and explore music. Try it now to enhance your playing and understanding of music theory!"
-
-useSeoMeta({
-  description: SEODescription,
-  ogDescription:SEODescription,
-  twitterDescription: SEODescription,
-});
+useSEODescription("Explore an interactive guitar fretboard tool for visualizing notes, chords, and scales in any tuning. Perfect for independent guitarists and bassists, this tool offers a practical experience to work on and explore music. Try it now to enhance your playing and understanding of music theory!")
 
 const fretboardParametersStore = useFretboardParametersStore();
 
