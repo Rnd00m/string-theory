@@ -19,17 +19,25 @@
 
 <script setup lang="ts">
 import type { DisplayVariationType } from "@/components/modules/fretboard/enums/DisplayVariationType";
-import { getDisplayVariationTypeToUse, getFretboardNotes } from "@/components/modules/fretboard/services/fretboard";
+import {
+  getDisplayVariationTypeToUse,
+  getFretboardNotes,
+} from "@/components/modules/fretboard/services/fretboard";
 import { getClassMap } from "@/components/modules/fretboard/services/noteClassMaps";
-import type { FretboardNote, NoteClassMap } from "@/components/modules/fretboard/types/fretboard";
+import type {
+  FretboardNote,
+  NoteClassMap,
+} from "@/components/modules/fretboard/types/fretboard";
 import { DisplayTypeEnum } from "@/utils/enums/DisplayTypeEnum";
 import { getChord, getChordNotes } from "@/utils/helpers/chords";
 import { getScale, getScaleNotes } from "@/utils/helpers/scales";
 import { Note } from "@tonaljs/tonal";
 
 definePageMeta({
-  title: 'Fretboard Visualizer'
-})
+  title: "Fretboard Visualizer",
+});
+
+useSeoMeta({});
 
 const fretboardParametersStore = useFretboardParametersStore();
 
