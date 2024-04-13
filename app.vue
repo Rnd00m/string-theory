@@ -63,6 +63,17 @@ useSeoMeta({
   themeColor: "#2d69eb",
 });
 
+useServerSeoMeta({
+  ogImage: "https://www.string-theory.app/icons/og_image.png",
+  ogImageUrl: "https://www.string-theory.app/icons/og_image.png",
+  ogImageType: "image/png",
+  twitterCard: "summary_large_image",
+  twitterTitle: "String Theory",
+  twitterImage: "https://www.string-theory.app/icons/icon_512.png",
+  keywords: "guitar, fretboard, trainer, learn, notes, intervals, chords",
+  themeColor: "#2d69eb",
+});
+
 // window.screen.orientation.lock("landscape");
 </script>
 

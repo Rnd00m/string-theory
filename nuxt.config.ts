@@ -55,6 +55,9 @@ export default defineNuxtConfig({
       type: "module",
     },
   },
+  routeRules: {
+    "/exercises/ear-training/find-intervals": {ssr: false},
+  },
   site: {
     name: "String Theory",
     hostname: "https://string-theory.app",

@@ -6,4 +6,10 @@ export const useSEODescription = (description: string) => {
     ogDescription:SEODescription,
     twitterDescription: SEODescription,
   })
+
+  useServerSeoMeta({
+    description: SEODescription,
+    ogDescription:SEODescription,
+    twitterDescription: SEODescription,
+  })
 }

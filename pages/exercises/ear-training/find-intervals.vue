@@ -26,41 +26,26 @@
               {{ foundNumber }}
             </div>
           </div>
-        </div>
-        <button
-          class="btn btn-outline self-center"
-          v-if="!isExerciseInProgress"
-        >
-          <SvgIcon type="mdi" :path="mdiRestart" @click="startExercise" />
-        </button>
+
+          <div class="stat" v-if="!isExerciseInProgress">
+            <button class="btn btn-outline self-center" @click="startExercise">
+              <SvgIcon type="mdi" :path="mdiRestart" />
+            </button>
+          </div>
+        </div >
       </template>
 
       <template #exercise-responses>
         <div class="grid landscape:grid-cols-4 grid-cols-2 gap-4">
           <EarTrainingExerciseAnswerButton
             v-for="interval in intervalsList"
-            :key="
-              interval.name + intervalToFind.name + noteWithIntervalApplied.name
-            "
+            :key="interval.name + exerciseCount"
             :interval="interval"
             :interval-to-find="intervalToFind"
             @earTrainingExercise:answered="consumeAnswerButtonClicked"
+            :is-exercise-in-progress="isExerciseInProgress"
           />
         </div>
-      </template>
-
-      <template #exercise-modal>
-        <BaseDialog
-          ref="exerciseModal"
-          title="Congratulations you've found the correct interval"
-          confirm-text="Restart"
-          show-confirm
-          @confirm="startExercise"
-        >
-          <p class="py-4">
-            You could now restart the exercise with a new interval.
-          </p>
-        </BaseDialog>
       </template>
     </EarTrainingExercise>
   </div>
@@ -78,7 +63,6 @@ import * as Tone from "tone";
 import { soundSampleList } from "@/components/modules/settings/services/SoundSampleList";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiPlay, mdiRestart } from "@mdi/js";
-import BaseDialog from "@/components/BaseDialog.vue";
 
 definePageMeta({
   title: 'Learn to recognize intervals by ear'
@@ -95,9 +79,7 @@ const noteWithIntervalApplied = ref<Note | null>(null);
 const errorsNumber = ref<number>(0);
 const foundNumber = ref<number>(0);
 const isExerciseInProgress = ref<boolean>(false);
-
-const exerciseModal = ref<InstanceType<typeof BaseDialog>>();
-const openEndExerciseDialog = () => exerciseModal.value?.open();
+const exerciseCount = ref<number>(0);
 
 const sampler = getSampler(
   soundSampleList.find(
@@ -124,6 +106,7 @@ function startExercise(): void {
     playExerciseNotes();
   }, 600);
   isExerciseInProgress.value = true; // Enable the note selection
+  exerciseCount.value += 1;
 }
 
 function playExerciseNotes(): void {
@@ -144,11 +127,12 @@ function consumeAnswerButtonClicked(isCorrectlyAnswered: boolean): void {
   else {
     foundNumber.value += 1;
     isExerciseInProgress.value = false;
-    openEndExerciseDialog();
   }
 }
 
-startExercise();
+onMounted(() => {
+  startExercise();
+});
 </script>
 
 <style scoped></style>

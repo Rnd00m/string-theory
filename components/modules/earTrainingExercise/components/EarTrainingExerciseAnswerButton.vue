@@ -3,6 +3,7 @@
     class="btn btn-primary normal-case"
     :class="buttonClass"
     @click="checkAnswer"
+    :disabled="!isExerciseInProgress"
   >
     {{ props.interval.name }}
   </button>
@@ -14,6 +15,7 @@ import { ref } from "vue";
 interface Props {
   interval: Interval;
   intervalToFind: Interval;
+  isExerciseInProgress: boolean;
 }
 const props = defineProps<Props>();
 const emit = defineEmits(["earTrainingExercise:answered"]);
