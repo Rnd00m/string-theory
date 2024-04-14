@@ -42,7 +42,7 @@ useHead(() => ({
     },
     {
       rel: "canonical",
-      href: "https://www.string-theory.app" + route.path,
+      href: "https://string-theory.app" + route.path,
     },
   ],
   charset: "utf-8",
@@ -53,23 +53,23 @@ useHead(() => ({
 }));
 
 useSeoMeta({
-  ogImage: "https://www.string-theory.app/icons/og_image.png",
-  ogImageUrl: "https://www.string-theory.app/icons/og_image.png",
+  ogImage: "https://string-theory.app/icons/og_image.png",
+  ogImageUrl: "https://string-theory.app/icons/og_image.png",
   ogImageType: "image/png",
   twitterCard: "summary_large_image",
   twitterTitle: "String Theory",
-  twitterImage: "https://www.string-theory.app/icons/icon_512.png",
+  twitterImage: "https://string-theory.app/icons/og_image.png",
   keywords: "guitar, fretboard, trainer, learn, notes, intervals, chords",
   themeColor: "#2d69eb",
 });
 
 useServerSeoMeta({
-  ogImage: "https://www.string-theory.app/icons/og_image.png",
-  ogImageUrl: "https://www.string-theory.app/icons/og_image.png",
+  ogImage: "https://string-theory.app/icons/og_image.png",
+  ogImageUrl: "https://string-theory.app/icons/og_image.png",
   ogImageType: "image/png",
   twitterCard: "summary_large_image",
   twitterTitle: "String Theory",
-  twitterImage: "https://www.string-theory.app/icons/icon_512.png",
+  twitterImage: "https://string-theory.app/icons/og_image.png",
   keywords: "guitar, fretboard, trainer, learn, notes, intervals, chords",
   themeColor: "#2d69eb",
 });
