@@ -2,9 +2,9 @@
   <div class="training">
     <FretboardExercise>
       <template #exercise-detail>
-        <div class="stats bg-base-300">
-          <div class="stat">
-            <div>
+        <BaseStats>
+          <BaseStat>
+            <template #title>
               Find a
               <span
                 v-if="!isFirstLoad"
@@ -17,25 +17,32 @@
                 class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
               >{{ startNote.pc }}</span>
               <span v-else class="loading loading-dots loading-xs text-primary"></span>
-            </div>
-            <div class="stat-value text-xl lg:text-2xl">
+            </template>
+            <template #value>
               {{ totalNoteFound }} / {{ totalNoteToFind }}
-            </div>
-          </div>
+            </template>
+          </BaseStat>
 
-          <div class="stat">
-            <div>Errors</div>
-            <div class="stat-value text-xl lg:text-2xl">{{ errorsNumber }}</div>
-          </div>
-          <div class="stat" v-if="!isExerciseInProgress && !isFirstLoad">
-            <button
-              class="btn btn-outline self-center"
-              @click="startExercise"
-            >
-              <SvgIcon type="mdi" :path="mdiRestart"/>
-            </button>
-          </div>
-        </div>
+          <BaseStat>
+            <template #title>
+              Errors
+            </template>
+            <template #value>
+              {{ errorsNumber }}
+            </template>
+          </BaseStat>
+
+          <BaseStat v-if="!isExerciseInProgress && !isFirstLoad">
+            <template #value>
+              <button
+                class="btn btn-outline self-center"
+                @click="startExercise"
+              >
+                <SvgIcon type="mdi" :path="mdiRestart"/>
+              </button>
+            </template>
+          </BaseStat>
+        </BaseStats>
       </template>
 
       <template #exercise-fretboard>

@@ -1,30 +1,35 @@
 <template>
   <div class="exercise-wrapper grid gap-4 md:w-2/3 w-full max-w-screen-md px-4">
-    <div class="stats shadow">
-      <div class="stat place-items-center">
-        <div class="stat-value">
+    <BaseStats>
+      <BaseStat>
+        <template #value>
           <button
               class="btn btn-primary btn-md gap-2"
               @click="playExerciseNotes"
           >
             <svg-icon type="mdi" :path="mdiPlay" size="28"/>
           </button>
-        </div>
-      </div>
+        </template>
+      </BaseStat>
 
-      <div class="stat place-items-center">
-        <div class="stat-title">Errors</div>
-        <div class="stat-value text-xl lg:text-2xl">
+      <BaseStat>
+        <template #title>
+          Errors
+        </template>
+        <template #value>
           {{ errorsNumber }}
-        </div>
-      </div>
-      <div class="stat place-items-center">
-        <div class="stat-title">Found</div>
-        <div class="stat-value text-xl lg:text-2xl">
+        </template>
+      </BaseStat>
+
+      <BaseStat>
+        <template #title>
+          Found
+        </template>
+        <template #value>
           {{ foundNumber }}
-        </div>
-      </div>
-    </div>
+        </template>
+      </BaseStat>
+    </BaseStats>
 
     <div class="grid landscape:grid-cols-4 grid-cols-2 gap-4">
       <EarTrainingExerciseAnswerButton
