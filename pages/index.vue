@@ -1,18 +1,16 @@
 <template>
-  <div class="fretboard-viewer place-self-center">
-    <div class="grid grid-flow-row gap-8">
-      <div class="p-4 sm:p-0">
-        <SettingsFretboard class="hidden portrait:block lg:block" />
-      </div>
-      <FretboardViewer
-        :fretboard-notes="fretboardNotes"
-        :show-octave="fretboardParametersStore.showOctave"
-        :is-sound-active="true"
-        :selected-sound-sample="fretboardParametersStore.selectedSoundSample"
-      />
-      <div class="p-4 sm:p-0">
-        <InformationComponent />
-      </div>
+  <div class="grid grid-flow-row mt-4 portrait:gap-6 portrait:mt-0 lg:gap-8 lg:mt-0">
+    <div class="px-4 sm:p-0">
+      <SettingsFretboard class="hidden portrait:block lg:block" />
+    </div>
+    <FretboardViewer
+      :fretboard-notes="fretboardNotes"
+      :show-octave="fretboardParametersStore.showOctave"
+      :is-sound-active="true"
+      :selected-sound-sample="fretboardParametersStore.selectedSoundSample"
+    />
+    <div class="px-4 pb-4 sm:p-0">
+      <InformationComponent />
     </div>
   </div>
 </template>
