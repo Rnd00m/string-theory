@@ -79,7 +79,7 @@
               <NuxtLink to="/exercises">Exercise</NuxtLink>
             </li>
             <li>
-              <details>
+              <details class="dropdown">
                 <summary>
                   <NuxtLink to="/tools">Tools</NuxtLink>
                 </summary>
@@ -157,7 +157,7 @@
           <NuxtLink to="/exercises">Exercise</NuxtLink>
         </li>
         <li>
-          <details>
+          <details class="dropdown">
             <summary>
               <NuxtLink to="/tools">Tools</NuxtLink>
             </summary>
@@ -179,6 +179,20 @@
 
 <script setup lang="ts">
 const route = useRoute();
+
+function closeDropdown() {
+  document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+    dropdown.open = false;
+  });
+}
+
+onMounted(() => {
+  window.addEventListener('click', closeDropdown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('click', closeDropdown);
+});
 </script>
 
 <style scoped></style>
