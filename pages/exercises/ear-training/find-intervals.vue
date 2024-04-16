@@ -42,13 +42,15 @@
       />
     </div>
 
-    <button
-        class="btn btn-block btn-outline"
+    <div class="h-12">
+      <button
+        class="btn btn-block btn-outline h-full"
         @click="startExercise"
         v-if="!isExerciseInProgress"
-    >
-      <SvgIcon type="mdi" :path="mdiRestart"/>
-    </button>
+      >
+        <SvgIcon type="mdi" :path="mdiRestart"/>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -124,6 +126,7 @@ function playExerciseNotes(): void {
 }
 
 function consumeAnswerButtonClicked(isCorrectlyAnswered: boolean): void {
+  if (!isExerciseInProgress.value) return;
   if (!isCorrectlyAnswered) errorsNumber.value += 1;
   else {
     foundNumber.value += 1;

@@ -3,7 +3,7 @@
     class="btn btn-primary normal-case"
     :class="buttonClass"
     @click="checkAnswer"
-    :disabled="!isExerciseInProgress"
+    :disabled="!isExerciseInProgress && !isAnswerCorrect"
   >
     {{ props.interval.name }}
   </button>
@@ -21,15 +21,15 @@ const props = defineProps<Props>();
 const emit = defineEmits(["earTrainingExercise:answered"]);
 
 const buttonClass = ref<string | null>(null);
+const isAnswerCorrect = ref<boolean>(false);
 
 function checkAnswer(): void {
-  const isAnswerCorrect: boolean =
-    props.interval.name === props.intervalToFind.name;
+  isAnswerCorrect.value = props.interval.name === props.intervalToFind.name;
 
-  if (!isAnswerCorrect) buttonClass.value = "btn-error";
+  if (!isAnswerCorrect.value) buttonClass.value = "btn-error";
   else buttonClass.value = "btn-success";
 
-  emit("earTrainingExercise:answered", isAnswerCorrect);
+  emit("earTrainingExercise:answered", isAnswerCorrect.value);
 }
 </script>
 
