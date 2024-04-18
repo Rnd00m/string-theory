@@ -69,7 +69,7 @@
             String Theory
           </NuxtLink>
         </div>
-        <div v-if="route.path === '/'" class="flex-none lg:hidden">
+        <div v-if="route.path === '/'" class="flex-none portrait:hidden lg:hidden">
           <TheViewerDrawerIcons class="flex portrait:hidden lg:hidden" />
         </div>
         <div class="flex-none hidden lg:block">
@@ -79,7 +79,7 @@
               <NuxtLink to="/exercises">Exercise</NuxtLink>
             </li>
             <li>
-              <details>
+              <details class="dropdown">
                 <summary>
                   <NuxtLink to="/tools">Tools</NuxtLink>
                 </summary>
@@ -102,7 +102,7 @@
       <!-- Page Content-->
       <slot />
     </div>
-    <div class="drawer-side z-20">
+    <div class="drawer-side h-full z-20">
       <label for="header-menu-drawer" class="drawer-overlay"></label>
       <ul class="menu h-full p-4 w-80 bg-base-100 relative">
         <NuxtLink to="/" class="btn btn-ghost normal-case text-xl mb-2">
@@ -157,7 +157,7 @@
           <NuxtLink to="/exercises">Exercise</NuxtLink>
         </li>
         <li>
-          <details>
+          <details class="dropdown">
             <summary>
               <NuxtLink to="/tools">Tools</NuxtLink>
             </summary>
@@ -179,6 +179,20 @@
 
 <script setup lang="ts">
 const route = useRoute();
+
+function closeDropdown() {
+  document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+    dropdown.open = false;
+  });
+}
+
+onMounted(() => {
+  window.addEventListener('click', closeDropdown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('click', closeDropdown);
+});
 </script>
 
 <style scoped></style>

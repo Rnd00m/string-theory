@@ -1,55 +1,60 @@
 <template>
-  <div class="training">
-    <FretboardExercise>
-      <template #exercise-detail>
-        <div class="stats bg-base-300">
-          <div class="stat">
-            <div>
-              Find a
-              <span
-                v-if="!isFirstLoad"
-                class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
-              >{{ intervalToFind.name }}</span>
-              <span v-else class="loading loading-dots loading-xs text-primary"></span>
-              from the selected
-              <span
-                v-if="!isFirstLoad"
-                class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
-              >{{ startNote.pc }}</span>
-              <span v-else class="loading loading-dots loading-xs text-primary"></span>
-            </div>
-            <div class="stat-value text-xl lg:text-2xl">
-              {{ totalNoteFound }} / {{ totalNoteToFind }}
-            </div>
-          </div>
+  <FretboardExercise>
+    <template #exercise-detail>
+      <BaseStats>
+        <BaseStat>
+          <template #title>
+            Find a
+            <span
+              v-if="!isFirstLoad"
+              class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
+            >{{ intervalToFind.name }}</span>
+            <span v-else class="loading loading-dots loading-xs text-primary"></span>
+            from the selected
+            <span
+              v-if="!isFirstLoad"
+              class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
+            >{{ startNote.pc }}</span>
+            <span v-else class="loading loading-dots loading-xs text-primary"></span>
+          </template>
+          <template #value>
+            {{ totalNoteFound }} / {{ totalNoteToFind }}
+          </template>
+        </BaseStat>
 
-          <div class="stat">
-            <div>Errors</div>
-            <div class="stat-value text-xl lg:text-2xl">{{ errorsNumber }}</div>
-          </div>
-          <div class="stat" v-if="!isExerciseInProgress && !isFirstLoad">
+        <BaseStat>
+          <template #title>
+            Errors
+          </template>
+          <template #value>
+            {{ errorsNumber }}
+          </template>
+        </BaseStat>
+
+        <BaseStat v-if="!isExerciseInProgress && !isFirstLoad">
+          <template #value>
             <button
               class="btn btn-outline self-center"
               @click="startExercise"
             >
               <SvgIcon type="mdi" :path="mdiRestart"/>
             </button>
-          </div>
-        </div>
-      </template>
+          </template>
+        </BaseStat>
+      </BaseStats>
+    </template>
 
-      <template #exercise-fretboard>
-        <FretboardViewer
-            v-if="!isFirstLoad"
-            :fretboard-notes="fretboardNotes"
-            :is-note-selectable="isExerciseInProgress"
-            :is-sound-active="false"
-            @note-selected="selectNote"
-        />
-        <div class="skeleton w-[45.5rem] lg:w-[58.5rem] h-[15rem] lg:h-[18rem]" v-else />
-      </template>
-    </FretboardExercise>
-  </div>
+    <template #exercise-fretboard>
+      <FretboardViewer
+          v-if="!isFirstLoad"
+          :fretboard-notes="fretboardNotes"
+          :is-note-selectable="isExerciseInProgress"
+          :is-sound-active="false"
+          @note-selected="selectNote"
+      />
+      <div class="skeleton w-[45.5rem] lg:w-[58.5rem] h-[15rem] lg:h-[18rem]" v-else />
+    </template>
+  </FretboardExercise>
 </template>
 
 <style></style>

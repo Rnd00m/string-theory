@@ -1,6 +1,6 @@
 <template>
   <div
-    class="exercise-list-wrapper grid xs:grid-flow-row sm:grid-cols-2 gap-x-6 lg:gap-x-12 gap-y-3 lg:gap-y-6"
+    class="exercise-list-wrapper grid xs:grid-flow-row sm:grid-cols-2 gap-x-6 lg:gap-x-12 gap-y-3 lg:gap-y-6 mt-3 portrait:mt-0 lg:mt-0"
   >
     <BaseCardLink
       to="/exercises/fretboard/find-notes"
