@@ -1,58 +1,56 @@
 <template xmlns:lg="http://www.w3.org/1999/xhtml">
-  <div class="training">
-    <FretboardExercise>
-      <template #exercise-detail>
-        <BaseStats>
-          <BaseStat>
-            <template #title>
-              Find all
-              <span
-                v-if="!isFirstLoad"
-                class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
-                >{{ noteToFind.pc }}
-              </span>
-              <span v-else class="loading loading-dots loading-xs text-primary"></span>
-              on the fretboard
-            </template>
-            <template #value>
-              {{ totalNoteFound }} / {{ totalNoteToFind }}
-            </template>
-          </BaseStat>
+  <FretboardExercise>
+    <template #exercise-detail>
+      <BaseStats>
+        <BaseStat>
+          <template #title>
+            Find all
+            <span
+              v-if="!isFirstLoad"
+              class="text-white p-1 font-bold text-base lg:text-lg rounded-lg note-to-find p-1.5"
+              >{{ noteToFind.pc }}
+            </span>
+            <span v-else class="loading loading-dots loading-xs text-primary"></span>
+            on the fretboard
+          </template>
+          <template #value>
+            {{ totalNoteFound }} / {{ totalNoteToFind }}
+          </template>
+        </BaseStat>
 
-          <BaseStat>
-            <template #title>
-              Errors
-            </template>
-            <template #value>
-              {{ errorsNumber }}
-            </template>
-          </BaseStat>
+        <BaseStat>
+          <template #title>
+            Errors
+          </template>
+          <template #value>
+            {{ errorsNumber }}
+          </template>
+        </BaseStat>
 
-          <BaseStat v-if="!isExerciseInProgress && !isFirstLoad">
-            <template #value>
-              <button
-                  class="btn btn-outline self-center"
-                  @click="startExercise"
-              >
-                <SvgIcon type="mdi" :path="mdiRestart"/>
-              </button>
-            </template>
-          </BaseStat>
-        </BaseStats>
-      </template>
+        <BaseStat v-if="!isExerciseInProgress && !isFirstLoad">
+          <template #value>
+            <button
+                class="btn btn-outline self-center"
+                @click="startExercise"
+            >
+              <SvgIcon type="mdi" :path="mdiRestart"/>
+            </button>
+          </template>
+        </BaseStat>
+      </BaseStats>
+    </template>
 
-      <template #exercise-fretboard>
-        <FretboardViewer
-          v-if="!isFirstLoad"
-          :fretboard-notes="fretboardNotes"
-          :is-note-selectable="isExerciseInProgress"
-          :is-sound-active="false"
-          @note-selected="selectNote"
-        />
-        <div class="skeleton w-[45.5rem] lg:w-[58.5rem] h-[15rem] lg:h-[18rem]" v-else />
-      </template>
-    </FretboardExercise>
-  </div>
+    <template #exercise-fretboard>
+      <FretboardViewer
+        v-if="!isFirstLoad"
+        :fretboard-notes="fretboardNotes"
+        :is-note-selectable="isExerciseInProgress"
+        :is-sound-active="false"
+        @note-selected="selectNote"
+      />
+      <div class="skeleton w-[45.5rem] lg:w-[58.5rem] h-[15rem] lg:h-[18rem]" v-else />
+    </template>
+  </FretboardExercise>
 </template>
 
 <style></style>

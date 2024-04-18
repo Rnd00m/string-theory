@@ -1,12 +1,10 @@
 <template>
-  <div class="exercise-wrapper flex flex-col gap-2">
+  <div class="grid grid-flow-row gap-2 md:gap-8">
     <div class="flex justify-center px-4">
       <slot name="exercise-detail" />
     </div>
 
-    <div class="exercise-fretboard">
-      <slot name="exercise-fretboard" />
-    </div>
+    <slot name="exercise-fretboard" />
 
     <slot name="exercise-modal" />
   </div>
