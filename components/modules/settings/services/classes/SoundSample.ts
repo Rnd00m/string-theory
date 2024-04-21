@@ -6,4 +6,8 @@ export class SoundSample {
     public instrumentType: SoundSampleInstrumentTypeEnum,
     public url: string
   ) {}
+
+  toJSON () {
+    return { ...this }
+  }
 }
