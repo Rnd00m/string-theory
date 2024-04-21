@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper grid grid-flow-row items-center gap-4">
+  <div class="wrapper grid grid-flow-row items-center gap-4 w-full max-w-5xl">
     <div class="hidden md:grid justify-items-center mb-4">
       <h1 class="text-center text-4xl font-bold">String tension calculator</h1>
     </div>
@@ -11,7 +11,7 @@
         @diapasonUpdated="updateDiapasonParameter"
         @notesUpdated="updateNotesParameter"
         @stringsUpdated="updateStringsParameter"
-        class="mb-5 md:mb-0"
+        class="mb-8 md:mb-2"
       />
 
       <div class="grid grid-flow-row auto-rows-max md:grid-cols-2">

@@ -1,5 +1,5 @@
 <template>
-  <div class="settings flex gap-4">
+  <div class="settings grid grid-flow-row auto-rows-max md:grid-cols-3 md:gap-4 justify-items-center">
     <div class="form-control w-full max-w-xs">
       <label class="label">
         <span class="label-text">Diapason</span>
@@ -20,7 +20,7 @@
       </label>
       <select
         v-model="selectedNotes"
-        class="select select-sm md:select-md select-bordered w-full max-w-xs"
+        class="select select-sm sm:select-md select-bordered w-full max-w-xs"
         @change="emitNotesUpdated"
       >
         <option
@@ -39,7 +39,7 @@
       </label>
       <select
         v-model="selectedStrings"
-        class="select select-sm md:select-md select-primary select-bordered w-full max-w-xs"
+        class="select select-sm sm:select-md select-primary select-bordered w-full max-w-xs"
         @change="emitStringsUpdated"
       >
         <option

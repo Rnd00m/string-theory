@@ -44,7 +44,7 @@ function emitNewTensionParameter() {
 
     <select
       v-model="selected.string"
-      class="select select-sm md:select-md select-primary select-bordered w-full max-w-xs"
+      class="select select-sm sm:select-md select-primary select-bordered w-full max-w-xs"
       @change="emitNewTensionParameter"
     >
       <option v-for="string in stringsData" :value="string" :key="string.name">
