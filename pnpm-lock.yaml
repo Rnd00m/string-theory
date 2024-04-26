@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@chordbook/tuner':
+    specifier: ^0.0.3
+    version: 0.0.3
   '@headlessui/vue':
     specifier: ^1.7.16
     version: 1.7.19(vue@3.4.21)
@@ -35,6 +38,9 @@ dependencies:
   '@vercel/speed-insights':
     specifier: ^1.0.10
     version: 1.0.10(vue-router@4.3.0)(vue@3.4.21)
+  '@vueuse/core':
+    specifier: ^10.9.0
+    version: 10.9.0(vue@3.4.21)
   daisyui:
     specifier: ^4
     version: 4.10.1(postcss@8.4.38)
@@ -1335,6 +1341,13 @@ packages:
       '@babel/helper-string-parser': 7.24.1
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
+
+  /@chordbook/tuner@0.0.3:
+    resolution: {integrity: sha512-oNF9rEDUK80VRRcOM/RsOvSWf/TE6TQDnDISmdVtd8Ukh6SkrByZ6gXzC4N0CLa661PH7GZzZo04LXkWZZ7i4A==}
+    engines: {node: '>=16'}
+    dependencies:
+      pitchy: 4.1.0
+    dev: false
 
   /@cloudflare/kv-asset-handler@0.3.1:
     resolution: {integrity: sha512-lKN2XCfKCmpKb86a1tl4GIwsJYDy9TGuwjhDELLmpKygQhw8X2xR4dusgpC5Tg7q1pB96Eb0rBo81kxSILQMwA==}
@@ -5606,6 +5619,10 @@ packages:
     dependencies:
       reusify: 1.0.4
 
+  /fft.js@4.0.4:
+    resolution: {integrity: sha512-f9c00hphOgeQTlDyavwTtu6RiK8AIFjD6+jvXkNkpeQ7rirK3uFWVpalkoS4LAwbdX7mfZ8aoBfFVQX1Re/8aw==}
+    dev: false
+
   /file-uri-to-path@1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     dev: false
@@ -7871,6 +7888,12 @@ packages:
   /pirates@4.0.6:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
+    dev: false
+
+  /pitchy@4.1.0:
+    resolution: {integrity: sha512-E8nQ8svBroGSMcc3qu2KvLHIuRYAIfrSkqDKWhjgj3WizseqWQXjQ+Q5t4g1CU73R5Euk+DAinyNFDK+KZw7zA==}
+    dependencies:
+      fft.js: 4.0.4
     dev: false
 
   /pkg-types@1.0.3:

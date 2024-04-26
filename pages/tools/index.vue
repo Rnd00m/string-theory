@@ -14,17 +14,14 @@
       >
     </BaseCardLink>
 
-    <!--    <BaseCardLink
-      :to="{name: 'exercises.fretboard.findIntervals'}"
-      :icon-path="mdiMusicAccidentalSharp"
+    <BaseCardLink
+      to="/tools/tuner"
+      :icon-path="mdiMusicBox"
       icon-class="bg-green-500"
     >
-      <template #title>Find intervals on fretboard</template>
-      <template #content>To easily find your chord positions on fretboard</template>
-      <template #card-actions>
-        <RouterLink class="btn btn-primary place-self-end" >Start</RouterLink>
-      </template>
-    </BaseCardLink>-->
+      <template #title>Tuner</template>
+      <template #content>Keep your instrument in perfect pitch with ease</template>
+    </BaseCardLink>
 
     <!--    <BaseCardLink
       :to="{name: 'exercises.earTraining.findIntervals'}"
@@ -54,7 +51,7 @@
 
 <style></style>
 <script setup lang="ts">
-import { mdiMagnify } from "@mdi/js";
+import {mdiMagnify, mdiMusicBox} from "@mdi/js";
 
 definePageMeta({
   title: 'Tools'

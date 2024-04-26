@@ -89,6 +89,9 @@
                       >Tension&nbsp;calculator</NuxtLink
                     >
                   </li>
+                  <li>
+                    <NuxtLink to="/tools/tuner">Tuner</NuxtLink>
+                  </li>
                 </ul>
               </details>
             </li>
@@ -166,6 +169,9 @@
                 <NuxtLink to="/tools/string-tension"
                   >Tension&nbsp;calculator</NuxtLink
                 >
+              </li>
+              <li>
+                <NuxtLink to="/tools/tuner">Tuner</NuxtLink>
               </li>
             </ul>
           </details>
