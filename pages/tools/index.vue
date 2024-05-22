@@ -4,7 +4,7 @@
   >
     <BaseCardLink
       to="/tools/string-tension"
-      :icon-path="mdiMagnify"
+      :icon-path="mdiChartBar"
       icon-class="bg-pink-500"
     >
       <template #title>String tension calculator</template>
@@ -16,7 +16,7 @@
 
     <BaseCardLink
       to="/tools/tuner"
-      :icon-path="mdiMusicBox"
+      :icon-path="mdiKnob"
       icon-class="bg-green-500"
     >
       <template #title>Tuner</template>
@@ -51,7 +51,7 @@
 
 <style></style>
 <script setup lang="ts">
-import {mdiMagnify, mdiMusicBox} from "@mdi/js";
+import {mdiChartBar, mdiKnob} from "@mdi/js";
 
 definePageMeta({
   title: 'Tools'
