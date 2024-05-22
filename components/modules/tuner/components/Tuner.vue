@@ -4,7 +4,7 @@
         :note="foundNote"
     />
 
-    <div class="mt-2 flex justify-center text-base-content font-bold text-7xl sm:text-8xl">{{ foundNote?.name || '-' }}<span class="ml-1 text-3xl sm:text-4xl">{{ foundNote?.octave }}</span></div>
+    <div class="flex justify-center text-base-content font-bold text-7xl sm:text-8xl mt-0 sm:mt-2">{{ foundNote?.name || '-' }}<span class="ml-1 text-3xl sm:text-4xl">{{ foundNote?.octave }}</span></div>
   </div>
 </template>
 
