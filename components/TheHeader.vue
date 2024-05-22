@@ -85,6 +85,9 @@
                 </summary>
                 <ul class="p-2 bg-base-300">
                   <li>
+                    <NuxtLink to="/tools/tuner">Tuner</NuxtLink>
+                  </li>
+                  <li>
                     <NuxtLink to="/tools/string-tension"
                       >Tension&nbsp;calculator</NuxtLink
                     >
@@ -162,6 +165,9 @@
               <NuxtLink to="/tools">Tools</NuxtLink>
             </summary>
             <ul class="p-2">
+              <li>
+                <NuxtLink to="/tools/tuner">Tuner</NuxtLink>
+              </li>
               <li>
                 <NuxtLink to="/tools/string-tension"
                   >Tension&nbsp;calculator</NuxtLink
