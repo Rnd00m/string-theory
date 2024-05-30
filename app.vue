@@ -53,6 +53,8 @@ useHead(() => ({
 }));
 
 useSeoMeta({
+  title: () => `${route.meta.title} · String Theory`,
+  ogTitle: () => `${route.meta.title} · String Theory`,
   ogImage: "https://string-theory.app/icons/og_image.png",
   ogImageUrl: "https://string-theory.app/icons/og_image.png",
   ogImageType: "image/png",
@@ -64,6 +66,8 @@ useSeoMeta({
 });
 
 useServerSeoMeta({
+  title: () => `${route.meta.title} · String Theory`,
+  ogTitle: () => `${route.meta.title} · String Theory`,
   ogImage: "https://string-theory.app/icons/og_image.png",
   ogImageUrl: "https://string-theory.app/icons/og_image.png",
   ogImageType: "image/png",

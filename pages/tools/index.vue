@@ -9,8 +9,7 @@
     >
       <template #title>String tension calculator</template>
       <template #content
-        >Calculate the tensions applied to the neck by the different
-        strings</template
+        >Calculate and balance string tension for your guitar or bass</template
       >
     </BaseCardLink>
 
