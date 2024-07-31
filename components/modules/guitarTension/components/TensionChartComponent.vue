@@ -1,99 +1,54 @@
-<script lang="ts">
-import { use } from "echarts/core";
-import { CanvasRenderer } from "echarts/renderers";
-import { BarChart, LinesChart } from "echarts/charts";
-import {
-  TitleComponent,
-  TooltipComponent,
-  LegendComponent,
-  GridComponent,
-  VisualMapComponent,
-  DatasetComponent,
-} from "echarts/components";
-import VChart, { THEME_KEY } from "vue-echarts";
-import { ref, defineComponent, computed } from "vue";
-import type { StringTension } from "@/components/modules/guitarTension/services/StringTension";
+<script lang="ts" setup>
+import {Line} from 'vue-chartjs'
+import type {StringTension} from "~/components/modules/guitarTension/services/StringTension";
 
-use([
-  CanvasRenderer,
-  TitleComponent,
-  TooltipComponent,
-  LegendComponent,
-  GridComponent,
-  VisualMapComponent,
-  BarChart,
-  LinesChart,
-  DatasetComponent,
-]);
+interface Props {
+  stringTensions: StringTension[];
+}
 
-export default defineComponent({
-  name: "TensionChart",
-  components: {
-    VChart,
-  },
-  provide: {
-    [THEME_KEY]: "light",
-  },
-  props: {
-    stringTensions: Object,
-  },
-  setup(props) {
-    const source = computed(() =>
-      props.stringTensions
-        .map((string: StringTension) => [
-          string.getTensionInKg(),
-          string.note.name,
-        ])
-        .reverse()
-    );
+const props = defineProps<Props>();
 
-    const option = ref({
-      dataset: {
-        source: source,
-      },
-      grid: { containLabel: true },
-      xAxis: { name: "" },
-      yAxis: { type: "category" },
-      visualMap: {
-        orient: "horizontal",
-        left: "center",
-        min: 5.5,
-        max: 14,
-        text: ["High Tension", "Low Tension"],
-        // Map the score column to color
-        dimension: 0,
-        inRange: {
-          color: ["#65B581", "#FFCE34", "#FD665F"],
-        },
-      },
-      series: [
-        {
-          type: "bar",
-          encode: {
-            // Map the "tension" column to X axis.
-            x: "tension",
-            // Map the "string" column to Y axis
-            y: "string",
-          },
-        },
-      ],
-    });
-    const initOptions = {
-      renderer: "canvas",
-    };
+const labels = ref<string[]>(
+  props.stringTensions.map((stringTension) => stringTension.note.name)
+);
 
-    return { option, initOptions };
+const datasets = computed(() => {
+  return [
+  {
+    label: 'Guitar #1',
+    fill: false,
+    borderColor: '#f87979',
+    data: props.stringTensions.map((stringTension) =>
+      stringTension.getTensionInKg()
+    ),
   },
-});
+    {
+      label: 'Guitar #2',
+      fill: false,
+      borderColor: '#00ff00',
+      data: props.stringTensions.map((stringTension) =>
+          stringTension.getTensionInKg() + Math.random() * (5 - (-5)) + (-5)
+      ),
+    }
+]});
+
+const chartData = computed(() => {
+  return {
+    labels: labels.value,
+    datasets: datasets.value,
+  };
+})
+const chartOptions = ref({
+  responsive: true,
+  maintainAspectRatio: false,
+})
 </script>
 
 <template>
-  <div class="tension-chart-container w-full h-96 md:w-[500px] md:h-[550px]">
-    <v-chart
-      :option="option"
-      class="tension-chart"
-      :init-options="initOptions"
-      autoresize
+  <div>
+    <Line
+      :data="chartData"
+      :options="chartOptions"
     />
   </div>
 </template>

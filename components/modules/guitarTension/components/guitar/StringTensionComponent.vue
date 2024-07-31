@@ -1,4 +1,34 @@
-<script setup lang="ts">
+<template>
+  <div
+      class="string-tension grid grid-flow-col auto-cols-max place-content-center place-items-center gap-3"
+  >
+    <BaseSelect
+        v-model="selected.note"
+        :items="notes"
+        name="string-tension-note"
+        value="note"
+        @change="emitNewTensionParameter"
+    />
+
+    <select
+        v-model="selected.string"
+        class="select select-sm sm:select-md select-primary select-bordered w-full max-w-xs"
+        @change="emitNewTensionParameter"
+    >
+      <option v-for="string in stringsData" :value="string" :key="string.name">
+        {{ string.name }} - {{ string.diameter }}
+      </option>
+    </select>
+
+    <div class="w-20">
+      <span class="string-tension-span font-semibold">
+        {{ props.stringTension.getTensionInKg().toFixed(2) }} kg
+      </span>
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
 import { stringsData } from "@/components/modules/guitarTension/data/stringsData";
 import { reactive } from "vue";
 import { Note, Scale } from "@tonaljs/tonal";
@@ -29,35 +59,5 @@ function emitNewTensionParameter() {
   } as TensionParameterUpdateEvent);
 }
 </script>
-
-<template>
-  <div
-    class="string-tension grid grid-flow-col auto-cols-max place-content-center place-items-center gap-3"
-  >
-    <BaseSelect
-      name="string-tension-note"
-      v-model="selected.note"
-      :items="notes"
-      value="note"
-      @change="emitNewTensionParameter"
-    />
-
-    <select
-      v-model="selected.string"
-      class="select select-sm sm:select-md select-primary select-bordered w-full max-w-xs"
-      @change="emitNewTensionParameter"
-    >
-      <option v-for="string in stringsData" :value="string" :key="string.name">
-        {{ string.name }} - {{ string.diameter }}
-      </option>
-    </select>
-
-    <div class="w-20">
-      <span class="string-tension-span font-semibold">
-        {{ props.stringTension.getTensionInKg().toFixed(2) }} kg
-      </span>
-    </div>
-  </div>
-</template>
 
 <style scoped></style>

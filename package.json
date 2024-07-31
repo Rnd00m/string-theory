@@ -22,15 +22,15 @@
     "@tonaljs/tonal": "^4.6.5",
     "@vercel/speed-insights": "^1.0.10",
     "@vueuse/core": "^10.9.0",
+    "chart.js": "^4.4.3",
     "daisyui": "^4",
-    "echarts": "^5.4.2",
     "nuxt": "^3.11.1",
     "nuxt-headlessui": "^1.1.5",
     "nuxt-vercel-analytics": "^1.0.0",
     "pinia": "^2.1.7",
     "tone": "^14.7.77",
     "vue": "^3.4.21",
-    "vue-echarts": "^6.6.0",
+    "vue-chartjs": "^5.3.1",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
